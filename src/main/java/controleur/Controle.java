@@ -12,13 +12,12 @@ public class Controle {
         new Controle();
     }
         
-    
     public Controle() {
     	fen = new MaFenetre(this);
         fen.setVisible(true);
         
         maGrille =new Grille(this);
-	maGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-41.sud");
+	    maGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-41.sud");
         fen.initialiseGrilleDisplay(maGrille);
         
         Algorithme monAlgo;
