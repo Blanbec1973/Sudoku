@@ -9,10 +9,11 @@ import javax.swing.JPanel;
 
 
 public class MonPaneauGrille extends JPanel {
-    public void paintComponent (Graphics g) {
-	super.paintComponent (g);
-        this.dessineGrille(g);
-	//g.drawRect(10,10,240,240);
+    
+	public void paintComponent (Graphics g) {
+    	super.paintComponent (g);
+    	this.dessineGrille(g);
+    	//g.drawRect(10,10,240,240);
     }
     
     public void dessineGrille (Graphics g) {
@@ -20,10 +21,10 @@ public class MonPaneauGrille extends JPanel {
         g2d.setColor(Color.gray);
         Stroke stroke = new BasicStroke(3f);
         g2d.setStroke(stroke);
-        g2d.drawLine(102, 0, 102, 300);
-        g2d.drawLine(198, 0, 198, 300);
-        g2d.drawLine(0,99,300,99);
-        g2d.drawLine(0,195,300,195);
+        g2d.drawLine(202, 0, 202, 535);
+        g2d.drawLine(378, 0, 378, 535);
+        g2d.drawLine(0,179,600,179);
+        g2d.drawLine(0,356,600,356);
         
     }
 }

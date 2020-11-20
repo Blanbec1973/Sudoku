@@ -37,23 +37,24 @@ public class Algorithme {
         maGrille.calculXYSearchEtRegion(this.numCase);
         xSearch=maGrille.getxSearch();
         ySearch=maGrille.getySearch();
-        //fen.setFocus(xSearch,ySearch);
-        if (numCase == 2) {
+        controle.demandeSetFocusCase(xSearch, ySearch);
+        /*if (numCase == 2) {
             System.out.println(String.valueOf(this.numCase));}
-        
+        */
         //Case initiale ?
         if (maGrille.getCaseEnCours().isCaseInitiale()) {return;}
         
         //Case déjà trouvée ?
         if (maGrille.getCaseEnCours().isCaseTrouvee()) {return;}        
         
-        //Valeur unique dans la case ?
+        //Candidat unique dans la case ?
         if (maGrille.getCaseEnCours().contientCandidatUnique()) {
              solution = maGrille.getCaseEnCours().calculValeurUnique();
              this.trouveDansDernierBalayage = true;
              maGrille.setValeurCaseEnCours(solution);
              maGrille.elimineCandidatsCaseTrouvee(xSearch, ySearch, solution);
-             javax.swing.JOptionPane.showMessageDialog(null,"Valeur unique case");
+             controle.demandeAfficheCommande("Valeur unique case "+ String.valueOf(xSearch+1)+"-"+String.valueOf(ySearch+1)+" : "+solution );
+             //javax.swing.JOptionPane.showMessageDialog(null,"Valeur unique case");
              return;
         }
         
@@ -64,7 +65,8 @@ public class Algorithme {
                 this.trouveDansDernierBalayage = true;
                 maGrille.setValeurCaseEnCours(candidat);
                 maGrille.elimineCandidatsCaseTrouvee(xSearch, ySearch, candidat);
-                javax.swing.JOptionPane.showMessageDialog(null,"Candidat unique Ligne : "+String.valueOf(candidat));
+                controle.demandeAfficheCommande("Candidat unique ligne "+String.valueOf(ySearch+1)+" : "+candidat);
+                //javax.swing.JOptionPane.showMessageDialog(null,"Candidat unique Ligne : "+String.valueOf(candidat));
                 return;
             }
         }
@@ -76,7 +78,8 @@ public class Algorithme {
                 this.trouveDansDernierBalayage = true;
                 maGrille.setValeurCaseEnCours(candidat);
                 maGrille.elimineCandidatsCaseTrouvee(xSearch, ySearch, candidat);
-                javax.swing.JOptionPane.showMessageDialog(null,"Candidat unique Colonne : "+String.valueOf(candidat));
+                controle.demandeAfficheCommande("Candidat unique colonne "+String.valueOf(xSearch+1)+" : "+candidat);
+                //javax.swing.JOptionPane.showMessageDialog(null,"Candidat unique Colonne : "+String.valueOf(candidat));
                 return;
             }
         }
@@ -89,6 +92,7 @@ public class Algorithme {
                 maGrille.getCaseEnCours().setValeurCase(candidat);
                 controle.demandeRefreshAffichageCase(xSearch, ySearch);
                 maGrille.elimineCandidatsCaseTrouvee(xSearch, ySearch, candidat);
+                controle.demandeAfficheCommande("Candidat unique région "+maGrille.getCaseEnCours().getRegion()+" : "+candidat);
                 javax.swing.JOptionPane.showMessageDialog(null,"Candidat unique Région : "+String.valueOf(candidat));
             }
         }

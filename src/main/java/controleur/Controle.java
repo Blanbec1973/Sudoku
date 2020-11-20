@@ -35,5 +35,15 @@ public class Controle {
             fen.setCaseCandidats(x, y, maGrille.getCase(x, y).construitLibelleCandidats());
         }
     }
+    
+    public void demandeSetFocusCase(int x, int y) {
+    	fen.setFocus(x, y);
+    }
+    
+    public void demandeAfficheCommande(String texte) {
+    	fen.getLogTextArea().insert(texte+'\n', 0);
+    }
+    
+    
 
 }

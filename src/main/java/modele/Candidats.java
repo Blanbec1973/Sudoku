@@ -41,15 +41,17 @@ public class Candidats {
     
     public String construitLibelleCandidats() {
         String libelle;
-        if (candidats[1]) {libelle="1";} else {libelle = "";}
-        if (candidats[2]) {libelle=libelle+"2";} 
-        if (candidats[3]) {libelle=libelle+"3";} 
-        if (candidats[4]) {libelle=libelle+"4";} 
-        if (candidats[5]) {libelle=libelle+"5";} 
-        if (candidats[6]) {libelle=libelle+"6";} 
-        if (candidats[7]) {libelle=libelle+"7";} 
-        if (candidats[8]) {libelle=libelle+"8";} 
-        if (candidats[9]) {libelle=libelle+"9";} 
+        libelle="<html>";
+        if (candidats[1]) {libelle+="1";} else {libelle+=" ";}
+        if (candidats[2]) {libelle+="2";} else {libelle+=" ";}
+        if (candidats[3]) {libelle+="3<br>";} else {libelle+=" <br>";}
+        if (candidats[4]) {libelle+="4";} else {libelle+=" ";}
+        if (candidats[5]) {libelle+="5";} else {libelle+=" ";}
+        if (candidats[6]) {libelle+="6<br>";} else {libelle+=" <br>";}
+        if (candidats[7]) {libelle+="7";} else {libelle+=" ";}
+        if (candidats[8]) {libelle+="8";} else {libelle+=" ";}
+        if (candidats[9]) {libelle+="9";}else {libelle+=" ";}
+        libelle+="</html>";
         return libelle;
     }
 

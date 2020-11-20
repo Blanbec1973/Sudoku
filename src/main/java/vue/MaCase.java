@@ -15,11 +15,11 @@ import javax.swing.border.Border;
 
 public class MaCase extends JButton {
     public MaCase() {
-        Dimension expectedDimension = new Dimension(27, 27);
+        Dimension expectedDimension = new Dimension(54, 54);
         this.setPreferredSize(expectedDimension);
         this.setMaximumSize(expectedDimension);
         this.setMinimumSize(expectedDimension);
-        this.setSize(25, 25);
+        this.setSize(50, 50);
         this.setBackground(Color.WHITE);
         Border lineborder = BorderFactory.createLineBorder(Color.black, 1); 
         this.setBorder(lineborder);

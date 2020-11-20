@@ -279,7 +279,7 @@ public class Grille {
             //System.out.println("Ligne "+String.valueOf(ySearch+1)+" ==> Pas de recherche de triplettes.");
             return;
         }
-        System.out.println("Ligne "+String.valueOf(ySearch+1)+" ==> Recherche de triplettes depuis colonne "+String.valueOf(xSearch+1));
+        //System.out.println("Ligne "+String.valueOf(ySearch+1)+" ==> Recherche de triplettes depuis colonne "+String.valueOf(xSearch+1));
         while (x2<9) {
             if (x2!=xSearch && this.getCase(x2,ySearch).nEstPasCaseInitiale() && this.getCase(x2, ySearch).nEstPasCaseTrouvee()) {
                 x3=x2;
