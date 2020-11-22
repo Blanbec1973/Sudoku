@@ -1,11 +1,11 @@
 package modele;
 
-import controleur.Controle;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,10 +13,11 @@ import java.util.logging.Logger;
 public class Grille {
     private Case [][] mesCases = new Case [9][9];
     private int xSearch, ySearch, xRegion, yRegion;
-    private Controle controle;
+    private Modele modele;
+    private ArrayList<Integer> casesAtrouver;
         
-    public Grille(Controle controle) {
-        this.controle = controle;
+    public Grille(Modele modele) {
+        this.modele = modele;
         int numcase = 0;
         for (int y=0;y<9;y++) {
             for (int x=0;x<9;x++) {
@@ -24,19 +25,25 @@ public class Grille {
                 mesCases[x][y] = new Case(numcase, x, y);
             }
         }
+        casesAtrouver = new ArrayList<Integer>();
     }
      
     public Case getCase(int x, int y) {return mesCases[x][y];}
     public Case getCaseEnCours() {return mesCases[xSearch][ySearch];}
     public int getxSearch() {return xSearch;}
-    public int getySearch() {return ySearch;} 
+    public int getySearch() {return ySearch;}
+    public ArrayList<Integer> getCasesAtrouver() {return casesAtrouver;}
     
     public void setValeurCaseEnCours(int solution) {
         mesCases[xSearch][ySearch].setValeurCase(solution);
-        controle.demandeRefreshAffichageCase(xSearch, ySearch);
+        modele.getControle().demandeRefreshAffichageCase(xSearch, ySearch);
         this.elimineCandidatsCaseTrouvee(xSearch, ySearch, solution);
     }
 
+	public void setCaseEnCours(int numCase) {
+		this.calculXYSearchEtRegion(numCase);
+	}
+    
     public void calculXYSearchEtRegion(int numCase) {
         //Calcule xSearch et ySearch à partir de numCase
         xSearch = Utils.calculXsearch(numCase);
@@ -60,8 +67,9 @@ public class Grille {
     public void init (String nomFichier)  {
         String readLine;
         int valeur;
+        int indexCase = 1;
         File monFichier = new File(nomFichier);
-        int y =0;
+        int y=0;
         try {
             BufferedReader b = new BufferedReader(new FileReader(monFichier));
             while ((readLine = b.readLine()) != null) {
@@ -74,6 +82,10 @@ public class Grille {
                         mesCases[x][y].setValeurCase(valeur);
                         mesCases[x][y].setCaseInitiale();
                     }
+                    else {
+                    	casesAtrouver.add(indexCase);
+                    }
+                    indexCase+=1;
                 }
                 y++;
             }
@@ -138,7 +150,7 @@ public class Grille {
         return false;
     }
     
-    boolean checkPresenceCandidatColonne(int valeur, int numcol, int y) {
+    public boolean checkPresenceCandidatColonne(int valeur, int numcol, int y) {
         for (int i=0;i<9;i++) {
             if (mesCases[numcol][i].nEstPasCaseInitiale() && 
                 mesCases[numcol][i].nEstPasCaseTrouvee() &&
@@ -147,7 +159,7 @@ public class Grille {
         return false;
     }
 
-    boolean checkPresenceCandidatRegion(int indiceCandidat, int x, int y) { 
+    public boolean checkPresenceCandidatRegion(int indiceCandidat, int x, int y) { 
         for (int abs=xRegion;abs<xRegion+3;abs++) {
             for (int ord=yRegion;ord<yRegion+3;ord++) {
                 if (mesCases[abs][ord].nEstPasCaseInitiale() && 
@@ -161,13 +173,13 @@ public class Grille {
         return false;
     }
     
-    void elimineCandidatsCaseTrouvee(int x, int y, int solution) {
+    public void elimineCandidatsCaseTrouvee(int x, int y, int solution) {
         //Case x, y trouvée ==> élimination du candidats dans ligne/colonne/région.
         //Elimination dans ligne : 
         for (int i=0;i<9;i++) {
             mesCases[i][y].elimineCandidat(solution);
             if (mesCases[i][y].nEstPasCaseInitiale() && mesCases[i][y].nEstPasCaseTrouvee()) {
-                controle.demandeRefreshAffichageCase(i, y);
+            	modele.getControle().demandeRefreshAffichageCase(i, y);
             }
         }
         
@@ -175,7 +187,7 @@ public class Grille {
         for (int i=0;i<9;i++) {
             mesCases[x][i].elimineCandidat(solution);
             if (mesCases[x][i].nEstPasCaseInitiale() && mesCases[x][i].nEstPasCaseTrouvee()) {
-                controle.demandeRefreshAffichageCase(x, i);
+            	modele.getControle().demandeRefreshAffichageCase(x, i);
             }
         }
         
@@ -184,7 +196,7 @@ public class Grille {
             for (int ord=yRegion;ord<yRegion+3;ord++) {
                 mesCases[abs][ord].elimineCandidat(solution);
                 if (mesCases[abs][ord].nEstPasCaseInitiale() && mesCases[abs][ord].nEstPasCaseTrouvee()) {
-                    controle.demandeRefreshAffichageCase(abs, ord);
+                	modele.getControle().demandeRefreshAffichageCase(abs, ord);
                 }
             }
         }
@@ -196,7 +208,7 @@ public class Grille {
             for (int ord=yRegion;ord<yRegion+3;ord++) {
                 if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && mesCases[abs][ord].nEstPasCaseTrouvee()) {
                     mesCases[abs][ord].elimineCandidat(candidat);
-                    controle.demandeRefreshAffichageCase(abs, ord);
+                    modele.getControle().demandeRefreshAffichageCase(abs, ord);
                 }     
             }
         }   
@@ -208,7 +220,7 @@ public class Grille {
                 this.getCase(i, numligne).nEstPasCaseTrouvee() &&
                 !Arrays.toString(colonnesANePasPrendreEnCompte).contains(String.valueOf(i))) {
                 this.getCase(i,numligne).elimineCandidats(candidats.getCandidats());
-                controle.demandeRefreshAffichageCase(i,numligne);
+                modele.getControle().demandeRefreshAffichageCase(i,numligne);
             }   
         }
     }
@@ -236,7 +248,7 @@ public class Grille {
                     this.getCase(abs, ord).nEstPasCaseTrouvee() &&
                     !Arrays.equals(this.getCase(xSearch, ySearch).getCandidats(),this.getCase(abs, ord).getCandidats())) {
                     this.getCase(abs, ord).elimineCandidats(this.getCase(xSearch, ySearch).getCandidats());
-                    controle.demandeRefreshAffichageCase(abs, ord);
+                    modele.getControle().demandeRefreshAffichageCase(abs, ord);
                 }
             }
         }        
@@ -318,6 +330,8 @@ public class Grille {
         tableau[0]=xSearch;tableau[1]=x2;tableau[2]=x3;       
         this.elimineCandidatsLigneSaufColonnes(testCandidats, ySearch, tableau);
     }
+
+
 
 
 

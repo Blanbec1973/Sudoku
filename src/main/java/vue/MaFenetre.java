@@ -11,8 +11,12 @@ public class MaFenetre extends JFrame implements ActionListener {
     private final MonPaneauGrille panGrille ;
     private final JScrollPane panCommande;
     private TextArea logTextArea;
+    private JButton boutonAvance;
+    private JButton boutonExplique;
     
     public TextArea getLogTextArea() {return logTextArea;}
+    public JButton getBoutonAvance() {return this.boutonAvance;}
+    public JButton getBoutonExplique() {return this.boutonExplique;}
 
 	private MaCase [][] maGrilleDisplay = new MaCase [9][9];
         
@@ -59,8 +63,10 @@ public class MaFenetre extends JFrame implements ActionListener {
         panGrille.add(boutonRecule);
         JLabel rangDefilement = new JLabel("0");
         panGrille.add(rangDefilement);
-        JButton boutonAvance = new JButton(">>");
-        panGrille.add(boutonAvance);
+        this.boutonAvance = new JButton(">>");
+        panGrille.add(this.boutonAvance);
+        this.boutonExplique = new JButton("?");
+        panGrille.add(this.boutonExplique);
         
         // création bouton rectangle :
         //rectangle = new JButton ("Rectangle");
@@ -85,6 +91,13 @@ public class MaFenetre extends JFrame implements ActionListener {
         maGrilleDisplay[x][y].setText(value);
         maGrilleDisplay[x][y].setOpaque(true);
         maGrilleDisplay[x][y].setBackground(Color.GREEN);
+    }
+    
+    public void setCaseAvantExplication(int x, int y, String value) {
+//        maGrilleDisplay[x][y].setFont(new Font("Dialog",Font.BOLD,24));
+//        maGrilleDisplay[x][y].setText(value);
+//        maGrilleDisplay[x][y].setOpaque(true);
+        maGrilleDisplay[x][y].setBackground(Color.YELLOW);
     }
     
      public void setCaseCandidats(int x, int y, String value) {

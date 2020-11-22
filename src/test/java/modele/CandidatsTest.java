@@ -71,11 +71,11 @@ public class CandidatsTest extends TestCase {
     
     @Test
     public void testConstruitLibelleCandidats() {
-        assertEquals("",c1.construitLibelleCandidats());
-        assertEquals("1",c2.construitLibelleCandidats());
-        assertEquals("1",c3.construitLibelleCandidats());
-        assertEquals("123456789",c4.construitLibelleCandidats());
-        assertEquals("123456789",c5.construitLibelleCandidats());
+        assertEquals("<html>   <br>   <br>   </html>",c1.construitLibelleCandidats());
+        assertEquals("<html>1  <br>   <br>   </html>",c2.construitLibelleCandidats());
+        assertEquals("<html>1  <br>   <br>   </html>",c3.construitLibelleCandidats());
+        assertEquals("<html>123<br>456<br>789</html>",c4.construitLibelleCandidats());
+        assertEquals("<html>123<br>456<br>789</html>",c5.construitLibelleCandidats());
     }
     
     @Test

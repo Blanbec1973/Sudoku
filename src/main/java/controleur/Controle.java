@@ -1,38 +1,38 @@
 package controleur;
 
-import modele.Algorithme;
-import modele.Grille;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import modele.Modele;
 import vue.MaFenetre;
 
-public class Controle {
-    private Grille maGrille;
+public class Controle implements ActionListener {
     private MaFenetre fen;
+    private Modele modele;
     
-    public static void main(String[] args) {
-        new Controle();
-    }
+    public static void main(String[] args) {new Controle();}
         
     public Controle() {
+    	// Initialise la vue : 
     	fen = new MaFenetre(this);
         fen.setVisible(true);
+        fen.getBoutonAvance().addActionListener(this);
+        fen.getBoutonExplique().addActionListener(this);
         
-        maGrille =new Grille(this);
-	    maGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-41.sud");
-        fen.initialiseGrilleDisplay(maGrille);
+        // Initialise le modèle :
+        modele = new Modele(this);
         
-        Algorithme monAlgo;
-        monAlgo=new Algorithme(this);
-        monAlgo.run(maGrille);
-        
-        javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !");
+	    //Remplissage initiale de la grille de la vue :
+	    fen.initialiseGrilleDisplay(modele.getGrille());
+       
     }
     
     public void demandeRefreshAffichageCase (int x, int y) {
-        if (maGrille.getCase(x, y).isCaseTrouvee()) {
-            fen.setCase(x, y, String.valueOf(maGrille.getCase(x, y).getValeur()));
+        if (modele.getGrille().getCase(x, y).isCaseTrouvee()) {
+            fen.setCase(x, y, String.valueOf(modele.getGrille().getCase(x, y).getValeur()));
         }
         else {
-            fen.setCaseCandidats(x, y, maGrille.getCase(x, y).construitLibelleCandidats());
+            fen.setCaseCandidats(x, y, modele.getGrille().getCase(x, y).construitLibelleCandidats());
         }
     }
     
@@ -43,6 +43,24 @@ public class Controle {
     public void demandeAfficheCommande(String texte) {
     	fen.getLogTextArea().insert(texte+'\n', 0);
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();		
+		if (source == fen.getBoutonAvance()) {
+			//javax.swing.JOptionPane.showMessageDialog(null,"Clic sur avance !");
+			modele.detecteSuivant(false);	
+		}
+		else {
+			//javax.swing.JOptionPane.showMessageDialog(null,"Clic sur explique !");
+			modele.detecteSuivant(true);
+		}
+	}
+
+	public void demandeHighlightCase(int x, int y, String texte) {
+		fen.setCaseAvantExplication(x, y, texte);
+		
+	}
     
     
 
