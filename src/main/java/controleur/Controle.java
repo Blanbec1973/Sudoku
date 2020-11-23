@@ -59,9 +59,18 @@ public class Controle implements ActionListener {
 
 	public void demandeHighlightCase(int x, int y, String texte) {
 		fen.setCaseAvantExplication(x, y, texte);
-		
 	}
     
+    public void demandeIncrementRangResolution() {
+    	int temp = Integer.valueOf(fen.getRangResolution().getText());
+    	temp+=1;
+    	fen.getRangResolution().setText(String.valueOf(temp));
+    }
     
-
+    public void demandeDecrementRangResolution() {
+    	int temp = Integer.valueOf(fen.getRangResolution().getText());
+    	temp-=1;
+    	fen.getRangResolution().setText(String.valueOf(temp));
+    }
+    
 }

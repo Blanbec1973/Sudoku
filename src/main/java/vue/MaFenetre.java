@@ -8,17 +8,19 @@ import modele.Grille;
 
 public class MaFenetre extends JFrame implements ActionListener {
     private Controle controle;
+	private MaCase [][] maGrilleDisplay = new MaCase [9][9];
     private final MonPaneauGrille panGrille ;
     private final JScrollPane panCommande;
     private TextArea logTextArea;
     private JButton boutonAvance;
     private JButton boutonExplique;
+    private JLabel rangResolution;
     
     public TextArea getLogTextArea() {return logTextArea;}
     public JButton getBoutonAvance() {return this.boutonAvance;}
     public JButton getBoutonExplique() {return this.boutonExplique;}
+    public JLabel getRangResolution() {return this.rangResolution;}
 
-	private MaCase [][] maGrilleDisplay = new MaCase [9][9];
         
     public MaFenetre(Controle controle){
         this.controle = controle;
@@ -61,8 +63,8 @@ public class MaFenetre extends JFrame implements ActionListener {
        
         JButton boutonRecule = new JButton("<<");
         panGrille.add(boutonRecule);
-        JLabel rangDefilement = new JLabel("0");
-        panGrille.add(rangDefilement);
+        rangResolution = new JLabel("0");
+        panGrille.add(rangResolution);
         this.boutonAvance = new JButton(">>");
         panGrille.add(this.boutonAvance);
         this.boutonExplique = new JButton("?");
