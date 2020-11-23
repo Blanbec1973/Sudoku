@@ -38,6 +38,8 @@ public class Grille {
         mesCases[xSearch][ySearch].setValeurCase(solution);
         modele.getControle().demandeRefreshAffichageCase(xSearch, ySearch);
         this.elimineCandidatsCaseTrouvee(xSearch, ySearch, solution);
+        casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(xSearch, ySearch)));
+        //this.displayCasesAtrouver();
     }
 
 	public void setCaseEnCours(int numCase) {
@@ -94,7 +96,14 @@ public class Grille {
         } catch (IOException ex) {
             Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        //this.displayCasesAtrouver();
+    }
+    
+    public void displayCasesAtrouver() {
+    	int i = 0;
+    	while (i<this.getCasesAtrouver().size()) {
+    		System.out.println("i="+i+" ==>"+ this.getCasesAtrouver().get(i++));
+    	}
     }
     
     public void Display() {
