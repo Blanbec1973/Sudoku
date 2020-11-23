@@ -65,4 +65,10 @@ public class Utils {
         }
         return resultat;
     }
+    
+    public static int calculNumCase(int x, int y) {
+    	return (y*9+x+1);
+    }
+    
+    
 }
