@@ -11,23 +11,23 @@ import modele.Modele;
 //    CandidatUniqueDansRegion  : un candidat de la case n'existe pas dans les cases de la région
 //
 //Méthodes qui permettent d'éliminer des candidats :
-// Case en cours avec 2 candidats seulement : 
+//	Recherche d'absence de candidats en colonne dans les autres régions.
+//	Recherche de triplette de candidat dans 3 cases en ligne : 
+//	Case en cours avec 2 candidats seulement : 
 //     PaireDeCandidatEnLigne   : une case de le ligne comporte les mêmes 2 candidats que la caseEnCours
 //     PaireDeCandidatEnColonne : une case de le colonne comporte les mêmes 2 candidats que la caseEnCours
 //     PaireDeCandidatEnRegion  : une case de le région comporte les mêmes 2 candidats que la caseEnCours
 //
-// Recherche d'absence de candidats en colonne dans les autres régions.
-// Recherche de triplette de candidat dans 3 cases en ligne : 
+
 
 public abstract class MethodeResolution {
 	protected Modele modele;
-	private Grille grille;
+	protected Grille grille;
 	
 	public MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
 		this.grille=grille;
 	}
-	
 	
 	public abstract boolean detecteSuivant(Grille grille, boolean goPourChangement);
 	
@@ -35,8 +35,9 @@ public abstract class MethodeResolution {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(grille.getxSearch(), grille.getySearch(), solution);
 		modele.getControle().demandeAfficheCommande(this.calculMessageLog());
+		modele.getControle().demandeIncrementRangResolution();
 	}
-	
+
 	protected String calculMessageLog() {
 		String message = "";
 		message+= "Case x="+String.valueOf(grille.getxSearch()+1);
@@ -49,6 +50,5 @@ public abstract class MethodeResolution {
 		message+=", solution="+grille.getCaseEnCours().getValeur();
 		return message;
 	}
-	
 	
 }
