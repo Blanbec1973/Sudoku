@@ -10,7 +10,7 @@ public class CandidatUniqueDansColonne extends MethodeResolution {
 	}
 
 	@Override
-	public boolean detecteSuivant(Grille grille, boolean goPourChangement) {
+	public boolean detecteSuivant(boolean goPourChangement) {
 		boolean trouve = false;
 		int i=0;
 		int candidat =0;

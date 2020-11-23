@@ -10,7 +10,7 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 	}
 
 	@Override
-	public boolean detecteSuivant(Grille grille, boolean goPourChangement) {
+	public boolean detecteSuivant(boolean goPourChangement) {
 		boolean trouve = false;
 		int i=0;
 		while (i < grille.getCasesAtrouver().size() & !trouve) {

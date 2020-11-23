@@ -201,8 +201,21 @@ public class Grille {
             }
         }
     }
+
+	public boolean CheckPresenceCandidatRegionSaufColonne(int candidat, int colonne) {
+        for (int abs=xRegion;abs<xRegion+3;abs++) {
+            for (int ord=yRegion;ord<yRegion+3;ord++) {
+                if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && 
+                		             mesCases[abs][ord].nEstPasCaseTrouvee()) {
+                    if (mesCases[abs][ord].isCandidat(candidat)) return true;
+                    
+                }     
+            }
+        }  
+		return false;
+	}
     
-    void elimineCandidatRegionSaufColonne(int candidat, int colonne) {
+    public void elimineCandidatRegionSaufColonne(int candidat, int colonne) {
         //Elimination dans région : 
         for (int abs=xRegion;abs<xRegion+3;abs++) {
             for (int ord=yRegion;ord<yRegion+3;ord++) {
@@ -330,6 +343,8 @@ public class Grille {
         tableau[0]=xSearch;tableau[1]=x2;tableau[2]=x3;       
         this.elimineCandidatsLigneSaufColonnes(testCandidats, ySearch, tableau);
     }
+
+
 
 
 

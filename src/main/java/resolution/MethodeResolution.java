@@ -29,16 +29,16 @@ public abstract class MethodeResolution {
 		this.grille=grille;
 	}
 	
-	public abstract boolean detecteSuivant(Grille grille, boolean goPourChangement);
+	public abstract boolean detecteSuivant(boolean goPourChangement);
 	
 	public void setValeurCaseEnCours(boolean goPourChangement, int solution) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(grille.getxSearch(), grille.getySearch(), solution);
-		modele.getControle().demandeAfficheCommande(this.calculMessageLog());
+		modele.getControle().demandeAfficheCommande(this.calculMessageLog(0));
 		modele.getControle().demandeIncrementRangResolution();
 	}
 
-	protected String calculMessageLog() {
+	protected String calculMessageLog(int candidat) {
 		String message = "";
 		message+= "Case x="+String.valueOf(grille.getxSearch()+1);
 		message+= " y="+String.valueOf(grille.getySearch()+1);
@@ -47,6 +47,8 @@ public abstract class MethodeResolution {
 		if (this instanceof CandidatUniqueDansLigne) message+= "Candidat unique dans la ligne "+String.valueOf(grille.getySearch()+1);
 		if (this instanceof CandidatUniqueDansColonne) message+= "Candidat unique dans la colonne "+String.valueOf(grille.getxSearch()+1);
 		if (this instanceof CandidatUniqueDansRegion) message+= "Candidat unique dans la Région "+String.valueOf(grille.getCaseEnCours().getRegion());
+		if (this instanceof AbsenceCandidatEnColonneDansLesAutresRegions)
+			message+="Candidat "+candidat+ " en colonne "+String.valueOf(grille.getxSearch()+1)+" absent dans autres régions de la colonne.";
 		message+=", solution="+grille.getCaseEnCours().getValeur();
 		return message;
 	}

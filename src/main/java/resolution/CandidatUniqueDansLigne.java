@@ -8,7 +8,7 @@ public class CandidatUniqueDansLigne extends MethodeResolution {
 	public CandidatUniqueDansLigne(Modele modele, Grille grille) {super(modele,grille);}
 
 	@Override
-	public boolean detecteSuivant(Grille grille, boolean goPourChangement) {
+	public boolean detecteSuivant(boolean goPourChangement) {
 		boolean trouve = false;
 		int i=0;
 		int candidat =0;

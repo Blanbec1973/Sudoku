@@ -31,7 +31,7 @@ public class Modele {
 		int i =0;
 		boolean trouve = false;
 		
-		do { trouve = listeMethodes.get(i++).detecteSuivant(grille, goPourChangement);} 
+		do { trouve = listeMethodes.get(i++).detecteSuivant(goPourChangement);} 
 			while (i<listeMethodes.size() && !trouve);
         if (!trouve) javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !");
 	}
