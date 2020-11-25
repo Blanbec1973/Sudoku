@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 public class Grille {
     private Case [][] mesCases = new Case [9][9];
-    private int xSearch, ySearch, xRegion, yRegion;
     private Modele modele;
     private ArrayList<Integer> casesAtrouver;
         
@@ -29,42 +28,16 @@ public class Grille {
     }
      
     public Case getCase(int x, int y) {return mesCases[x][y];}
-    public Case getCaseEnCours() {return mesCases[xSearch][ySearch];}
-    public int getxSearch() {return xSearch;}
-    public int getySearch() {return ySearch;}
+    public Case getCaseEnCours() {return mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()];}
     public ArrayList<Integer> getCasesAtrouver() {return casesAtrouver;}
     
     public void setValeurCaseEnCours(int solution) {
-        mesCases[xSearch][ySearch].setValeurCase(solution);
-        modele.getControle().demandeRefreshAffichageCase(xSearch, ySearch);
-        this.elimineCandidatsCaseTrouvee(xSearch, ySearch, solution);
-        casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(xSearch, ySearch)));
+        mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()].setValeurCase(solution);
+        modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
+        this.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
+        casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch())));
         //this.displayCasesAtrouver();
-    }
-
-	public void setCaseEnCours(int numCase) {
-		this.calculXYSearchEtRegion(numCase);
-	}
-    
-    public void calculXYSearchEtRegion(int numCase) {
-        //Calcule xSearch et ySearch à partir de numCase
-        xSearch = Utils.calculXsearch(numCase);
-        ySearch = Utils.calculYsearch(numCase);
-        
-        // Calcul de la région : 
-        
-        switch (xSearch) {
-            case 0,1,2 -> xRegion=0;
-            case 3,4,5 -> xRegion=3;
-            case 6,7,8 -> xRegion=6;        
-        }
-        switch (ySearch) {
-            case 0,1,2 -> yRegion=0;
-            case 3,4,5 -> yRegion=3;
-            case 6,7,8 -> yRegion=6;
-        }
-    }
-        
+    }        
 
     public void init (String nomFichier)  {
         String readLine;
@@ -91,11 +64,13 @@ public class Grille {
                 }
                 y++;
             }
+            b.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
         }
+  
         //this.displayCasesAtrouver();
     }
     
@@ -107,7 +82,7 @@ public class Grille {
     }
     
     public void Display() {
-        //System.out.println(" Méthode Display : ");
+        //System.out.println("Méthode Display : ");
         String ligne = "";
         for (int y=0; y<9; y++) {
             // Préparation de la ligne à imprimer :
@@ -120,6 +95,7 @@ public class Grille {
     }
     
     public void calculCandidatsInitiaux(int x, int y) {
+    	CaseEnCours.setCaseEnCours(x, y);
         for (int valeur=1;valeur<10;valeur++) {
             if (this.checkPresenceValeurLigne(valeur, y)) {mesCases[x][y].elimineCandidat(valeur);}
             if (this.checkPresenceValeurColonne(valeur, x)) {mesCases[x][y].elimineCandidat(valeur);}
@@ -142,8 +118,8 @@ public class Grille {
     }
     
     public boolean checkPresenceValeurRegion(int valeur, int xSearch, int ySearch) {
-        for (int x=xRegion;x<xRegion+3;x++) {
-            for (int y=yRegion;y<yRegion+3;y++) {
+        for (int x=CaseEnCours.getxRegion();x<CaseEnCours.getxRegion()+3;x++) {
+            for (int y=CaseEnCours.getyRegion();y<CaseEnCours.getyRegion()+3;y++) {
                 if (this.mesCases[x][y].getValeur() == valeur) {return true;}
             }
         }
@@ -169,8 +145,8 @@ public class Grille {
     }
 
     public boolean checkPresenceCandidatRegion(int indiceCandidat, int x, int y) { 
-        for (int abs=xRegion;abs<xRegion+3;abs++) {
-            for (int ord=yRegion;ord<yRegion+3;ord++) {
+        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
+            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if (mesCases[abs][ord].nEstPasCaseInitiale() && 
                     mesCases[abs][ord].nEstPasCaseTrouvee() &&
                     (x!=abs || y!=ord) && 
@@ -201,8 +177,8 @@ public class Grille {
         }
         
         //Elimination dans région : 
-        for (int abs=xRegion;abs<xRegion+3;abs++) {
-            for (int ord=yRegion;ord<yRegion+3;ord++) {
+        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
+            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 mesCases[abs][ord].elimineCandidat(solution);
                 if (mesCases[abs][ord].nEstPasCaseInitiale() && mesCases[abs][ord].nEstPasCaseTrouvee()) {
                 	modele.getControle().demandeRefreshAffichageCase(abs, ord);
@@ -212,8 +188,8 @@ public class Grille {
     }
 
 	public boolean CheckPresenceCandidatRegionSaufColonne(int candidat, int colonne) {
-        for (int abs=xRegion;abs<xRegion+3;abs++) {
-            for (int ord=yRegion;ord<yRegion+3;ord++) {
+        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
+            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && 
                 		             mesCases[abs][ord].nEstPasCaseTrouvee()) {
                     if (mesCases[abs][ord].isCandidat(candidat)) return true;
@@ -226,8 +202,8 @@ public class Grille {
     
     public void elimineCandidatRegionSaufColonne(int candidat, int colonne) {
         //Elimination dans région : 
-        for (int abs=xRegion;abs<xRegion+3;abs++) {
-            for (int ord=yRegion;ord<yRegion+3;ord++) {
+        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
+            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && mesCases[abs][ord].nEstPasCaseTrouvee()) {
                     mesCases[abs][ord].elimineCandidat(candidat);
                     modele.getControle().demandeRefreshAffichageCase(abs, ord);
@@ -251,8 +227,8 @@ public class Grille {
     void traitePaireCandidatsRegion(int xSearch, int ySearch) {
         //Détection de paire de candidats : 
         boolean paireCandidatsTrouvee = false;
-        for (int abs=xRegion;abs<xRegion+3;abs++) {
-            for (int ord=yRegion;ord<yRegion+3;ord++) {
+        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
+            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if ((xSearch != abs || ySearch != ord) &&
                     this.getCase(abs, ord).nEstPasCaseInitiale() &&
                     this.getCase(abs, ord).nEstPasCaseTrouvee() &&
@@ -264,8 +240,8 @@ public class Grille {
             }
         }
         if (!paireCandidatsTrouvee) {return;}
-        for (int abs=xRegion;abs<xRegion+3;abs++) {
-            for (int ord=yRegion;ord<yRegion+3;ord++) {
+        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
+            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if (this.getCase(abs, ord).nEstPasCaseInitiale() &&
                     this.getCase(abs, ord).nEstPasCaseTrouvee() &&
                     !Arrays.equals(this.getCase(xSearch, ySearch).getCandidats(),this.getCase(abs, ord).getCandidats())) {

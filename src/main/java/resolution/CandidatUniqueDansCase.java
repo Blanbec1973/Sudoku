@@ -1,5 +1,6 @@
 package resolution;
 
+import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
 
@@ -14,7 +15,7 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		boolean trouve = false;
 		int i=0;
 		while (i < grille.getCasesAtrouver().size() & !trouve) {
-			grille.setCaseEnCours(grille.getCasesAtrouver().get(i));
+			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i));
 			if (grille.getCaseEnCours().contientCandidatUnique()) trouve = true;
 			i+=1;
 		}
@@ -22,8 +23,8 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		if (!trouve) return false;
 		
 		if (goPourChangement) this.setValeurCaseEnCours(goPourChangement, grille.getCaseEnCours().calculValeurUnique());
-			else modele.getControle().demandeHighlightCase(grille.getxSearch(),
-						                                   grille.getySearch(),
+			else modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
+														   CaseEnCours.getYSearch(),
 						                                   grille.getCaseEnCours().construitLibelleCandidats());
 		return true;
 	}

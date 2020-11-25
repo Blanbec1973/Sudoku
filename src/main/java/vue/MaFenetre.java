@@ -4,6 +4,8 @@ import controleur.Controle;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import modele.CaseEnCours;
 import modele.Grille;
 
 public class MaFenetre extends JFrame implements ActionListener {
@@ -125,17 +127,17 @@ public class MaFenetre extends JFrame implements ActionListener {
     public void initialiseGrilleDisplay(Grille maGrille) {
         String valeurCase;
         for (int numCase=1;numCase<82;numCase++) {
-            maGrille.calculXYSearchEtRegion(numCase);
+            CaseEnCours.setCaseEnCours(numCase);
             /*if (numCase == 80) {
                 System.err.println("Stop");
             }*/
             valeurCase = String.valueOf(maGrille.getCaseEnCours().getValeur());
             if (maGrille.getCaseEnCours().isCaseInitiale()) {
-                this.setCaseInitiale(maGrille.getxSearch(),maGrille.getySearch(), valeurCase); 
+                this.setCaseInitiale(CaseEnCours.getXSearch(),CaseEnCours.getYSearch(), valeurCase); 
                 }
             else { 
-                maGrille.calculCandidatsInitiaux(maGrille.getxSearch(),maGrille.getySearch());
-                this.setCaseCandidats(maGrille.getxSearch(), maGrille.getySearch(), maGrille.getCaseEnCours().construitLibelleCandidats());
+                maGrille.calculCandidatsInitiaux(CaseEnCours.getXSearch(),CaseEnCours.getYSearch());
+                this.setCaseCandidats(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), maGrille.getCaseEnCours().construitLibelleCandidats());
             }
         }
     }

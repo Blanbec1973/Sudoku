@@ -24,6 +24,7 @@ public class Modele {
 	    
 	}
 
+
 	public Grille getGrille() {return grille;}
 	public Controle getControle() {return controle;}
 	

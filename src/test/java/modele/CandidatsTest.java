@@ -1,7 +1,6 @@
 package modele;
 
 import java.util.Arrays;
-import static junit.framework.Assert.assertTrue;
 import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.AfterClass;

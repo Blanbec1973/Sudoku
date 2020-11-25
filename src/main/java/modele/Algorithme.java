@@ -29,9 +29,9 @@ public class Algorithme {
 
     private void traitementCase(Grille grille) {
         int xSearch, ySearch, solution;
-        grille.calculXYSearchEtRegion(this.numCase);
-        xSearch=grille.getxSearch();
-        ySearch=grille.getySearch();
+        CaseEnCours.setCaseEnCours(this.numCase);
+        xSearch=CaseEnCours.getXSearch();
+        ySearch=CaseEnCours.getYSearch();
         controle.demandeSetFocusCase(xSearch, ySearch);
         /*if (numCase == 2) {
             System.out.println(String.valueOf(this.numCase));}

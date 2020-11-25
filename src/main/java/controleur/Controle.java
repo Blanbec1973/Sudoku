@@ -21,14 +21,16 @@ public class Controle implements ActionListener {
         
         // Initialise le modèle :
         modele = new Modele(this);
-        
-	    //Remplissage initiale de la grille de la vue :
-	    fen.initialiseGrilleDisplay(modele.getGrille());
        
+        fen.initialiseGrilleDisplay(modele.getGrille());
     }
     
     public void demandeRefreshAffichageCase (int x, int y) {
-        if (modele.getGrille().getCase(x, y).isCaseTrouvee()) {
+        if (modele.getGrille().getCase(x, y).isCaseInitiale()) {
+        	fen.setCaseInitiale(x, y, String.valueOf(modele.getGrille().getCase(x, y).getValeur()));
+        	return;
+        }
+    	if (modele.getGrille().getCase(x, y).isCaseTrouvee()) {
             fen.setCase(x, y, String.valueOf(modele.getGrille().getCase(x, y).getValeur()));
         }
         else {

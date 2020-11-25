@@ -1,6 +1,5 @@
 package modele;
 
-import modele.Utils;
 import java.util.Arrays;
 import junit.framework.TestCase;
 import org.junit.After;
