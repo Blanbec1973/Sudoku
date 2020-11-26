@@ -11,14 +11,9 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 	}
 
 	@Override
-	public boolean detecteSuivant(boolean goPourChangement) {
+	public boolean traiteCaseEnCours(boolean goPourChangement) {
 		boolean trouve = false;
-		int i=0;
-		while (i < grille.getCasesAtrouver().size() & !trouve) {
-			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i));
-			if (grille.getCaseEnCours().contientCandidatUnique()) trouve = true;
-			i+=1;
-		}
+		if (grille.getCaseEnCours().contientCandidatUnique()) trouve = true;
 		
 		if (!trouve) return false;
 		

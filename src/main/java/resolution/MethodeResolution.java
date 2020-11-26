@@ -31,7 +31,20 @@ public abstract class MethodeResolution {
 		this.grille=grille;
 	}
 	
-	public abstract boolean detecteSuivant(boolean goPourChangement);
+	public boolean detecteSuivant(boolean goPourChangement) {
+		boolean trouve = false;
+		int i=0;
+		while (i < grille.getCasesAtrouver().size() & !trouve) {
+			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i));
+			trouve = this.traiteCaseEnCours(goPourChangement);
+			i+=1;
+		}
+		
+		if (!trouve) return false;
+			else return true;
+	};
+	
+	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
 	
 	public void setValeurCaseEnCours(boolean goPourChangement, int solution) {
 		grille.setValeurCaseEnCours(solution);
