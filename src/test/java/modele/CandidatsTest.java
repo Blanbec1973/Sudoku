@@ -91,4 +91,22 @@ public class CandidatsTest extends TestCase {
         assertEquals(1,c2.calculValeurUnique());
     }     
     
+    @Test
+    public void testEquals() {
+    	assertFalse(c1.equals(c2));
+    	assertTrue(c2.equals(c3));
+    	assertFalse(c3.equals(c4));
+    	assertTrue(c4.equals(c5));
+    	
+    }
+    
+    @Test
+    public void testDisplayCandidats() {
+    	assertEquals("000000000",c1.displayCandidats());
+    	assertEquals("100000000",c2.displayCandidats());
+    	assertEquals("100000000",c3.displayCandidats());
+    	assertEquals("111111111",c4.displayCandidats());
+    	assertEquals("111111111",c5.displayCandidats());
+    }
+    
 }

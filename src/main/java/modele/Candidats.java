@@ -3,7 +3,6 @@ package modele;
 
 public class Candidats {
     private boolean candidats [] = new boolean [10];
-
     private int nombreCandidats;
     
     public Candidats() {
@@ -12,12 +11,34 @@ public class Candidats {
         this.elimineCandidat(0);
     }
     
+    
     public Candidats (boolean [] entree) {this.candidats = entree; this.nombreCandidats = this.calculNombreCandidats();}
 
     public boolean[] getCandidats() {return candidats;}
     public int getNombreCandidats() {return nombreCandidats;}
     public void setCandidats(boolean[] candidats) {this.candidats = candidats; this.nombreCandidats = this.calculNombreCandidats();}
+    public void setCandidat(int rang) {this.candidats[rang]=true;this.nombreCandidats+=1;}
     public boolean isCandidat(int rang) {return candidats[rang];}
+    
+    public boolean equals(Candidats c2) {
+    	for(int i=1;i<10;i++) {
+    		if (this.candidats[i]!=c2.candidats[i]) return false;
+    	}
+    	return true;
+    }
+    
+    public String displayCandidats() {
+    	String message = "";
+    	for (int i=1;i<10;i++ ) {
+    		if (this.isCandidat(i)) message+="1"; else message+="0";
+    	}
+    	return message;
+    }
+    
+    public void setAllCandidatsToFalse() {
+        for (int i=0;i<10;i++) {this.candidats[i]=false;}
+        this.nombreCandidats=0;
+    }
     
     public void elimineCandidat(int valeur) {
         if (!this.candidats[valeur]) {return;}
