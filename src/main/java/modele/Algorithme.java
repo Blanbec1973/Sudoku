@@ -105,7 +105,7 @@ public class Algorithme {
             if (indBalayage != xSearch &&
                 grille.getCase(indBalayage, ySearch).nEstPasCaseInitiale() &&
                 grille.getCase(indBalayage, ySearch).nEstPasCaseTrouvee() && 
-                Arrays.equals(grille.getCaseEnCours().getCandidats(), grille.getCase(indBalayage, ySearch).getCandidats())) {
+                Arrays.equals(grille.getCaseEnCours().getCandidatsTabBoolean(), grille.getCase(indBalayage, ySearch).getCandidatsTabBoolean())) {
                 javax.swing.JOptionPane.showMessageDialog(null,"Paire candidats en ligne "+String.valueOf(ySearch+1)+ " : "+
                                                           String.valueOf(grille.getCase(xSearch, ySearch).construitLibelleCandidats()));
                 
@@ -113,7 +113,7 @@ public class Algorithme {
                     if (grille.getCase(x2, ySearch).nEstPasCaseInitiale() &&
                         grille.getCase(x2, ySearch).nEstPasCaseTrouvee() && 
                         x2!=xSearch && x2 !=indBalayage) {
-                        grille.getCase(x2, ySearch).elimineCandidats(grille.getCase(xSearch,ySearch).getCandidats());
+                        grille.getCase(x2, ySearch).elimineCandidats(grille.getCase(xSearch,ySearch).getCandidatsTabBoolean());
                         controle.demandeRefreshAffichageCase(x2, ySearch);
                     }
                 }
@@ -124,7 +124,7 @@ public class Algorithme {
             if (indBalayage != ySearch &&
                 grille.getCase(xSearch,indBalayage).nEstPasCaseInitiale() &&
                 grille.getCase(xSearch,indBalayage).nEstPasCaseTrouvee() && 
-                Arrays.equals(grille.getCaseEnCours().getCandidats(), grille.getCase(xSearch,indBalayage).getCandidats())) {
+                Arrays.equals(grille.getCaseEnCours().getCandidatsTabBoolean(), grille.getCase(xSearch,indBalayage).getCandidatsTabBoolean())) {
                 javax.swing.JOptionPane.showMessageDialog(null,"Paire candidats en colonne "+String.valueOf(xSearch+1)+ " : "+
                                                           String.valueOf(grille.getCase(xSearch, ySearch).construitLibelleCandidats()));
                 
@@ -132,7 +132,7 @@ public class Algorithme {
                     if (grille.getCase(xSearch, y2).nEstPasCaseInitiale() &&
                         grille.getCase(xSearch, y2).nEstPasCaseTrouvee() && 
                         y2!=ySearch && y2 !=indBalayage) {
-                        grille.getCase(xSearch, y2).elimineCandidats(grille.getCase(xSearch,ySearch).getCandidats());
+                        grille.getCase(xSearch, y2).elimineCandidats(grille.getCase(xSearch,ySearch).getCandidatsTabBoolean());
                         controle.demandeRefreshAffichageCase(xSearch, y2);
                     }
                 }
