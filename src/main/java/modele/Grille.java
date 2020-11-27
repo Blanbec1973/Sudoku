@@ -232,7 +232,7 @@ public class Grille {
                 if ((xSearch != abs || ySearch != ord) &&
                     this.getCase(abs, ord).nEstPasCaseInitiale() &&
                     this.getCase(abs, ord).nEstPasCaseTrouvee() &&
-                    Arrays.equals(this.getCase(xSearch, ySearch).getCandidats(),this.getCase(abs, ord).getCandidats())) {
+                    Arrays.equals(this.getCase(xSearch, ySearch).getCandidatsTabBoolean(),this.getCase(abs, ord).getCandidatsTabBoolean())) {
                     paireCandidatsTrouvee = true;
                      javax.swing.JOptionPane.showMessageDialog(null,"Paire candidats en région "+" : "+
                                                           String.valueOf(this.getCase(xSearch, ySearch).construitLibelleCandidats()));
@@ -244,8 +244,8 @@ public class Grille {
             for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if (this.getCase(abs, ord).nEstPasCaseInitiale() &&
                     this.getCase(abs, ord).nEstPasCaseTrouvee() &&
-                    !Arrays.equals(this.getCase(xSearch, ySearch).getCandidats(),this.getCase(abs, ord).getCandidats())) {
-                    this.getCase(abs, ord).elimineCandidats(this.getCase(xSearch, ySearch).getCandidats());
+                    !Arrays.equals(this.getCase(xSearch, ySearch).getCandidatsTabBoolean(),this.getCase(abs, ord).getCandidatsTabBoolean())) {
+                    this.getCase(abs, ord).elimineCandidats(this.getCase(xSearch, ySearch).getCandidatsTabBoolean());
                     modele.getControle().demandeRefreshAffichageCase(abs, ord);
                 }
             }
@@ -313,11 +313,11 @@ public class Grille {
     }
 
     private void traiteTripletteEnLigne(int xSearch, int ySearch, int x2, int x3) {
-        Candidats testCandidats = new Candidats(this.getCaseEnCours().getCandidats());
-        testCandidats.setCandidats(Utils.calculOuLogique2Candidats(this.getCaseEnCours().getCandidats(),
-                                                       this.getCase(x2, ySearch).getCandidats()));
+        Candidats testCandidats = new Candidats(this.getCaseEnCours().getCandidatsTabBoolean());
+        testCandidats.setCandidats(Utils.calculOuLogique2Candidats(this.getCaseEnCours().getCandidatsTabBoolean(),
+                                                       this.getCase(x2, ySearch).getCandidatsTabBoolean()));
         testCandidats.setCandidats(Utils.calculOuLogique2Candidats(testCandidats.getCandidats(),
-                                                       this.getCase(x3, ySearch).getCandidats()));
+                                                       this.getCase(x3, ySearch).getCandidatsTabBoolean()));
         if (testCandidats.getNombreCandidats()>3) { return;}
         
         javax.swing.JOptionPane.showMessageDialog(null,"Triplette trouvée en ligne "+String.valueOf(ySearch+1)+ ", colonnes : "
