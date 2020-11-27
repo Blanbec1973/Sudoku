@@ -30,12 +30,14 @@ public class Case {
     public boolean nEstPasCaseInitiale() {return !(this.etatCase == caseInitiale);}
     public void setCaseInitiale() {this.etatCase = caseInitiale;}
     public boolean isCaseTrouvee() {return this.etatCase == caseTrouvee;}
+    public boolean isCaseATrouver() { return this.etatCase == caseNonTrouvee;}
     public boolean nEstPasCaseTrouvee() {return !(this.etatCase == caseTrouvee);}
     public boolean isCandidat(int rang) {return candidats.isCandidat(rang);} 
     public int getNombreCandidats () {return candidats.getNombreCandidats();}
     public int getRegion() {return region;}
     public void setRegion(int region) {this.region = region;}
-    public boolean [] getCandidats() {return candidats.getCandidats();}
+    public boolean [] getCandidatsTabBoolean() {return candidats.getCandidats();}
+    public Candidats getCandidats() {return this.candidats;}
     public boolean contientCandidatUnique() {return candidats.getNombreCandidats() == 1;}
     public int calculValeurUnique() {return candidats.calculValeurUnique();}
     public String construitLibelleCandidats() {return candidats.construitLibelleCandidats();}
