@@ -66,6 +66,23 @@ public class Utils {
         return resultat;
     }
     
+    public static boolean [] calculEtLogique2Candidats(boolean candidats1 [], boolean candidats2 []) {
+        boolean resultat [] = new boolean [10];
+        for (int i=0;i<resultat.length;i++) {
+            resultat [i] = (candidats1[i] && candidats2[i]);
+            //System.out.println("indice : "+i);
+        }
+        return resultat;
+    }
+    
+    public static int calculNombreCandidats(boolean candidats []) {
+    	int resultat =0;
+    	for (int i=0;i<candidats.length;i++) {
+    		if (candidats[i]) resultat+=1;
+    	}
+    	return resultat;
+    }
+    
     public static int calculNumCase(int x, int y) {
     	return (y*9+x+1);
     }

@@ -47,6 +47,16 @@ public class UtilsTest extends TestCase {
         //assertEquals(Arrays.toString(res),Arrays.toString(Utils.calculOuLogique2Candidats(tab1, tab2)));
         assertTrue(Arrays.equals(res,Utils.calculOuLogique2Candidats(tab1, tab2)));
     }
+    
+    public void testCalculEtLogique2Candidats() {
+        boolean tab1 [] = {true, true, false, false, false, false, false, false, false, false};
+        boolean tab2 [] = {true, false, true, false, false, false, false, false, false, false};
+        boolean res  [] = {true, false, false, false, false, false, false, false, false, false};
+        //System.out.println("expected : "+Arrays.toString(res));
+        //System.out.println("Calcul   : "+Arrays.toString(Utils.calculOuLogique2Candidats(tab1, tab2)));
+        //assertEquals(Arrays.toString(res),Arrays.toString(Utils.calculOuLogique2Candidats(tab1, tab2)));
+        assertTrue(Arrays.equals(res,Utils.calculEtLogique2Candidats(tab1, tab2)));
+    }
             
     @Test
     public void testCalculNombreTriplettes() {
