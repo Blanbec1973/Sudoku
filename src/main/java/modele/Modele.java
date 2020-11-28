@@ -22,6 +22,7 @@ public class Modele {
 	    listeMethodes.add(new CandidatUniqueDansColonne(this,grille));
 	    listeMethodes.add(new CandidatUniqueDansRegion(this,grille));
 	    listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(this, grille));
+	    listeMethodes.add(new PaireCandidats2CasesColonne(this, grille));
 	    
 	}
 

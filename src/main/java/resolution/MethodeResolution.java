@@ -4,6 +4,10 @@ import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
 
+import java.util.ArrayList;
+
+import modele.Candidats;
+
 //Méthodes de résolution par ordre hiérarchique :
 //Méthodes qui permettent de trouver une case : 
 //    CandidatUniqueDansCase    : La case n'a plus qu'un candidat
@@ -25,10 +29,15 @@ import modele.Modele;
 public abstract class MethodeResolution {
 	protected Modele modele;
 	protected Grille grille;
+	protected ArrayList<Candidats> tabCandidats;
+	protected int c1, c2;
 	
 	public MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
 		this.grille=grille;
+		this.tabCandidats = new ArrayList <Candidats>();
+		c1=0;
+		c2=0;
 	}
 	
 	public boolean detecteSuivant(boolean goPourChangement) {
@@ -52,7 +61,14 @@ public abstract class MethodeResolution {
 		modele.getControle().demandeAfficheCommande(this.calculMessageLog(0));
 		modele.getControle().demandeIncrementRangResolution();
 	}
-
+	
+	public void elimineCandidatCaseEnCours(int candidatAEliminer) {
+		grille.getCaseEnCours().elimineCandidat(candidatAEliminer);
+		modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
+		modele.getControle().demandeAfficheCommande(this.calculMessageLog(candidatAEliminer));
+		modele.getControle().demandeIncrementRangResolution();
+	}
+	
 	protected String calculMessageLog(int candidat) {
 		String message = "";
 		message+= "Case x="+String.valueOf(CaseEnCours.getXSearch()+1);
@@ -64,6 +80,14 @@ public abstract class MethodeResolution {
 		if (this instanceof CandidatUniqueDansRegion) message+= "Candidat unique dans la Région "+String.valueOf(grille.getCaseEnCours().getRegion());
 		if (this instanceof AbsenceCandidatEnColonneDansLesAutresRegions)
 			message+="Candidat "+candidat+ " en colonne "+String.valueOf(CaseEnCours.getXSearch()+1)+" absent dans autres régions de la colonne.";
+		if (this instanceof PaireCandidats2CasesColonne) {
+			message+= " Couple ";
+			message+= String.valueOf(c1)+String.valueOf(c2);
+			message+= " dans deux cases de la colonne, élimination candidat ";
+			message+= String.valueOf(candidat);
+			return message;
+		}
+		
 		message+=", solution="+grille.getCaseEnCours().getValeur();
 		return message;
 	}

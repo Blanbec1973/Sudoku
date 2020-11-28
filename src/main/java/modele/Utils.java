@@ -86,6 +86,16 @@ public class Utils {
     public static int calculNumCase(int x, int y) {
     	return (y*9+x+1);
     }
+
+	public static int trouveCandidatNumero(Candidats candidat, int rang) {
+		int rangTrouve = 0;
+		for (int i=1;i<10;i++) {
+			if (candidat.isCandidat(i)) rangTrouve+=1;
+			if (rangTrouve == rang) return i;
+		}
+			
+		return 0;
+	}
     
     
 }

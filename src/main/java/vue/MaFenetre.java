@@ -107,6 +107,7 @@ public class MaFenetre extends JFrame implements ActionListener {
      public void setCaseCandidats(int x, int y, String value) {
         maGrilleDisplay[x][y].setFont(new Font("Courrier new",Font.PLAIN,12));
         maGrilleDisplay[x][y].setText(value);
+        maGrilleDisplay[x][y].setBackground(Color.WHITE);
     }
     
     public void setCaseInitiale(int x, int y, String value){

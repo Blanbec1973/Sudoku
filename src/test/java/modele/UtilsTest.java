@@ -414,7 +414,19 @@ public class UtilsTest extends TestCase {
 
     }
     
-    
+    @Test
+    public void testtrouveCandidatNumero() {
+    	Candidats c1 = new Candidats();
+    	c1.setAllCandidatsToFalse();
+    	assertEquals(0,Utils.trouveCandidatNumero(c1, 1));
+    	c1.setCandidat(2);
+    	c1.setCandidat(4);
+    	c1.setCandidat(9);
+    	assertEquals(2,Utils.trouveCandidatNumero(c1, 1));
+    	assertEquals(4,Utils.trouveCandidatNumero(c1, 2));
+    	assertEquals(9,Utils.trouveCandidatNumero(c1, 3));
+    	assertEquals(0,Utils.trouveCandidatNumero(c1, 4));
+    }
     
     
 }
