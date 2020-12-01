@@ -13,16 +13,16 @@ public class Controle implements ActionListener {
     public static void main(String[] args) {new Controle();}
         
     public Controle() {
-    	// Initialise la vue : 
-    	fen = new MaFenetre(this);
-        fen.setVisible(true);
-        fen.getBoutonAvance().addActionListener(this);
-        fen.getBoutonExplique().addActionListener(this);
-        
         // Initialise le modèle :
         modele = new Modele(this);
+    	
+    	// Initialise la vue : 
+    	fen = new MaFenetre(this);
+        fen.getBoutonAvance().addActionListener(this);
+        fen.getBoutonExplique().addActionListener(this);
        
         fen.initialiseGrilleDisplay(modele.getGrille());
+        fen.setVisible(true);
     }
     
     public void demandeRefreshAffichageCase (int x, int y) {
