@@ -50,15 +50,13 @@ public class PaireCandidats2CasesColonne extends MethodeResolution {
 		
 		if (goPourChangement) {
 			this.elimineCandidatCaseEnCours(candiatEliminable);
-			return true;
 		}
 		else {
 			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
 				                                      CaseEnCours.getYSearch(),
                                                       grille.getCaseEnCours().construitLibelleCandidats());
-			return true;
 		}
-			
+		return true;
 	}
 	
 	public void inserePaireCandidatsDansTab() {
