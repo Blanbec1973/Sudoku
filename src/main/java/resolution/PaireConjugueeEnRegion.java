@@ -8,11 +8,9 @@ import modele.Modele;
 import modele.Utils;
 
 public class PaireConjugueeEnRegion extends MethodeResolution {
-	private int x2,y2, candidatAEliminer, xAction, yAction;
+	private int candidatAEliminer, xAction, yAction;
 	public PaireConjugueeEnRegion(Modele modele, Grille grille) {
 		super(modele,grille);
-		x2=0;
-		y2=0;
 	}
 
 	@Override
@@ -44,8 +42,6 @@ public class PaireConjugueeEnRegion extends MethodeResolution {
                     grille.getCase(abs, ord).isCaseATrouver() &&
                     Arrays.equals(grille.getCaseEnCours().getCandidatsTabBoolean(),
                     		      grille.getCase(abs, ord).getCandidatsTabBoolean())) {
-                    x2 = abs;
-                    y2 = ord;
                 	return true;
                 }
             }
