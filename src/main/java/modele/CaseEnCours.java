@@ -14,6 +14,7 @@ public class CaseEnCours {
         xSearch = Utils.calculXsearch(numCase);
         ySearch = Utils.calculYsearch(numCase);
         CaseEnCours.setXYRegion();
+        CaseEnCours.numCase = numCase;
 	}
 	public static void setCaseEnCours(int x, int y) {
 		xSearch = x;
