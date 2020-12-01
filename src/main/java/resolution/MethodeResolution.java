@@ -60,6 +60,7 @@ public abstract class MethodeResolution {
 	public void setValeurCaseEnCours(boolean goPourChangement, int solution) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
+		modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
 		modele.getControle().demandeAfficheCommande(this.calculMessageLog(0));
 		modele.getControle().demandeIncrementRangResolution();
 	}

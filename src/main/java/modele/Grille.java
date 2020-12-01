@@ -25,8 +25,7 @@ public class Grille {
     public ArrayList<Integer> getCasesAtrouver() {return casesAtrouver;}
     
     public void setValeurCaseEnCours(int solution) {
-        mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()].setValeurCase(solution);
-        modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
+        this.getCaseEnCours().setValeurCase(solution);
         this.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
         casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch())));
         //this.displayCasesAtrouver();
