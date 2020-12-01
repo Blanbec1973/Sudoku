@@ -137,7 +137,6 @@ public class MaFenetre extends JFrame implements ActionListener {
                 this.setCaseInitiale(CaseEnCours.getXSearch(),CaseEnCours.getYSearch(), valeurCase); 
                 }
             else { 
-                maGrille.calculCandidatsInitiaux(CaseEnCours.getXSearch(),CaseEnCours.getYSearch());
                 this.setCaseCandidats(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), maGrille.getCaseEnCours().construitLibelleCandidats());
             }
         }

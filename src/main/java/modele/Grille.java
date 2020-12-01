@@ -39,41 +39,7 @@ public class Grille {
         //this.displayCasesAtrouver();
     }        
 
-    public void init (String nomFichier)  {
-        String readLine;
-        int valeur;
-        int indexCase = 1;
-        File monFichier = new File(nomFichier);
-        int y=0;
-        try {
-            BufferedReader b = new BufferedReader(new FileReader(monFichier));
-            while ((readLine = b.readLine()) != null) {
-                //System.out.println("Ligne :"+y+" : "+ readLine);
-                for (int x=0;x<9;x++) {
-                    //System.out.println(readLine.substring(x,x+1));
-                    valeur = Integer.parseInt(readLine.substring(x,x+1));
-                    //System.out.println("xy="+x+y);
-                    if (valeur != 0) {
-                        mesCases[x][y].setValeurCase(valeur);
-                        mesCases[x][y].setCaseInitiale();
-                    }
-                    else {
-                    	casesAtrouver.add(indexCase);
-                    }
-                    indexCase+=1;
-                }
-                y++;
-            }
-            b.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
-        }
-  
-        //this.displayCasesAtrouver();
-    }
-    
+   
     public void displayCasesAtrouver() {
     	int i = 0;
     	while (i<this.getCasesAtrouver().size()) {
@@ -92,38 +58,6 @@ public class Grille {
             System.out.println(ligne);
             ligne ="";
         }
-    }
-    
-    public void calculCandidatsInitiaux(int x, int y) {
-    	CaseEnCours.setCaseEnCours(x, y);
-        for (int valeur=1;valeur<10;valeur++) {
-            if (this.checkPresenceValeurLigne(valeur, y)) {mesCases[x][y].elimineCandidat(valeur);}
-            if (this.checkPresenceValeurColonne(valeur, x)) {mesCases[x][y].elimineCandidat(valeur);}
-            if (this.checkPresenceValeurRegion(valeur, x, y)) {mesCases[x][y].elimineCandidat(valeur);}
-        }
-    }
-    
-    public boolean checkPresenceValeurLigne(int valeur, int numLigne) {
-        for (int i=0;i<9;i++) {
-            if (this.mesCases[i][numLigne].getValeur()==valeur) {return true;}
-        }
-        return false;
-    }
-    
-    public boolean checkPresenceValeurColonne(int valeur, int numColonne) {
-        for (int i=0;i<9;i++) {
-            if (this.mesCases[numColonne][i].getValeur()==valeur) {return true;}
-        }
-        return false;
-    }
-    
-    public boolean checkPresenceValeurRegion(int valeur, int xSearch, int ySearch) {
-        for (int x=CaseEnCours.getxRegion();x<CaseEnCours.getxRegion()+3;x++) {
-            for (int y=CaseEnCours.getyRegion();y<CaseEnCours.getyRegion()+3;y++) {
-                if (this.mesCases[x][y].getValeur() == valeur) {return true;}
-            }
-        }
-        return false;
     }
     
     public boolean checkPresenceCandidatLigne(int valeur, int x, int numLigne) {
@@ -223,36 +157,6 @@ public class Grille {
         }
     }
     
-    
-    void traitePaireCandidatsRegion(int xSearch, int ySearch) {
-        //Détection de paire de candidats : 
-        boolean paireCandidatsTrouvee = false;
-        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
-            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if ((xSearch != abs || ySearch != ord) &&
-                    this.getCase(abs, ord).nEstPasCaseInitiale() &&
-                    this.getCase(abs, ord).nEstPasCaseTrouvee() &&
-                    Arrays.equals(this.getCase(xSearch, ySearch).getCandidatsTabBoolean(),this.getCase(abs, ord).getCandidatsTabBoolean())) {
-                    paireCandidatsTrouvee = true;
-                     javax.swing.JOptionPane.showMessageDialog(null,"Paire candidats en région "+" : "+
-                                                          String.valueOf(this.getCase(xSearch, ySearch).construitLibelleCandidats()));
-                }
-            }
-        }
-        if (!paireCandidatsTrouvee) {return;}
-        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
-            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if (this.getCase(abs, ord).nEstPasCaseInitiale() &&
-                    this.getCase(abs, ord).nEstPasCaseTrouvee() &&
-                    !Arrays.equals(this.getCase(xSearch, ySearch).getCandidatsTabBoolean(),this.getCase(abs, ord).getCandidatsTabBoolean())) {
-                    this.getCase(abs, ord).elimineCandidats(this.getCase(xSearch, ySearch).getCandidatsTabBoolean());
-                    modele.getControle().demandeRefreshAffichageCase(abs, ord);
-                }
-            }
-        }        
-        
-    }
-
     void traiteAbsenceCandidatColonneAutreRegion(int xSearch, int ySearch) {
         boolean candidatTrouve;
         
