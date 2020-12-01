@@ -20,9 +20,9 @@ import modele.Candidats;
 //	Recherche d'absence de candidats en colonne dans les autres régions.
 //	Recherche de triplette de candidat dans 3 cases en ligne : 
 //	Case en cours avec 2 candidats seulement : 
-//     PaireDeCandidatEnLigne   : une case de le ligne comporte les mêmes 2 candidats que la caseEnCours
-//     PaireDeCandidatEnColonne : une case de le colonne comporte les mêmes 2 candidats que la caseEnCours
-//     PaireDeCandidatEnRegion  : une case de le région comporte les mêmes 2 candidats que la caseEnCours
+//     PaireConjugueeEnLigne   : une case de le ligne comporte les mêmes 2 candidats que la caseEnCours
+//     PaireConjugueeEnColonne : une case de le colonne comporte les mêmes 2 candidats que la caseEnCours
+//     PaireConjugueeEnRegion  : une case de le région comporte les mêmes 2 candidats que la caseEnCours
 //
 
 
@@ -45,6 +45,7 @@ public abstract class MethodeResolution {
 		int i=0;
 		while (i < grille.getCasesAtrouver().size() & !trouve) {
 			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i));
+			//System.out.println(grille.getCasesAtrouver().get(i));
 			trouve = this.traiteCaseEnCours(goPourChangement);
 			i+=1;
 		}
@@ -69,6 +70,14 @@ public abstract class MethodeResolution {
 		modele.getControle().demandeIncrementRangResolution();
 	}
 	
+	public void elimineCandidatCase(int candidatAEliminer, int x, int y) {
+		grille.getCase(x,y).elimineCandidat(candidatAEliminer);
+		modele.getControle().demandeRefreshAffichageCase(x, y);
+		modele.getControle().demandeAfficheCommande(this.calculMessageLog(candidatAEliminer));
+		modele.getControle().demandeIncrementRangResolution();		
+		
+	}
+	
 	protected String calculMessageLog(int candidat) {
 		String message = "";
 		message+= "Case x="+String.valueOf(CaseEnCours.getXSearch()+1);
@@ -85,6 +94,15 @@ public abstract class MethodeResolution {
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la colonne, élimination candidat ";
 			message+= String.valueOf(candidat);
+			return message;
+		}
+		if (this instanceof PaireConjugueeEnLigne) {
+			message+= " Couple conjugué ";
+			message+= String.valueOf(c1)+String.valueOf(c2);
+			message+= " dans deux cases de la ligne "+String.valueOf(CaseEnCours.getYSearch()+1);
+			message+= ", élimination candidat ";
+			message+= String.valueOf(candidat);
+			message+= " dans les autres cases de la ligne.";
 			return message;
 		}
 		
