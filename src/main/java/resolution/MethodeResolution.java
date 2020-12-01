@@ -3,6 +3,7 @@ package resolution;
 import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
+import modele.Utils;
 
 import java.util.ArrayList;
 
@@ -105,7 +106,16 @@ public abstract class MethodeResolution {
 			message+= " dans les autres cases de la ligne.";
 			return message;
 		}
-		
+		if (this instanceof PaireConjugueeEnRegion) {
+			message+= " Couple conjugué ";
+			message+= String.valueOf(c1)+String.valueOf(c2);
+			message+= " dans deux cases de la région ";
+			message+= String.valueOf(Utils.calculNumeroRegion(CaseEnCours.getNumCase()));
+			message+= ", élimination candidat ";
+			message+= String.valueOf(candidat);
+			message+= " dans les autres cases de la région.";
+			return message;
+		}
 		message+=", solution="+grille.getCaseEnCours().getValeur();
 		return message;
 	}
