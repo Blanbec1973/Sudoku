@@ -17,7 +17,7 @@ public class Controle implements ActionListener {
         modele = new Modele(this);
     	
     	// Initialise la vue : 
-    	fen = new MaFenetre(this);
+    	fen = new MaFenetre();
         fen.getBoutonAvance().addActionListener(this);
         fen.getBoutonExplique().addActionListener(this);
        
@@ -50,11 +50,9 @@ public class Controle implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();		
 		if (source == fen.getBoutonAvance()) {
-			//javax.swing.JOptionPane.showMessageDialog(null,"Clic sur avance !");
 			modele.detecteSuivant(false);	
 		}
 		else {
-			//javax.swing.JOptionPane.showMessageDialog(null,"Clic sur explique !");
 			modele.detecteSuivant(true);
 		}
 	}
@@ -64,13 +62,13 @@ public class Controle implements ActionListener {
 	}
     
     public void demandeIncrementRangResolution() {
-    	int temp = Integer.valueOf(fen.getRangResolution().getText());
+    	int temp = Integer.parseInt(fen.getRangResolution().getText());
     	temp+=1;
     	fen.getRangResolution().setText(String.valueOf(temp));
     }
     
     public void demandeDecrementRangResolution() {
-    	int temp = Integer.valueOf(fen.getRangResolution().getText());
+    	int temp = Integer.parseInt(fen.getRangResolution().getText());
     	temp-=1;
     	fen.getRangResolution().setText(String.valueOf(temp));
     }

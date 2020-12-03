@@ -8,7 +8,10 @@ import modele.Modele;
 import modele.Utils;
 
 public class PaireConjugueeEnRegion extends MethodeResolution {
-	private int candidatAEliminer, xAction, yAction;
+	private int candidatAEliminer;
+	private int xAction;
+	private int yAction;
+	
 	public PaireConjugueeEnRegion(Modele modele, Grille grille) {
 		super(modele,grille);
 	}

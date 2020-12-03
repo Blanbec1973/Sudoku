@@ -10,7 +10,7 @@ import org.junit.Test;
 
 
 public class CandidatsTest extends TestCase {
-    Candidats c1, c2, c3, c4, c5;
+    CandidatsCase c1, c2, c3, c4, c5;
     
     public CandidatsTest() {
     }
@@ -26,19 +26,19 @@ public class CandidatsTest extends TestCase {
     @Before
     public void setUp() {
         boolean tab1 [] = {false, false, false, false, false, false, false, false, false, false};
-        this.c1 = new Candidats(tab1);
+        this.c1 = new CandidatsCase(tab1);
         
         boolean tab2 [] = {false, true, false, false, false, false, false, false, false, false};
-        this.c2 = new Candidats(tab2);
+        this.c2 = new CandidatsCase(tab2);
         
         boolean tab3 [] = {true, true, false, false, false, false, false, false, false, false};
-        this.c3 = new Candidats(tab3);
+        this.c3 = new CandidatsCase(tab3);
         
         boolean tab4 [] = {false, true, true, true, true, true, true, true, true, true};
-        this.c4 = new Candidats(tab4);
+        this.c4 = new CandidatsCase(tab4);
         
         boolean tab5 [] = {true, true, true, true, true, true, true, true, true, true};
-        this.c5 = new Candidats(tab5);
+        this.c5 = new CandidatsCase(tab5);
     }
     
     @After
@@ -90,15 +90,6 @@ public class CandidatsTest extends TestCase {
     public void testCalculValeurUnique() {
         assertEquals(1,c2.calculValeurUnique());
     }     
-    
-    @Test
-    public void testEquals() {
-    	assertFalse(c1.equals(c2));
-    	assertTrue(c2.equals(c3));
-    	assertFalse(c3.equals(c4));
-    	assertTrue(c4.equals(c5));
-    	
-    }
     
     @Test
     public void testDisplayCandidats() {

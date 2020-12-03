@@ -15,19 +15,16 @@ public class InitialiseurDeGrille {
 	}
 
     public void init (String nomFichier)  {
-        String readLine;
+    	String readLine;
         int valeur;
         int indexCase = 1;
         File monFichier = new File(nomFichier);
         int y=0;
         try {
-            BufferedReader b = new BufferedReader(new FileReader(monFichier));
+        	BufferedReader b = new BufferedReader(new FileReader(monFichier));
             while ((readLine = b.readLine()) != null) {
-                //System.out.println("Ligne :"+y+" : "+ readLine);
                 for (int x=0;x<9;x++) {
-                    //System.out.println(readLine.substring(x,x+1));
                     valeur = Integer.parseInt(readLine.substring(x,x+1));
-                    //System.out.println("xy="+x+y);
                     if (valeur != 0) {
                         grille.getCase(x, y).setValeurCase(valeur);
                         grille.getCase(x, y).setCaseInitiale();
@@ -44,9 +41,7 @@ public class InitialiseurDeGrille {
             Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
-        }
-  
-        //this.displayCasesAtrouver();
+        } 
     }
 	
     public void calculTousLesCandidats() {

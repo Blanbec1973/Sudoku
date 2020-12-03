@@ -2,11 +2,12 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Grille {
     private Case [][] mesCases = new Case [9][9];
     private Modele modele;
-    private ArrayList<Integer> casesAtrouver;
+    private List<Integer> casesAtrouver;
         
     public Grille(Modele modele) {
         this.modele = modele;
@@ -17,18 +18,17 @@ public class Grille {
                 mesCases[x][y] = new Case(numcase, x, y);
             }
         }
-        casesAtrouver = new ArrayList<Integer>();
+        casesAtrouver = new ArrayList<>();
     }
      
     public Case getCase(int x, int y) {return mesCases[x][y];}
     public Case getCaseEnCours() {return mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()];}
-    public ArrayList<Integer> getCasesAtrouver() {return casesAtrouver;}
+    public List<Integer> getCasesAtrouver() {return casesAtrouver;}
     
     public void setValeurCaseEnCours(int solution) {
         this.getCaseEnCours().setValeurCase(solution);
         this.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
         casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch())));
-        //this.displayCasesAtrouver();
     }        
 
    
@@ -39,16 +39,14 @@ public class Grille {
     	}
     }
     
-    public void Display() {
-        //System.out.println("Méthode Display : ");
-        String ligne = "";
+    public void display() {
+    	StringBuilder bld = new StringBuilder();
         for (int y=0; y<9; y++) {
-            // Préparation de la ligne à imprimer :
             for (int x=0;x<9;x++) {
-                ligne = ligne + this.getCase(x,y).getValeur();   
+                bld.append(this.getCase(x,y).getValeur());   
             }
-            System.out.println(ligne);
-            ligne ="";
+            System.out.println(bld.toString());
+            bld.setLength(0);
         }
     }
     
@@ -113,7 +111,7 @@ public class Grille {
         }
     }
 
-	public boolean CheckPresenceCandidatRegionSaufColonne(int candidat, int colonne) {
+	public boolean checkPresenceCandidatRegionSaufColonne(int candidat, int colonne) {
         for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
             for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && 
@@ -127,7 +125,6 @@ public class Grille {
 	}
     
     public void elimineCandidatRegionSaufColonne(int candidat, int colonne) {
-        //Elimination dans région : 
         for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
             for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && mesCases[abs][ord].nEstPasCaseTrouvee()) {
@@ -138,7 +135,7 @@ public class Grille {
         }   
     }
     
-    void elimineCandidatsLigneSaufColonnes(Candidats candidats, int numligne, int colonnesANePasPrendreEnCompte []) {
+    void elimineCandidatsLigneSaufColonnes(CandidatsCase candidats, int numligne, int [] colonnesANePasPrendreEnCompte) {
         for (int i=0;i<9;i++) {
             if (this.getCase(i, numligne).nEstPasCaseInitiale() &&
                 this.getCase(i, numligne).nEstPasCaseTrouvee() &&
@@ -178,25 +175,17 @@ public class Grille {
 
     void rechercheTripletteCandidatsLigne(int xSearch, int ySearch) {
         int nombreCaseATrouver = Utils.calculNombreCaseATrouverDansLigne(this, ySearch);
-        int x2, x3;
-        x2=0;x3=0;
-        //Vérification qu'il y a au moins 4 cases à trouver : 
+        int x2=0;
+        int x3=0;
         if (nombreCaseATrouver<=3) {
-            //System.out.println("Ligne "+String.valueOf(ySearch+1)+" ==> Pas de recherche de triplettes.");
             return;
         }
-        //System.out.println("Ligne "+String.valueOf(ySearch+1)+" ==> Recherche de triplettes depuis colonne "+String.valueOf(xSearch+1));
         while (x2<9) {
             if (x2!=xSearch && this.getCase(x2,ySearch).nEstPasCaseInitiale() && this.getCase(x2, ySearch).nEstPasCaseTrouvee()) {
                 x3=x2;
                 while (x3<9) {
                     if (x3!=x2 && x3!=xSearch && this.getCase(x3,ySearch).nEstPasCaseInitiale() 
                                && this.getCase(x3, ySearch).nEstPasCaseTrouvee()) {
-                        //System.out.println("Ligne "+String.valueOf(ySearch+1)
-                        //                           +" triplette : "
-                        //                           +String.valueOf(xSearch+1)
-                        //                           +String.valueOf(x2+1)
-                        //                           +String.valueOf(x3+1));
                         this.traiteTripletteEnLigne(xSearch, ySearch, x2, x3);
                     }
                     x3+=1;
@@ -209,7 +198,7 @@ public class Grille {
     }
 
     private void traiteTripletteEnLigne(int xSearch, int ySearch, int x2, int x3) {
-        Candidats testCandidats = new Candidats(this.getCaseEnCours().getCandidatsTabBoolean());
+        CandidatsCase testCandidats = new CandidatsCase(this.getCaseEnCours().getCandidatsTabBoolean());
         testCandidats.setCandidats(Utils.calculOuLogique2Candidats(this.getCaseEnCours().getCandidatsTabBoolean(),
                                                        this.getCase(x2, ySearch).getCandidatsTabBoolean()));
         testCandidats.setCandidats(Utils.calculOuLogique2Candidats(testCandidats.getCandidats(),

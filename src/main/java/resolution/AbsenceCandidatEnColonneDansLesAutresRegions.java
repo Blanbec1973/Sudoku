@@ -25,7 +25,7 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends MethodeResolut
 					}
 				}    
 		if (!candidatTrouve) {
-        	  if (grille.CheckPresenceCandidatRegionSaufColonne(candidat,CaseEnCours.getXSearch())) {
+        	  if (grille.checkPresenceCandidatRegionSaufColonne(candidat,CaseEnCours.getXSearch())) {
            		  if (goPourChangement) {
            			  grille.elimineCandidatRegionSaufColonne(candidat, CaseEnCours.getXSearch());   			  
             			  return true;

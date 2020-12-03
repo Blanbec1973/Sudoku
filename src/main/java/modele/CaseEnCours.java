@@ -1,7 +1,15 @@
 package modele;
 
 public class CaseEnCours {
-	private static int xSearch, ySearch, numCase, xRegion, yRegion ;
+	private static int xSearch;
+	private static int ySearch;
+	private static int numCase;
+	private static int xRegion;
+	private static int yRegion;
+	
+	private CaseEnCours() {
+		throw new IllegalStateException("Utility class");
+	}
 	
 	public static int getXSearch() {return xSearch;}
 	public static int getYSearch() {return ySearch;}
@@ -21,14 +29,16 @@ public class CaseEnCours {
 	}
 	private static void setXYRegion() {        
         switch (xSearch) {
-            case 0,1,2 -> xRegion=0;
+        	case 0,1,2 -> xRegion=0;
             case 3,4,5 -> xRegion=3;
-            case 6,7,8 -> xRegion=6;        
+            case 6,7,8 -> xRegion=6;   
+            default -> throw new IllegalStateException("Utility class");
         }
-        switch (ySearch) {
-            case 0,1,2 -> yRegion=0;
+        switch (ySearch) { 
+        	case 0,1,2 -> yRegion=0;
             case 3,4,5 -> yRegion=3;
             case 6,7,8 -> yRegion=6;
+            default -> throw new IllegalStateException("Utility class");
         }
     }
 }

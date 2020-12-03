@@ -416,7 +416,7 @@ public class UtilsTest extends TestCase {
     
     @Test
     public void testtrouveCandidatNumero() {
-    	Candidats c1 = new Candidats();
+    	CandidatsCase c1 = new CandidatsCase();
     	c1.setAllCandidatsToFalse();
     	assertEquals(0,Utils.trouveCandidatNumero(c1, 1));
     	c1.setCandidat(2);

@@ -7,7 +7,7 @@ import modele.Utils;
 
 import java.util.ArrayList;
 
-import modele.Candidats;
+import modele.CandidatsCase;
 
 //Méthodes de résolution par ordre hiérarchique :
 //Méthodes qui permettent de trouver une case : 
@@ -30,13 +30,13 @@ import modele.Candidats;
 public abstract class MethodeResolution {
 	protected Modele modele;
 	protected Grille grille;
-	protected ArrayList<Candidats> tabCandidats;
+	protected ArrayList<CandidatsCase> tabCandidats;
 	protected int c1, c2;
 	
 	public MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
 		this.grille=grille;
-		this.tabCandidats = new ArrayList <Candidats>();
+		this.tabCandidats = new ArrayList <CandidatsCase>();
 		c1=0;
 		c2=0;
 	}
@@ -44,7 +44,7 @@ public abstract class MethodeResolution {
 	public boolean detecteSuivant(boolean goPourChangement) {
 		boolean trouve = false;
 		int i=0;
-		while (i < grille.getCasesAtrouver().size() & !trouve) {
+		while (i < grille.getCasesAtrouver().size() && !trouve) {
 			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i));
 			//System.out.println(grille.getCasesAtrouver().get(i));
 			trouve = this.traiteCaseEnCours(goPourChangement);

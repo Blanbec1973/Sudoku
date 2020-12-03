@@ -2,7 +2,7 @@ package resolution;
 
 import java.util.ArrayList;
 
-import modele.Candidats;
+import modele.CandidatsCase;
 import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
@@ -30,7 +30,7 @@ public class PaireCandidats2CasesColonne extends MethodeResolution {
 		this.inserePaireCandidatsDansTab();
 		
 		//Boucle sur chaque couple possible de la case en cours : 
-		for (Candidats couple : tabCandidats) {
+		for (CandidatsCase couple : tabCandidats) {
 			if (this.traiteCouple(couple)) {
 				trouve = true;
 				break;
@@ -60,12 +60,10 @@ public class PaireCandidats2CasesColonne extends MethodeResolution {
 	}
 	
 	public void inserePaireCandidatsDansTab() {
-		ArrayList<Integer> tabTemp = new ArrayList<Integer>();
+		ArrayList<Integer> tabTemp = new ArrayList<>();
 		for (int i=1;i<10;i++) {
 			if (grille.getCaseEnCours().isCandidat(i)) tabTemp.add(i);
 		}
-		
-		//for (int i : tabTemp) {System.out.println(String.valueOf(i));}
 		
 		int i = 0;
 		int j = 0;
@@ -73,20 +71,17 @@ public class PaireCandidats2CasesColonne extends MethodeResolution {
 		while (i<tabTemp.size()) {
 			j = i+1;
 			while (j<tabTemp.size()) {
-				tabCandidats.add(new Candidats());
+				tabCandidats.add(new CandidatsCase());
 				tabCandidats.get(tabCandidats.size()-1).setAllCandidatsToFalse();
 				tabCandidats.get(tabCandidats.size()-1).setCandidat(tabTemp.get(i));
 				tabCandidats.get(tabCandidats.size()-1).setCandidat(tabTemp.get(j));				
 				j+=1;
 			}
-			i+=1;
-			
+			i+=1;	
 		}
-		
-		//for (Candidats c : tabCandidats) {System.out.println(c.displayCandidats());}	
 	}
 	
-	private boolean traiteCouple(Candidats paireCandidats) {
+	private boolean traiteCouple(CandidatsCase paireCandidats) {
 		int nb2inter = 0;
 		int nb1inter = 0;
 		

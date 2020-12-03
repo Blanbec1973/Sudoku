@@ -87,7 +87,7 @@ public class Utils {
     	return (y*9+x+1);
     }
 
-	public static int trouveCandidatNumero(Candidats candidat, int rang) {
+	public static int trouveCandidatNumero(CandidatsCase candidat, int rang) {
 		int rangTrouve = 0;
 		for (int i=1;i<10;i++) {
 			if (candidat.isCandidat(i)) rangTrouve+=1;
