@@ -31,12 +31,13 @@ public abstract class MethodeResolution {
 	protected Modele modele;
 	protected Grille grille;
 	protected ArrayList<CandidatsCase> tabCandidats;
-	protected int c1, c2;
+	protected int c1;
+	protected int c2;
 	
 	public MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
 		this.grille=grille;
-		this.tabCandidats = new ArrayList <CandidatsCase>();
+		this.tabCandidats = new ArrayList <>();
 		c1=0;
 		c2=0;
 	}
@@ -46,18 +47,15 @@ public abstract class MethodeResolution {
 		int i=0;
 		while (i < grille.getCasesAtrouver().size() && !trouve) {
 			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i));
-			//System.out.println(grille.getCasesAtrouver().get(i));
 			trouve = this.traiteCaseEnCours(goPourChangement);
 			i+=1;
 		}
-		
-		if (!trouve) return false;
-			else return true;
-	};
+		return trouve ;
+	}
 	
 	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
 	
-	public void setValeurCaseEnCours(boolean goPourChangement, int solution) {
+	public void setValeurCaseEnCours(int solution) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
 		modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
@@ -82,15 +80,15 @@ public abstract class MethodeResolution {
 	
 	protected String calculMessageLog(int candidat) {
 		String message = "";
-		message+= "Case x="+String.valueOf(CaseEnCours.getXSearch()+1);
-		message+= " y="+String.valueOf(CaseEnCours.getYSearch()+1);
+		message+= "Case x="+CaseEnCours.getXSearchEdition();
+		message+= " y="+CaseEnCours.getYSearchEdition();
 		message+= " ";
 		if (this instanceof CandidatUniqueDansCase) message+= "Candidat unique dans la case";
-		if (this instanceof CandidatUniqueDansLigne) message+= "Candidat unique dans la ligne "+String.valueOf(CaseEnCours.getYSearch()+1);
-		if (this instanceof CandidatUniqueDansColonne) message+= "Candidat unique dans la colonne "+String.valueOf(CaseEnCours.getXSearch()+1);
-		if (this instanceof CandidatUniqueDansRegion) message+= "Candidat unique dans la Région "+String.valueOf(grille.getCaseEnCours().getRegion());
+		if (this instanceof CandidatUniqueDansLigne) message+= "Candidat unique dans la ligne "+CaseEnCours.getYSearchEdition();
+		if (this instanceof CandidatUniqueDansColonne) message+= "Candidat unique dans la colonne "+CaseEnCours.getXSearchEdition();
+		if (this instanceof CandidatUniqueDansRegion) message+= "Candidat unique dans la Région "+grille.getCaseEnCours().getRegion();
 		if (this instanceof AbsenceCandidatEnColonneDansLesAutresRegions)
-			message+="Candidat "+candidat+ " en colonne "+String.valueOf(CaseEnCours.getXSearch()+1)+" absent dans autres régions de la colonne.";
+			message+="Candidat "+candidat+ " en colonne "+CaseEnCours.getXSearchEdition()+" absent dans autres régions de la colonne.";
 		if (this instanceof PaireCandidats2CasesColonne) {
 			message+= " Couple ";
 			message+= String.valueOf(c1)+String.valueOf(c2);
@@ -101,7 +99,7 @@ public abstract class MethodeResolution {
 		if (this instanceof PaireConjugueeEnLigne) {
 			message+= " Couple conjugué ";
 			message+= String.valueOf(c1)+String.valueOf(c2);
-			message+= " dans deux cases de la ligne "+String.valueOf(CaseEnCours.getYSearch()+1);
+			message+= " dans deux cases de la ligne "+CaseEnCours.getYSearchEdition();
 			message+= ", élimination candidat ";
 			message+= String.valueOf(candidat);
 			message+= " dans les autres cases de la ligne.";

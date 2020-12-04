@@ -1,7 +1,11 @@
 package modele;
 
 public class Utils {
-    
+	
+	private Utils() {
+		throw new IllegalStateException("Utility class");
+	}
+	
     public static int calculXsearch(int numCase) {
         int reste = numCase % 9;
         if (reste == 0) {return 8;} else {return reste - 1;}
@@ -50,32 +54,31 @@ public class Utils {
     }
     
     public static int calculNombreTriplettes(int nombreCasesATrouver) {
-        int resultat, i;
+        int resultat;
+        int i;
         i = nombreCasesATrouver -2;
         resultat = i;
         while (i!=0) resultat = resultat + --i;
         return resultat;
     }
     
-    public static boolean [] calculOuLogique2Candidats(boolean candidats1 [], boolean candidats2 []) {
-        boolean resultat [] = new boolean [10];
+    public static boolean [] calculOuLogique2Candidats(boolean[] candidats1 , boolean[] candidats2) {
+        boolean[] resultat = new boolean [10];
         for (int i=0;i<resultat.length;i++) {
             resultat [i] = (candidats1[i] || candidats2[i]);
-            //System.out.println("indice : "+i);
         }
         return resultat;
     }
     
-    public static boolean [] calculEtLogique2Candidats(boolean candidats1 [], boolean candidats2 []) {
-        boolean resultat [] = new boolean [10];
+    public static boolean [] calculEtLogique2Candidats(boolean[] candidats1, boolean[] candidats2) {
+        boolean[] resultat = new boolean [10];
         for (int i=0;i<resultat.length;i++) {
             resultat [i] = (candidats1[i] && candidats2[i]);
-            //System.out.println("indice : "+i);
         }
         return resultat;
     }
     
-    public static int calculNombreCandidats(boolean candidats []) {
+    public static int calculNombreCandidats(boolean[] candidats) {
     	int resultat =0;
     	for (int i=0;i<candidats.length;i++) {
     		if (candidats[i]) resultat+=1;
@@ -96,6 +99,4 @@ public class Utils {
 			
 		return 0;
 	}
-    
-    
 }

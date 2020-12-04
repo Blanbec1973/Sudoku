@@ -1,6 +1,5 @@
 package vue;
 
-import controleur.Controle;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -80,7 +79,7 @@ public class MaFenetre extends JFrame implements ActionListener {
         maGrilleDisplay[x][y].setBackground(Color.GREEN);
     }
     
-    public void setCaseAvantExplication(int x, int y, String value) {
+    public void setCaseAvantExplication(int x, int y) {
         maGrilleDisplay[x][y].setBackground(Color.YELLOW);
     }
     

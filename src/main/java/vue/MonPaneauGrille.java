@@ -10,10 +10,10 @@ import javax.swing.JPanel;
 
 public class MonPaneauGrille extends JPanel {
     
+	@Override
 	public void paintComponent (Graphics g) {
     	super.paintComponent (g);
     	this.dessineGrille(g);
-    	//g.drawRect(10,10,240,240);
     }
     
     public void dessineGrille (Graphics g) {
@@ -24,7 +24,6 @@ public class MonPaneauGrille extends JPanel {
         g2d.drawLine(202, 0, 202, 535);
         g2d.drawLine(378, 0, 378, 535);
         g2d.drawLine(0,179,600,179);
-        g2d.drawLine(0,356,600,356);
-        
+        g2d.drawLine(0,356,600,356);     
     }
 }

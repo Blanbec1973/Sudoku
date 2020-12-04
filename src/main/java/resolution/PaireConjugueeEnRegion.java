@@ -31,8 +31,7 @@ public class PaireConjugueeEnRegion extends MethodeResolution {
         	this.elimineCandidatCase(candidatAEliminer, xAction,yAction);
         }
         else {
-			modele.getControle().demandeHighlightCase(xAction,yAction,
-                    grille.getCaseEnCours().construitLibelleCandidats());
+			modele.getControle().demandeHighlightCase(xAction,yAction);
         }
         return true;
 	}

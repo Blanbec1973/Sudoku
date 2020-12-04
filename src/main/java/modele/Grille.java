@@ -162,11 +162,11 @@ public class Grille {
                 }    
                 if (!candidatTrouve) {
                     javax.swing.JOptionPane.showMessageDialog(null,"Candidat "
-                                                                   +String.valueOf(candidat)
+                                                                   +candidat
                                                                    + " dans colonne "
-                                                                   +String.valueOf(xSearch+1)
+                                                                   +CaseEnCours.getXSearchEdition()
                                                                    +"uniquement dans région"
-                                                                   +String.valueOf(this.getCaseEnCours().getRegion())); 
+                                                                   +this.getCaseEnCours().getRegion()); 
                     this.elimineCandidatRegionSaufColonne(candidat, xSearch);
                 }        
             }    
@@ -205,11 +205,13 @@ public class Grille {
                                                        this.getCase(x3, ySearch).getCandidatsTabBoolean()));
         if (testCandidats.getNombreCandidats()>3) { return;}
         
-        javax.swing.JOptionPane.showMessageDialog(null,"Triplette trouvée en ligne "+String.valueOf(ySearch+1)+ ", colonnes : "
-                                                   +String.valueOf(xSearch+1)
+        javax.swing.JOptionPane.showMessageDialog(null,"Triplette trouvée en ligne "
+                                                   +CaseEnCours.getYSearchEdition()
+                                                   + ", colonnes : "
+                                                   +CaseEnCours.getXSearchEdition()
                                                    +String.valueOf(x2+1)
                                                    +String.valueOf(x3+1));
-        int  tableau[]=new int [3];
+        int[] tableau=new int [3];
         tableau[0]=xSearch;tableau[1]=x2;tableau[2]=x3;       
         this.elimineCandidatsLigneSaufColonnes(testCandidats, ySearch, tableau);
     }

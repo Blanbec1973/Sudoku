@@ -17,7 +17,8 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
 		boolean trouve = false;
 		int indBalayage =0;
-		int candidatAEliminer =0, x2;
+		int candidatAEliminer =0;
+		int x2;
 		if (grille.getCaseEnCours().getNombreCandidats() != 2) return false;
 		
         for (indBalayage=0;indBalayage<9;indBalayage++) {
@@ -31,9 +32,9 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
         }    	
         
         if (trouve) trouve = false ; else return false;
+        
         c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
         c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
-        
         
         // Recherche s'il y a un candidat à éliminer :
         for (x2=0;x2<9;x2++) {
@@ -59,8 +60,7 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
         }
         else {
 			modele.getControle().demandeHighlightCase(x2,
-                    CaseEnCours.getYSearch(),
-                    grille.getCaseEnCours().construitLibelleCandidats());
+                    CaseEnCours.getYSearch());
         }
         return true;
 	}

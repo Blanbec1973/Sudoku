@@ -17,10 +17,9 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		
 		if (!trouve) return false;
 		
-		if (goPourChangement) this.setValeurCaseEnCours(goPourChangement, grille.getCaseEnCours().calculValeurUnique());
+		if (goPourChangement) this.setValeurCaseEnCours(grille.getCaseEnCours().calculValeurUnique());
 			else modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
-														   CaseEnCours.getYSearch(),
-						                                   grille.getCaseEnCours().construitLibelleCandidats());
+														   CaseEnCours.getYSearch());
 		return true;
 	}
 

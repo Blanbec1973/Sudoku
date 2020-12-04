@@ -1,6 +1,8 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import controleur.Controle;
 import resolution.*;
@@ -15,10 +17,15 @@ public class Modele {
 		
         grille =new Grille(this);
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
-        initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init7.sud");
+        try {
+			initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init7.sud");
+		} catch (Exception e) {
+			Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, e);
+			e.printStackTrace();
+		}
         initialiseurDeGrille.calculTousLesCandidats();
         
-	    listeMethodes = new ArrayList<MethodeResolution>();
+	    listeMethodes = new ArrayList<>();
 	    listeMethodes.add(new CandidatUniqueDansCase(this,grille));
 	    listeMethodes.add(new CandidatUniqueDansLigne(this,grille));
 	    listeMethodes.add(new CandidatUniqueDansColonne(this,grille));

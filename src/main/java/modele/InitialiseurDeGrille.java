@@ -2,7 +2,6 @@ package modele;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -14,14 +13,15 @@ public class InitialiseurDeGrille {
 		this.grille = grille;
 	}
 
-    public void init (String nomFichier)  {
+    public void init (String nomFichier) throws Exception  {
+    	BufferedReader b = null;
     	String readLine;
         int valeur;
         int indexCase = 1;
         File monFichier = new File(nomFichier);
         int y=0;
         try {
-        	BufferedReader b = new BufferedReader(new FileReader(monFichier));
+        	b = new BufferedReader(new FileReader(monFichier));
             while ((readLine = b.readLine()) != null) {
                 for (int x=0;x<9;x++) {
                     valeur = Integer.parseInt(readLine.substring(x,x+1));
@@ -36,12 +36,11 @@ public class InitialiseurDeGrille {
                 }
                 y++;
             }
-            b.close();
-        } catch (FileNotFoundException ex) {
+        } catch (IOException|NullPointerException ex) {
             Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        } finally {
+        	b.close();
+        }
     }
 	
     public void calculTousLesCandidats() {

@@ -58,8 +58,7 @@ public class PaireConjugueeEnColonne extends MethodeResolution {
         	this.elimineCandidatCase(candidatAEliminer, CaseEnCours.getXSearch(),y2);
         }
         else {
-			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(), y2,
-                    grille.getCaseEnCours().construitLibelleCandidats());
+			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(), y2);
         }
         return true;
 	}

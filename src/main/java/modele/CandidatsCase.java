@@ -1,7 +1,7 @@
 package modele;
 
 public class CandidatsCase {
-    private boolean candidats [] = new boolean [10];
+    private boolean[] candidats  = new boolean [10];
     private int nombreCandidats;
     
     public CandidatsCase() {
@@ -16,7 +16,7 @@ public class CandidatsCase {
     public int getNombreCandidats() {return nombreCandidats;}
     public void setCandidats(boolean[] candidats) {this.candidats = candidats; this.nombreCandidats = this.calculNombreCandidats();}
     public void setCandidat(int rang) {this.candidats[rang]=true;this.nombreCandidats+=1;}
-    public boolean isCandidat(int rang) {return candidats[rang];}
+    public boolean isCandidat(int rang) {return candidats[rang];} 
     
     public String displayCandidats() {
     	StringBuilder bld = new StringBuilder();
@@ -52,19 +52,26 @@ public class CandidatsCase {
     }
     
     public String construitLibelleCandidats() {
-        String libelle;
-        libelle="<html>";
-        if (candidats[1]) {libelle+="1";} else {libelle+=" ";}
-        if (candidats[2]) {libelle+="2";} else {libelle+=" ";}
-        if (candidats[3]) {libelle+="3<br>";} else {libelle+=" <br>";}
-        if (candidats[4]) {libelle+="4";} else {libelle+=" ";}
-        if (candidats[5]) {libelle+="5";} else {libelle+=" ";}
-        if (candidats[6]) {libelle+="6<br>";} else {libelle+=" <br>";}
-        if (candidats[7]) {libelle+="7";} else {libelle+=" ";}
-        if (candidats[8]) {libelle+="8";} else {libelle+=" ";}
-        if (candidats[9]) {libelle+="9";}else {libelle+=" ";}
-        libelle+="</html>";
-        return libelle;
+        StringBuilder bld = new StringBuilder();
+        bld.append("<html>");
+        bld.append(this.editeCandidat(1));
+        bld.append(this.editeCandidat(2));
+        bld.append(this.editeCandidat(3));
+        bld.append("<br>");
+        bld.append(this.editeCandidat(4));
+        bld.append(this.editeCandidat(5));
+        bld.append(this.editeCandidat(6));
+        bld.append("<br>");
+        bld.append(this.editeCandidat(7));
+        bld.append(this.editeCandidat(8));
+        bld.append(this.editeCandidat(9));
+        bld.append("</html>");
+        return bld.toString();
+    }
+    
+    private String editeCandidat(int candidat) {
+    	if (this.isCandidat(candidat)) return String.valueOf(candidat);
+    	return " ";
     }
 
     boolean contientCandidatUnique() {

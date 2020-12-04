@@ -53,8 +53,7 @@ public class PaireCandidats2CasesColonne extends MethodeResolution {
 		}
 		else {
 			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
-				                                      CaseEnCours.getYSearch(),
-                                                      grille.getCaseEnCours().construitLibelleCandidats());
+				                                      CaseEnCours.getYSearch());
 		}
 		return true;
 	}
