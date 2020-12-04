@@ -15,43 +15,14 @@ public class PaireConjugueeEnColonne extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		boolean trouve = false;
-		int indBalayage =0;
-		int candidatAEliminer =0, y2;
 		if (grille.getCaseEnCours().getNombreCandidats() != 2) return false;
 		
-        for (indBalayage=0;indBalayage<9;indBalayage++) {
-            if (indBalayage != CaseEnCours.getYSearch() &&
-                grille.getCase( CaseEnCours.getXSearch(),indBalayage).isCaseATrouver() && 
-                Arrays.equals(grille.getCaseEnCours().getCandidatsTabBoolean(), 
-                		grille.getCase(CaseEnCours.getXSearch(),indBalayage).getCandidatsTabBoolean())) {
-            	trouve = true;
-            	break;
-            }
-        }    	
+		boolean trouve = this.detecteConfiguration();   	
+        if (!trouve) return false;
         
-        if (trouve) trouve = false ; else return false;
         c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
         c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
-        
-        
-        // Recherche s'il y a un candidat à éliminer :
-        for (y2=0;y2<9;y2++) {
-        	if (grille.getCase(CaseEnCours.getXSearch(),y2).isCaseATrouver() &&
-                y2!=CaseEnCours.getYSearch() && y2 !=indBalayage) {
-        		if (grille.getCase(CaseEnCours.getXSearch(),y2).isCandidat(c1) ) {
-        			candidatAEliminer = c1;
-        			trouve = true;
-        			break;
-        		}
-        		if (grille.getCase(CaseEnCours.getXSearch(),y2).isCandidat(c2) ) {
-        			candidatAEliminer = c2;
-        			trouve = true;
-        			break;
-        		}
-            }
-        }
-    	
+        trouve = this.detecteCandidatAEliminer();
         if (!trouve) return false;
         
         if (goPourChangement) {
@@ -62,4 +33,34 @@ public class PaireConjugueeEnColonne extends MethodeResolution {
         }
         return true;
 	}
+	
+	private boolean detecteConfiguration() {
+		for (y2=0;y2<9;y2++) {
+            if (y2 != CaseEnCours.getYSearch() &&
+                grille.getCase( CaseEnCours.getXSearch(),y2).isCaseATrouver() && 
+                Arrays.equals(grille.getCaseEnCours().getCandidatsTabBoolean(), 
+                		grille.getCase(CaseEnCours.getXSearch(),y2).getCandidatsTabBoolean())) {
+            	return true;
+            }
+        }
+		return false;
+	}
+	
+	private boolean detecteCandidatAEliminer() {
+		for (int y3=0;y3<9;y3++) {
+        	if (grille.getCase(CaseEnCours.getXSearch(),y3).isCaseATrouver() &&
+                y3!=CaseEnCours.getYSearch() && y3 !=y2) {
+        		if (grille.getCase(CaseEnCours.getXSearch(),y3).isCandidat(c1) ) {
+        			candidatAEliminer = c1;
+        			return true;
+        		}
+        		if (grille.getCase(CaseEnCours.getXSearch(),y3).isCandidat(c2) ) {
+        			candidatAEliminer = c2;
+        			return true;
+        		}
+            }
+        }
+		return false;
+	}	
+	
 }

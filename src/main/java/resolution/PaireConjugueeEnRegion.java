@@ -8,7 +8,6 @@ import modele.Modele;
 import modele.Utils;
 
 public class PaireConjugueeEnRegion extends MethodeResolution {
-	private int candidatAEliminer;
 	private int xAction;
 	private int yAction;
 	
@@ -19,13 +18,12 @@ public class PaireConjugueeEnRegion extends MethodeResolution {
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
 		boolean trouve = this.detecteConfiguration();
-		
 		if (!trouve) return false;
-        c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
+        
+		c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
         c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
 		trouve = this.detecteCandidatAEliminer();
-	
-        if (!trouve) return false;
+		if (!trouve) return false;
         
         if (goPourChangement) {
         	this.elimineCandidatCase(candidatAEliminer, xAction,yAction);

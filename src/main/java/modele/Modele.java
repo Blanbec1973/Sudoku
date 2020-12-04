@@ -1,9 +1,6 @@
 package modele;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import controleur.Controle;
 import resolution.*;
 
@@ -17,12 +14,7 @@ public class Modele {
 		
         grille =new Grille(this);
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
-        try {
-			initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init7.sud");
-		} catch (Exception e) {
-			Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, e);
-			e.printStackTrace();
-		}
+        initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init7.sud");
         initialiseurDeGrille.calculTousLesCandidats();
         
 	    listeMethodes = new ArrayList<>();
@@ -30,7 +22,6 @@ public class Modele {
 	    listeMethodes.add(new CandidatUniqueDansLigne(this,grille));
 	    listeMethodes.add(new CandidatUniqueDansColonne(this,grille));
 	    listeMethodes.add(new CandidatUniqueDansRegion(this,grille));
-	    //listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(this, grille));
 	    listeMethodes.add(new PaireCandidats2CasesColonne(this, grille));
 	    listeMethodes.add(new PaireConjugueeEnLigne(this, grille));
 	    listeMethodes.add(new PaireConjugueeEnColonne(this, grille));

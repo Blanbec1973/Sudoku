@@ -27,6 +27,7 @@ public class Utils {
                 case 1,2,3 -> {region =  3;}
                 case 4,5,6 -> {region =  6;}
                 case 7,8,9 -> {region =  9;}
+                default -> throw new IllegalStateException("Region incalculable");
             }
         }
         else {
@@ -34,11 +35,13 @@ public class Utils {
                 case 0,1,2 -> {region=1;}
                 case 3,4,5 -> {region=4;}
                 case 6,7,8 -> {region=7;}
+                default -> throw new IllegalStateException("Region incalculable2");
             }            
             switch (reste) {
                 case 1,2,3 -> {return region;}
                 case 4,5,6 -> {region+=1;}
-                case 7,8,9 -> {region+=2;}                
+                case 7,8,9 -> {region+=2;}
+                default -> throw new IllegalStateException("xRegion incalculable3");
             }
         }
         return region;

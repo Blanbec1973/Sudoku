@@ -13,15 +13,13 @@ public class InitialiseurDeGrille {
 		this.grille = grille;
 	}
 
-    public void init (String nomFichier) throws Exception  {
-    	BufferedReader b = null;
+    public void init (String nomFichier) {
     	String readLine;
         int valeur;
         int indexCase = 1;
         File monFichier = new File(nomFichier);
         int y=0;
-        try {
-        	b = new BufferedReader(new FileReader(monFichier));
+        try (BufferedReader b = new BufferedReader(new FileReader(monFichier))){
             while ((readLine = b.readLine()) != null) {
                 for (int x=0;x<9;x++) {
                     valeur = Integer.parseInt(readLine.substring(x,x+1));
@@ -38,8 +36,6 @@ public class InitialiseurDeGrille {
             }
         } catch (IOException|NullPointerException ex) {
             Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-        	b.close();
         }
     }
 	

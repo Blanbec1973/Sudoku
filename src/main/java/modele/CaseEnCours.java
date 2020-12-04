@@ -18,6 +18,8 @@ public class CaseEnCours {
 	public static int getNumCase() {return numCase;}
 	public static int getxRegion() {return xRegion;}
 	public static int getyRegion() {return yRegion;}
+	private static void setxRegion(int xRegion) {CaseEnCours.xRegion=xRegion;}
+	private static void setyRegion(int yRegion) {CaseEnCours.yRegion=yRegion;}
 	public static void setCaseEnCours(int numCase) {
         xSearch = Utils.calculXsearch(numCase);
         ySearch = Utils.calculYsearch(numCase);
@@ -31,15 +33,15 @@ public class CaseEnCours {
 	}
 	private static void setXYRegion() {        
         switch (xSearch) {
-        	case 0,1,2 -> xRegion=0;
-            case 3,4,5 -> xRegion=3;
-            case 6,7,8 -> xRegion=6;   
+        	case 0,1,2 -> setxRegion(0);
+            case 3,4,5 -> setxRegion(3);
+            case 6,7,8 -> setxRegion(6);   
             default -> throw new IllegalStateException("xRegion incalculable");
         }
         switch (ySearch) { 
-        	case 0,1,2 -> yRegion=0;
-            case 3,4,5 -> yRegion=3;
-            case 6,7,8 -> yRegion=6;
+        	case 0,1,2 -> setyRegion(0);
+            case 3,4,5 -> setyRegion(3);
+            case 6,7,8 -> setyRegion(6);
             default -> throw new IllegalStateException("yRegion incalculable");
         }
     }

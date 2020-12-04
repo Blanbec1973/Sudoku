@@ -14,11 +14,13 @@ public class MaFenetre extends JFrame implements ActionListener {
     private TextArea logTextArea;
     private JButton boutonAvance;
     private JButton boutonExplique;
+    private JButton boutonRecule;
     private JLabel rangResolution;
     
     public TextArea getLogTextArea() {return logTextArea;}
     public JButton getBoutonAvance() {return this.boutonAvance;}
     public JButton getBoutonExplique() {return this.boutonExplique;}
+	public AbstractButton getBoutonRecule() {return this.boutonRecule;}
     public JLabel getRangResolution() {return this.rangResolution;}
 
         
@@ -57,7 +59,7 @@ public class MaFenetre extends JFrame implements ActionListener {
             }
         }
        
-        JButton boutonRecule = new JButton("<<");
+        this.boutonRecule = new JButton("<<");
         panGrille.add(boutonRecule);
         rangResolution = new JLabel("0");
         panGrille.add(rangResolution);
@@ -115,6 +117,7 @@ public class MaFenetre extends JFrame implements ActionListener {
             }
         }
     }
+
 }
 
  

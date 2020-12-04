@@ -20,6 +20,7 @@ public class Controle implements ActionListener {
     	fen = new MaFenetre();
         fen.getBoutonAvance().addActionListener(this);
         fen.getBoutonExplique().addActionListener(this);
+        fen.getBoutonRecule().addActionListener(this);
        
         fen.initialiseGrilleDisplay(modele.getGrille());
         fen.setVisible(true);
@@ -50,11 +51,14 @@ public class Controle implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();		
 		if (source == fen.getBoutonAvance()) {
-			modele.detecteSuivant(false);	
+			modele.detecteSuivant(false);
+			return;
 		}
-		else {
+		if (source == fen.getBoutonExplique()) {
 			modele.detecteSuivant(true);
+			return;
 		}
+		javax.swing.JOptionPane.showMessageDialog(null,"Non codé.");
 	}
 
 	public void demandeHighlightCase(int x, int y) {

@@ -33,6 +33,9 @@ public abstract class MethodeResolution {
 	protected ArrayList<CandidatsCase> tabCandidats;
 	protected int c1;
 	protected int c2;
+	protected int x2;
+	protected int y2;
+	protected int candidatAEliminer;
 	
 	public MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
