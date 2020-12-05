@@ -21,9 +21,6 @@ public class PaireCandidats2CasesColonne extends MethodeResolution {
 		boolean trouve = false;
 		int candiatEliminable=0;
 		
-		if (CaseEnCours.getNumCase() ==20) 
-			System.out.println("Stop");
-		
 		if (grille.getCaseEnCours().getNombreCandidats()<3) return false;
 		
 		// Recherche des paires de candidats dans la case en cours, mise en tableau :

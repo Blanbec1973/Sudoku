@@ -26,10 +26,11 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
         if (!trouve) return false;
                
         if (goPourChangement) {
-        	this.elimineCandidatCase(candidatAEliminer, x2, CaseEnCours.getYSearch());
+        	this.elimineCandidatCase(candidatAEliminer, xAction, CaseEnCours.getYSearch());
+        	modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
         }
         else {
-			modele.getControle().demandeHighlightCase(x2,
+			modele.getControle().demandeHighlightCase(xAction,
                     CaseEnCours.getYSearch());
         }
         return true;
@@ -49,14 +50,14 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
 	
 	private boolean detecteCandidatAEliminer() {
         // Recherche s'il y a un candidat à éliminer :
-        for (int x3=0;x3<9;x3++) {
-        	if (grille.getCase(x3, CaseEnCours.getYSearch()).isCaseATrouver() &&
-                x3!=CaseEnCours.getXSearch() && x3 !=x2) {
-        		if (grille.getCase(x2, CaseEnCours.getYSearch()).isCandidat(c1) ) {
+        for (xAction=0;xAction<9;xAction++) {
+        	if (grille.getCase(xAction, CaseEnCours.getYSearch()).isCaseATrouver() &&
+        			xAction!=CaseEnCours.getXSearch() && xAction !=x2) {
+        		if (grille.getCase(xAction, CaseEnCours.getYSearch()).isCandidat(c1) ) {
         			candidatAEliminer = c1;
         			return true;
         		}
-        		if (grille.getCase(x2, CaseEnCours.getYSearch()).isCandidat(c2) ) {
+        		if (grille.getCase(xAction, CaseEnCours.getYSearch()).isCandidat(c2) ) {
         			candidatAEliminer = c2;
         			return true;
         		}

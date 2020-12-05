@@ -14,7 +14,7 @@ public class Modele {
 		
         grille =new Grille(this);
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
-        initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init7.sud");
+        initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-40.sud");
         initialiseurDeGrille.calculTousLesCandidats();
         
 	    listeMethodes = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Modele {
 	    listeMethodes.add(new PaireConjugueeEnLigne(this, grille));
 	    listeMethodes.add(new PaireConjugueeEnColonne(this, grille));
 	    listeMethodes.add(new PaireConjugueeEnRegion(this, grille));
-	    
+	    listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(this, grille));
 	}
 
 
@@ -37,8 +37,9 @@ public class Modele {
 		int i =0;
 		boolean trouve = false;
 		
-		do { trouve = listeMethodes.get(i++).detecteSuivant(goPourChangement);} 
-			while (i<listeMethodes.size() && !trouve);
+		do { 
+			trouve = listeMethodes.get(i++).detecteSuivant(goPourChangement);
+		} while (i<listeMethodes.size() && !trouve);
         if (!trouve) javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !");
         //else System.out.println("Sortie détection, i="+String.valueOf(i)+ " numcase="+String.valueOf(CaseEnCours.getNumCase()));
         

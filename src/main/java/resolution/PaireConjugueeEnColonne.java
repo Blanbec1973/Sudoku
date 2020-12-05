@@ -26,10 +26,11 @@ public class PaireConjugueeEnColonne extends MethodeResolution {
         if (!trouve) return false;
         
         if (goPourChangement) {
-        	this.elimineCandidatCase(candidatAEliminer, CaseEnCours.getXSearch(),y2);
+        	this.elimineCandidatCase(candidatAEliminer, CaseEnCours.getXSearch(),yAction);
+        	modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
         }
         else {
-			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(), y2);
+			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(), yAction);
         }
         return true;
 	}
@@ -47,14 +48,14 @@ public class PaireConjugueeEnColonne extends MethodeResolution {
 	}
 	
 	private boolean detecteCandidatAEliminer() {
-		for (int y3=0;y3<9;y3++) {
-        	if (grille.getCase(CaseEnCours.getXSearch(),y3).isCaseATrouver() &&
-                y3!=CaseEnCours.getYSearch() && y3 !=y2) {
-        		if (grille.getCase(CaseEnCours.getXSearch(),y3).isCandidat(c1) ) {
+		for (yAction=0;yAction<9;yAction++) {
+        	if (grille.getCase(CaseEnCours.getXSearch(),yAction).isCaseATrouver() &&
+        			yAction!=CaseEnCours.getYSearch() && yAction !=y2) {
+        		if (grille.getCase(CaseEnCours.getXSearch(),yAction).isCandidat(c1) ) {
         			candidatAEliminer = c1;
         			return true;
         		}
-        		if (grille.getCase(CaseEnCours.getXSearch(),y3).isCandidat(c2) ) {
+        		if (grille.getCase(CaseEnCours.getXSearch(),yAction).isCandidat(c2) ) {
         			candidatAEliminer = c2;
         			return true;
         		}

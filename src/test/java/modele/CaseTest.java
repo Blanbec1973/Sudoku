@@ -23,7 +23,7 @@ public class CaseTest extends TestCase {
     
     @Before
     public void setUp() {
-        maCase = new Case(0,0,0);
+        maCase = new Case(1,0,0);
     }
     
     @After

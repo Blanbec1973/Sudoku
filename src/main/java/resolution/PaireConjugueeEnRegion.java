@@ -8,8 +8,6 @@ import modele.Modele;
 import modele.Utils;
 
 public class PaireConjugueeEnRegion extends MethodeResolution {
-	private int xAction;
-	private int yAction;
 	
 	public PaireConjugueeEnRegion(Modele modele, Grille grille) {
 		super(modele,grille);
@@ -27,6 +25,7 @@ public class PaireConjugueeEnRegion extends MethodeResolution {
         
         if (goPourChangement) {
         	this.elimineCandidatCase(candidatAEliminer, xAction,yAction);
+        	modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
         }
         else {
 			modele.getControle().demandeHighlightCase(xAction,yAction);
