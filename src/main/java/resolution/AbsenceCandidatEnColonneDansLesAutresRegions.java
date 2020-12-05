@@ -40,11 +40,8 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends MethodeResolut
 						candidatNonTrouve = false;
 					}
 				}
-				
 				if (candidatNonTrouve && this.detecteCandidatAEliminer())					
 					return true;
-				else 
-					continue;	
 			}
 		}
 		return false;
@@ -59,9 +56,7 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends MethodeResolut
                 	xAction = abs;
                 	yAction = ord;
                 	return true;
-                }
-                else
-                	continue;     
+                }  
             }
         }  
 		return false;

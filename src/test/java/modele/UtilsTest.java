@@ -1,44 +1,18 @@
 package modele;
 
-import java.util.Arrays;
-import junit.framework.TestCase;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author heynerr
- */
-public class UtilsTest extends TestCase {
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+class UtilsTest {
     
     public UtilsTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getCase method, of class Grille.
-     */
     @Test
-    @SuppressWarnings("empty-statement")
-    public void testCalculOuLogique2Candidats() {
+    void testCalculOuLogique2Candidats() {
         boolean tab1 [] = {true, true, false, false, false, false, false, false, false, false};
         boolean tab2 [] = {true, false, true, false, false, false, false, false, false, false};
         boolean res  [] = {true, true, true, false, false, false, false, false, false, false};
@@ -47,8 +21,8 @@ public class UtilsTest extends TestCase {
         //assertEquals(Arrays.toString(res),Arrays.toString(Utils.calculOuLogique2Candidats(tab1, tab2)));
         assertTrue(Arrays.equals(res,Utils.calculOuLogique2Candidats(tab1, tab2)));
     }
-    
-    public void testCalculEtLogique2Candidats() {
+    @Test
+    void testCalculEtLogique2Candidats() {
         boolean tab1 [] = {true, true, false, false, false, false, false, false, false, false};
         boolean tab2 [] = {true, false, true, false, false, false, false, false, false, false};
         boolean res  [] = {true, false, false, false, false, false, false, false, false, false};
@@ -59,8 +33,7 @@ public class UtilsTest extends TestCase {
     }
             
     @Test
-    public void testCalculNombreTriplettes() {
-        System.out.println("calculNombreTriplettes");
+    void testCalculNombreTriplettes() {
         assertEquals(3, Utils.calculNombreTriplettes(4));
         assertEquals(6, Utils.calculNombreTriplettes(5));
         assertEquals(10, Utils.calculNombreTriplettes(6));
@@ -69,8 +42,7 @@ public class UtilsTest extends TestCase {
         assertEquals(28, Utils.calculNombreTriplettes(9));
     }
     @Test
-    public void testCalculXsearch() {
-        System.out.println("calculNumeroXsearch");
+    void testCalculXsearch() {
         assertEquals(0, Utils.calculXsearch(1));
         assertEquals(1, Utils.calculXsearch(2));
         assertEquals(2, Utils.calculXsearch(3));
@@ -156,8 +128,7 @@ public class UtilsTest extends TestCase {
     }
     
     @Test
-    public void testCalculYsearch() {
-        System.out.println("calculYsearch");
+    void testCalculYsearch() {
         assertEquals(0, Utils.calculYsearch(1));
         assertEquals(0, Utils.calculYsearch(2));
         assertEquals(0, Utils.calculYsearch(3));
@@ -242,8 +213,7 @@ public class UtilsTest extends TestCase {
 
     }
     @Test
-    public void testCalculNumeroRegion() {
-        System.out.println("calculNumeroRegion");
+    void testCalculNumeroRegion() {
         assertEquals(1, Utils.calculNumeroRegion(1));
         assertEquals(1, Utils.calculNumeroRegion(2));
         assertEquals(1, Utils.calculNumeroRegion(3));
@@ -327,8 +297,7 @@ public class UtilsTest extends TestCase {
         assertEquals(9, Utils.calculNumeroRegion(81));
     }
     @Test
-    public void testCalculNumCase() {
-    	  System.out.println("calculNumCase");
+    void testCalculNumCase() {
     	  assertEquals(1, Utils.calculNumCase(0,0));
     	  assertEquals(2, Utils.calculNumCase(1,0));
     	  assertEquals(3, Utils.calculNumCase(2,0));
@@ -415,7 +384,7 @@ public class UtilsTest extends TestCase {
     }
     
     @Test
-    public void testtrouveCandidatNumero() {
+    void testtrouveCandidatNumero() {
     	CandidatsCase c1 = new CandidatsCase();
     	c1.setAllCandidatsToFalse();
     	assertEquals(0,Utils.trouveCandidatNumero(c1, 1));

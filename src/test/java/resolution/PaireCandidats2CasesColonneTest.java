@@ -1,39 +1,25 @@
 package resolution;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import modele.CaseEnCours;
 import modele.Grille;
 
-import junit.framework.TestCase;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-public class PaireCandidats2CasesColonneTest extends TestCase {
+public class PaireCandidats2CasesColonneTest {
 	private Grille grille;
 	private PaireCandidats2CasesColonne paireCandidats2CasesColonne;
 	
     public PaireCandidats2CasesColonneTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
+    @BeforeEach
     public void setUp() {
     	grille = new Grille(null);
     	CaseEnCours.setCaseEnCours(1);
     	paireCandidats2CasesColonne = new PaireCandidats2CasesColonne(null,grille);
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     @Test

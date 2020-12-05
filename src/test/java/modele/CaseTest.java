@@ -1,37 +1,23 @@
 package modele;
 
-import junit.framework.TestCase;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CaseTest extends TestCase {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class CaseTest {
     Case maCase;
     
     public CaseTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
+    @BeforeEach
     public void setUp() {
         maCase = new Case(1,0,0);
     }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
-    public void testEtatCase() {
+    void testEtatCase() {
         assertTrue(maCase.nEstPasCaseTrouvee());
         maCase.setCaseInitiale();
         assertTrue(maCase.isCaseInitiale());
