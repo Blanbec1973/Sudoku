@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import modele.CaseEnCours;
 import modele.Grille;
 
-public class PaireCandidats2CasesColonneTest {
+class PaireCandidats2CasesColonneTest {
 	private Grille grille;
 	private PaireCandidats2CasesColonne paireCandidats2CasesColonne;
 	
@@ -23,7 +23,7 @@ public class PaireCandidats2CasesColonneTest {
     }
 
     @Test
-	public void testInserePaireCandidatsDansTab() {
+	void testInserePaireCandidatsDansTab() {
 		grille.getCaseEnCours().getCandidats().setAllCandidatsToFalse();
 		grille.getCaseEnCours().getCandidats().setCandidat(1);
 		grille.getCaseEnCours().getCandidats().setCandidat(5);
