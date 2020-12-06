@@ -33,7 +33,9 @@ public abstract class MethodeResolution {
 	protected ArrayList<CandidatsCase> tabCandidats;
 	protected int c1;
 	protected int c2;
+	protected int c3;
 	protected int x2;
+	protected int x3;
 	protected int y2;
 	protected int xAction;
 	protected int yAction;
@@ -154,6 +156,13 @@ public abstract class MethodeResolution {
 			message+= CaseEnCours.getYSearchEdition();
 			message+= ELIMINATION_CANDIDATS;
 			message+= " dans les autres lignes de la région.";
+			return message;
+		}
+		if (this instanceof TripletteCandidatsEnLigne) {
+			message+= " Triplette ";
+			message+= String.valueOf(c1)+String.valueOf(c2)+String.valueOf(c3);
+			message+= " dans trois cases de la ligne, élimination candidat ";
+			message+= String.valueOf(candidat);
 			return message;
 		}
 		message+=", solution="+grille.getCaseEnCours().getValeur();
