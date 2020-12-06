@@ -4,9 +4,9 @@ import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
 
-public class AbsenceCandidatEnColonneDansLesAutresRegions extends MethodeResolution {
+public class AbsenceCandidatEnLigneDansLesAutresRegions extends MethodeResolution {
 
-	public AbsenceCandidatEnColonneDansLesAutresRegions(Modele modele, Grille grille) {
+	public AbsenceCandidatEnLigneDansLesAutresRegions(Modele modele, Grille grille) {
 		super(modele,grille);
 	}
 
@@ -33,9 +33,9 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends MethodeResolut
 				candidatNonTrouve = true;
 				candidatAEliminer = candidat;
 				for (int i=0;i<9;i++) {
-					if (grille.getCaseEnCours().getRegion() != grille.getCase(CaseEnCours.getXSearch(),i).getRegion() &&
-						grille.getCase(CaseEnCours.getXSearch(),i).isCaseATrouver() &&
-                	    grille.getCase(CaseEnCours.getXSearch(),i).isCandidat(candidat)) {
+					if (grille.getCaseEnCours().getRegion() != grille.getCase(i, CaseEnCours.getYSearch()).getRegion() &&
+						grille.getCase(i, CaseEnCours.getYSearch()).isCaseATrouver() &&
+                	    grille.getCase(i, CaseEnCours.getYSearch()).isCandidat(candidat)) {
 						candidatNonTrouve = false;
 					}
 				}
@@ -49,7 +49,7 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends MethodeResolut
 	private boolean detecteCandidatAEliminer() {
         for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
             for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if (abs!= CaseEnCours.getXSearch() && 
+                if (ord!= CaseEnCours.getYSearch() && 
                 	grille.getCase(abs, ord).isCaseATrouver() &&
                     grille.getCase(abs, ord).isCandidat(candidatAEliminer)) {
                 	xAction = abs;

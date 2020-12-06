@@ -103,6 +103,13 @@ public abstract class MethodeResolution {
 			message+= String.valueOf(candidat);
 			return message;
 		}
+		if (this instanceof PaireCandidats2CasesLigne) {
+			message+= " Couple ";
+			message+= String.valueOf(c1)+String.valueOf(c2);
+			message+= " dans deux cases de la ligne, élimination candidat ";
+			message+= String.valueOf(candidat);
+			return message;
+		}
 		if (this instanceof PaireConjugueeEnLigne) {
 			message+= COUPLE_CONJUGUEE;
 			message+= String.valueOf(c1)+String.valueOf(c2);
@@ -138,6 +145,15 @@ public abstract class MethodeResolution {
 			message+= CaseEnCours.getXSearchEdition();
 			message+= ELIMINATION_CANDIDATS;
 			message+= " dans les autres colonnes de la région.";
+			return message;
+		}
+		if (this instanceof AbsenceCandidatEnLigneDansLesAutresRegions) {
+			message+= " Candidat ";
+			message+= candidatAEliminer;
+			message+= " absent des autres régions de la ligne ";
+			message+= CaseEnCours.getYSearchEdition();
+			message+= ELIMINATION_CANDIDATS;
+			message+= " dans les autres lignes de la région.";
 			return message;
 		}
 		message+=", solution="+grille.getCaseEnCours().getValeur();

@@ -27,6 +27,8 @@ public class Modele {
 	    listeMethodes.add(new PaireConjugueeEnColonne(this, grille));
 	    listeMethodes.add(new PaireConjugueeEnRegion(this, grille));
 	    listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(this, grille));
+	    listeMethodes.add(new AbsenceCandidatEnLigneDansLesAutresRegions(this, grille));
+	    listeMethodes.add(new PaireCandidats2CasesLigne(this, grille));
 	}
 
 
