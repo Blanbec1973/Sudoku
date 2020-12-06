@@ -35,7 +35,7 @@ public class InitialiseurDeGrille {
                 y++;
             }
         } catch (IOException|NullPointerException ex) {
-            Logger.getLogger(Grille.class.getName()).log(Level.SEVERE, null, ex);
+        	javax.swing.JOptionPane.showMessageDialog(null,"Exception : "+ex.getMessage());
         }
     }
 	
