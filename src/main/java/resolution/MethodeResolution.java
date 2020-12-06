@@ -38,6 +38,8 @@ public abstract class MethodeResolution {
 	protected int xAction;
 	protected int yAction;
 	protected int candidatAEliminer;
+    public static final String COUPLE_CONJUGUEE = " Couple conjugué ";
+    public static final String ELIMINATION_CANDIDATS = ", élimination candidat ";
 	
 	public MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
@@ -102,29 +104,29 @@ public abstract class MethodeResolution {
 			return message;
 		}
 		if (this instanceof PaireConjugueeEnLigne) {
-			message+= " Couple conjugué ";
+			message+= COUPLE_CONJUGUEE;
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la ligne "+CaseEnCours.getYSearchEdition();
-			message+= ", élimination candidat ";
+			message+= ELIMINATION_CANDIDATS;
 			message+= String.valueOf(candidat);
 			message+= " dans les autres cases de la ligne.";
 			return message;
 		}
 		if (this instanceof PaireConjugueeEnColonne) {
-			message+= " Couple conjugué ";
+			message+= COUPLE_CONJUGUEE;
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la colonne "+CaseEnCours.getXSearchEdition();
-			message+= ", élimination candidat ";
+			message+= ELIMINATION_CANDIDATS;
 			message+= String.valueOf(candidat);
 			message+= " dans les autres cases de la colonne.";
 			return message;
 		}
 		if (this instanceof PaireConjugueeEnRegion) {
-			message+= " Couple conjugué ";
+			message+= COUPLE_CONJUGUEE;
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la région ";
 			message+= String.valueOf(Utils.calculNumeroRegion(CaseEnCours.getNumCase()));
-			message+= ", élimination candidat ";
+			message+= ELIMINATION_CANDIDATS;
 			message+= String.valueOf(candidat);
 			message+= " dans les autres cases de la région.";
 			return message;
@@ -134,7 +136,7 @@ public abstract class MethodeResolution {
 			message+= candidatAEliminer;
 			message+= " absent des autres régions de la colonne ";
 			message+= CaseEnCours.getXSearchEdition();
-			message+= ", élimination candidat ";
+			message+= ELIMINATION_CANDIDATS;
 			message+= " dans les autres colonnes de la région.";
 			return message;
 		}
