@@ -10,25 +10,14 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends AbsenceCandida
 		super(modele,grille);
 	}
 	
-	protected boolean detecteConfiguration() {
-		boolean candidatNonTrouve;
-		for (int candidat=1;candidat<10;candidat++) {
-			if (grille.getCaseEnCours().isCandidat(candidat)) {
-				candidatNonTrouve = true;
-				candidatAEliminer = candidat;
-				for (int i=0;i<9;i++) {
-					if (grille.getCaseEnCours().getRegion() != grille.getCase(CaseEnCours.getXSearch(),i).getRegion() &&
-						grille.getCase(CaseEnCours.getXSearch(),i).isCaseATrouver() &&
-                	    grille.getCase(CaseEnCours.getXSearch(),i).isCandidat(candidat)) {
-						candidatNonTrouve = false;
-					}
-				}
-				if (candidatNonTrouve && this.detecteCandidatAEliminer())					
-					return true;
+	protected boolean testCase(int rangCase, int candidat) {
+		if (grille.getCaseEnCours().getRegion() != grille.getCase(CaseEnCours.getXSearch(),rangCase).getRegion() &&
+				grille.getCase(CaseEnCours.getXSearch(),rangCase).isCaseATrouver() &&
+        	    grille.getCase(CaseEnCours.getXSearch(),rangCase).isCandidat(candidat)) {
+				return false;
 			}
-		}
-		return false;
-	}	
+		return true;
+	}
 	
 	protected boolean detecteCandidatAEliminer() {
         for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {

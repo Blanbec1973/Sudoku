@@ -26,7 +26,23 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		else return false ;
 	}
 	
-	protected abstract boolean detecteConfiguration();
+	private boolean detecteConfiguration() {
+		boolean candidatNonTrouve;
+		for (int candidat=1;candidat<10;candidat++) {
+			if (grille.getCaseEnCours().isCandidat(candidat)) {
+				candidatNonTrouve = true;
+				candidatAEliminer = candidat;
+				for (int i=0;i<9;i++) {
+					candidatNonTrouve = this.testCase(i, candidat);
+					if (!candidatNonTrouve) break;
+				}
+				if (candidatNonTrouve && this.detecteCandidatAEliminer())					
+					return true;
+			}
+		}
+		return false;
+	}
+	protected abstract boolean testCase(int rangCase, int candidat);
 	protected abstract boolean detecteCandidatAEliminer();
 	
 }
