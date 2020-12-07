@@ -8,7 +8,7 @@ import modele.Modele;
 import modele.Utils;
 
 public class PaireConjugueeEnLigne extends MethodeResolution {
-	
+
 	public PaireConjugueeEnLigne(Modele modele, Grille grille) {
 		super(modele,grille);
 	}
@@ -19,19 +19,18 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
 		
 		boolean trouve = this.detecteConfiguration();
 		if (!trouve) return false;
-		     
-        c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
+
+		c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
         c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
-        trouve = this.detecteCandidatAEliminer();
-        if (!trouve) return false;
-               
+		trouve = this.detecteCandidatAEliminer();
+		if (!trouve) return false;
+        
         if (goPourChangement) {
         	this.elimineCandidatCase(candidatAEliminer, xAction, CaseEnCours.getYSearch());
         	modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
         }
         else {
-			modele.getControle().demandeHighlightCase(xAction,
-                    CaseEnCours.getYSearch());
+			modele.getControle().demandeHighlightCase(xAction, CaseEnCours.getYSearch());
         }
         return true;
 	}
@@ -44,12 +43,11 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
                 		grille.getCase(x2, CaseEnCours.getYSearch()).getCandidatsTabBoolean())) {
             	return true;
             }
-        } 
+        }
 		return false;
 	}
 	
 	private boolean detecteCandidatAEliminer() {
-        // Recherche s'il y a un candidat à éliminer :
         for (xAction=0;xAction<9;xAction++) {
         	if (grille.getCase(xAction, CaseEnCours.getYSearch()).isCaseATrouver() &&
         			xAction!=CaseEnCours.getXSearch() && xAction !=x2) {
@@ -65,8 +63,4 @@ public class PaireConjugueeEnLigne extends MethodeResolution {
         }
 		return false;
 	}
-	
-	
-	
-	
 }

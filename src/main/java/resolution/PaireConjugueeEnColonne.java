@@ -17,9 +17,9 @@ public class PaireConjugueeEnColonne extends MethodeResolution {
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
 		if (grille.getCaseEnCours().getNombreCandidats() != 2) return false;
 		
-		boolean trouve = this.detecteConfiguration();   	
-        if (!trouve) return false;
-        
+		boolean trouve = this.detecteConfiguration();
+		if (!trouve) return false;
+
         c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
         c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
         trouve = this.detecteCandidatAEliminer();
@@ -63,5 +63,4 @@ public class PaireConjugueeEnColonne extends MethodeResolution {
         }
 		return false;
 	}	
-	
 }
