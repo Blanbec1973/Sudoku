@@ -45,9 +45,5 @@ public class Case {
     public boolean contientCandidatUnique() {return candidats.getNombreCandidats() == 1;}
     public int calculValeurUnique() {return candidats.calculValeurUnique();}
     public String construitLibelleCandidats() {return candidats.construitLibelleCandidats();}
-    public void elimineCandidats(boolean[] candidatsAEliminer) {candidats.elimineCandidats(candidatsAEliminer);}
     public void elimineCandidat(int valeur) {candidats.elimineCandidat(valeur);}
-
-
-
 }

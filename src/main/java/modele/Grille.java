@@ -135,17 +135,6 @@ public class Grille {
         }   
     }
     
-    void elimineCandidatsLigneSaufColonnes(CandidatsCase candidats, int numligne, int [] colonnesANePasPrendreEnCompte) {
-        for (int i=0;i<9;i++) {
-            if (this.getCase(i, numligne).nEstPasCaseInitiale() &&
-                this.getCase(i, numligne).nEstPasCaseTrouvee() &&
-                !Arrays.toString(colonnesANePasPrendreEnCompte).contains(String.valueOf(i))) {
-                this.getCase(i,numligne).elimineCandidats(candidats.getCandidats());
-                modele.getControle().demandeRefreshAffichageCase(i,numligne);
-            }   
-        }
-    }
-    
     void traiteAbsenceCandidatColonneAutreRegion(int xSearch, int ySearch) {
         boolean candidatTrouve;
         

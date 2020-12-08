@@ -37,12 +37,6 @@ public class CandidatsCase {
         this.nombreCandidats-=1;
     }
     
-    void elimineCandidats(boolean[] candidatsAEliminer) {
-        for (int ind=1;ind<10;ind++) {
-            if (candidatsAEliminer[ind]) this.elimineCandidat(ind);
-        }
-    }
-    
     public int calculNombreCandidats() {
         int resultat = 0;
         for (int i=0;i<10;i++) {
