@@ -8,7 +8,9 @@ import modele.Grille;
 import modele.Modele;
 
 public abstract class PaireCandidats2Cases extends MethodeResolution {
-
+	protected int nb2inter = 0;
+	protected int nb1inter = 0;
+	
 	public PaireCandidats2Cases(Modele modele, Grille grille) {
 		super(modele,grille);
 		c1=0;
@@ -27,6 +29,8 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		
 		//Boucle sur chaque couple possible de la case en cours : 
 		for (CandidatsCase couple : tabCandidats) {
+			nb1inter=0;
+			nb2inter=0;
 			if (this.traiteCouple(couple)) {
 				trouve = true;
 				break;

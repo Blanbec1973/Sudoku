@@ -10,14 +10,9 @@ public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
 
 	public PaireCandidats2CasesColonne(Modele modele, Grille grille) {
 		super(modele,grille);
-		c1=0;
-		c2=0;
 	}
 		
-	protected boolean traiteCouple(CandidatsCase paireCandidats) {
-		int nb2inter = 0;
-		int nb1inter = 0;
-		
+	protected boolean traiteCouple(CandidatsCase paireCandidats) {		
 		for (int i=0;i<9;i++) {
 			if (grille.getCase(CaseEnCours.getXSearch(),i).isCaseATrouver() &&
 				CaseEnCours.getYSearch()!=i) {
