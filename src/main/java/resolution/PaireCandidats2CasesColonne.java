@@ -20,8 +20,8 @@ public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
 				switch (Utils.calculNombreCandidats(
 						Utils.calculEtLogique2Candidats(paireCandidats.getCandidats(), 
 								grille.getCase(CaseEnCours.getXSearch(), i).getCandidatsTabBoolean()))) {
-					case 1 -> {nb1inter+=1;}
-					case 2 -> {nb2inter+=1;}
+					case 1 : {nb1inter+=1;}
+					case 2 : {nb2inter+=1;}
 				}				
 			}
 		}
