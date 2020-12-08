@@ -1,7 +1,5 @@
 package resolution;
 
-import java.util.ArrayList;
-
 import modele.CandidatsCase;
 import modele.CaseEnCours;
 import modele.Grille;
