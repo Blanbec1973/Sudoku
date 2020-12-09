@@ -24,9 +24,14 @@ class CaseTest {
         assertTrue(maCase.nEstPasCaseTrouvee());
         maCase.setCaseInitiale();
         assertTrue(maCase.isCaseInitiale());
+        assertFalse(maCase.nEstPasCaseInitiale());
         assertTrue(maCase.nEstPasCaseTrouvee());
+        
+        
         maCase.setValeurCase(5);
         assertTrue(maCase.isCaseTrouvee());
+        assertFalse(maCase.isCaseInitiale());
+        assertTrue(maCase.nEstPasCaseInitiale());
         assertEquals(5,maCase.getValeur());
     }
     
