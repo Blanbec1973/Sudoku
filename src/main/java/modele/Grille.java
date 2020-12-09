@@ -133,31 +133,4 @@ public class Grille {
             }
         }   
     }
-    
-    void traiteAbsenceCandidatColonneAutreRegion(int xSearch, int ySearch) {
-        boolean candidatTrouve;
-        
-        for (int candidat=1;candidat<10;candidat++) {
-            if (this.getCaseEnCours().isCandidat(candidat)) {
-                candidatTrouve=false;
-                for (int i=0;i<9;i++) {
-                    if (this.getCase(xSearch, ySearch).getRegion() != this.getCase(xSearch,i).getRegion() &&
-                        this.getCase(xSearch, i).nEstPasCaseInitiale() &&
-                        this.getCase(xSearch, i).nEstPasCaseTrouvee() &&
-                        this.getCase(xSearch,i).isCandidat(candidat)) {
-                        candidatTrouve = true;
-                    }
-                }    
-                if (!candidatTrouve) {
-                    javax.swing.JOptionPane.showMessageDialog(null,"Candidat "
-                                                                   +candidat
-                                                                   + " dans colonne "
-                                                                   +CaseEnCours.getXSearchEdition()
-                                                                   +"uniquement dans région"
-                                                                   +this.getCaseEnCours().getRegion()); 
-                    this.elimineCandidatRegionSaufColonne(candidat, xSearch);
-                }        
-            }    
-        }
-    }
 }
