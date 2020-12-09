@@ -46,7 +46,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
                 x3=x2;
                 while (x3<9) {
                     if (x3!=x2 && x3!=CaseEnCours.getXSearch() && grille.getCase(x3,CaseEnCours.getYSearch()).isCaseATrouver()) {
-                        if (this.detecteTripletteEnLigne(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), x2, x3) &&
+                        if (this.detecteTripletteEnLigne(CaseEnCours.getYSearch(), x2, x3) &&
                         	this.detecteCandidatAEliminer())
                         	return true;
                     }
@@ -58,7 +58,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         return false;
 	}
 	
-	private boolean detecteTripletteEnLigne(int xSearch, int ySearch, int x2, int x3) {
+	private boolean detecteTripletteEnLigne(int ySearch, int x2, int x3) {
         CandidatsCase testCandidats = new CandidatsCase();
         testCandidats.setCandidats(Utils.calculOuLogique2Candidats(grille.getCaseEnCours().getCandidatsTabBoolean(),
                                                        grille.getCase(x2, ySearch).getCandidatsTabBoolean()));

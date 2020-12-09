@@ -43,9 +43,7 @@ public class Modele {
 		do { 
 			trouve = listeMethodes.get(i++).detecteSuivant(goPourChangement);
 		} while (i<listeMethodes.size() && !trouve);
-        if (!trouve) javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !");
-        //else System.out.println("Sortie détection, i="+String.valueOf(i)+ " numcase="+String.valueOf(CaseEnCours.getNumCase()));
-        
+        if (!trouve) javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 
 	}
 	
 

@@ -29,25 +29,6 @@ public class Grille {
         this.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
         casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch())));
     }        
-
-   
-    public void displayCasesAtrouver() {
-    	int i = 0;
-    	while (i<this.getCasesAtrouver().size()) {
-    		System.out.println("i="+i+" ==>"+ this.getCasesAtrouver().get(i++));
-    	}
-    }
-    
-    public void display() {
-    	StringBuilder bld = new StringBuilder();
-        for (int y=0; y<9; y++) {
-            for (int x=0;x<9;x++) {
-                bld.append(this.getCase(x,y).getValeur());   
-            }
-            System.out.println(bld.toString());
-            bld.setLength(0);
-        }
-    }
     
     public boolean checkPresenceCandidatLigne(int valeur, int x, int numLigne) {
         for (int i=0;i<9;i++) {
@@ -108,29 +89,5 @@ public class Grille {
                 }
             }
         }
-    }
-
-	public boolean checkPresenceCandidatRegionSaufColonne(int candidat, int colonne) {
-        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
-            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && 
-                		             mesCases[abs][ord].nEstPasCaseTrouvee()) {
-                    if (mesCases[abs][ord].isCandidat(candidat)) return true;
-                    
-                }     
-            }
-        }  
-		return false;
-	}
-    
-    public void elimineCandidatRegionSaufColonne(int candidat, int colonne) {
-        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
-            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if (abs!= colonne && mesCases[abs][ord].nEstPasCaseInitiale() && mesCases[abs][ord].nEstPasCaseTrouvee()) {
-                    mesCases[abs][ord].elimineCandidat(candidat);
-                    modele.getControle().demandeRefreshAffichageCase(abs, ord);
-                }     
-            }
-        }   
     }
 }

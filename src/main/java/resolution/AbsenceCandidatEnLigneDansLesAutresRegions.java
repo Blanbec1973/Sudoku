@@ -11,12 +11,9 @@ public class AbsenceCandidatEnLigneDansLesAutresRegions extends AbsenceCandidatD
 	}
 	
 	protected boolean testCase(int rangCase, int candidat) {
-		if (grille.getCaseEnCours().getRegion() != grille.getCase(rangCase, CaseEnCours.getYSearch()).getRegion() &&
+		return !(grille.getCaseEnCours().getRegion() != grille.getCase(rangCase, CaseEnCours.getYSearch()).getRegion() &&
 				grille.getCase(rangCase, CaseEnCours.getYSearch()).isCaseATrouver() &&
-        	    grille.getCase(rangCase, CaseEnCours.getYSearch()).isCandidat(candidat)) {
-				return false;
-			}
-		return true;
+        	    grille.getCase(rangCase, CaseEnCours.getYSearch()).isCandidat(candidat));
 	}
 	
 	protected boolean detecteCandidatAEliminer() {
