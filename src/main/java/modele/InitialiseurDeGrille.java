@@ -34,7 +34,7 @@ public class InitialiseurDeGrille {
             }
         } catch (IOException|NullPointerException ex) {
         	javax.swing.JOptionPane.showMessageDialog(null,"Exception : "+ex.getMessage());
-        }
+        } 
     }
 	
     public void calculTousLesCandidats() {
