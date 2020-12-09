@@ -64,29 +64,6 @@ public abstract class MethodeResolution {
 	
 	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
 	
-	public void setValeurCaseEnCours(int solution) {
-		grille.setValeurCaseEnCours(solution);
-		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
-		modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
-		modele.getControle().demandeAfficheCommande(this.calculMessageLog(0));
-		modele.getControle().demandeIncrementRangResolution();
-	}
-	
-	public void elimineCandidatCaseEnCours(int candidatAEliminer) {
-		grille.getCaseEnCours().elimineCandidat(candidatAEliminer);
-		modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
-		modele.getControle().demandeAfficheCommande(this.calculMessageLog(candidatAEliminer));
-		modele.getControle().demandeIncrementRangResolution();
-	}
-	
-	public void elimineCandidatCase(int candidatAEliminer, int x, int y) {
-		grille.getCase(x,y).elimineCandidat(candidatAEliminer);
-		modele.getControle().demandeRefreshAffichageCase(x, y);
-		modele.getControle().demandeAfficheCommande(this.calculMessageLog(candidatAEliminer));
-		modele.getControle().demandeIncrementRangResolution();		
-		
-	}
-	
 	protected String calculMessageLog(int candidat) {
 		String message = "";
 		message+= "Case x="+CaseEnCours.getXSearchEdition();

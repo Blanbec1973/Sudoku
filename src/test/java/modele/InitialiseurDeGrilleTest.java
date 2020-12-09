@@ -16,7 +16,7 @@ class InitialiseurDeGrilleTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-        grille =new Grille(null);
+        grille =new Grille();
         initialiseurDeGrille  = new InitialiseurDeGrille(grille);
 	}
 

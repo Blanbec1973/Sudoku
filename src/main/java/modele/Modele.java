@@ -12,7 +12,7 @@ public class Modele {
 	public Modele(Controle controle) {
 		this.controle = controle;
 		
-        grille =new Grille(this);
+        grille =new Grille();
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
         initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-40.sud");
         initialiseurDeGrille.calculTousLesCandidats();
@@ -46,6 +46,26 @@ public class Modele {
         if (!trouve) javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 
 	}
 	
-
+	public void setValeurCaseEnCours(int solution, String message) {
+		grille.setValeurCaseEnCours(solution);
+		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
+		controle.demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
+		controle.demandeAfficheCommande(message);
+		controle.demandeIncrementRangResolution();
+	}
 	
+	public void elimineCandidatCaseEnCours(int candidatAEliminer, String message) {
+		grille.getCaseEnCours().elimineCandidat(candidatAEliminer);
+		controle.demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
+		controle.demandeAfficheCommande(message);
+		controle.demandeIncrementRangResolution();
+	}
+	
+	public void elimineCandidatCase(int candidatAEliminer, int x, int y, String message) {
+		grille.getCase(x,y).elimineCandidat(candidatAEliminer);
+		controle.demandeRefreshAffichageCase(x, y);
+		controle.demandeAfficheCommande(message);
+		controle.demandeIncrementRangResolution();		
+		
+	}
 }

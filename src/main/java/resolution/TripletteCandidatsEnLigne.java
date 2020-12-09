@@ -25,7 +25,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         yAction = CaseEnCours.getYSearch();
         
         if (goPourChangement) {
-        	this.elimineCandidatCase(candidatAEliminer, xAction ,yAction);
+        	modele.elimineCandidatCase(candidatAEliminer, xAction ,yAction, this.calculMessageLog(candidatAEliminer));
         	modele.getControle().demandeRefreshAffichageCase(xAction, yAction);
         }
         else {

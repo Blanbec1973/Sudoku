@@ -17,7 +17,7 @@ class PaireCandidats2CasesColonneTest {
     
     @BeforeEach
     public void setUp() {
-    	grille = new Grille(null);
+    	grille = new Grille();
     	CaseEnCours.setCaseEnCours(1);
     	paireCandidats2CasesColonne = new PaireCandidats2CasesColonne(null,grille);
     }

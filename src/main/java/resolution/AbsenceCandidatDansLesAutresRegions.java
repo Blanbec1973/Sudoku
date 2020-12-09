@@ -15,7 +15,7 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		
 		if (changementAFaire) {
 			if (goPourChangement) {
-           		this.elimineCandidatCase(candidatAEliminer, xAction, yAction);
+           		modele.elimineCandidatCase(candidatAEliminer, xAction, yAction, this.calculMessageLog(candidatAEliminer));
            		modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
             	return true;
             }

@@ -50,7 +50,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		}
 		
 		if (goPourChangement) {
-			this.elimineCandidatCaseEnCours(candiatEliminable);
+			modele.elimineCandidatCaseEnCours(candiatEliminable, this.calculMessageLog(candiatEliminable));
 		}
 		else {
 			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),

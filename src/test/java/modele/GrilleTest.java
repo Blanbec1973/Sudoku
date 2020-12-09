@@ -8,7 +8,7 @@ class GrilleTest {
     Grille grille;
     
     public GrilleTest() {
-        grille = new Grille(null);
+        grille = new Grille();
     }
     
     /**

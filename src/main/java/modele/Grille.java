@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Grille {
     private Case [][] mesCases = new Case [9][9];
-    private Modele modele;
     private List<Integer> casesAtrouver;
         
-    public Grille(Modele modele) {
-        this.modele = modele;
+    public Grille() {
         int numcase = 0;
         for (int y=0;y<9;y++) {
             for (int x=0;x<9;x++) {
@@ -67,26 +65,17 @@ public class Grille {
         //Elimination dans ligne : 
         for (int i=0;i<9;i++) {
             mesCases[i][y].elimineCandidat(solution);
-            if (mesCases[i][y].nEstPasCaseInitiale() && mesCases[i][y].nEstPasCaseTrouvee()) {
-            	modele.getControle().demandeRefreshAffichageCase(i, y);
-            }
         }
         
         //Elimination dans colonne : 
         for (int i=0;i<9;i++) {
             mesCases[x][i].elimineCandidat(solution);
-            if (mesCases[x][i].nEstPasCaseInitiale() && mesCases[x][i].nEstPasCaseTrouvee()) {
-            	modele.getControle().demandeRefreshAffichageCase(x, i);
-            }
         }
         
         //Elimination dans région : 
         for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
             for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 mesCases[abs][ord].elimineCandidat(solution);
-                if (mesCases[abs][ord].nEstPasCaseInitiale() && mesCases[abs][ord].nEstPasCaseTrouvee()) {
-                	modele.getControle().demandeRefreshAffichageCase(abs, ord);
-                }
             }
         }
     }

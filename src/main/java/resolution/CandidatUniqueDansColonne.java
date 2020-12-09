@@ -23,7 +23,7 @@ public class CandidatUniqueDansColonne extends MethodeResolution {
 		}
 		
 		if (!trouve) return false;
-		if (goPourChangement) this.setValeurCaseEnCours(candidat);
+		if (goPourChangement) modele.setValeurCaseEnCours(candidat, this.calculMessageLog(0));
 			else modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
 														   CaseEnCours.getYSearch());
 		return true;

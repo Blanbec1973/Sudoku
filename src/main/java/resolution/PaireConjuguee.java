@@ -24,7 +24,7 @@ public abstract class PaireConjuguee extends MethodeResolution {
 		if (!trouve) {return false;}
         
         if (goPourChangement) {
-        	this.elimineCandidatCase(candidatAEliminer, xAction, yAction);
+        	modele.elimineCandidatCase(candidatAEliminer, xAction, yAction, this.calculMessageLog(candidatAEliminer));
         }
         else {
 			modele.getControle().demandeHighlightCase(xAction, yAction);
