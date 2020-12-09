@@ -1,6 +1,6 @@
 package modele;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,11 +18,16 @@ class CaseTest {
 
     @Test
     void testEtatCase() {
+    	assertEquals(1,maCase.getNumCase());
+    	assertEquals(0,maCase.getxCase());
+    	assertEquals(0,maCase.getyCase());
         assertTrue(maCase.nEstPasCaseTrouvee());
         maCase.setCaseInitiale();
         assertTrue(maCase.isCaseInitiale());
+        assertTrue(maCase.nEstPasCaseTrouvee());
         maCase.setValeurCase(5);
         assertTrue(maCase.isCaseTrouvee());
+        assertEquals(5,maCase.getValeur());
     }
     
 }
