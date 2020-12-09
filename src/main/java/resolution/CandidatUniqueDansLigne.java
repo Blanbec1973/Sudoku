@@ -21,7 +21,7 @@ public class CandidatUniqueDansLigne extends MethodeResolution {
 		}
 		
 		if (!trouve) return false;
-		if (goPourChangement) modele.setValeurCaseEnCours(candidat, this.calculMessageLog(0));
+		if (goPourChangement) modele.setValeurCaseEnCours(candidat, this.calculMessageLog(candidat));
 			else modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
 														   CaseEnCours.getYSearch());
 			
