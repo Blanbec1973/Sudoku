@@ -39,6 +39,15 @@ class CandidatsCaseTest {
     }
     
     @Test
+    void testGetNombreCandidats() {
+    	assertEquals(0,this.c1.getNombreCandidats());
+    	assertEquals(1,this.c2.getNombreCandidats());
+    	assertEquals(2,this.c3.getNombreCandidats());
+    	assertEquals(9,this.c4.getNombreCandidats());
+    	assertEquals(10,this.c5.getNombreCandidats());
+    }
+    
+    @Test
     void testelimineCandidat() {
         c2.elimineCandidat(1);
         assertEquals(0, c2.calculNombreCandidats());
