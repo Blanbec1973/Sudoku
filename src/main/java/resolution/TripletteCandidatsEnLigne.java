@@ -14,14 +14,11 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		// On ne rentre dans cette méthode que si au moins 3 cases à trouver dans la ligne :
 		if (Utils.calculNombreCaseATrouverDansLigne(this.grille, CaseEnCours.getYSearch())<=3) return false;
 
 		boolean trouve = this.detecteConfiguration();   	
         if (!trouve) return false;
         
-        c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
-        c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
         trouve = this.detecteCandidatAEliminer();
         if (!trouve) return false;
         
@@ -45,17 +42,18 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
             if (x2!=CaseEnCours.getXSearch() && grille.getCase(x2,CaseEnCours.getYSearch()).isCaseATrouver()) {
                 x3=x2;
                 while (x3<9) {
-                    if (x3!=x2 && x3!=CaseEnCours.getXSearch() && grille.getCase(x3,CaseEnCours.getYSearch()).isCaseATrouver()) {
-                        if (this.detecteTripletteEnLigne(CaseEnCours.getYSearch(), x2, x3) &&
-                        	this.detecteCandidatAEliminer())
-                        	return true;
-                    }
+                    if (testTriplette()) {return true;}
                     x3+=1;
                 }
             }
             x2+=1;
         }
         return false;
+	}
+	
+	private boolean testTriplette() {
+		 return (x3!=x2 && x3!=CaseEnCours.getXSearch() && grille.getCase(x3,CaseEnCours.getYSearch()).isCaseATrouver() &&
+		     this.detecteTripletteEnLigne(CaseEnCours.getYSearch(), x2, x3) && this.detecteCandidatAEliminer()) ;
 	}
 	
 	private boolean detecteTripletteEnLigne(int ySearch, int x2, int x3) {
