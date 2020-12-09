@@ -384,6 +384,18 @@ class UtilsTest {
     }
     
     @Test
+    void testcalculNombreCandidats() {
+    	CandidatsCase c1 = new CandidatsCase();
+    	c1.setAllCandidatsToFalse();
+    	assertEquals(0,Utils.calculNombreCandidats(c1.getCandidats()));
+    	c1.setCandidat(2);
+    	assertEquals(1,Utils.calculNombreCandidats(c1.getCandidats()));
+    	c1.setCandidat(4);
+    	c1.setCandidat(9);
+    	assertEquals(3,Utils.calculNombreCandidats(c1.getCandidats()));
+    }
+    
+    @Test
     void testtrouveCandidatNumero() {
     	CandidatsCase c1 = new CandidatsCase();
     	c1.setAllCandidatsToFalse();
@@ -396,6 +408,4 @@ class UtilsTest {
     	assertEquals(9,Utils.trouveCandidatNumero(c1, 3));
     	assertEquals(0,Utils.trouveCandidatNumero(c1, 4));
     }
-    
-    
 }
