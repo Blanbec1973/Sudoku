@@ -14,15 +14,8 @@ public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
 		
 	protected boolean traiteCouple(CandidatsCase paireCandidats) {		
 		for (int i=0;i<9;i++) {
-			if (grille.getCase(CaseEnCours.getXSearch(),i).isCaseATrouver() &&
-				CaseEnCours.getYSearch()!=i) {
-				
-				switch (Utils.calculNombreCandidats(
-						Utils.calculEtLogique2Candidats(paireCandidats.getCandidats(), 
-								grille.getCase(CaseEnCours.getXSearch(), i).getCandidatsTabBoolean()))) {
-					case 1 : {nb1inter+=1;}
-					case 2 : {nb2inter+=1;}
-				}				
+			if (grille.getCase(CaseEnCours.getXSearch(),i).isCaseATrouver() && CaseEnCours.getYSearch()!=i) {
+				this.calculIntersectionDeuxCases(paireCandidats, grille.getCase(CaseEnCours.getXSearch(), i).getCandidats());
 			}
 		}
 		

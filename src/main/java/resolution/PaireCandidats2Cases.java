@@ -6,6 +6,7 @@ import modele.CandidatsCase;
 import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
+import modele.Utils;
 
 public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb2inter = 0;
@@ -82,4 +83,11 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	
 	protected abstract boolean traiteCouple(CandidatsCase paireCandidats);
 
+	public void calculIntersectionDeuxCases(CandidatsCase c1, CandidatsCase c2) {
+		boolean[] cInter = Utils.calculEtLogique2Candidats(c1.getCandidats(), c2.getCandidats());
+		int nbInter = Utils.calculNombreCandidats(cInter);
+		if (nbInter ==1) {nb1inter+=1;}
+		if (nbInter ==2) {nb2inter+=1;}
+	}
+	
 }
