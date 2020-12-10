@@ -104,16 +104,19 @@ public class MaFenetre extends JFrame implements ActionListener {
         maGrilleDisplay[x][y].requestFocus();
     }
         
-    public void initialiseGrilleDisplay(Grille maGrille) {
+    public void refreshGrilleDisplay(Grille maGrille) {
         String valeurCase;
         for (int numCase=1;numCase<82;numCase++) {
-            CaseEnCours.setCaseEnCours(numCase);
-            valeurCase = String.valueOf(maGrille.getCaseEnCours().getValeur());
-            if (maGrille.getCaseEnCours().isCaseInitiale()) {
-                this.setCaseInitiale(CaseEnCours.getXSearch(),CaseEnCours.getYSearch(), valeurCase); 
+            valeurCase = String.valueOf(maGrille.getCase(numCase).getValeur());
+            if (maGrille.getCase(numCase).isCaseInitiale()) {
+                this.setCaseInitiale(maGrille.getCase(numCase).getxCase(),maGrille.getCase(numCase).getyCase(), valeurCase); 
                 }
-            else { 
-                this.setCaseCandidats(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), maGrille.getCaseEnCours().construitLibelleCandidats());
+            if (maGrille.getCase(numCase).isCaseATrouver()) { 
+                this.setCaseCandidats(maGrille.getCase(numCase).getxCase(),maGrille.getCase(numCase).getyCase(), 
+                		              maGrille.getCase(numCase).construitLibelleCandidats());
+            }
+            if (maGrille.getCase(numCase).isCaseTrouvee()) {
+            	this.setCase(maGrille.getCase(numCase).getxCase(),maGrille.getCase(numCase).getyCase(), valeurCase);
             }
         }
     }

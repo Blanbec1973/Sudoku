@@ -49,7 +49,7 @@ public class Modele {
 	public void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
-		controle.demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
+		controle.demandeRefreshGrille(grille);
 		controle.demandeAfficheCommande(message);
 		controle.demandeIncrementRangResolution();
 	}

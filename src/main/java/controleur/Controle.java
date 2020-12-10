@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import modele.Grille;
 import modele.Modele;
 import vue.MaFenetre;
 
@@ -26,9 +27,11 @@ public class Controle implements ActionListener {
         fen.getBoutonExplique().addActionListener(this);
         fen.getBoutonRecule().addActionListener(this);
        
-        fen.initialiseGrilleDisplay(modele.getGrille());
+        this.demandeRefreshGrille(modele.getGrille());
         fen.setVisible(true);
     }
+    
+    public void demandeRefreshGrille(Grille g) {fen.refreshGrilleDisplay(g);}
     
     public void demandeRefreshAffichageCase (int x, int y) {
         if (modele.getGrille().getCase(x, y).isCaseInitiale()) {
