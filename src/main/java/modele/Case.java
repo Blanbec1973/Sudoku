@@ -32,7 +32,7 @@ public class Case {
     public void setValeurCase(int valeur) {this.valeur = valeur; this.etatCase = TROUVEE;}
     public boolean isCaseInitiale() {return this.etatCase == INITIALE;}
     public boolean nEstPasCaseInitiale() {return (this.etatCase != INITIALE);}
-    public void setCaseInitiale() {this.etatCase = INITIALE;}
+    public void setCaseInitiale() {this.etatCase = INITIALE;candidats.setAllCandidatsToFalse();}
     public boolean isCaseTrouvee() {return this.etatCase == TROUVEE;}
     public boolean isCaseATrouver() { return this.etatCase == NON_TROUVEE;}
     public boolean nEstPasCaseTrouvee() {return (this.etatCase != TROUVEE);}
