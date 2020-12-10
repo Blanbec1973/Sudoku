@@ -2,6 +2,8 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import modele.Modele;
 import vue.MaFenetre;
@@ -9,10 +11,12 @@ import vue.MaFenetre;
 public class Controle implements ActionListener {
     private MaFenetre fen;
     private Modele modele;
-    
+    private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName() );
+
     public static void main(String[] args) {new Controle();}
         
     public Controle() {
+    	LOGGER.log( Level.INFO, "Démarrage Sudoku." );
         // Initialise le modèle :
         modele = new Modele(this);
     	
