@@ -19,8 +19,31 @@ public class Grille {
     }
      
     public Case getCase(int x, int y) {return mesCases[x][y];}
+    public Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
     public Case getCaseEnCours() {return mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()];}
     public List<Integer> getCasesAtrouver() {return casesAtrouver;}
+    
+    @Override
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+    	for (int i=1;i<81;i++) {
+    		sb.append(i);
+    		sb.append("  : ");
+    		sb.append(this.getCase(i).isCaseInitiale());
+    		sb.append(this.getCase(i).isCaseATrouver());
+    		sb.append(this.getCase(i).isCaseTrouvee());
+    		sb.append(" ");
+    		sb.append(this.getCase(i).getCandidats().getNombreCandidats());
+    		sb.append(" ==> ");
+    		sb.append(this.getCase(i).getCandidats().displayCandidats());
+    		sb.append(" | ");
+    	}
+    	return sb.toString();	
+    }
+    
+    public void displayGrille() {
+    	System.out.println(this.toString());
+    }
     
     public void setValeurCaseEnCours(int solution) {
         this.getCaseEnCours().setValeurCase(solution);
