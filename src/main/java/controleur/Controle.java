@@ -65,7 +65,17 @@ public class Controle implements ActionListener {
 			modele.detecteSuivant(true);
 			return;
 		}
-		javax.swing.JOptionPane.showMessageDialog(null,"Non codé.");
+		if (source == fen.getBoutonRecule() && fen.getRangResolution().getText() == "0") {
+			javax.swing.JOptionPane.showMessageDialog(null,"Position initiale.");
+			return;
+		}
+		
+		if (source == fen.getBoutonRecule()) {
+			modele.rechargeDernierHistorique();
+			this.demandeRefreshGrille(modele.getGrille());
+			this.demandeDecrementRangResolution();
+			//fen.getLogTextArea().remove(popup);
+		}
 	}
 
 	public void demandeHighlightCase(int x, int y) {
@@ -83,5 +93,6 @@ public class Controle implements ActionListener {
     	temp-=1;
     	fen.getRangResolution().setText(String.valueOf(temp));
     }
+    
     
 }

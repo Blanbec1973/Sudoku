@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import modele.CaseEnCours;
 import modele.Grille;
 
 public class MaFenetre extends JFrame implements ActionListener {

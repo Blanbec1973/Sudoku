@@ -8,6 +8,7 @@ public class Modele {
 	private Controle controle;
 	private Grille grille;
 	private ArrayList<MethodeResolution> listeMethodes;
+	private Historisation histo = new Historisation();
 	
 	public Modele(Controle controle) {
 		this.controle = controle;
@@ -16,6 +17,8 @@ public class Modele {
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
         initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-40.sud");
         initialiseurDeGrille.calculTousLesCandidats();
+        
+        histo.historiseGrille(grille);
         
 	    listeMethodes = new ArrayList<>();
 	    listeMethodes.add(new CandidatUniqueDansCase(this,grille));
@@ -31,7 +34,6 @@ public class Modele {
 	    listeMethodes.add(new PaireCandidats2CasesLigne(this, grille));
 	    listeMethodes.add(new TripletteCandidatsEnLigne(this, grille));
 	}
-
 
 	public Grille getGrille() {return grille;}
 	public Controle getControle() {return controle;}
@@ -52,6 +54,7 @@ public class Modele {
 		controle.demandeRefreshGrille(grille);
 		controle.demandeAfficheCommande(message);
 		controle.demandeIncrementRangResolution();
+		histo.historiseGrille(grille);
 	}
 	
 	public void elimineCandidatCaseEnCours(int candidatAEliminer, String message) {
@@ -59,6 +62,7 @@ public class Modele {
 		controle.demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
 		controle.demandeAfficheCommande(message);
 		controle.demandeIncrementRangResolution();
+		histo.historiseGrille(grille);
 	}
 	
 	public void elimineCandidatCase(int candidatAEliminer, int x, int y, String message) {
@@ -66,6 +70,10 @@ public class Modele {
 		controle.demandeRefreshAffichageCase(x, y);
 		controle.demandeAfficheCommande(message);
 		controle.demandeIncrementRangResolution();		
-		
+		histo.historiseGrille(grille);
+	}
+
+	public void rechargeDernierHistorique() {
+		histo.supprimeDerniereGrille(grille);
 	}
 }
