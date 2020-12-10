@@ -4,9 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import controleur.Controle;
 
 public class InitialiseurDeGrille {
 	private Grille grille;
+	private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
 	public InitialiseurDeGrille(Grille grille) {
 		this.grille = grille;
 	}
@@ -33,8 +38,9 @@ public class InitialiseurDeGrille {
                 y++;
             }
         } catch (IOException|NullPointerException ex) {
-        	javax.swing.JOptionPane.showMessageDialog(null,"Exception : "+ex.getMessage());
-        } 
+        	LOGGER.log(Level.SEVERE,"Exception : "+ex.getMessage());
+        }
+        LOGGER.log(Level.INFO,"Chargement OK fichier : "+nomFichier);
     }
 	
     public void calculTousLesCandidats() {
