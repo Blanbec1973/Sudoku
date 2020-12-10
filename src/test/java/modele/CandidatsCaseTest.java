@@ -28,16 +28,7 @@ class CandidatsCaseTest {
         boolean tab5 [] = {true, true, true, true, true, true, true, true, true, true};
         this.c5 = new CandidatsCase(tab5);
     }
-    
-    @Test
-    void testcalculNombreCandidats() {
-        assertEquals(0,this.c1.calculNombreCandidats());
-        assertEquals(1,this.c2.calculNombreCandidats());
-        assertEquals(2,this.c3.calculNombreCandidats());
-        assertEquals(9,this.c4.calculNombreCandidats());
-        assertEquals(10,this.c5.calculNombreCandidats());       
-    }
-    
+      
     @Test
     void testGetNombreCandidats() {
     	assertEquals(0,this.c1.getNombreCandidats());
@@ -50,14 +41,14 @@ class CandidatsCaseTest {
     @Test
     void testelimineCandidat() {
         c2.elimineCandidat(1);
-        assertEquals(0, c2.calculNombreCandidats());
+        assertEquals(0, c2.getNombreCandidats());
         assertTrue(Arrays.equals(c1.getCandidats(), c2.getCandidats()));    
     }
     
     @Test
     void testSetCandidats() {
         c1.setCandidats(c5.getCandidats());
-        assertEquals(10, c1.calculNombreCandidats());
+        assertEquals(10, c1.getNombreCandidats());
         assertTrue(Arrays.equals(c1.getCandidats(), c5.getCandidats())); 
     }
     

@@ -10,12 +10,12 @@ public class CandidatsCase {
         this.elimineCandidat(0);
     }
     
-    public CandidatsCase (boolean [] entree) {this.candidats = entree; this.nombreCandidats = this.calculNombreCandidats();}
+    public CandidatsCase (boolean [] entree) {this.candidats = entree; this.calculNombreCandidats();}
 
     public boolean[] getCandidats() {return candidats;}
     public int getNombreCandidats() {return nombreCandidats;}
-    public void setCandidats(boolean[] candidats) {this.candidats = candidats; this.nombreCandidats = this.calculNombreCandidats();}
-    public void setCandidat(int rang) {this.candidats[rang]=true;this.nombreCandidats+=1;}
+    public void setCandidats(boolean[] candidats) {this.candidats = candidats; this.calculNombreCandidats();}
+    public void setCandidat(int rang) {this.candidats[rang]=true;this.calculNombreCandidats();}
     public boolean isCandidat(int rang) {return candidats[rang];} 
     
     public String displayCandidats() {
@@ -28,21 +28,21 @@ public class CandidatsCase {
     
     public void setAllCandidatsToFalse() {
         for (int i=0;i<10;i++) {this.candidats[i]=false;}
-        this.nombreCandidats=0;
+        this.calculNombreCandidats();
     }
     
     public void elimineCandidat(int valeur) {
         if (!this.candidats[valeur]) {return;}
         this.candidats[valeur]=false; 
-        this.nombreCandidats-=1;
+        this.calculNombreCandidats();
     }
     
-    public int calculNombreCandidats() {
+    private void calculNombreCandidats() {
         int resultat = 0;
         for (int i=0;i<10;i++) {
             if (this.candidats[i]) resultat +=1;
         }
-        return resultat;
+        this.nombreCandidats = resultat;
     }
     
     public String construitLibelleCandidats() {
@@ -68,11 +68,11 @@ public class CandidatsCase {
     	return " ";
     }
 
-    boolean contientCandidatUnique() {
+    public boolean contientCandidatUnique() {
         return this.nombreCandidats == 1;
     }
 
-    int calculValeurUnique() {
+    public int calculValeurUnique() {
         int i = 1;
         while (!this.isCandidat(i)) {i+=1;}
         return i;
