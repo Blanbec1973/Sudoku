@@ -62,7 +62,7 @@ class HistorisationTest {
 		grilleOrigine.setValeurCaseEnCours(8);
 		histo.historiseGrille(grilleOrigine);
 		
-		histo.supprimeDerniereGrille();
+		histo.supprimeDerniereGrille(grilleOrigine);
 		int dernier = histo.getHistoGrille().size();	
 		assertEquals(2, dernier);
 		assertTrue(histo.getHistoGrille(dernier-1).getCase(50).isCaseATrouver());

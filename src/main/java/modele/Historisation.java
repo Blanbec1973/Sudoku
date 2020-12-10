@@ -17,8 +17,9 @@ public class Historisation {
 		this.copyGrille(grille, histoGrille.get(histoGrille.size()-1));
 	}
 	
-	public void supprimeDerniereGrille() {
+	public void supprimeDerniereGrille(Grille grille) {
 		histoGrille.remove(histoGrille.size()-1);
+		this.copyGrille(histoGrille.get(histoGrille.size()-1), grille);
 	}
 	
 	private void copyGrille(Grille source, Grille cible) {
@@ -52,6 +53,11 @@ public class Historisation {
 			else
 				candidats2.elimineCandidat(i);
 		}
+	}
+
+	public void rechargeDerniereGrille(Grille grille) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
