@@ -38,9 +38,9 @@ public class InitialiseurDeGrille {
                 y++;
             }
         } catch (IOException|NullPointerException ex) {
-        	LOGGER.log(Level.SEVERE,"Exception : "+ex.getMessage());
+        	LOGGER.log(Level.SEVERE,"Exception : {0}",ex.getMessage());
         }
-        LOGGER.log(Level.INFO,"Chargement OK fichier : "+nomFichier);
+        LOGGER.log(Level.INFO,"Chargement OK fichier : {0}",nomFichier);
     }
 	
     public void calculTousLesCandidats() {

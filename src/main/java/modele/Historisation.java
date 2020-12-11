@@ -1,16 +1,14 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Historisation {
-	private ArrayList <Grille> histoGrille;
+	private List<Grille> histoGrille = new ArrayList<>();
 	
-	public Historisation() {
-		histoGrille = new ArrayList <>();
-	}
 	
 	public Grille getHistoGrille(int i) {return histoGrille.get(i);}
-	public ArrayList<Grille> getHistoGrille() {return histoGrille;}
+	public List<Grille> getHistoGrille() {return histoGrille;}
 	
 	public void historiseGrille(Grille grille) {
 		histoGrille.add(new Grille());
@@ -25,7 +23,7 @@ public class Historisation {
 	private void copyGrille(Grille source, Grille cible) {
 		// grille : tableau de Cases + liste casesATrouver
 		//     Case : numCase, xCase, yCase, valeur, region, etatCase, candidats
-		//			Candidats : boolean[] candidats, nombreCandidats;
+		//			Candidats : candidats, nombreCandidats
 		
 		for (int numCaseATrouver : source.getCasesAtrouver()) {
 			cible.getCasesAtrouver().add(numCaseATrouver);
@@ -54,12 +52,4 @@ public class Historisation {
 				candidats2.elimineCandidat(i);
 		}
 	}
-
-	public void rechargeDerniereGrille(Grille grille) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
 }

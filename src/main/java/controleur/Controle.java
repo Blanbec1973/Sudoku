@@ -65,7 +65,7 @@ public class Controle implements ActionListener {
 			modele.detecteSuivant(true);
 			return;
 		}
-		if (source == fen.getBoutonRecule() && fen.getRangResolution().getText() == "0") {
+		if (source == fen.getBoutonRecule() && fen.getRangResolution().getText().equals("0")) {
 			javax.swing.JOptionPane.showMessageDialog(null,"Position initiale.");
 			return;
 		}
@@ -74,7 +74,6 @@ public class Controle implements ActionListener {
 			modele.rechargeDernierHistorique();
 			this.demandeRefreshGrille(modele.getGrille());
 			this.demandeDecrementRangResolution();
-			//fen.getLogTextArea().remove(popup);
 		}
 	}
 

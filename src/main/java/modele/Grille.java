@@ -41,10 +41,6 @@ public class Grille {
     	return sb.toString();	
     }
     
-    public void displayGrille() {
-    	System.out.println(this.toString());
-    }
-    
     public void setValeurCaseEnCours(int solution) {
         this.getCaseEnCours().setValeurCase(solution);
         this.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
