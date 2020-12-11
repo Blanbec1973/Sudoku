@@ -70,5 +70,17 @@
 	        <scope>test</scope>
             <type>jar</type>
         </dependency>
+        <dependency>
+	        <groupId>io.cucumber</groupId>
+	        <artifactId>cucumber-java</artifactId>
+	        <version>3.0.2</version>
+	        <scope>test</scope>
+    	</dependency>
+   		<dependency>
+	        <groupId>io.cucumber</groupId>
+	        <artifactId>cucumber-junit</artifactId>
+	        <version>3.0.2</version>
+	        <scope>test</scope>
+    	</dependency>
     </dependencies>
 </project>

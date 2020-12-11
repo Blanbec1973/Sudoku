@@ -13,7 +13,9 @@ public class Controle implements ActionListener {
     private MaFenetre fen;
     private Modele modele;
     private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName() );
-
+    
+    public MaFenetre getFen() {return fen;}
+    
     public static void main(String[] args) {new Controle();}
         
     public Controle() {

@@ -21,7 +21,7 @@ public class MaFenetre extends JFrame implements ActionListener {
     public JButton getBoutonExplique() {return this.boutonExplique;}
 	public AbstractButton getBoutonRecule() {return this.boutonRecule;}
     public JLabel getRangResolution() {return this.rangResolution;}
-
+    public MaCase getCase(int x, int y) {return maGrilleDisplay[x][y];}
         
     public MaFenetre(){
         setTitle("Sudoku");
