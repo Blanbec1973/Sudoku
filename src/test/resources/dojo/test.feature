@@ -17,12 +17,24 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Test resolution grille facile
+Feature: Resolution grille 40
   I want to use this template for my feature file
 
+  Background: 
+    Given I start my Sudoku application with file
+
   @tag1
-  Scenario: Title of your scenario
-    Given I start my Sudoku application with file <file>
+  Scenario: Case1
     When I click on nextButton
-    Then the cell number <numCase> is selected
-    And the cell number <numCase> is yellow
+    Then the cell number 39 is selected
+    And the cell number 39 is yellow
+
+  Scenario: Case2
+    When I click 1 times on ExplainButton
+    Then the cell number 39 is resolved by 6
+    And the cell number 39 is green
+
+  Scenario: Case3
+    When I click 2 times on ExplainButton
+    Then the cell number 50 is resolved by 8
+    And the cell number 50 is green
