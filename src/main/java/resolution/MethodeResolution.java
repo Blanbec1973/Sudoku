@@ -142,7 +142,7 @@ public abstract class MethodeResolution {
 			message+= String.valueOf(candidat);
 			return message;
 		}
-		message+=", solution="+grille.getCaseEnCours().getValeur();
+		message+=", solution="+candidat;
 		return message;
 	}
 	
