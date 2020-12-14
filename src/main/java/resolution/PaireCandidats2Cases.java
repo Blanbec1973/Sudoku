@@ -12,7 +12,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb2inter = 0;
 	protected int nb1inter = 0;
 	
-	public PaireCandidats2Cases(Modele modele, Grille grille) {
+	protected PaireCandidats2Cases(Modele modele, Grille grille) {
 		super(modele,grille);
 		c1=0;
 		c2=0;

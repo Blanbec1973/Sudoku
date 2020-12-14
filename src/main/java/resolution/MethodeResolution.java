@@ -43,7 +43,7 @@ public abstract class MethodeResolution {
     public static final String COUPLE_CONJUGUEE = " Couple conjugué ";
     public static final String ELIMINATION_CANDIDATS = ", élimination candidat ";
 	
-	public MethodeResolution(Modele modele, Grille grille) {
+	protected MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
 		this.grille=grille;
 		this.tabCandidats = new ArrayList <>();

@@ -6,7 +6,7 @@ import modele.Utils;
 
 public abstract class PaireConjuguee extends MethodeResolution {
 
-	public PaireConjuguee(Modele modele, Grille grille) {
+	protected PaireConjuguee(Modele modele, Grille grille) {
 		super(modele,grille);
 	}
 

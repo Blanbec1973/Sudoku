@@ -6,7 +6,7 @@ import modele.Modele;
 
 public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolution {
 
-	public AbsenceCandidatDansLesAutresRegions(Modele modele, Grille grille) {
+	protected AbsenceCandidatDansLesAutresRegions(Modele modele, Grille grille) {
 		super(modele,grille);
 	}
 
