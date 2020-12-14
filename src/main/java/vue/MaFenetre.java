@@ -7,6 +7,7 @@ import java.awt.event.*;
 import modele.Grille;
 
 public class MaFenetre extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 5459748409047794744L;
 	private MaCase [][] maGrilleDisplay = new MaCase [9][9];
     private final MonPaneauGrille panGrille ;
     private final JScrollPane panCommande;
@@ -119,7 +120,11 @@ public class MaFenetre extends JFrame implements ActionListener {
             }
         }
     }
-
+    
+    public void supprimeDernierLigneLog() {
+    	int premierSautDeLigne = logTextArea.getText().indexOf("\n");
+    	logTextArea.replaceRange("", 0,premierSautDeLigne+1);
+    }
 }
 
  

@@ -25,21 +25,14 @@ public class Historisation {
 		//     Case : numCase, xCase, yCase, valeur, region, etatCase, candidats
 		//			Candidats : candidats, nombreCandidats
 		
+		cible.getCasesAtrouver().clear();
 		for (int numCaseATrouver : source.getCasesAtrouver()) {
 			cible.getCasesAtrouver().add(numCaseATrouver);
 		}
 		
 		for (int i=1;i<82;i++) {		
-			
-			if (source.getCase(i).isCaseInitiale()) {
-				cible.getCase(i).setValeurCase(source.getCase(i).getValeur());
-				cible.getCase(i).setCaseInitiale();
-			}
-			
-			if (source.getCase(i).isCaseTrouvee()) {
-				cible.getCase(i).setValeurCase(source.getCase(i).getValeur());
-			}
-			
+			cible.getCase(i).setValeurCase(source.getCase(i).getValeur());
+			cible.getCase(i).setEtatCase(source.getCase(i).getEtatCase());
 			this.copyCandidats(source.getCase(i).getCandidats(), cible.getCase(i).getCandidats());				                                                          
 		}
 	}

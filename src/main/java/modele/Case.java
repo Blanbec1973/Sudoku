@@ -7,7 +7,7 @@ public class Case {
     private int valeur;
     private int region;
     private int etatCase;
-    private CandidatsCase candidats = new CandidatsCase();
+	private CandidatsCase candidats = new CandidatsCase();
     public static final int INITIALE = -1;
     public static final int NON_TROUVEE = 0;
     public static final int TROUVEE = 1;
@@ -30,6 +30,10 @@ public class Case {
     public void setY(int yCase) {this.yCase = yCase;}
     public int getValeur() {return valeur;}
     public void setValeurCase(int valeur) {this.valeur = valeur; this.etatCase = TROUVEE;}
+    public int getRegion() {return region;}
+    public void setRegion(int region) {this.region = region;}
+    public int getEtatCase() {return etatCase;}
+	public void setEtatCase(int etatCase) {this.etatCase = etatCase;}
     public boolean isCaseInitiale() {return this.etatCase == INITIALE;}
     public boolean nEstPasCaseInitiale() {return (this.etatCase != INITIALE);}
     public void setCaseInitiale() {this.etatCase = INITIALE;candidats.setAllCandidatsToFalse();}
@@ -38,8 +42,6 @@ public class Case {
     public boolean nEstPasCaseTrouvee() {return (this.etatCase != TROUVEE);}
     public boolean isCandidat(int rang) {return candidats.isCandidat(rang);} 
     public int getNombreCandidats () {return candidats.getNombreCandidats();}
-    public int getRegion() {return region;}
-    public void setRegion(int region) {this.region = region;}
     public boolean [] getCandidatsTabBoolean() {return candidats.getCandidats();}
     public CandidatsCase getCandidats() {return this.candidats;}
     public boolean contientCandidatUnique() {return candidats.getNombreCandidats() == 1;}

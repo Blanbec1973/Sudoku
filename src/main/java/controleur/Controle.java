@@ -76,6 +76,7 @@ public class Controle implements ActionListener {
 			modele.rechargeDernierHistorique();
 			this.demandeRefreshGrille(modele.getGrille());
 			this.demandeDecrementRangResolution();
+			fen.supprimeDernierLigneLog();
 		}
 	}
 
