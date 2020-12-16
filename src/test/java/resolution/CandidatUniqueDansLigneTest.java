@@ -39,6 +39,9 @@ class CandidatUniqueDansLigneTest {
 
 	@Test
 	void testTraiteCaseEnCours() {
+		CaseEnCours.setCaseEnCours(2);
+		assertFalse(methode.traiteCaseEnCours(false));
+		
 		CaseEnCours.setCaseEnCours(39);
 		assertTrue(methode.traiteCaseEnCours(false));
 		assertEquals(6, methode.getSolution());

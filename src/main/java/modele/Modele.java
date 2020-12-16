@@ -46,7 +46,7 @@ public class Modele {
 			trouve = listeMethodes.get(i).detecteSuivant(goPourChangement);
 			if (trouve) break;
 			i+=1;
-		} while (i<listeMethodes.size() && !trouve);
+		} while (i<listeMethodes.size());
         
 		if (trouve) {
 			if (goPourChangement)

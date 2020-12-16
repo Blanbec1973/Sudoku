@@ -1,6 +1,5 @@
 package resolution;
 
-import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
 import modele.Utils;

@@ -21,10 +21,7 @@ public abstract class PaireConjuguee extends MethodeResolution {
 		c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
         c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
 		
-        trouve = this.detecteCandidatAEliminer();
-		if (!trouve) {return false;}
-        
-        return true;
+        return this.detecteCandidatAEliminer();
 	}
 	
 	protected abstract boolean detecteConfiguration();

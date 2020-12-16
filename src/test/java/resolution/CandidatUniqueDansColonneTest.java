@@ -39,6 +39,9 @@ class CandidatUniqueDansColonneTest {
 
 	@Test
 	void testTraiteCaseEnCours() {
+		CaseEnCours.setCaseEnCours(2);
+		assertFalse(methode.traiteCaseEnCours(false));
+		
 		CaseEnCours.setCaseEnCours(53);
 		assertTrue(methode.traiteCaseEnCours(false));
 		assertEquals(9, methode.getSolution());
