@@ -4,12 +4,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.*;
-import java.awt.event.*;
-
 import modele.Grille;
 
-public class MaFenetre extends JFrame implements ActionListener {
-	private static final long serialVersionUID = 5459748409047794744L;
+public class Vue {
+	private JFrame fenetre;
 	private JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille panGrille ;
     private final JScrollPane panCommande;
@@ -19,6 +17,7 @@ public class MaFenetre extends JFrame implements ActionListener {
     private JButton boutonRecule;
     private JLabel rangResolution;
     
+    public JFrame getFenetre() {return fenetre;}
     public TextArea getLogTextArea() {return logTextArea;}
     public JButton getBoutonAvance() {return this.boutonAvance;}
     public JButton getBoutonExplique() {return this.boutonExplique;}
@@ -26,12 +25,13 @@ public class MaFenetre extends JFrame implements ActionListener {
     public JLabel getRangResolution() {return this.rangResolution;}
     public JButton getCase(int x, int y) {return maGrilleDisplay[x][y];}
         
-    public MaFenetre(){
-        setTitle("Sudoku");
-        setSize(1200,660);
-        setResizable(false);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Container contenu=getContentPane();
+    public Vue(){
+    	fenetre = new JFrame();
+    	fenetre.setTitle("Sudoku");
+    	fenetre.setSize(1200,660);
+    	fenetre.setResizable(false);
+    	fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Container contenu=fenetre.getContentPane();
         panGrille = new MonPaneauGrille();
         Dimension expectedDimension = new Dimension(580, 660);
         panGrille.setPreferredSize(expectedDimension);
@@ -71,10 +71,6 @@ public class MaFenetre extends JFrame implements ActionListener {
         this.boutonExplique = new JButton("?");
         panGrille.add(this.boutonExplique);
 
-    }
-    @Override
-    public void actionPerformed (ActionEvent ev) {
-            panGrille.repaint();
     }
     
     public void setCase(int x, int y, String value) {
@@ -142,7 +138,7 @@ public class MaFenetre extends JFrame implements ActionListener {
         bouton.setVerticalTextPosition(SwingConstants.CENTER);
         bouton.setHorizontalAlignment(SwingConstants.CENTER);
         bouton.setVerticalAlignment(SwingConstants.CENTER);
-    } 
+    }
     
 }
 

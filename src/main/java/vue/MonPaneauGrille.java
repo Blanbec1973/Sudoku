@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 
 
 public class MonPaneauGrille extends JPanel {
-    
+	private static final long serialVersionUID = 1772144498190125227L;
+
 	@Override
 	public void paintComponent (Graphics g) {
     	super.paintComponent (g);

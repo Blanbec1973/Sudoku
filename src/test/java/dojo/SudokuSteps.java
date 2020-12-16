@@ -20,7 +20,7 @@ public class SudokuSteps {
 
 	@When("I click on nextButton")
 	public void i_click_on_nextButton() {
-		control.getFen().getBoutonAvance().doClick();
+		control.getVue().getBoutonAvance().doClick();
 	}
 
 	@Then("the cell number {int} is selected")
@@ -30,7 +30,7 @@ public class SudokuSteps {
 
 	@Then("the cell number {int} is yellow")
 	public void the_cell_number_numCase_is_yellow(Integer numCase) {
-		Color c = control.getFen().getCase(Utils.calculXsearch(numCase),Utils.calculYsearch(numCase)).getBackground();
+		Color c = control.getVue().getCase(Utils.calculXsearch(numCase),Utils.calculYsearch(numCase)).getBackground();
 		assertEquals(Color.YELLOW,c);
 	}
 	
@@ -38,19 +38,19 @@ public class SudokuSteps {
 	@When("I click {int} times on ExplainButton")
 	public void i_click_times_on_ExplainButton(Integer nombreClics) {
 	    for (int i = 0;i < nombreClics;i++) {
-			control.getFen().getBoutonExplique().doClick();
+			control.getVue().getBoutonExplique().doClick();
 	    }
 	}
 
 	@Then("the cell number {int} is resolved by {int}")
 	public void the_cell_number_is_resolved_by(Integer numCase, Integer valeur) {
-	    int valeurCase = Integer.parseInt(control.getFen().getCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase)).getText());
+	    int valeurCase = Integer.parseInt(control.getVue().getCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase)).getText());
 		assertEquals(valeur, valeurCase);
 	}
 
 	@Then("the cell number {int} is green")
 	public void the_cell_number_is_green(Integer numCase) {
-		Color c = control.getFen().getCase(Utils.calculXsearch(numCase),Utils.calculYsearch(numCase)).getBackground();
+		Color c = control.getVue().getCase(Utils.calculXsearch(numCase),Utils.calculYsearch(numCase)).getBackground();
 		assertEquals(Color.GREEN,c);
 	}
 }

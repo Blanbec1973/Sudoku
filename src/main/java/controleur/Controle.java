@@ -8,14 +8,14 @@ import java.util.logging.Logger;
 import modele.Grille;
 import modele.Modele;
 import modele.Utils;
-import vue.MaFenetre;
+import vue.Vue;
 
 public class Controle implements ActionListener {
-    private MaFenetre fen;
+    private Vue vue;
     private Modele modele;
-    private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName() );
+    private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
     
-    public MaFenetre getFen() {return fen;}
+    public Vue getVue() {return vue;}
     
     public static void main(String[] args) {new Controle();}
         
@@ -25,80 +25,80 @@ public class Controle implements ActionListener {
         modele = new Modele(this);
     	
     	// Initialise la vue : 
-    	fen = new MaFenetre();
-        fen.getBoutonAvance().addActionListener(this);
-        fen.getBoutonExplique().addActionListener(this);
-        fen.getBoutonRecule().addActionListener(this);
+    	vue = new Vue();
+        vue.getBoutonAvance().addActionListener(this);
+        vue.getBoutonExplique().addActionListener(this);
+        vue.getBoutonRecule().addActionListener(this);
        
         this.demandeRefreshGrille(modele.getGrille());
-        fen.setVisible(true);
+        vue.getFenetre().setVisible(true);
     }
     
-    public void demandeRefreshGrille(Grille g) {fen.refreshGrilleDisplay(g);}
+    public void demandeRefreshGrille(Grille g) {vue.refreshGrilleDisplay(g);}
     
     public void demandeRefreshAffichageCase (int numCase) {
         if (modele.getGrille().getCase(numCase).isCaseInitiale()) {
-        	fen.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+        	vue.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
         			            String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
         	return;
         }
     	if (modele.getGrille().getCase(numCase).isCaseTrouvee()) {
-            fen.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+            vue.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
             		    String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
         }
         else {
-            fen.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+            vue.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
             		             modele.getGrille().getCase(numCase).construitLibelleCandidats());
         }
     }
     
     public void demandeSetFocusCase(int x, int y) {
-    	fen.setFocus(x, y);
+    	vue.setFocus(x, y);
     }
     
     public void demandeAfficheCommande(String texte) {
-    	fen.getLogTextArea().insert(texte+'\n', 0);
+    	vue.getLogTextArea().insert(texte+'\n', 0);
     }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();		
-		if (source == fen.getBoutonAvance()) {
+		if (source == vue.getBoutonAvance()) {
 			modele.detecteSuivant(false);
 			return;
 		}
-		if (source == fen.getBoutonExplique()) {
+		if (source == vue.getBoutonExplique()) {
 			modele.detecteSuivant(true);
 			return;
 		}
-		if (source == fen.getBoutonRecule() && fen.getRangResolution().getText().equals("0")) {
+		if (source == vue.getBoutonRecule() && vue.getRangResolution().getText().equals("0")) {
 			javax.swing.JOptionPane.showMessageDialog(null,"Position initiale.");
 			return;
 		}
 		
-		if (source == fen.getBoutonRecule()) {
+		if (source == vue.getBoutonRecule()) {
 			modele.rechargeDernierHistorique();
 			this.demandeRefreshGrille(modele.getGrille());
 			this.demandeDecrementRangResolution();
-			fen.supprimeDernierLigneLog();
+			vue.supprimeDernierLigneLog();
 		}
 	}
 
 	public void demandeHighlightCase(int numCase) {
-		fen.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
+		vue.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
 	}
 	
     
     public void demandeIncrementRangResolution() {
-    	int temp = Integer.parseInt(fen.getRangResolution().getText());
+    	int temp = Integer.parseInt(vue.getRangResolution().getText());
     	temp+=1;
-    	fen.getRangResolution().setText(String.valueOf(temp));
+    	vue.getRangResolution().setText(String.valueOf(temp));
     }
     
     public void demandeDecrementRangResolution() {
-    	int temp = Integer.parseInt(fen.getRangResolution().getText());
+    	int temp = Integer.parseInt(vue.getRangResolution().getText());
     	temp-=1;
-    	fen.getRangResolution().setText(String.valueOf(temp));
+    	vue.getRangResolution().setText(String.valueOf(temp));
     }
     
     
