@@ -41,8 +41,9 @@ class UtilsTest {
         assertEquals(21, Utils.calculNombreTriplettes(8));
         assertEquals(28, Utils.calculNombreTriplettes(9));
     }
+    
     @Test
-    void testCalculXsearch() {
+    void testCalculXsearch1a25() {
         assertEquals(0, Utils.calculXsearch(1));
         assertEquals(1, Utils.calculXsearch(2));
         assertEquals(2, Utils.calculXsearch(3));
@@ -68,6 +69,10 @@ class UtilsTest {
         assertEquals(4, Utils.calculXsearch(23));
         assertEquals(5, Utils.calculXsearch(24));
         assertEquals(6, Utils.calculXsearch(25));
+    }
+    
+    @Test
+    void testCalculXsearch26a50() {
         assertEquals(7, Utils.calculXsearch(26));
         assertEquals(8, Utils.calculXsearch(27));
         assertEquals(0, Utils.calculXsearch(28));
@@ -93,6 +98,10 @@ class UtilsTest {
         assertEquals(2, Utils.calculXsearch(48));
         assertEquals(3, Utils.calculXsearch(49));
         assertEquals(4, Utils.calculXsearch(50));
+    }
+    
+    @Test
+    void testCalculXsearch51a75() {
         assertEquals(5, Utils.calculXsearch(51));
         assertEquals(6, Utils.calculXsearch(52));
         assertEquals(7, Utils.calculXsearch(53));
@@ -118,17 +127,20 @@ class UtilsTest {
         assertEquals(0, Utils.calculXsearch(73));
         assertEquals(1, Utils.calculXsearch(74));
         assertEquals(2, Utils.calculXsearch(75));
+    }
+    
+    @Test
+    void testCalculXsearch76a81() {
         assertEquals(3, Utils.calculXsearch(76));
         assertEquals(4, Utils.calculXsearch(77));
         assertEquals(5, Utils.calculXsearch(78));
         assertEquals(6, Utils.calculXsearch(79));
         assertEquals(7, Utils.calculXsearch(80));
         assertEquals(8, Utils.calculXsearch(81));
-
     }
     
     @Test
-    void testCalculYsearch() {
+    void testCalculYsearch1a25() {
         assertEquals(0, Utils.calculYsearch(1));
         assertEquals(0, Utils.calculYsearch(2));
         assertEquals(0, Utils.calculYsearch(3));
@@ -154,6 +166,10 @@ class UtilsTest {
         assertEquals(2, Utils.calculYsearch(23));
         assertEquals(2, Utils.calculYsearch(24));
         assertEquals(2, Utils.calculYsearch(25));
+    }
+    
+    @Test
+    void testCalculYsearch26a50() {
         assertEquals(2, Utils.calculYsearch(26));
         assertEquals(2, Utils.calculYsearch(27));
         assertEquals(3, Utils.calculYsearch(28));
@@ -179,6 +195,10 @@ class UtilsTest {
         assertEquals(5, Utils.calculYsearch(48));
         assertEquals(5, Utils.calculYsearch(49));
         assertEquals(5, Utils.calculYsearch(50));
+    }
+    
+    @Test
+    void testCalculYsearch51a75() {
         assertEquals(5, Utils.calculYsearch(51));
         assertEquals(5, Utils.calculYsearch(52));
         assertEquals(5, Utils.calculYsearch(53));
@@ -204,16 +224,20 @@ class UtilsTest {
         assertEquals(8, Utils.calculYsearch(73));
         assertEquals(8, Utils.calculYsearch(74));
         assertEquals(8, Utils.calculYsearch(75));
+    }
+    
+    @Test
+    void testCalculYsearch76a81() {
         assertEquals(8, Utils.calculYsearch(76));
         assertEquals(8, Utils.calculYsearch(77));
         assertEquals(8, Utils.calculYsearch(78));
         assertEquals(8, Utils.calculYsearch(79));
         assertEquals(8, Utils.calculYsearch(80));
         assertEquals(8, Utils.calculYsearch(81));
-
     }
+    
     @Test
-    void testCalculNumeroRegion() {
+    void testCalculNumeroRegion1a25() {
         assertEquals(1, Utils.calculNumeroRegion(1));
         assertEquals(1, Utils.calculNumeroRegion(2));
         assertEquals(1, Utils.calculNumeroRegion(3));
@@ -239,6 +263,10 @@ class UtilsTest {
         assertEquals(2, Utils.calculNumeroRegion(23));
         assertEquals(2, Utils.calculNumeroRegion(24));
         assertEquals(3, Utils.calculNumeroRegion(25));
+    }
+    
+    @Test
+    void testCalculNumeroRegion26a50() {
         assertEquals(3, Utils.calculNumeroRegion(26));
         assertEquals(3, Utils.calculNumeroRegion(27));
         assertEquals(4, Utils.calculNumeroRegion(28));
@@ -264,6 +292,10 @@ class UtilsTest {
         assertEquals(4, Utils.calculNumeroRegion(48));
         assertEquals(5, Utils.calculNumeroRegion(49));
         assertEquals(5, Utils.calculNumeroRegion(50));
+    }
+    
+    @Test
+    void testCalculNumeroRegion51a75() {
         assertEquals(5, Utils.calculNumeroRegion(51));
         assertEquals(6, Utils.calculNumeroRegion(52));
         assertEquals(6, Utils.calculNumeroRegion(53));
@@ -289,6 +321,10 @@ class UtilsTest {
         assertEquals(7, Utils.calculNumeroRegion(73));
         assertEquals(7, Utils.calculNumeroRegion(74));
         assertEquals(7, Utils.calculNumeroRegion(75));
+    }
+    
+    @Test
+    void testCalculNumeroRegion76a81() {
         assertEquals(8, Utils.calculNumeroRegion(76));
         assertEquals(8, Utils.calculNumeroRegion(77));
         assertEquals(8, Utils.calculNumeroRegion(78));
@@ -296,8 +332,9 @@ class UtilsTest {
         assertEquals(9, Utils.calculNumeroRegion(80));
         assertEquals(9, Utils.calculNumeroRegion(81));
     }
+    
     @Test
-    void testCalculNumCase() {
+    void testCalculNumCase1a25() {
     	  assertEquals(1, Utils.calculNumCase(0,0));
     	  assertEquals(2, Utils.calculNumCase(1,0));
     	  assertEquals(3, Utils.calculNumCase(2,0));
@@ -323,6 +360,10 @@ class UtilsTest {
     	  assertEquals(23, Utils.calculNumCase(4,2));
     	  assertEquals(24, Utils.calculNumCase(5,2));
     	  assertEquals(25, Utils.calculNumCase(6,2));
+    }
+    
+    @Test
+    void testCalculNumCase26a50() {
     	  assertEquals(26, Utils.calculNumCase(7,2));
     	  assertEquals(27, Utils.calculNumCase(8,2));
     	  assertEquals(28, Utils.calculNumCase(0,3));
@@ -348,6 +389,10 @@ class UtilsTest {
     	  assertEquals(48, Utils.calculNumCase(2,5));
     	  assertEquals(49, Utils.calculNumCase(3,5));
     	  assertEquals(50, Utils.calculNumCase(4,5));
+    }
+    
+    @Test
+    void testCalculNumCase51a75() {
     	  assertEquals(51, Utils.calculNumCase(5,5));
     	  assertEquals(52, Utils.calculNumCase(6,5));
     	  assertEquals(53, Utils.calculNumCase(7,5));
@@ -373,6 +418,10 @@ class UtilsTest {
     	  assertEquals(73, Utils.calculNumCase(0,8));
     	  assertEquals(74, Utils.calculNumCase(1,8));
     	  assertEquals(75, Utils.calculNumCase(2,8));
+    }
+    
+    @Test
+    void testCalculNumCase76a81() {
     	  assertEquals(76, Utils.calculNumCase(3,8));
     	  assertEquals(77, Utils.calculNumCase(4,8));
     	  assertEquals(78, Utils.calculNumCase(5,8));
