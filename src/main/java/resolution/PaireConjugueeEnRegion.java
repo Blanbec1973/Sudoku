@@ -5,6 +5,7 @@ import java.util.Arrays;
 import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
+import modele.Utils;
 
 public class PaireConjugueeEnRegion extends PaireConjuguee {
 
@@ -28,11 +29,12 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 	}
 	
 	protected boolean detecteCandidatAEliminer() {
-        for (xAction=CaseEnCours.getxRegion();xAction<CaseEnCours.getxRegion()+3;xAction++) {
-            for (yAction=CaseEnCours.getyRegion();yAction<CaseEnCours.getyRegion()+3;yAction++) {
+        for (int xAction=CaseEnCours.getxRegion();xAction<CaseEnCours.getxRegion()+3;xAction++) {
+            for (int yAction=CaseEnCours.getyRegion();yAction<CaseEnCours.getyRegion()+3;yAction++) {
                 if (grille.getCase(xAction, yAction).isCaseATrouver() &&
                     !Arrays.equals(grille.getCaseEnCours().getCandidatsTabBoolean(),
                     grille.getCase(xAction, yAction).getCandidatsTabBoolean())) {
+                	numCaseAction=Utils.calculNumCase(xAction, yAction);
                 	if (grille.getCase(xAction, yAction).isCandidat(c1) ) {
             			candidatAEliminer = c1;
             			return true;

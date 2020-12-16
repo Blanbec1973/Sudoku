@@ -37,9 +37,10 @@ public abstract class MethodeResolution {
 	protected int x2;
 	protected int x3;
 	protected int y2;
-	protected int xAction;
-	protected int yAction;
+	protected boolean caseTrouvee;
+	protected int numCaseAction;
 	protected int candidatAEliminer;
+	protected int solution;
     public static final String COUPLE_CONJUGUEE = " Couple conjugué ";
     public static final String ELIMINATION_CANDIDATS = ", élimination candidat ";
 	
@@ -62,9 +63,14 @@ public abstract class MethodeResolution {
 		return trouve ;
 	}
 	
+	public boolean isCaseTrouvee() {return caseTrouvee;}
+	public int getNumCaseAction() {return numCaseAction;}
+	public int getSolution() {return solution;}
+	public int getcandidatAEliminer() {return candidatAEliminer;}
+	
 	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
 	
-	protected String calculMessageLog(int candidat) {
+	public String calculMessageLog() {
 		String message = "";
 		message+= "Case x="+CaseEnCours.getXSearchEdition();
 		message+= " y="+CaseEnCours.getYSearchEdition();
@@ -74,19 +80,19 @@ public abstract class MethodeResolution {
 		if (this instanceof CandidatUniqueDansColonne) message+= "Candidat unique dans la colonne "+CaseEnCours.getXSearchEdition();
 		if (this instanceof CandidatUniqueDansRegion) message+= "Candidat unique dans la Région "+grille.getCaseEnCours().getRegion();
 		if (this instanceof AbsenceCandidatEnColonneDansLesAutresRegions)
-			message+="Candidat "+candidat+ " en colonne "+CaseEnCours.getXSearchEdition()+" absent dans autres régions de la colonne.";
+			message+="Candidat "+candidatAEliminer+ " en colonne "+CaseEnCours.getXSearchEdition()+" absent dans autres régions de la colonne.";
 		if (this instanceof PaireCandidats2CasesColonne) {
 			message+= " Couple ";
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la colonne, élimination candidat ";
-			message+= String.valueOf(candidat);
+			message+= String.valueOf(candidatAEliminer);
 			return message;
 		}
 		if (this instanceof PaireCandidats2CasesLigne) {
 			message+= " Couple ";
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la ligne, élimination candidat ";
-			message+= String.valueOf(candidat);
+			message+= String.valueOf(candidatAEliminer);
 			return message;
 		}
 		if (this instanceof PaireConjugueeEnLigne) {
@@ -94,7 +100,7 @@ public abstract class MethodeResolution {
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la ligne "+CaseEnCours.getYSearchEdition();
 			message+= ELIMINATION_CANDIDATS;
-			message+= String.valueOf(candidat);
+			message+= String.valueOf(candidatAEliminer);
 			message+= " dans les autres cases de la ligne.";
 			return message;
 		}
@@ -103,7 +109,7 @@ public abstract class MethodeResolution {
 			message+= String.valueOf(c1)+String.valueOf(c2);
 			message+= " dans deux cases de la colonne "+CaseEnCours.getXSearchEdition();
 			message+= ELIMINATION_CANDIDATS;
-			message+= String.valueOf(candidat);
+			message+= String.valueOf(candidatAEliminer);
 			message+= " dans les autres cases de la colonne.";
 			return message;
 		}
@@ -113,7 +119,7 @@ public abstract class MethodeResolution {
 			message+= " dans deux cases de la région ";
 			message+= String.valueOf(Utils.calculNumeroRegion(CaseEnCours.getNumCase()));
 			message+= ELIMINATION_CANDIDATS;
-			message+= String.valueOf(candidat);
+			message+= String.valueOf(candidatAEliminer);
 			message+= " dans les autres cases de la région.";
 			return message;
 		}
@@ -139,10 +145,10 @@ public abstract class MethodeResolution {
 			message+= " Triplette ";
 			message+= String.valueOf(c1)+String.valueOf(c2)+String.valueOf(c3);
 			message+= " dans trois cases de la ligne, élimination candidat ";
-			message+= String.valueOf(candidat);
+			message+= String.valueOf(candidatAEliminer);
 			return message;
 		}
-		message+=", solution="+candidat;
+		message+=", solution="+solution;
 		return message;
 	}
 	

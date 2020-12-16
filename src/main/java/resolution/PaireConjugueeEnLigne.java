@@ -5,6 +5,7 @@ import java.util.Arrays;
 import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
+import modele.Utils;
 
 public class PaireConjugueeEnLigne extends PaireConjuguee {
 
@@ -13,7 +14,6 @@ public class PaireConjugueeEnLigne extends PaireConjuguee {
 	}
 
 	protected boolean detecteConfiguration() {
-		yAction=CaseEnCours.getYSearch();
         for (x2=0;x2<9;x2++) {
             if (x2 != CaseEnCours.getXSearch() &&
                 grille.getCase(x2, CaseEnCours.getYSearch()).isCaseATrouver() && 
@@ -26,9 +26,10 @@ public class PaireConjugueeEnLigne extends PaireConjuguee {
 	}
 	
 	protected boolean detecteCandidatAEliminer() {
-        for (xAction=0;xAction<9;xAction++) {
+        for (int xAction=0;xAction<9;xAction++) {
         	if (grille.getCase(xAction, CaseEnCours.getYSearch()).isCaseATrouver() &&
         			xAction!=CaseEnCours.getXSearch() && xAction !=x2) {
+        		numCaseAction=Utils.calculNumCase(xAction, CaseEnCours.getYSearch());
         		if (grille.getCase(xAction, CaseEnCours.getYSearch()).isCandidat(c1) ) {
         			candidatAEliminer = c1;
         			return true;

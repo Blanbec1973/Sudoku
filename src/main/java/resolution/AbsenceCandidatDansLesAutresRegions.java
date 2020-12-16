@@ -3,9 +3,12 @@ package resolution;
 import modele.CaseEnCours;
 import modele.Grille;
 import modele.Modele;
+import modele.Utils;
 
 public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolution {
-
+	int xAction;
+	int yAction;
+	
 	protected AbsenceCandidatDansLesAutresRegions(Modele modele, Grille grille) {
 		super(modele,grille);
 	}
@@ -14,14 +17,8 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		boolean changementAFaire = this.detecteConfiguration();
 		
 		if (changementAFaire) {
-			if (goPourChangement) {
-           		modele.elimineCandidatCase(candidatAEliminer, xAction, yAction, this.calculMessageLog(candidatAEliminer));
-           		modele.getControle().demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
-            	return true;
-            }
-            else {
-    			modele.getControle().demandeHighlightCase(xAction,yAction);
-            	return true;}
+			numCaseAction=Utils.calculNumCase(xAction, yAction);
+			return true;
 		}
 		else return false ;
 	}

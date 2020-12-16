@@ -7,9 +7,12 @@ import modele.Modele;
 import modele.Utils;
 
 public class TripletteCandidatsEnLigne extends MethodeResolution {
-
+	int xAction;
+	int yAction;
+	
 	public TripletteCandidatsEnLigne(Modele modele, Grille grille) {
 		super(modele,grille);
+		caseTrouvee=false;
 	}
 
 	@Override
@@ -24,13 +27,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         
         yAction = CaseEnCours.getYSearch();
         
-        if (goPourChangement) {
-        	modele.elimineCandidatCase(candidatAEliminer, xAction ,yAction, this.calculMessageLog(candidatAEliminer));
-        	modele.getControle().demandeRefreshAffichageCase(xAction, yAction);
-        }
-        else {
-			modele.getControle().demandeHighlightCase(xAction, yAction);
-        }
+        numCaseAction=Utils.calculNumCase(xAction, yAction);
         return true;
 	}
 	

@@ -43,12 +43,37 @@ public class Modele {
 		boolean trouve = false;
 		
 		do { 
-			trouve = listeMethodes.get(i++).detecteSuivant(goPourChangement);
+			trouve = listeMethodes.get(i).detecteSuivant(goPourChangement);
+			if (trouve) break;
+			i+=1;
 		} while (i<listeMethodes.size() && !trouve);
-        if (!trouve) javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 
+        
+		if (trouve) {
+			if (goPourChangement)
+				this.traiteChangement(i);
+			else
+				controle.demandeHighlightCase(listeMethodes.get(i).getNumCaseAction());
+		}
+		else {
+			 javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 
+		}
 	}
 	
-	public void setValeurCaseEnCours(int solution, String message) {
+	private void traiteChangement(int numMethodeResolution) {
+		// Si une case a été trouvée :
+		if (this.listeMethodes.get(numMethodeResolution).isCaseTrouvee()) {
+			setValeurCaseEnCours(listeMethodes.get(numMethodeResolution).getSolution(),
+					             listeMethodes.get(numMethodeResolution).calculMessageLog());
+			return;
+		}
+		
+		//Il faut éliminer un candidat : 
+		elimineCandidatCase(listeMethodes.get(numMethodeResolution).getcandidatAEliminer(), 
+				            listeMethodes.get(numMethodeResolution).getNumCaseAction(), 
+				            listeMethodes.get(numMethodeResolution).calculMessageLog());
+	}
+
+	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
 		controle.demandeRefreshGrille(grille);
@@ -57,17 +82,9 @@ public class Modele {
 		histo.historiseGrille(grille);
 	}
 	
-	public void elimineCandidatCaseEnCours(int candidatAEliminer, String message) {
-		grille.getCaseEnCours().elimineCandidat(candidatAEliminer);
-		controle.demandeRefreshAffichageCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
-		controle.demandeAfficheCommande(message);
-		controle.demandeIncrementRangResolution();
-		histo.historiseGrille(grille);
-	}
-	
-	public void elimineCandidatCase(int candidatAEliminer, int x, int y, String message) {
-		grille.getCase(x,y).elimineCandidat(candidatAEliminer);
-		controle.demandeRefreshAffichageCase(x, y);
+	public void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
+		grille.getCase(numCaseAction).elimineCandidat(candidatAEliminer);
+		controle.demandeRefreshAffichageCase(numCaseAction);
 		controle.demandeAfficheCommande(message);
 		controle.demandeIncrementRangResolution();		
 		histo.historiseGrille(grille);

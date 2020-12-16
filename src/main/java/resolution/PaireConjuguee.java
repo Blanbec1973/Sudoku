@@ -8,6 +8,7 @@ public abstract class PaireConjuguee extends MethodeResolution {
 
 	protected PaireConjuguee(Modele modele, Grille grille) {
 		super(modele,grille);
+		caseTrouvee=false;
 	}
 
 	@Override
@@ -22,13 +23,6 @@ public abstract class PaireConjuguee extends MethodeResolution {
 		
         trouve = this.detecteCandidatAEliminer();
 		if (!trouve) {return false;}
-        
-        if (goPourChangement) {
-        	modele.elimineCandidatCase(candidatAEliminer, xAction, yAction, this.calculMessageLog(candidatAEliminer));
-        }
-        else {
-			modele.getControle().demandeHighlightCase(xAction, yAction);
-        }
         
         return true;
 	}

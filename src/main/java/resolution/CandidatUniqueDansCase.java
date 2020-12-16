@@ -12,16 +12,12 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		boolean trouve = this.detecteConfiguration();
+		caseTrouvee = this.detecteConfiguration();
 		
-		if (!trouve) return false;
+		if (!caseTrouvee) return false;
 		
-		if (goPourChangement) 
-			modele.setValeurCaseEnCours(grille.getCaseEnCours().calculValeurUnique(), 
-					                    this.calculMessageLog(grille.getCaseEnCours().calculValeurUnique()));
-		else 
-			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
-			   									      CaseEnCours.getYSearch());
+		solution = grille.getCaseEnCours().calculValeurUnique();
+		numCaseAction = CaseEnCours.getNumCase();
 		return true;
 	}
 	

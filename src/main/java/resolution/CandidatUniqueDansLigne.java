@@ -10,21 +10,20 @@ public class CandidatUniqueDansLigne extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		boolean trouve = false;
+		caseTrouvee = false;
 		int candidat =0;
 		for (candidat=1;candidat<10;candidat++) {
   	        if (grille.getCaseEnCours().isCandidat(candidat) &&
 	            !grille.checkPresenceCandidatLigne(candidat, CaseEnCours.getXSearch(),CaseEnCours.getYSearch())) {
-  	          	trouve = true;
+  	        	caseTrouvee = true;
   	           	break;
   	        }
 		}
 		
-		if (!trouve) return false;
-		if (goPourChangement) modele.setValeurCaseEnCours(candidat, this.calculMessageLog(candidat));
-			else modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
-														   CaseEnCours.getYSearch());
-			
+		if (!caseTrouvee) return false;
+		
+		solution = candidat;
+		numCaseAction = CaseEnCours.getNumCase();
 		return true;
 		
 	}

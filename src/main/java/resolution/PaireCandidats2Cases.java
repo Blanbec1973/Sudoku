@@ -16,12 +16,14 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		super(modele,grille);
 		c1=0;
 		c2=0;
+		caseTrouvee=false;
 	}
 	
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
+		caseTrouvee = false;
 		boolean trouve = false;
-		int candiatEliminable=0;
+		candidatAEliminer=0;
 		
 		if (grille.getCaseEnCours().getNombreCandidats()<3) return false;
 		
@@ -42,20 +44,13 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		if (grille.getCaseEnCours().getNombreCandidats() == 2) return false;
 		
 		//Recherche du premier candidat à éliminer : 
-		for (int i=1;i<10;i++) {
-			if (grille.getCaseEnCours().isCandidat(i) && i !=c1 && i != c2) {
-				candiatEliminable=i;
+		for (candidatAEliminer=1;candidatAEliminer<10;candidatAEliminer++) {
+			if (grille.getCaseEnCours().isCandidat(candidatAEliminer) && candidatAEliminer !=c1 && candidatAEliminer != c2) {
 				break;
 			}
 		}
 		
-		if (goPourChangement) {
-			modele.elimineCandidatCaseEnCours(candiatEliminable, this.calculMessageLog(candiatEliminable));
-		}
-		else {
-			modele.getControle().demandeHighlightCase(CaseEnCours.getXSearch(),
-				                                      CaseEnCours.getYSearch());
-		}
+		numCaseAction = CaseEnCours.getNumCase();
 		return true;
 	}
 	

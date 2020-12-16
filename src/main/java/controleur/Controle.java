@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import modele.Grille;
 import modele.Modele;
+import modele.Utils;
 import vue.MaFenetre;
 
 public class Controle implements ActionListener {
@@ -35,16 +36,19 @@ public class Controle implements ActionListener {
     
     public void demandeRefreshGrille(Grille g) {fen.refreshGrilleDisplay(g);}
     
-    public void demandeRefreshAffichageCase (int x, int y) {
-        if (modele.getGrille().getCase(x, y).isCaseInitiale()) {
-        	fen.setCaseInitiale(x, y, String.valueOf(modele.getGrille().getCase(x, y).getValeur()));
+    public void demandeRefreshAffichageCase (int numCase) {
+        if (modele.getGrille().getCase(numCase).isCaseInitiale()) {
+        	fen.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+        			            String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
         	return;
         }
-    	if (modele.getGrille().getCase(x, y).isCaseTrouvee()) {
-            fen.setCase(x, y, String.valueOf(modele.getGrille().getCase(x, y).getValeur()));
+    	if (modele.getGrille().getCase(numCase).isCaseTrouvee()) {
+            fen.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+            		    String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
         }
         else {
-            fen.setCaseCandidats(x, y, modele.getGrille().getCase(x, y).construitLibelleCandidats());
+            fen.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+            		             modele.getGrille().getCase(numCase).construitLibelleCandidats());
         }
     }
     
@@ -80,9 +84,10 @@ public class Controle implements ActionListener {
 		}
 	}
 
-	public void demandeHighlightCase(int x, int y) {
-		fen.setCaseAvantExplication(x, y);
+	public void demandeHighlightCase(int numCase) {
+		fen.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
 	}
+	
     
     public void demandeIncrementRangResolution() {
     	int temp = Integer.parseInt(fen.getRangResolution().getText());
