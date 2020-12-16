@@ -1,6 +1,8 @@
 package vue;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,7 +10,7 @@ import modele.Grille;
 
 public class MaFenetre extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 5459748409047794744L;
-	private MaCase [][] maGrilleDisplay = new MaCase [9][9];
+	private JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille panGrille ;
     private final JScrollPane panCommande;
     private TextArea logTextArea;
@@ -22,7 +24,7 @@ public class MaFenetre extends JFrame implements ActionListener {
     public JButton getBoutonExplique() {return this.boutonExplique;}
 	public AbstractButton getBoutonRecule() {return this.boutonRecule;}
     public JLabel getRangResolution() {return this.rangResolution;}
-    public MaCase getCase(int x, int y) {return maGrilleDisplay[x][y];}
+    public JButton getCase(int x, int y) {return maGrilleDisplay[x][y];}
         
     public MaFenetre(){
         setTitle("Sudoku");
@@ -53,7 +55,8 @@ public class MaFenetre extends JFrame implements ActionListener {
 
         for (int y=0;y<9;y++) {
             for (int x=0;x<9;x++) {
-                maGrilleDisplay[x][y] = new MaCase();
+                maGrilleDisplay[x][y] = new JButton();
+                formateMaCase(maGrilleDisplay[x][y]);
                 maGrilleDisplay[x][y].setText(String.valueOf(x)+String.valueOf(y));
                 panGrille.add(maGrilleDisplay[x][y]);
             }
@@ -125,6 +128,22 @@ public class MaFenetre extends JFrame implements ActionListener {
     	int premierSautDeLigne = logTextArea.getText().indexOf("\n");
     	logTextArea.replaceRange("", 0,premierSautDeLigne+1);
     }
+    
+    private void formateMaCase(JButton bouton) {
+        Dimension expectedDimension = new Dimension(54, 54);
+        bouton.setPreferredSize(expectedDimension);
+        bouton.setMaximumSize(expectedDimension);
+        bouton.setMinimumSize(expectedDimension);
+        bouton.setSize(50, 50);
+        bouton.setBackground(Color.WHITE);
+        Border lineborder = BorderFactory.createLineBorder(Color.black, 1); 
+        bouton.setBorder(lineborder);
+        bouton.setHorizontalTextPosition(SwingConstants.CENTER);
+        bouton.setVerticalTextPosition(SwingConstants.CENTER);
+        bouton.setHorizontalAlignment(SwingConstants.CENTER);
+        bouton.setVerticalAlignment(SwingConstants.CENTER);
+    } 
+    
 }
 
  
