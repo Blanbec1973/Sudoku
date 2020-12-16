@@ -12,17 +12,17 @@ import modele.CaseEnCours;
 import modele.Grille;
 import modele.InitialiseurDeGrille;
 
-class CandidatUniqueDansLigneTest {
+class CandidatUniqueDansColonneTest {
 	private static Grille grille;
-	private static CandidatUniqueDansLigne methode;
+	private static CandidatUniqueDansColonne methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		grille = new Grille();
 		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
-		i.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\src\\test\\resources\\grillesTest\\CandidatUniqueDansLigne.sud");
+		i.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\src\\test\\resources\\grillesTest\\CandidatUniqueDansColonne.sud");
 		i.calculTousLesCandidats();
-		methode = new CandidatUniqueDansLigne(null, grille);
+		methode = new CandidatUniqueDansColonne(null, grille);
 	}
 
 	@AfterAll
@@ -39,10 +39,9 @@ class CandidatUniqueDansLigneTest {
 
 	@Test
 	void testTraiteCaseEnCours() {
-		CaseEnCours.setCaseEnCours(39);
+		CaseEnCours.setCaseEnCours(53);
 		assertTrue(methode.traiteCaseEnCours(false));
-		assertEquals(6, methode.getSolution());
+		assertEquals(9, methode.getSolution());
 	}
-
 
 }
