@@ -98,10 +98,6 @@ public class Vue {
             maGrilleDisplay[x][y].setBackground(Color.GRAY);
         }
     }
-
-    public void setFocus(int x, int y) {
-        maGrilleDisplay[x][y].requestFocus();
-    }
         
     public void refreshGrilleDisplay(Grille maGrille) {
         String valeurCase;

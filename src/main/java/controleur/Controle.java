@@ -52,10 +52,6 @@ public class Controle implements ActionListener {
         }
     }
     
-    public void demandeSetFocusCase(int x, int y) {
-    	vue.setFocus(x, y);
-    }
-    
     public void demandeAfficheCommande(String texte) {
     	vue.getLogTextArea().insert(texte+'\n', 0);
     }
