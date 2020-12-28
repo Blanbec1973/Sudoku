@@ -33,6 +33,7 @@ class CaseTest {
         assertFalse(maCase.isCaseInitiale());
         assertTrue(maCase.nEstPasCaseInitiale());
         assertEquals(5,maCase.getValeur());
+        assertFalse(maCase.nEstPasCaseTrouvee());
     }
     
 }
