@@ -6,19 +6,15 @@ public class Case {
     private int yCase;
     private int valeur;
     private int region;
-    private int etatCase;
+    private EtatCase etatCase;
 	private CandidatsCase candidats = new CandidatsCase();
-    public static final int INITIALE = -1;
-    public static final int NON_TROUVEE = 0;
-    public static final int TROUVEE = 1;
-    
     
     public Case(int numCase, int x, int y) {
         this.setNumCase(numCase);
         this.setX(x);
         this.setY(y);
         this.setValeurCase(0);
-        this.etatCase = NON_TROUVEE ;
+        this.etatCase = EtatCase.NON_TROUVEE ;
         this.setRegion(Utils.calculNumeroRegion(numCase));
     }
     
@@ -29,17 +25,17 @@ public class Case {
     public int getyCase() {return yCase;}
     public void setY(int yCase) {this.yCase = yCase;}
     public int getValeur() {return valeur;}
-    public void setValeurCase(int valeur) {this.valeur = valeur; this.etatCase = TROUVEE;}
+    public void setValeurCase(int valeur) {this.valeur = valeur; this.etatCase = EtatCase.TROUVEE;}
     public int getRegion() {return region;}
     public void setRegion(int region) {this.region = region;}
-    public int getEtatCase() {return etatCase;}
-	public void setEtatCase(int etatCase) {this.etatCase = etatCase;}
-    public boolean isCaseInitiale() {return this.etatCase == INITIALE;}
-    public boolean nEstPasCaseInitiale() {return (this.etatCase != INITIALE);}
-    public void setCaseInitiale() {this.etatCase = INITIALE;candidats.setAllCandidatsToFalse();}
-    public boolean isCaseTrouvee() {return this.etatCase == TROUVEE;}
-    public boolean isCaseATrouver() { return this.etatCase == NON_TROUVEE;}
-    public boolean nEstPasCaseTrouvee() {return (this.etatCase != TROUVEE);}
+    public EtatCase getEtatCase() {return etatCase;}
+	public void setEtatCase(EtatCase etatCase) {this.etatCase = etatCase;}
+    public boolean isCaseInitiale() {return this.etatCase == EtatCase.INITIALE;}
+    public boolean nEstPasCaseInitiale() {return (this.etatCase != EtatCase.INITIALE);}
+    public void setCaseInitiale() {this.etatCase = EtatCase.INITIALE;candidats.setAllCandidatsToFalse();}
+    public boolean isCaseTrouvee() {return this.etatCase == EtatCase.TROUVEE;}
+    public boolean isCaseATrouver() { return this.etatCase == EtatCase.NON_TROUVEE;}
+    public boolean nEstPasCaseTrouvee() {return (this.etatCase != EtatCase.TROUVEE);}
     public boolean isCandidat(int rang) {return candidats.isCandidat(rang);} 
     public int getNombreCandidats () {return candidats.getNombreCandidats();}
     public boolean [] getCandidatsTabBoolean() {return candidats.getCandidats();}
