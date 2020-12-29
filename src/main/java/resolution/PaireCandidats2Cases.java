@@ -32,8 +32,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		
 		//Boucle sur chaque couple possible de la case en cours : 
 		for (CandidatsCase couple : tabCandidats) {
-			nb1inter=0;
-			nb2inter=0;
+			razCompteursIntersections();
 			if (this.traiteCouple(couple)) {
 				trouve = true;
 				break;
@@ -52,6 +51,11 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		
 		numCaseAction = CaseEnCours.getNumCase();
 		return true;
+	}
+
+	private void razCompteursIntersections() {
+		nb1inter=0;
+		nb2inter=0;
 	}
 	
 	public void inserePaireCandidatsDansTab() {
