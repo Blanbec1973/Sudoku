@@ -30,6 +30,7 @@ public class CaseEnCours {
 		xSearch = x;
 		ySearch =y;
 		numCase = Utils.calculNumCase(x, y);
+		CaseEnCours.setXYRegion();
 	}
 	private static void setXYRegion() {        
         switch (xSearch) {

@@ -23,6 +23,17 @@ class CaseEnCoursTest {
 	}
 	
 	@Test
+	void testSetCaseEnCours2() {
+		CaseEnCours.setCaseEnCours(0, 0);
+		assertEquals(0,CaseEnCours.getXSearch());
+		assertEquals(0,CaseEnCours.getYSearch());
+		assertEquals(0,CaseEnCours.getxRegion());
+		assertEquals(0,CaseEnCours.getyRegion());
+		assertEquals("1",CaseEnCours.getXSearchEdition());
+		assertEquals("1",CaseEnCours.getYSearchEdition());
+	}
+	
+	@Test
 	void testGetXSearch() {
 		assertEquals(4,CaseEnCours.getXSearch());
 	}
