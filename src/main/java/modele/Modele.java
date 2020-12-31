@@ -36,7 +36,6 @@ public class Modele {
 	}
 
 	public Grille getGrille() {return grille;}
-	public Controle getControle() {return controle;}
 	
 	public void detecteSuivant(boolean goPourChangement) {
 		int i =0;
@@ -92,5 +91,9 @@ public class Modele {
 
 	public void rechargeDernierHistorique() {
 		histo.supprimeDerniereGrille(grille);
+	}
+
+	public void sauveGrille() {
+		new SauveurDeGrille(grille);
 	}
 }
