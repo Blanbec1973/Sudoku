@@ -2,6 +2,7 @@ package vue;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 import modele.Grille;
@@ -144,6 +145,24 @@ public class Vue {
         bouton.setVerticalTextPosition(SwingConstants.CENTER);
         bouton.setHorizontalAlignment(SwingConstants.CENTER);
         bouton.setVerticalAlignment(SwingConstants.CENTER);
+    }
+    
+    public String afficheSaveFileDialog() {
+	    String fileName="";
+    	JFileChooser chooser = new JFileChooser();
+	    
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter(
+	        "*.sud", "sud");
+	    chooser.setFileFilter(filter);
+	    int returnVal = chooser.showSaveDialog(this.fenetre);
+	    
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+		    if (chooser.getSelectedFile().getName().contains("."))
+		    	fileName = chooser.getSelectedFile().getAbsolutePath();
+		    else
+		    	fileName = chooser.getSelectedFile().getAbsolutePath()+".sud";
+		}
+	    return fileName;
     }
     
 }

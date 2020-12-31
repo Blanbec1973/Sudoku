@@ -93,7 +93,7 @@ public class Modele {
 		histo.supprimeDerniereGrille(grille);
 	}
 
-	public void sauveGrille() {
-		new SauveurDeGrille(grille);
+	public void sauveGrille(String fileName) {
+		new SauveurDeGrille(grille, fileName);
 	}
 }
