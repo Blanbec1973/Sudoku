@@ -29,6 +29,7 @@ public class Controle implements ActionListener {
         vue.getBoutonAvance().addActionListener(this);
         vue.getBoutonExplique().addActionListener(this);
         vue.getBoutonRecule().addActionListener(this);
+        vue.getMenuSave().addActionListener(this);
        
         this.demandeRefreshGrille(modele.getGrille());
         vue.getFenetre().setVisible(true);
@@ -77,6 +78,12 @@ public class Controle implements ActionListener {
 			this.demandeRefreshGrille(modele.getGrille());
 			this.demandeDecrementRangResolution();
 			vue.supprimeDernierLigneLog();
+			return;
+		}
+		
+		if (source == vue.getMenuSave()) {
+			modele.sauveGrille();
+			return;
 		}
 	}
 

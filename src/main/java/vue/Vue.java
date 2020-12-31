@@ -16,6 +16,7 @@ public class Vue {
     private JButton boutonExplique;
     private JButton boutonRecule;
     private JLabel rangResolution;
+    private JMenuItem menuSave;
     
     public JFrame getFenetre() {return fenetre;}
     public TextArea getLogTextArea() {return logTextArea;}
@@ -24,6 +25,7 @@ public class Vue {
 	public AbstractButton getBoutonRecule() {return this.boutonRecule;}
     public JLabel getRangResolution() {return this.rangResolution;}
     public JButton getCase(int x, int y) {return maGrilleDisplay[x][y];}
+    public JMenuItem getMenuSave() {return this.menuSave;}
         
     public Vue(){
     	fenetre = new JFrame();
@@ -32,6 +34,14 @@ public class Vue {
     	fenetre.setResizable(false);
     	fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container contenu=fenetre.getContentPane();
+        
+		JMenuBar barreMenus = new JMenuBar();
+		fenetre.setJMenuBar(barreMenus);
+		JMenu menu1 = new JMenu("Fichier");
+		barreMenus.add(menu1);
+		menuSave = new JMenuItem("Save as ...");
+		menu1.add(menuSave);
+        
         panGrille = new MonPaneauGrille();
         Dimension expectedDimension = new Dimension(580, 660);
         panGrille.setPreferredSize(expectedDimension);
