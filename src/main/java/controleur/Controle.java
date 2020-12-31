@@ -83,7 +83,7 @@ public class Controle implements ActionListener {
 		
 		if (source == vue.getMenuSave()) {
 			String fileName = vue.afficheSaveFileDialog();
-			if (fileName != "") modele.sauveGrille(fileName);
+			if (!fileName.isEmpty()) SauveurDeGrille.saveGrille(modele.getGrille(),fileName);
 		}
 	}
 

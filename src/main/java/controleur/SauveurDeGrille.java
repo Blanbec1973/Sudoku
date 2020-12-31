@@ -1,7 +1,7 @@
 /**
  * 
  */
-package modele;
+package controleur;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import controleur.Controle;
+import modele.Grille;
 
 /**
  * @author heynerr
@@ -21,7 +21,11 @@ class SauveurDeGrille {
 	 * @param maGrille Grille de Sudoku à sauvegarder.
 	 * 
 	 */
-	public SauveurDeGrille(Grille grille, String fileName) {
+	private SauveurDeGrille() {
+		throw new IllegalStateException("Utility class");
+	}
+	  
+	public static void saveGrille(Grille grille, String fileName) {
 
 		StringBuilder writeLine = new StringBuilder();
 		
