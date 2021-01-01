@@ -81,7 +81,7 @@ public class Modele {
 		histo.historiseGrille(grille);
 	}
 	
-	public void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
+	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
 		grille.getCase(numCaseAction).elimineCandidat(candidatAEliminer);
 		controle.demandeRefreshAffichageCase(numCaseAction);
 		controle.demandeAfficheCommande(message);
