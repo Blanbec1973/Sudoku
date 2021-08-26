@@ -24,24 +24,42 @@ public class Utils {
         
         if (reste==0) {
             switch(division) {
-                case 1,2,3 : {return 3;}
-                case 4,5,6 : {return 6;}
-                case 7,8,9 : {return 9;}
+                case 1 : {return 3;}
+                case 2 : {return 3;}
+                case 3 : {return 3;}
+                case 4 : {return 6;}
+                case 5 : {return 6;}
+                case 6 : {return 6;}
+                case 7 : {return 9;}
+                case 8 : {return 9;}
+                case 9 : {return 9;}
                 default : throw new IllegalStateException("Region incalculable");
             }
         }
         
         switch(division) {
-        	case 0,1,2 : {region=1; break;}
-        	case 3,4,5 : {region=4; break;}
-        	case 6,7,8 : {region=7; break;}
+        	case 0 : {region=1; break;}
+        	case 1 : {region=1; break;}
+        	case 2 : {region=1; break;}
+        	case 3 : {region=4; break;}
+        	case 4 : {region=4; break;}
+        	case 5 : {region=4; break;}
+        	case 6 : {region=7; break;}
+        	case 7 : {region=7; break;}
+        	case 8 : {region=7; break;}
         	default : throw new IllegalStateException("Region incalculable2");
         }            
         
         switch (reste) {
-        	case 1,2,3 : {return region;}
-        	case 4,5,6 : {return region+1;}
-        	case 7,8,9 : {return region+2;}
+        	case 1 : {return region;}
+        	case 2 : {return region;}
+        	case 3 : {return region;}
+        	case 4 : {return region+1;}
+        	case 5 : {return region+1;}
+        	case 6 : {return region+1;}
+        	case 7 : {return region+2;}
+        	case 8 : {return region+2;}
+        	case 9 : {return region+2;}
         	default : throw new IllegalStateException("Region incalculable3");
         }
     }

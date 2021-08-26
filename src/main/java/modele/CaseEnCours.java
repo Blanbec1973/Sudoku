@@ -34,15 +34,27 @@ public class CaseEnCours {
 	}
 	private static void setXYRegion() {        
         switch (xSearch) {
-        	case 0,1,2 : {setxRegion(0); break;}
-            case 3,4,5 : {setxRegion(3); break;}
-            case 6,7,8 : {setxRegion(6); break;}
+        	case 0 : {setxRegion(0); break;}
+        	case 1 : {setxRegion(0); break;}
+        	case 2 : {setxRegion(0); break;}
+            case 3 : {setxRegion(3); break;}
+            case 4 : {setxRegion(3); break;}
+            case 5 : {setxRegion(3); break;}
+            case 6 : {setxRegion(6); break;}
+            case 7 : {setxRegion(6); break;}
+            case 8 : {setxRegion(6); break;}
             default : {throw new IllegalStateException("xRegion incalculable");}
         }
         switch (ySearch) { 
-        	case 0,1,2 : {setyRegion(0); break;}
-            case 3,4,5 : {setyRegion(3); break;}
-            case 6,7,8 : {setyRegion(6); break;}
+        	case 0 : {setyRegion(0); break;}
+        	case 1 : {setyRegion(0); break;}
+        	case 2 : {setyRegion(0); break;}
+            case 3 : {setyRegion(3); break;}
+            case 4 : {setyRegion(3); break;}
+            case 5 : {setyRegion(3); break;}
+            case 6 : {setyRegion(6); break;}
+            case 7 : {setyRegion(6); break;}
+            case 8 : {setyRegion(6); break;}
             default : {throw new IllegalStateException("yRegion incalculable");}
         }
     }
