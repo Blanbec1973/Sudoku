@@ -22,6 +22,7 @@ class CaseTest {
     	assertEquals(0,maCase.getxCase());
     	assertEquals(0,maCase.getyCase());
         assertTrue(maCase.nEstPasCaseTrouvee());
+        assertEquals("<html>123<br>456<br>789</html>",maCase.construitLibelleCandidats());
         maCase.setCaseInitiale();
         assertTrue(maCase.isCaseInitiale());
         assertFalse(maCase.nEstPasCaseInitiale());
