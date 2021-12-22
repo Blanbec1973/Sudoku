@@ -15,7 +15,7 @@ public class Modele {
 		
         grille =new Grille();
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
-        initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-40.sud");
+        initialiseurDeGrille.init(System.getProperty("user.dir")+"/init67-40.sud");
         initialiseurDeGrille.calculTousLesCandidats();
         
         histo.historiseGrille(grille);
