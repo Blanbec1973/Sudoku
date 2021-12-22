@@ -20,7 +20,7 @@ class CandidatUniqueDansLigneTest {
 	static void setUpBeforeClass() throws Exception {
 		grille = new Grille();
 		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
-		i.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\src\\test\\resources\\grillesTest\\CandidatUniqueDansLigne.sud");
+		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansLigne.sud");
 		i.calculTousLesCandidats();
 		methode = new CandidatUniqueDansLigne(null, grille);
 	}

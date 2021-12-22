@@ -16,7 +16,7 @@ class HistorisationTest {
 	static void setUpBeforeClass() throws Exception {
 		grilleOrigine =new Grille();
         InitialiseurDeGrille i  = new InitialiseurDeGrille(grilleOrigine);
-        i.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-40.sud");
+        i.init(System.getProperty("user.dir")+"/init67-40.sud");
         i.calculTousLesCandidats();
         histo = new Historisation();
 	}

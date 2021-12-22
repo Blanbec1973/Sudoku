@@ -20,7 +20,7 @@ class AbsenceCandidatEnLigneDansLesAutresRegionsTest {
 	static void setUpBeforeClass() throws Exception {
 		grille = new Grille();
 		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
-		i.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\src\\test\\resources\\grillesTest\\AbsenceCandidatEnLigneDansLesAutresRegions.sud");
+		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/AbsenceCandidatEnLigneDansLesAutresRegions.sud");
 		i.calculTousLesCandidats();
 		methode = new AbsenceCandidatEnLigneDansLesAutresRegions(null, grille);
 	}
