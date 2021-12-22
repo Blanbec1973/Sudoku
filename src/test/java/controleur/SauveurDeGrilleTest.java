@@ -30,7 +30,7 @@ class SauveurDeGrilleTest {
 		SauveurDeGrille.saveGrille(grille, nomFichierCible);		
 		File fichierSource = new File(nomFichierSource);
 		File fichierCible = new File(nomFichierCible);
-		assertEquals(97, fichierCible.length());
+		//assertEquals(97, fichierCible.length());
 		assertTrue("The files differ!", FileUtils.contentEquals(fichierSource, fichierCible));
 		fichierCible.delete();
 	}
