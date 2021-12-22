@@ -15,7 +15,7 @@ import modele.InitialiseurDeGrille;
 
 class SauveurDeGrilleTest {
 	private static Grille grille;
-	private static final String nomFichierSource="C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-40.sud";
+	private static final String nomFichierSource=System.getProperty("user.dir")+"\\init67-40.sud";
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -26,7 +26,7 @@ class SauveurDeGrilleTest {
 
 	@Test
 	void testSaveGrille() throws IOException {
-		String nomFichierCible = "c:\\Temp\\testSaveSudoku.sud";
+		String nomFichierCible = System.getProperty("user.dir")+"\\testSaveSudoku.sud";
 		SauveurDeGrille.saveGrille(grille, nomFichierCible);		
 		File fichierSource = new File(nomFichierSource);
 		File fichierCible = new File(nomFichierCible);
