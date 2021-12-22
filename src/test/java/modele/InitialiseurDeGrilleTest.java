@@ -26,7 +26,7 @@ class InitialiseurDeGrilleTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-        initialiseurDeGrille.init("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\init67-40.sud");
+        initialiseurDeGrille.init(System.getProperty("user.dir")+"\\init67-40.sud");
 	}
 
 	@AfterEach
