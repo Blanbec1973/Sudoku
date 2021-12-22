@@ -56,7 +56,7 @@ public abstract class MethodeResolution {
 		boolean trouve = false;
 		int i=0;
 		while (i < grille.getCasesAtrouver().size() && !trouve) {
-			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i));
+			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i)); //Valorisation de la case en cours.
 			trouve = this.traiteCaseEnCours(goPourChangement);
 			i+=1;
 		}
