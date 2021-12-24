@@ -32,21 +32,5 @@ class CandidatDansColonneUniqueDuneRegionTest {
 		assertEquals(0, methode.xAction);
 		assertEquals(0,methode.yAction);
 	}
-	
-	@Test
-	void testTestCase() {
-		//CaseEnCours.setCaseEnCours(76);
-		//assertFalse(methode.testCase(0, 6));
-		//assertTrue(methode.testCase(0, 3));
-	}
-	
-	@Test
-	void testDetecteCandidatAEliminer() {
-		//CaseEnCours.setCaseEnCours(76);
-		//methode.candidatAEliminer = 3;
-		//assertTrue(methode.detecteCandidatAEliminer());
-		//assertEquals(3,methode.xAction);
-		//assertEquals(7,methode.yAction);
-	}
 
 }
