@@ -12,7 +12,6 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	
 	protected CandidatDansColonneUniqueDuneRegion(Modele modele, Grille grille) {
 		super(modele, grille);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -22,16 +21,13 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
         if (!trouve) return false;
         
         trouve = this.detecteCandidatAEliminer();
-        if (!trouve) return false;
-		return true;
+        return trouve;
 	}
 
 	private boolean detecteConfiguration() {
 		// Pour tous les candidats de la case en cours, je regarde si je ne suis que dans la colonne de ma région
-		//System.out.println("Case en cours : "+CaseEnCours.getXSearch()+" "+CaseEnCours.getYSearch());
 		for (int i=1; i < 9 ;i++) {
 			candidatAEliminer = i;
-			System.out.println(i+" "+grille.getCaseEnCours().isCandidat(i));
 			if (grille.getCaseEnCours().isCandidat(i) && candidatDansColonneUnique()) return true;
 		}
 	
@@ -39,7 +35,8 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	}
 	
 	private boolean candidatDansColonneUnique() {
-		int col1 = 0, col2=0; // les deux colonnes de la région où on devra chercher le candidat.
+		int col1 = 0 ; // les deux colonnes de la région où on devra chercher le candidat.
+		int col2 = 0 ;
 		
 		switch (CaseEnCours.getXSearch()) {
 			case 0:
@@ -47,11 +44,9 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 				col2 = 2;
 				break;
 			case 1:
-				col1 = 0;
 				col2 = 2;
 				break;
 			case 2:
-				col1 = 0;
 				col2 = 1;
 				break;
 			case 3:
@@ -78,6 +73,8 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 				col1 = 6;
 				col2 = 7;
 				break;
+			default:
+				throw new IllegalStateException("Unexpected value: " + CaseEnCours.getXSearch());
 		}
 		// vérification absence candidat col1 :
 		for (int i=CaseEnCours.getyRegion(); i<CaseEnCours.getyRegion()+3;i++) {
