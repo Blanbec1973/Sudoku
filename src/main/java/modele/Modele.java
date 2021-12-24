@@ -9,13 +9,14 @@ public class Modele {
 	private Grille grille;
 	private ArrayList<MethodeResolution> listeMethodes;
 	private Historisation histo = new Historisation();
+	private MesProprietes mesProprietes = new MesProprietes();
 	
 	public Modele(Controle controle) {
 		this.controle = controle;
 		
         grille =new Grille();
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
-        initialiseurDeGrille.init(System.getProperty("user.dir")+"/init67-40.sud");
+        initialiseurDeGrille.init(System.getProperty("user.dir")+mesProprietes.getFichierInitial());
         initialiseurDeGrille.calculTousLesCandidats();
         
         histo.historiseGrille(grille);
