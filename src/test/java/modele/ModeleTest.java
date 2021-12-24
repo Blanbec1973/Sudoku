@@ -29,6 +29,9 @@ class ModeleTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		modele = new Modele(controle);
+		InitialiseurDeGrille i = new InitialiseurDeGrille(modele.getGrille());
+		i.init(System.getProperty("user.dir")+"/init67-40.sud");
+		i.calculTousLesCandidats();
 	}
 
 	@AfterEach
