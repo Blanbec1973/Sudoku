@@ -457,4 +457,34 @@ class UtilsTest {
     	assertEquals(9,Utils.trouveCandidatNumero(c1, 3));
     	assertEquals(0,Utils.trouveCandidatNumero(c1, 4));
     }
+
+    @Test
+    void testCalculAutresLignesOuColonnesDuneRegion() {
+        assertEquals(1,Utils.calculAutresLignesOuColonnesDuneRegion(0,1));
+        assertEquals(2,Utils.calculAutresLignesOuColonnesDuneRegion(0,2));
+
+        assertEquals(0,Utils.calculAutresLignesOuColonnesDuneRegion(1,1));
+        assertEquals(2,Utils.calculAutresLignesOuColonnesDuneRegion(1,2));
+
+        assertEquals(0,Utils.calculAutresLignesOuColonnesDuneRegion(2,1));
+        assertEquals(1,Utils.calculAutresLignesOuColonnesDuneRegion(2,2));
+
+        assertEquals(4,Utils.calculAutresLignesOuColonnesDuneRegion(3,1));
+        assertEquals(5,Utils.calculAutresLignesOuColonnesDuneRegion(3,2));
+
+        assertEquals(3,Utils.calculAutresLignesOuColonnesDuneRegion(4,1));
+        assertEquals(5,Utils.calculAutresLignesOuColonnesDuneRegion(4,2));
+
+        assertEquals(3,Utils.calculAutresLignesOuColonnesDuneRegion(5,1));
+        assertEquals(4,Utils.calculAutresLignesOuColonnesDuneRegion(5,2));
+
+        assertEquals(7,Utils.calculAutresLignesOuColonnesDuneRegion(6,1));
+        assertEquals(8,Utils.calculAutresLignesOuColonnesDuneRegion(6,2));
+
+        assertEquals(6,Utils.calculAutresLignesOuColonnesDuneRegion(7,1));
+        assertEquals(8,Utils.calculAutresLignesOuColonnesDuneRegion(7,2));
+
+        assertEquals(6,Utils.calculAutresLignesOuColonnesDuneRegion(8,1));
+        assertEquals(7,Utils.calculAutresLignesOuColonnesDuneRegion(8,2));
+    }
 }

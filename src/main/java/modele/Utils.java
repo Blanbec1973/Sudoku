@@ -92,4 +92,23 @@ public class Utils {
 			
 		return 0;
 	}
+
+    public static int calculAutresLignesOuColonnesDuneRegion(int rang, int autreRang) {
+        if (rang == 0 || rang == 3 || rang == 6) return rang + autreRang;
+        if (rang == 2 || rang == 5 || rang == 8) {
+            if (autreRang == 1) {
+                return rang - 2;
+            } else {
+                return rang - 1;
+            }
+        }
+        if (rang == 1 || rang == 4 || rang == 7) {
+            if (autreRang == 1) {
+                return rang - 1;
+            } else {
+                return rang + 1;
+            }
+        }
+        return 0;
+    }
 }

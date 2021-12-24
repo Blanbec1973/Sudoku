@@ -35,47 +35,10 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	}
 	
 	private boolean candidatDansColonneUnique() {
-		int col1 = 0 ; // les deux colonnes de la région où on devra chercher le candidat.
-		int col2 = 0 ;
-		
-		switch (CaseEnCours.getXSearch()) {
-			case 0:
-				col1 = 1;
-				col2 = 2;
-				break;
-			case 1:
-				col2 = 2;
-				break;
-			case 2:
-				col2 = 1;
-				break;
-			case 3:
-				col1 = 4;
-				col2 = 5;
-				break;
-			case 4:
-				col1 = 3;
-				col2 = 5;
-				break;
-			case 5:
-				col1 = 3;
-				col2 = 4;
-				break;
-			case 6:
-				col1 = 7;
-				col2 = 8;
-				break;
-			case 7:
-				col1 = 6;
-				col2 = 8;
-				break;
-			case 8:
-				col1 = 6;
-				col2 = 7;
-				break;
-			default:
-				throw new IllegalStateException("Unexpected value: " + CaseEnCours.getXSearch());
-		}
+		// les deux colonnes de la région où on devra chercher le candidat :
+		int col1 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getXSearch(),1) ;
+		int col2 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getXSearch(),2) ;
+
 		// vérification absence candidat col1 :
 		for (int i=CaseEnCours.getyRegion(); i<CaseEnCours.getyRegion()+3;i++) {
 			if (grille.getCase(col1, i).isCaseATrouver() && grille.getCase(col1, i).isCandidat(candidatAEliminer)) return false;
