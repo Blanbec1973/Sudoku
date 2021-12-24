@@ -31,6 +31,7 @@ class CaseEnCoursTest {
 		assertEquals(0,CaseEnCours.getyRegion());
 		assertEquals("1",CaseEnCours.getXSearchEdition());
 		assertEquals("1",CaseEnCours.getYSearchEdition());
+		assertEquals(1, CaseEnCours.getNumRegion());
 	}
 	
 	@Test
@@ -54,8 +55,11 @@ class CaseEnCoursTest {
 	}
 	
 	@Test
-	void testGetNumCases() {
+	void testGetNumCase() {
 		assertEquals(41,CaseEnCours.getNumCase());
 	}
-	
+
+	@Test
+	void testGetNumRegion() { assertEquals(5, CaseEnCours.getNumRegion());}
+
 }
