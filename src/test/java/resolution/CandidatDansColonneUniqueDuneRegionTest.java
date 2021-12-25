@@ -3,6 +3,7 @@ package resolution;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import modele.Case;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -31,6 +32,12 @@ class CandidatDansColonneUniqueDuneRegionTest {
 		assertEquals(6, methode.candidatAEliminer);
 		assertEquals(0, methode.xAction);
 		assertEquals(0,methode.yAction);
+	}
+
+	@Test
+	void testCandidatDansColonneUnique() {
+		CaseEnCours.setCaseEnCours(28);
+		assertTrue(methode.candidatDansColonneUnique());
 	}
 
 }

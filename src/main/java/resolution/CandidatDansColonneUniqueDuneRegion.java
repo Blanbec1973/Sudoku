@@ -34,7 +34,7 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 		return false;
 	}
 	
-	private boolean candidatDansColonneUnique() {
+	boolean candidatDansColonneUnique() {
 		// les deux colonnes de la région où on devra chercher le candidat :
 		int col1 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getXSearch(),1) ;
 		int col2 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getXSearch(),2) ;

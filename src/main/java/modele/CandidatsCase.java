@@ -18,7 +18,7 @@ public class CandidatsCase {
     public void setCandidat(int rang) {this.candidats[rang]=true;this.calculNombreCandidats();}
     public boolean isCandidat(int rang) {return candidats[rang];} 
     
-    public String displayCandidats() {
+    public String toString() {
     	StringBuilder bld = new StringBuilder();
     	for (int i=1;i<10;i++ ) {
     		if (this.isCandidat(i)) bld.append("1"); else bld.append("0");

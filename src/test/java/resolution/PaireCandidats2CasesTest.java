@@ -32,16 +32,16 @@ class PaireCandidats2CasesTest {
 		grille.getCaseEnCours().getCandidats().setCandidat(7);
 		grille.getCaseEnCours().getCandidats().setCandidat(8);
 		paireCandidats2Cases.inserePaireCandidatsDansTab();
-    	assertEquals("100010000",paireCandidats2Cases.tabCandidats.get(0).displayCandidats());
-    	assertEquals("100001000",paireCandidats2Cases.tabCandidats.get(1).displayCandidats());
-    	assertEquals("100000100",paireCandidats2Cases.tabCandidats.get(2).displayCandidats());
-    	assertEquals("100000010",paireCandidats2Cases.tabCandidats.get(3).displayCandidats());
-    	assertEquals("000011000",paireCandidats2Cases.tabCandidats.get(4).displayCandidats());
-    	assertEquals("000010100",paireCandidats2Cases.tabCandidats.get(5).displayCandidats());
-    	assertEquals("000010010",paireCandidats2Cases.tabCandidats.get(6).displayCandidats());
-    	assertEquals("000001100",paireCandidats2Cases.tabCandidats.get(7).displayCandidats());
-    	assertEquals("000001010",paireCandidats2Cases.tabCandidats.get(8).displayCandidats());
-    	assertEquals("000000110",paireCandidats2Cases.tabCandidats.get(9).displayCandidats());
+    	assertEquals("100010000",paireCandidats2Cases.tabCandidats.get(0).toString());
+    	assertEquals("100001000",paireCandidats2Cases.tabCandidats.get(1).toString());
+    	assertEquals("100000100",paireCandidats2Cases.tabCandidats.get(2).toString());
+    	assertEquals("100000010",paireCandidats2Cases.tabCandidats.get(3).toString());
+    	assertEquals("000011000",paireCandidats2Cases.tabCandidats.get(4).toString());
+    	assertEquals("000010100",paireCandidats2Cases.tabCandidats.get(5).toString());
+    	assertEquals("000010010",paireCandidats2Cases.tabCandidats.get(6).toString());
+    	assertEquals("000001100",paireCandidats2Cases.tabCandidats.get(7).toString());
+    	assertEquals("000001010",paireCandidats2Cases.tabCandidats.get(8).toString());
+    	assertEquals("000000110",paireCandidats2Cases.tabCandidats.get(9).toString());
 	}
 
     @Test

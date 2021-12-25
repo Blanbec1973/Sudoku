@@ -35,7 +35,7 @@ public class Grille {
     		sb.append(" ");
     		sb.append(this.getCase(i).getCandidats().getNombreCandidats());
     		sb.append(" ==> ");
-    		sb.append(this.getCase(i).getCandidats().displayCandidats());
+    		sb.append(this.getCase(i).getCandidats().toString());
     		sb.append(" | ");
     	}
     	return sb.toString();	
