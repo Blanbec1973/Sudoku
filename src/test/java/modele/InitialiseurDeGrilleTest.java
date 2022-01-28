@@ -26,7 +26,7 @@ class InitialiseurDeGrilleTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-        initialiseurDeGrille.init(System.getProperty("user.dir")+"/init67-40.sud");
+        initialiseurDeGrille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
 	}
 
 	@AfterEach

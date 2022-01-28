@@ -30,7 +30,7 @@ class ModeleTest {
 	void setUp() throws Exception {
 		modele = new Modele(controle);
 		InitialiseurDeGrille i = new InitialiseurDeGrille(modele.getGrille());
-		i.init(System.getProperty("user.dir")+"/init67-40.sud");
+		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
 		i.calculTousLesCandidats();
 	}
 

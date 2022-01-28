@@ -15,7 +15,7 @@ import modele.InitialiseurDeGrille;
 
 class SauveurDeGrilleTest {
 	private static Grille grille;
-	private static final String nomFichierSource=System.getProperty("user.dir")+"/init67-40.sud";
+	private static final String nomFichierSource=System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud";
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
