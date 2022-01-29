@@ -57,6 +57,7 @@ public abstract class MethodeResolution {
 		int i=0;
 		while (i < grille.getCasesAtrouver().size() && !trouve) {
 			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i)); //Valorisation de la case en cours.
+			System.out.println(CaseEnCours.getNumCase());
 			trouve = this.traiteCaseEnCours(goPourChangement);
 			i+=1;
 		}

@@ -1,6 +1,4 @@
-package modele;
-
-import controleur.Controle;
+package controleur;
 
 import java.io.FileInputStream;
 import java.io.IOException;

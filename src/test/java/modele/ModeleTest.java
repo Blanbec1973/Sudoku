@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import controleur.MesProprietes;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,7 +29,7 @@ class ModeleTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		modele = new Modele(controle);
+		modele = new Modele(controle, new MesProprietes());
 		InitialiseurDeGrille i = new InitialiseurDeGrille(modele.getGrille());
 		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
 		i.calculTousLesCandidats();

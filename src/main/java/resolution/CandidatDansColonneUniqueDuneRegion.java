@@ -10,12 +10,14 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	int yAction;
 	int numColonne;
 	
-	protected CandidatDansColonneUniqueDuneRegion(Modele modele, Grille grille) {
+	public CandidatDansColonneUniqueDuneRegion(Modele modele, Grille grille) {
 		super(modele, grille);
 	}
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
+		System.out.println("Case en cours : "+CaseEnCours.getNumCase());
+
 		numColonne = CaseEnCours.getXSearch();
 		boolean trouve = this.detecteConfiguration();   	
         if (!trouve) return false;
@@ -54,7 +56,8 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 		// Recherche présence candidatAEliminer dans les autres régions de la colonne
 		for (int i=0;i<9;i++) {
 			if (CaseEnCours.getNumRegion() != Utils.calculNumeroRegion(Utils.calculNumCase(numColonne,i)) &&
-			    grille.getCase(numColonne,i).isCandidat(candidatAEliminer)) {
+			    grille.getCase(numColonne,i).isCaseATrouver() &&
+					grille.getCase(numColonne,i).isCandidat(candidatAEliminer)) {
 				xAction=numColonne;
 				yAction=i;
 				numCaseAction=Utils.calculNumCase(xAction,yAction);

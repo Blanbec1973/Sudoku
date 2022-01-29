@@ -14,6 +14,7 @@ public class Controle implements ActionListener {
     private Vue vue;
     private Modele modele;
     private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
+	private MesProprietes mesProprietes = new MesProprietes();
     
     public Vue getVue() {return vue;}
     
@@ -22,7 +23,7 @@ public class Controle implements ActionListener {
     public Controle() {
     	LOGGER.log( Level.INFO, "Démarrage Sudoku." );
         // Initialise le modèle :
-        modele = new Modele(this);
+        modele = new Modele(this, this.mesProprietes);
     	
     	// Initialise la vue : 
     	vue = new Vue();

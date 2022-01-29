@@ -2,6 +2,7 @@ package modele;
 
 import java.util.ArrayList;
 import controleur.Controle;
+import controleur.MesProprietes;
 import resolution.*;
 
 public class Modele {
@@ -9,10 +10,11 @@ public class Modele {
 	private Grille grille;
 	private ArrayList<MethodeResolution> listeMethodes;
 	private Historisation histo = new Historisation();
-	private MesProprietes mesProprietes = new MesProprietes();
+	private MesProprietes mesProprietes ;
 	
-	public Modele(Controle controle) {
+	public Modele(Controle controle, MesProprietes mesProprietes) {
 		this.controle = controle;
+		this.mesProprietes=mesProprietes;
 		
         grille =new Grille();
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
@@ -34,6 +36,7 @@ public class Modele {
 	    listeMethodes.add(new AbsenceCandidatEnLigneDansLesAutresRegions(this, grille));
 	    listeMethodes.add(new PaireCandidats2CasesLigne(this, grille));
 	    listeMethodes.add(new TripletteCandidatsEnLigne(this, grille));
+		listeMethodes.add(new CandidatDansColonneUniqueDuneRegion(this, grille));
 	}
 
 	public Grille getGrille() {return grille;}
