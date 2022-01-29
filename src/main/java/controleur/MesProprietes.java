@@ -11,8 +11,8 @@ public class MesProprietes {
     Properties prop = new Properties();
     private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
 
-    public MesProprietes() {
-        try (InputStream input = new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/config.properties")) {
+    public MesProprietes(String nomFichier) {
+        try (InputStream input = new FileInputStream(nomFichier)) {
 
             // load a properties file
             prop.load(input);

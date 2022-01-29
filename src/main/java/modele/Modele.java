@@ -10,11 +10,10 @@ public class Modele {
 	private Grille grille;
 	private ArrayList<MethodeResolution> listeMethodes;
 	private Historisation histo = new Historisation();
-	private MesProprietes mesProprietes ;
-	
+
+
 	public Modele(Controle controle, MesProprietes mesProprietes) {
 		this.controle = controle;
-		this.mesProprietes=mesProprietes;
 		
         grille =new Grille();
         InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);

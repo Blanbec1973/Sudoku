@@ -14,7 +14,7 @@ public class Controle implements ActionListener {
     private Vue vue;
     private Modele modele;
     private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
-	private MesProprietes mesProprietes = new MesProprietes();
+	private MesProprietes mesProprietes = new MesProprietes(System.getProperty("user.dir")+"/src/main/resources/config.properties");
     
     public Vue getVue() {return vue;}
     

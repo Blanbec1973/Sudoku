@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import controleur.MesProprietes;
 import org.junit.jupiter.api.AfterAll;
@@ -18,7 +19,8 @@ import controleur.Controle;
 class ModeleTest {
 	private static Modele modele;
 	private static Controle controle = Mockito.mock(Controle.class);
-	
+	private static MesProprietes mesProprietes = Mockito.mock(MesProprietes.class);
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -29,10 +31,8 @@ class ModeleTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		modele = new Modele(controle, new MesProprietes());
-		InitialiseurDeGrille i = new InitialiseurDeGrille(modele.getGrille());
-		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
-		i.calculTousLesCandidats();
+		when(mesProprietes.getFichierInitial()).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
+		modele = new Modele(controle, mesProprietes);
 	}
 
 	@AfterEach
