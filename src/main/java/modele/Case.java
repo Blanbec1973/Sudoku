@@ -28,8 +28,7 @@ public class Case {
         {
             this.valeur = valeur;
             this.etatCase = EtatCase.TROUVEE;
-            //candidats.setAllCandidatsToFalse();
-            //candidats.setCandidat(valeur);
+            candidats.setAllCandidatsToFalse();
         }
     public int getRegion() {return region;}
     public void setRegion(int region) {this.region = region;}
