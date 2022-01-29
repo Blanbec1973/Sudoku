@@ -149,6 +149,12 @@ public abstract class MethodeResolution {
 			message+= String.valueOf(candidatAEliminer);
 			return message;
 		}
+		if (this instanceof CandidatDansColonneUniqueDuneRegion) {
+			message+= " Candidat ";
+			message+= String.valueOf(candidatAEliminer);
+			message+= " dans colonne unique de la région.";
+			return message;
+		}
 		message+=", solution="+solution;
 		return message;
 	}
