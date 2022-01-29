@@ -1,12 +1,12 @@
 package controleur;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ class SauveurDeGrilleTest {
 	private static final String nomFichierSource=System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud";
 	
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
 		grille =new Grille();
         InitialiseurDeGrille i  = new InitialiseurDeGrille(grille);
         i.init(nomFichierSource);
@@ -31,7 +31,7 @@ class SauveurDeGrilleTest {
 		File fichierSource = new File(nomFichierSource);
 		File fichierCible = new File(nomFichierCible);
 		//assertEquals(97, fichierCible.length());
-		assertTrue("The files differ!", FileUtils.contentEquals(fichierSource, fichierCible));
+		Assertions.assertTrue(FileUtils.contentEquals(fichierSource, fichierCible), "The files differ!");
 		fichierCible.delete();
 	}
 

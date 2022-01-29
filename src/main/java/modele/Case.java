@@ -7,7 +7,7 @@ public class Case {
     private int valeur;
     private int region;
     private EtatCase etatCase;
-	private CandidatsCase candidats = new CandidatsCase();
+	private final CandidatsCase candidats = new CandidatsCase();
     
     public Case(int numCase, int x, int y) {
         this.setNumCase(numCase);

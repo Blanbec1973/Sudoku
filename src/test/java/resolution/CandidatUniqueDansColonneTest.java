@@ -17,7 +17,7 @@ class CandidatUniqueDansColonneTest {
 	private static CandidatUniqueDansColonne methode;
 	
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
 		grille = new Grille();
 		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
 		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansColonne.sud");
@@ -26,15 +26,15 @@ class CandidatUniqueDansColonneTest {
 	}
 
 	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	static void tearDownAfterClass() {
 	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
 	}
 
 	@AfterEach
-	void tearDown() throws Exception {
+	void tearDown() {
 	}
 
 	@Test

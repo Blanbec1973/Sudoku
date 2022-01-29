@@ -16,7 +16,7 @@ class VueTest {
 	private static Vue vue;
 	
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
 		vue = new Vue();
 	}
 
@@ -94,15 +94,5 @@ class VueTest {
 		assertEquals(Color.GRAY,vue.getCase(5, 5).getBackground());
 		assertEquals(24, vue.getCase(5, 5).getFont().getSize());
 	}
-
-//	@Test
-//	void testRefreshGrilleDisplay() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	void testSupprimeDernierLigneLog() {
-//		fail("Not yet implemented");
-//	}
 
 }

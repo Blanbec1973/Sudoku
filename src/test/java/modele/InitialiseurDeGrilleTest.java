@@ -15,22 +15,22 @@ class InitialiseurDeGrilleTest {
 	private static InitialiseurDeGrille initialiseurDeGrille;
 	
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
         grille =new Grille();
         initialiseurDeGrille  = new InitialiseurDeGrille(grille);
 	}
 
 	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	static void tearDownAfterClass() {
 	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
         initialiseurDeGrille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
 	}
 
 	@AfterEach
-	void tearDown() throws Exception {
+	void tearDown() {
 	}
 
 	@Test

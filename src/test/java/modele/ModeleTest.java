@@ -22,21 +22,21 @@ class ModeleTest {
 	private static MesProprietes mesProprietes = Mockito.mock(MesProprietes.class);
 
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
 	}
 
 	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	static void tearDownAfterClass() {
 	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
 		when(mesProprietes.getFichierInitial()).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
 		modele = new Modele(controle, mesProprietes);
 	}
 
 	@AfterEach
-	void tearDown() throws Exception {
+	void tearDown() {
 	}
 
 	@Test

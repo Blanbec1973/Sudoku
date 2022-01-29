@@ -16,17 +16,15 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		System.out.println("Case en cours : "+CaseEnCours.getNumCase());
-
 		numColonne = CaseEnCours.getXSearch();
-		boolean trouve = this.detecteConfiguration();   	
+		boolean trouve = this.detectConfiguration();
         if (!trouve) return false;
         
         trouve = this.detecteCandidatAEliminer();
         return trouve;
 	}
 
-	private boolean detecteConfiguration() {
+	private boolean detectConfiguration() {
 		// Pour tous les candidats de la case en cours, je regarde si je ne suis que dans la colonne de ma région
 		for (int i=1; i < 9 ;i++) {
 			candidatAEliminer = i;

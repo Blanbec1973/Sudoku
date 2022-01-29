@@ -73,9 +73,9 @@ public class Utils {
     
     public static int calculNombreCandidats(boolean[] candidats) {
     	int resultat =0;
-    	for (int i=0;i<candidats.length;i++) {
-    		if (candidats[i]) resultat+=1;
-    	}
+        for (boolean candidat : candidats) {
+            if (candidat) resultat += 1;
+        }
     	return resultat;
     }
     

@@ -13,7 +13,7 @@ class HistorisationTest {
 	private static Historisation histo;
 	
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
 		grilleOrigine =new Grille();
         InitialiseurDeGrille i  = new InitialiseurDeGrille(grilleOrigine);
         i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
@@ -22,15 +22,15 @@ class HistorisationTest {
 	}
 
 	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	static void tearDownAfterClass() {
 	}
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
 	}
 
 	@AfterEach
-	void tearDown() throws Exception {
+	void tearDown() {
 	}
 
 	@Test

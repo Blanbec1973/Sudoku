@@ -14,7 +14,7 @@ class PaireConjugueeEnLigneTest {
 	private static PaireConjugueeEnLigne methode;
 	
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
 		grille = new Grille();
 		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
 		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnLigne.sud");

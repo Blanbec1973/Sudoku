@@ -18,7 +18,6 @@ import modele.Grille;
 class SauveurDeGrille {
 	private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
 	/**
-	 * @param maGrille Grille de Sudoku à sauvegarder.
 	 * 
 	 */
 	private SauveurDeGrille() {

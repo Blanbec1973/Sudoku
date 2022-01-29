@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class CaseEnCoursTest {
 
 	@BeforeEach
-	public void setUp() throws Exception {
+	public void setUp() {
 		CaseEnCours.setCaseEnCours(41);
 	}
 
