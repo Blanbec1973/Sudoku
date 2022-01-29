@@ -27,8 +27,7 @@ public class InitialiseurDeGrille {
                 for (int x=0;x<9;x++) {
                     valeur = Integer.parseInt(readLine.substring(x,x+1));
                     if (valeur != 0) {
-                        grille.getCase(x, y).setValeurCase(valeur);
-                        grille.getCase(x, y).setCaseInitiale();
+                        grille.getCase(x, y).setCaseInitiale(valeur);
                     }
                     else {
                     	grille.getCasesAtrouver().add(indexCase);
