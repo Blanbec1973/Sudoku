@@ -33,9 +33,9 @@ class CandidatsCaseTest {
     void testGetNombreCandidats() {
     	assertEquals(0,this.c1.getNombreCandidats());
     	assertEquals(1,this.c2.getNombreCandidats());
-    	assertEquals(2,this.c3.getNombreCandidats());
+    	assertEquals(1,this.c3.getNombreCandidats());
     	assertEquals(9,this.c4.getNombreCandidats());
-    	assertEquals(10,this.c5.getNombreCandidats());
+    	assertEquals(9,this.c5.getNombreCandidats());
     }
     
     @Test
@@ -48,7 +48,7 @@ class CandidatsCaseTest {
     @Test
     void testSetCandidats() {
         c1.setCandidats(c5.getCandidats());
-        assertEquals(10, c1.getNombreCandidats());
+        assertEquals(9, c1.getNombreCandidats());
         assertTrue(Arrays.equals(c1.getCandidats(), c5.getCandidats())); 
     }
     
@@ -65,7 +65,7 @@ class CandidatsCaseTest {
     void testContientCandidatUnique() {
         assertFalse(c1.contientCandidatUnique());
         assertTrue(c2.contientCandidatUnique());
-        assertFalse(c3.contientCandidatUnique());
+        assertTrue(c3.contientCandidatUnique());
         assertFalse(c4.contientCandidatUnique());
         assertFalse(c5.contientCandidatUnique());
     } 

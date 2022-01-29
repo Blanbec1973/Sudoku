@@ -27,7 +27,7 @@ public class CandidatsCase {
     }
     
     public void setAllCandidatsToFalse() {
-        for (int i=0;i<10;i++) {this.candidats[i]=false;}
+        for (int i=1;i<10;i++) {this.candidats[i]=false;}
         this.calculNombreCandidats();
     }
     
@@ -39,7 +39,7 @@ public class CandidatsCase {
     
     private void calculNombreCandidats() {
         int resultat = 0;
-        for (int i=0;i<10;i++) {
+        for (int i=1;i<10;i++) {
             if (this.candidats[i]) resultat +=1;
         }
         this.nombreCandidats = resultat;
