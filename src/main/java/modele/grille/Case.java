@@ -1,4 +1,6 @@
-package modele;
+package modele.grille;
+
+import modele.Utils;
 
 public class Case {
     private int numCase;

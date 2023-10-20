@@ -1,8 +1,8 @@
 package resolution;
 
-import modele.CandidatsCase;
-import modele.CaseEnCours;
-import modele.Grille;
+import modele.grille.CandidatsCase;
+import modele.grille.CaseEnCours;
+import modele.grille.Grille;
 import modele.Modele;
 import modele.Utils;
 

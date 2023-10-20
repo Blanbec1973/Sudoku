@@ -1,6 +1,6 @@
 package resolution;
 
-import modele.Grille;
+import modele.grille.Grille;
 import modele.Modele;
 import modele.Utils;
 

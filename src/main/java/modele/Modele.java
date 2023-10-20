@@ -3,6 +3,8 @@ package modele;
 import java.util.ArrayList;
 import controleur.Controle;
 import controleur.MesProprietes;
+import modele.grille.CaseEnCours;
+import modele.grille.Grille;
 import resolution.*;
 
 public class Modele {

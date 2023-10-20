@@ -1,7 +1,9 @@
-package modele;
+package modele.grille;
 
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
+
+import modele.grille.CandidatsCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

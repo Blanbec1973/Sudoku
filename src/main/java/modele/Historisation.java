@@ -1,5 +1,8 @@
 package modele;
 
+import modele.grille.CandidatsCase;
+import modele.grille.Grille;
+
 import java.util.ArrayList;
 import java.util.List;
 

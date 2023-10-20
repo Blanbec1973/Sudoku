@@ -2,6 +2,8 @@ package modele;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import modele.grille.CaseEnCours;
+import modele.grille.Grille;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

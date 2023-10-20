@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controleur;
 
 import java.io.BufferedWriter;
@@ -9,17 +6,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import modele.Grille;
+import modele.grille.Grille;
 
-/**
- * @author heynerr
- *
- */
 class SauveurDeGrille {
 	private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
-	/**
-	 * 
-	 */
+
 	private SauveurDeGrille() {
 		throw new IllegalStateException("Utility class");
 	}

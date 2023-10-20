@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import modele.CaseEnCours;
-import modele.Grille;
+import modele.grille.CaseEnCours;
+import modele.grille.Grille;
 import modele.InitialiseurDeGrille;
 
 class CandidatDansColonneUniqueDuneRegionTest {

@@ -1,5 +1,8 @@
 package modele;
 
+import modele.grille.CandidatsCase;
+import modele.grille.Grille;
+
 public class Utils {
 	
 	private Utils() {

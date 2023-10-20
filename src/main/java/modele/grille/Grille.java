@@ -1,10 +1,12 @@
-package modele;
+package modele.grille;
+
+import modele.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Grille {
-    private Case [][] mesCases = new Case [9][9];
+    private Case[][] mesCases = new Case [9][9];
     private List<Integer> casesAtrouver;
         
     public Grille() {

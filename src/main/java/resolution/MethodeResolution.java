@@ -1,13 +1,13 @@
 package resolution;
 
-import modele.CaseEnCours;
-import modele.Grille;
+import modele.grille.CaseEnCours;
+import modele.grille.Grille;
 import modele.Modele;
 import modele.Utils;
 
 import java.util.ArrayList;
 
-import modele.CandidatsCase;
+import modele.grille.CandidatsCase;
 
 //Méthodes de résolution par ordre hiérarchique :
 //Méthodes qui permettent de trouver une case : 

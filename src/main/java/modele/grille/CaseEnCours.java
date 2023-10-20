@@ -1,4 +1,6 @@
-package modele;
+package modele.grille;
+
+import modele.Utils;
 
 public class CaseEnCours {
 	private static int xSearch;

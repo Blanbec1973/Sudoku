@@ -5,7 +5,7 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
-import modele.Grille;
+import modele.grille.Grille;
 
 public class Vue {
 	private JFrame fenetre;

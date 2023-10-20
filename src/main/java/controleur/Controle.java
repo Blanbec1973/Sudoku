@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import modele.Grille;
+import modele.grille.Grille;
 import modele.Modele;
 import modele.Utils;
 import vue.Vue;

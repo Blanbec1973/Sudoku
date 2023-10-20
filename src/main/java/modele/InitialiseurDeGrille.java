@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import controleur.Controle;
+import modele.grille.CaseEnCours;
+import modele.grille.Grille;
 
 public class InitialiseurDeGrille {
 	private Grille grille;
