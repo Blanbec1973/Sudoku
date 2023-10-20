@@ -1,1 +1,0 @@
-mvn sonar:sonar -Dsonar.projectKey=TestSQ -Dsonar.host.url=http://localhost:9000 -Dsonar.login=412519780b9217d36a4ab432725b47e88b9fb7bf
