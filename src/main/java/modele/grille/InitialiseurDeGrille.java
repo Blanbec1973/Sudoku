@@ -1,17 +1,16 @@
 package modele.grille;
 
-import controleur.Controle;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 class InitialiseurDeGrille {
 	private Grille grille;
-	private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
+    private static final Logger logger = LogManager.getLogger(InitialiseurDeGrille.class.getPackage().getName());
 	public InitialiseurDeGrille(Grille grille) {
 		this.grille = grille;
 	}
@@ -37,9 +36,9 @@ class InitialiseurDeGrille {
                 y++;
             }
         } catch (IOException|NullPointerException ex) {
-        	LOGGER.log(Level.SEVERE,"Exception : {0}",ex.getMessage());
+        	logger.fatal("Exception : {}",ex.getMessage());
         }
-        LOGGER.log(Level.INFO,"Chargement OK fichier : {0}",nomFichier);
+        logger.info("Chargement OK fichier : {}",nomFichier);
     }
 	
     public void calculTousLesCandidats() {

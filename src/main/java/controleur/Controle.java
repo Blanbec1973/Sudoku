@@ -1,26 +1,27 @@
 package controleur;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import modele.grille.Grille;
 import modele.Modele;
 import modele.Utils;
+import modele.grille.Grille;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import vue.Vue;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Controle implements ActionListener {
     private final Vue vue;
     private final Modele modele;
-    private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
+
+	private static final Logger logger = LogManager.getLogger(Controle.class);
 
 	public Vue getVue() {return vue;}
     
     public static void main(String[] args) {new Controle();}
         
     public Controle() {
-    	LOGGER.log( Level.INFO, "Démarrage Sudoku." );
+		logger.info("Démarrage Sudoku.");
         // Initialise le modèle :
 		MesProprietes mesProprietes = new MesProprietes(System.getProperty("user.dir") + "/src/main/resources/config.properties");
 		modele = new Modele(this, mesProprietes);

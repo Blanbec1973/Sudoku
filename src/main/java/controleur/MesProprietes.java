@@ -1,15 +1,16 @@
 package controleur;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MesProprietes {
     Properties prop = new Properties();
-    private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
+    private static final Logger logger = LogManager.getLogger(MesProprietes.class);
 
     public MesProprietes(String nomFichier) {
         try (InputStream input = new FileInputStream(nomFichier)) {
@@ -18,7 +19,7 @@ public class MesProprietes {
             prop.load(input);
 
         } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE,"Exception : {0}",ex.getMessage());
+            logger.fatal("Exception : {}",ex.getMessage());
         }
     }
 

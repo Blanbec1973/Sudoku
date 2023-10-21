@@ -1,15 +1,15 @@
 package controleur;
 
+import modele.grille.Grille;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import modele.grille.Grille;
 
 class SauveurDeGrille {
-	private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
+	private static final Logger logger = LogManager.getLogger(SauveurDeGrille.class);
 
 	private SauveurDeGrille() {
 		throw new IllegalStateException("Utility class");
@@ -29,7 +29,7 @@ class SauveurDeGrille {
 				} 
 			}
 		} catch (IOException ex) {
-			LOGGER.log(Level.SEVERE,"Exception : {0}",ex.getMessage());
+			logger.fatal("Exception : {}",ex.getMessage());
 		}
 		
 	}	
