@@ -17,9 +17,7 @@ class HistorisationTest {
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grilleOrigine =new Grille();
-        InitialiseurDeGrille i  = new InitialiseurDeGrille(grilleOrigine);
-        i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
-        i.calculTousLesCandidats();
+        grilleOrigine.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
         histo = new Historisation();
 	}
 

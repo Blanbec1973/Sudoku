@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import modele.grille.CaseEnCours;
 import modele.grille.Grille;
-import modele.InitialiseurDeGrille;
 
 class CandidatUniqueDansRegionTest {
 	private static Grille grille;
@@ -16,9 +15,7 @@ class CandidatUniqueDansRegionTest {
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grille = new Grille();
-		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
-		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansRegion.sud");
-		i.calculTousLesCandidats();
+		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansRegion.sud");
 		methode = new CandidatUniqueDansRegion(null, grille);
 	}
 

@@ -19,7 +19,14 @@ public class Grille {
         }
         casesAtrouver = new ArrayList<>();
     }
-     
+
+    public void init(String pathFile) {
+        InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(this);
+        initialiseurDeGrille.init(pathFile);
+        initialiseurDeGrille.calculTousLesCandidats();
+    }
+
+
     public Case getCase(int x, int y) {return mesCases[x][y];}
     public Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
     public Case getCaseEnCours() {return mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()];}

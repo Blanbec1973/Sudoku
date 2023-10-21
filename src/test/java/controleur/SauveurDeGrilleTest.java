@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import modele.grille.Grille;
-import modele.InitialiseurDeGrille;
 
 class SauveurDeGrilleTest {
 	private static Grille grille;
@@ -20,8 +19,7 @@ class SauveurDeGrilleTest {
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grille =new Grille();
-        InitialiseurDeGrille i  = new InitialiseurDeGrille(grille);
-        i.init(nomFichierSource);
+        grille.init(nomFichierSource);
 	}
 
 	@Test

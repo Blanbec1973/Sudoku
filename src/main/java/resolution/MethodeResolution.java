@@ -41,8 +41,10 @@ public abstract class MethodeResolution {
 	protected int numCaseAction;
 	protected int candidatAEliminer;
 	protected int solution;
-    public static final String COUPLE_CONJUGUEE = " Couple conjugué ";
-    public static final String ELIMINATION_CANDIDATS = ", élimination candidat ";
+    private static final String COUPLE_CONJUGUEE = " Couple conjugué ";
+	private static final String ELIMINATION_CANDIDATS = ", élimination candidat ";
+
+	private static final String CANDIDAT =" Candidat ";
 	
 	protected MethodeResolution(Modele modele, Grille grille) {
 		this.modele=modele;
@@ -57,7 +59,6 @@ public abstract class MethodeResolution {
 		int i=0;
 		while (i < grille.getCasesAtrouver().size() && !trouve) {
 			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i)); //Valorisation de la case en cours.
-			System.out.println(CaseEnCours.getNumCase());
 			trouve = this.traiteCaseEnCours(goPourChangement);
 			i+=1;
 		}
@@ -125,7 +126,7 @@ public abstract class MethodeResolution {
 			return message;
 		}
 		if (this instanceof AbsenceCandidatEnColonneDansLesAutresRegions) {
-			message+= " Candidat ";
+			message+= CANDIDAT;
 			message+= candidatAEliminer;
 			message+= " absent des autres régions de la colonne ";
 			message+= CaseEnCours.getXSearchEdition();
@@ -134,7 +135,7 @@ public abstract class MethodeResolution {
 			return message;
 		}
 		if (this instanceof AbsenceCandidatEnLigneDansLesAutresRegions) {
-			message+= " Candidat ";
+			message+= CANDIDAT;
 			message+= candidatAEliminer;
 			message+= " absent des autres régions de la ligne ";
 			message+= CaseEnCours.getYSearchEdition();
@@ -150,7 +151,7 @@ public abstract class MethodeResolution {
 			return message;
 		}
 		if (this instanceof CandidatDansColonneUniqueDuneRegion) {
-			message+= " Candidat ";
+			message+= CANDIDAT;
 			message+= String.valueOf(candidatAEliminer);
 			message+= " dans colonne unique de la région.";
 			return message;

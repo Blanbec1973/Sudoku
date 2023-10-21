@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import modele.grille.CaseEnCours;
 import modele.grille.Grille;
-import modele.InitialiseurDeGrille;
+
 
 class AbsenceCandidatEnLigneDansLesAutresRegionsTest {
 
@@ -19,9 +19,7 @@ class AbsenceCandidatEnLigneDansLesAutresRegionsTest {
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grille = new Grille();
-		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
-		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/AbsenceCandidatEnLigneDansLesAutresRegions.sud");
-		i.calculTousLesCandidats();
+		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/AbsenceCandidatEnLigneDansLesAutresRegions.sud");
 		methode = new AbsenceCandidatEnLigneDansLesAutresRegions(null, grille);
 	}
 

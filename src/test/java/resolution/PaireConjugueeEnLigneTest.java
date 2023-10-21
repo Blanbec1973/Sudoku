@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import modele.grille.CaseEnCours;
 import modele.grille.Grille;
-import modele.InitialiseurDeGrille;
 
 class PaireConjugueeEnLigneTest {
 	private static Grille grille;
@@ -16,9 +15,7 @@ class PaireConjugueeEnLigneTest {
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grille = new Grille();
-		InitialiseurDeGrille i = new InitialiseurDeGrille(grille);
-		i.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnLigne.sud");
-		i.calculTousLesCandidats();
+		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnLigne.sud");
 		methode = new PaireConjugueeEnLigne(null, grille);
 	}
 	

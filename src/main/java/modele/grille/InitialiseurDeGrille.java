@@ -1,4 +1,6 @@
-package modele;
+package modele.grille;
+
+import controleur.Controle;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,11 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import controleur.Controle;
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-
-public class InitialiseurDeGrille {
+class InitialiseurDeGrille {
 	private Grille grille;
 	private static final Logger LOGGER = Logger.getLogger(Controle.class.getPackage().getName());
 	public InitialiseurDeGrille(Grille grille) {

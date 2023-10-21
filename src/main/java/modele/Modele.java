@@ -18,9 +18,7 @@ public class Modele {
 		this.controle = controle;
 		
         grille =new Grille();
-        InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(grille);
-        initialiseurDeGrille.init(System.getProperty("user.dir")+mesProprietes.getFichierInitial());
-        initialiseurDeGrille.calculTousLesCandidats();
+        grille.init(System.getProperty("user.dir")+mesProprietes.getFichierInitial());
         
         histo.historiseGrille(grille);
         

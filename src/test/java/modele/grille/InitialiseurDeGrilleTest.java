@@ -1,4 +1,4 @@
-package modele;
+package modele.grille;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import modele.grille.CaseEnCours;
 import modele.grille.Grille;
+import modele.grille.InitialiseurDeGrille;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
