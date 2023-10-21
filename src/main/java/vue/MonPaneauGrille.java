@@ -8,7 +8,7 @@ import java.awt.Stroke;
 import javax.swing.JPanel;
 
 
-public class MonPaneauGrille extends JPanel {
+class MonPaneauGrille extends JPanel {
 	private static final long serialVersionUID = 1772144498190125227L;
 
 	@Override
@@ -17,7 +17,7 @@ public class MonPaneauGrille extends JPanel {
     	this.dessineGrille(g);
     }
     
-    public void dessineGrille (Graphics g) {
+    void dessineGrille (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.gray);
         Stroke stroke = new BasicStroke(3f);
