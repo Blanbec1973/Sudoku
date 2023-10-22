@@ -24,6 +24,7 @@ class ModelTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() {
+
 	}
 
 	@AfterAll
@@ -32,7 +33,7 @@ class ModelTest {
 
 	@BeforeEach
 	void setUp() {
-		when(myProperties.getProperty("InitialFile")).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
+		when(control.getInitFileName()).thenReturn(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
 		model = new Model(control, myProperties);
 	}
 

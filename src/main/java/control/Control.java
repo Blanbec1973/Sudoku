@@ -11,15 +11,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Control implements ActionListener {
-    private final MyView myView;
+	private MyProperties myProperties = new MyProperties("config.properties");
+	private final MyView myView;
     private final Model model;
 	private static final Logger logger = LogManager.getLogger(Control.class);
+
+	private String initFileName;
 	public MyView getVue() {return myView;}
-    public static void main(String[] args) {new Control();}
+    public static void main(String[] args) {new Control("");}
         
-    public Control() {
-        // Initialise le modèle :
-		MyProperties myProperties = new MyProperties("config.properties");
+    public Control(String initFileName) {
+		this.initFileName = initFileName;
 		model = new Model(this, myProperties);
 		logger.info(myProperties.getProperty("StartMessage"));
     	
@@ -103,4 +105,10 @@ public class Control implements ActionListener {
     	temp-=1;
     	myView.getRangResolution().setText(String.valueOf(temp));
     }
+
+	public String getInitFileName() {
+		if (initFileName.isEmpty())
+			return System.getProperty("user.dir")+ myProperties.getProperty("InitialFile");
+		return initFileName;
+	}
 }

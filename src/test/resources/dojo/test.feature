@@ -21,7 +21,7 @@ Feature: Resolution grille 40
   I want to use this template for my feature file
 
   Background: 
-    Given I start my Sudoku application with file
+    Given I start my Sudoku application with file "/src/test/resources/grillesTest/init67-40.sud"
 
   @tag1
   Scenario: Case1

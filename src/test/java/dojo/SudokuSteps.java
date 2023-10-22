@@ -13,11 +13,11 @@ import utils.Utils;
 public class SudokuSteps {
 	private Control control;
 
-	@Given("I start my Sudoku application with file")
-	public void i_start_my_Sudoku_application_with_file_file() {
-	    control = new Control();
+	@Given("I start my Sudoku application with file {string}")
+	public void i_start_my_Sudoku_application_with_file_fileName(String fileName) {
+	    control = new Control(System.getProperty("user.dir")+fileName);
 	}
-	// TODO : Pointer sur le fichier initial qui sert au test
+
 	@When("I click on nextButton")
 	public void i_click_on_nextButton() {
 		control.getVue().getBoutonAvance().doClick();
