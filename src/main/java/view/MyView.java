@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import modele.grille.Grille;
 
-public class Vue {
+public class MyView {
 	private JFrame fenetre = new JFrame();
     private JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille  panGrille = new MonPaneauGrille();
@@ -30,7 +30,7 @@ public class Vue {
     public JButton getCase(int x, int y) {return maGrilleDisplay[x][y];}
     public JMenuItem getMenuSave() {return this.menuSave;}
         
-    public Vue(){
+    public MyView(){
     	ActingOnView.init(this);
     }
     

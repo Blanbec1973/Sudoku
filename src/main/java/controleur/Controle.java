@@ -5,16 +5,16 @@ import modele.Utils;
 import modele.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import vue.Vue;
+import view.MyView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controle implements ActionListener {
-    private final Vue vue;
+    private final MyView myView;
     private final Modele modele;
 	private static final Logger logger = LogManager.getLogger(Controle.class);
-	public Vue getVue() {return vue;}
+	public MyView getVue() {return myView;}
     public static void main(String[] args) {new Controle();}
         
     public Controle() {
@@ -24,81 +24,82 @@ public class Controle implements ActionListener {
 		modele = new Modele(this, myProperties);
     	
     	// Initialise la vue : 
-    	vue = new Vue();
-        vue.getBoutonAvance().addActionListener(this);
-        vue.getBoutonExplique().addActionListener(this);
-        vue.getBoutonRecule().addActionListener(this);
-        vue.getMenuSave().addActionListener(this);
+    	myView = new MyView();
+        myView.getBoutonAvance().addActionListener(this);
+        myView.getBoutonExplique().addActionListener(this);
+        myView.getBoutonRecule().addActionListener(this);
+        myView.getMenuSave().addActionListener(this);
        
         this.demandeRefreshGrille(modele.getGrille());
-        vue.getFenetre().setVisible(true);
+        myView.getFenetre().setVisible(true);
     }
     
-    public void demandeRefreshGrille(Grille g) {vue.refreshGrilleDisplay(g);}
+    public void demandeRefreshGrille(Grille g) {
+		myView.refreshGrilleDisplay(g);}
     
     public void demandeRefreshAffichageCase (int numCase) {
         if (modele.getGrille().getCase(numCase).isCaseInitiale()) {
-        	vue.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+        	myView.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
         			            String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
         	return;
         }
     	if (modele.getGrille().getCase(numCase).isCaseTrouvee()) {
-            vue.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+            myView.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
             		    String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
         }
         else {
-            vue.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase), 
+            myView.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
             		             modele.getGrille().getCase(numCase).construitLibelleCandidats());
         }
     }
 
     public void demandeAfficheCommande(String texte) {
-    	vue.getLogTextArea().insert(texte+'\n', 0);
+    	myView.getLogTextArea().insert(texte+'\n', 0);
     }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();		
-		if (source == vue.getBoutonAvance()) {
+		if (source == myView.getBoutonAvance()) {
 			modele.detecteSuivant(false);
 			return;
 		}
-		if (source == vue.getBoutonExplique()) {
+		if (source == myView.getBoutonExplique()) {
 			modele.detecteSuivant(true);
 			return;
 		}
-		if (source == vue.getBoutonRecule() && vue.getRangResolution().getText().equals("0")) {
+		if (source == myView.getBoutonRecule() && myView.getRangResolution().getText().equals("0")) {
 			javax.swing.JOptionPane.showMessageDialog(null,"Position initiale.");
 			return;
 		}
 		
-		if (source == vue.getBoutonRecule()) {
+		if (source == myView.getBoutonRecule()) {
 			modele.rechargeDernierHistorique();
 			this.demandeRefreshGrille(modele.getGrille());
 			this.demandeDecrementRangResolution();
-			vue.supprimeDernierLigneLog();
+			myView.supprimeDernierLigneLog();
 			return;
 		}
 		
-		if (source == vue.getMenuSave()) {
-			String fileName = vue.afficheSaveFileDialog();
+		if (source == myView.getMenuSave()) {
+			String fileName = myView.afficheSaveFileDialog();
 			if (!fileName.isEmpty()) SauveurDeGrille.saveGrille(modele.getGrille(),fileName);
 		}
 	}
 
 	public void highlightCase(int numCase) {
-		vue.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
+		myView.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
 	}
 
     public void demandeIncrementRangResolution() {
-    	int temp = Integer.parseInt(vue.getRangResolution().getText());
+    	int temp = Integer.parseInt(myView.getRangResolution().getText());
     	temp+=1;
-    	vue.getRangResolution().setText(String.valueOf(temp));
+    	myView.getRangResolution().setText(String.valueOf(temp));
     }
 
     public void demandeDecrementRangResolution() {
-    	int temp = Integer.parseInt(vue.getRangResolution().getText());
+    	int temp = Integer.parseInt(myView.getRangResolution().getText());
     	temp-=1;
-    	vue.getRangResolution().setText(String.valueOf(temp));
+    	myView.getRangResolution().setText(String.valueOf(temp));
     }
 }
