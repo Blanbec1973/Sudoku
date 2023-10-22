@@ -5,7 +5,7 @@ import java.util.Arrays;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.Model;
-import model.Utils;
+import utils.Utils;
 
 public class PaireConjugueeEnLigne extends PaireConjuguee {
 

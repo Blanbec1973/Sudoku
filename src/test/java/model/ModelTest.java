@@ -32,7 +32,7 @@ class ModelTest {
 
 	@BeforeEach
 	void setUp() {
-		when(myProperties.getFichierInitial()).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
+		when(myProperties.getProperty("InitialFile")).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
 		model = new Model(control, myProperties);
 	}
 

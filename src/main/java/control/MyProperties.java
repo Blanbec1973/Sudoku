@@ -28,4 +28,6 @@ public class MyProperties {
         return prop.getProperty("FichierInitial");
     }
 
+    public String getProperty(String keyProperty) { return prop.getProperty(keyProperty);}
+
 }

@@ -1,4 +1,4 @@
-package model;
+package utils;
 
 import model.grille.CandidatsCase;
 import model.grille.Grille;

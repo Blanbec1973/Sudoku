@@ -1,6 +1,6 @@
 package model.grille;
 
-import model.Utils;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

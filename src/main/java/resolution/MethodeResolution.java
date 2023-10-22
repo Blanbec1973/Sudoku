@@ -3,7 +3,7 @@ package resolution;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.Model;
-import model.Utils;
+import utils.Utils;
 
 import java.util.ArrayList;
 

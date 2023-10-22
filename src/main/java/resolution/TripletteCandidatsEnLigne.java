@@ -4,7 +4,7 @@ import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.Model;
-import model.Utils;
+import utils.Utils;
 
 public class TripletteCandidatsEnLigne extends MethodeResolution {
 	int xAction;

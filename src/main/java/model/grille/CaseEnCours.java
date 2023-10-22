@@ -1,6 +1,6 @@
 package model.grille;
 
-import model.Utils;
+import utils.Utils;
 
 public class CaseEnCours {
 	private static int xSearch;

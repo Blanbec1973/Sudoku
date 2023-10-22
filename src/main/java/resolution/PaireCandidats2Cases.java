@@ -6,7 +6,7 @@ import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.Model;
-import model.Utils;
+import utils.Utils;
 
 public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb2inter = 0;

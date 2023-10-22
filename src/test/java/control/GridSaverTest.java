@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import model.grille.Grille;
 
-class SauveurDeGrilleTest {
+class GridSaverTest {
 	private static Grille grille;
 	private static final String nomFichierSource=System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud";
 	
@@ -25,7 +25,7 @@ class SauveurDeGrilleTest {
 	@Test
 	void testSaveGrille() throws IOException {
 		String nomFichierCible = System.getProperty("user.dir")+"/testSaveSudoku.sud";
-		SauveurDeGrille.saveGrille(grille, nomFichierCible);		
+		GridSaver.saveGrid(grille, nomFichierCible);
 		File fichierSource = new File(nomFichierSource);
 		File fichierCible = new File(nomFichierCible);
 		//assertEquals(97, fichierCible.length());

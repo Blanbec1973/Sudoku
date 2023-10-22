@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import model.grille.CandidatsCase;
 import org.junit.jupiter.api.Test;
+import utils.Utils;
 
 class UtilsTest {
     
@@ -17,7 +18,7 @@ class UtilsTest {
         boolean tab1 [] = {true, true, false, false, false, false, false, false, false, false};
         boolean tab2 [] = {true, false, true, false, false, false, false, false, false, false};
         boolean res  [] = {true, true, true, false, false, false, false, false, false, false};
-        assertTrue(Arrays.equals(res,Utils.calculOuLogique2Candidats(tab1, tab2)));
+        assertTrue(Arrays.equals(res, Utils.calculOuLogique2Candidats(tab1, tab2)));
     }
     @Test
     void testCalculEtLogique2Candidats() {

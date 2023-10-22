@@ -1,7 +1,7 @@
 package control;
 
 import model.Model;
-import model.Utils;
+import utils.Utils;
 import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,10 +18,10 @@ public class Control implements ActionListener {
     public static void main(String[] args) {new Control();}
         
     public Control() {
-		logger.info("Démarrage Sudoku.");
         // Initialise le modèle :
 		MyProperties myProperties = new MyProperties(System.getProperty("user.dir") + "/src/main/resources/config.properties");
 		model = new Model(this, myProperties);
+		logger.info(myProperties.getProperty("StartMessage"));
     	
     	// Initialise la vue : 
     	myView = new MyView();
@@ -84,7 +84,7 @@ public class Control implements ActionListener {
 		
 		if (source == myView.getMenuSave()) {
 			String fileName = myView.afficheSaveFileDialog();
-			if (!fileName.isEmpty()) SauveurDeGrille.saveGrille(model.getGrille(),fileName);
+			if (!fileName.isEmpty()) GridSaver.saveGrid(model.getGrille(),fileName);
 		}
 	}
 

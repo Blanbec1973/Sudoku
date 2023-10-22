@@ -18,7 +18,7 @@ public class Model {
 		this.control = control;
 		
         grille =new Grille();
-        grille.init(System.getProperty("user.dir")+ myProperties.getFichierInitial());
+        grille.init(System.getProperty("user.dir")+ myProperties.getProperty("InitialFile"));
         
         histo.historiseGrille(grille);
         

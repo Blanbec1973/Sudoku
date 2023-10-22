@@ -2,7 +2,7 @@ package resolution;
 
 import model.grille.Grille;
 import model.Model;
-import model.Utils;
+import utils.Utils;
 
 public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolution {
 	int xAction;
