@@ -1,7 +1,7 @@
-package modele;
+package model;
 
-import modele.grille.CandidatsCase;
-import modele.grille.Grille;
+import model.grille.CandidatsCase;
+import model.grille.Grille;
 
 public class Utils {
 	

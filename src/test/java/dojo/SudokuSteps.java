@@ -8,7 +8,7 @@ import controleur.Controle;
 import cucumber.api.java.en.Given;  
 import cucumber.api.java.en.Then;  
 import cucumber.api.java.en.When;
-import modele.Utils;  
+import model.Utils;
 
 public class SudokuSteps {
 	private Controle control;
@@ -17,7 +17,7 @@ public class SudokuSteps {
 	public void i_start_my_Sudoku_application_with_file_file() {
 	    control = new Controle();
 	}
-
+	// TODO : Pointer sur le fichier initial qui sert au test
 	@When("I click on nextButton")
 	public void i_click_on_nextButton() {
 		control.getVue().getBoutonAvance().doClick();

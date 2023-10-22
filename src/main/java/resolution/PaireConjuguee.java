@@ -1,13 +1,13 @@
 package resolution;
 
-import modele.grille.Grille;
-import modele.Modele;
-import modele.Utils;
+import model.grille.Grille;
+import model.Model;
+import model.Utils;
 
 public abstract class PaireConjuguee extends MethodeResolution {
 
-	protected PaireConjuguee(Modele modele, Grille grille) {
-		super(modele,grille);
+	protected PaireConjuguee(Model model, Grille grille) {
+		super(model,grille);
 		caseTrouvee=false;
 	}
 

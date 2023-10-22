@@ -1,4 +1,4 @@
-package modele.grille;
+package model.grille;
 
 public class CandidatsCase {
     private boolean[] candidats  = new boolean [10];

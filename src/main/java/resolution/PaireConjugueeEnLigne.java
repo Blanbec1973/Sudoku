@@ -2,15 +2,15 @@ package resolution;
 
 import java.util.Arrays;
 
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
-import modele.Utils;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
+import model.Utils;
 
 public class PaireConjugueeEnLigne extends PaireConjuguee {
 
-	public PaireConjugueeEnLigne(Modele modele, Grille grille) {
-		super(modele,grille);
+	public PaireConjugueeEnLigne(Model model, Grille grille) {
+		super(model,grille);
 	}
 
 	protected boolean detecteConfiguration() {

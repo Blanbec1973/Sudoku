@@ -1,15 +1,15 @@
 package resolution;
 
-import modele.grille.CandidatsCase;
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
-import modele.Utils;
+import model.grille.CandidatsCase;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
+import model.Utils;
 
 public class PaireCandidats2CasesLigne extends PaireCandidats2Cases {
 
-	public PaireCandidats2CasesLigne(Modele modele, Grille grille) {
-		super(modele,grille);
+	public PaireCandidats2CasesLigne(Model model, Grille grille) {
+		super(model,grille);
 	}
 
 	

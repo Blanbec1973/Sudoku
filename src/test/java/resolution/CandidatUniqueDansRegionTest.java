@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
 
 class CandidatUniqueDansRegionTest {
 	private static Grille grille;

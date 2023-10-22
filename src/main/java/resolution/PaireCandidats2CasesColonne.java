@@ -1,15 +1,15 @@
 package resolution;
 
-import modele.grille.CandidatsCase;
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
-import modele.Utils;
+import model.grille.CandidatsCase;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
+import model.Utils;
 
 public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
 
-	public PaireCandidats2CasesColonne(Modele modele, Grille grille) {
-		super(modele,grille);
+	public PaireCandidats2CasesColonne(Model model, Grille grille) {
+		super(model,grille);
 	}
 		
 	protected boolean traiteCouple(CandidatsCase paireCandidats) {		

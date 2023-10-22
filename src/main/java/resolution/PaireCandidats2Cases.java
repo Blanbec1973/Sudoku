@@ -2,18 +2,18 @@ package resolution;
 
 import java.util.ArrayList;
 
-import modele.grille.CandidatsCase;
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
-import modele.Utils;
+import model.grille.CandidatsCase;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
+import model.Utils;
 
 public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb2inter = 0;
 	protected int nb1inter = 0;
 	
-	protected PaireCandidats2Cases(Modele modele, Grille grille) {
-		super(modele,grille);
+	protected PaireCandidats2Cases(Model model, Grille grille) {
+		super(model,grille);
 		c1=0;
 		c2=0;
 		caseTrouvee=false;

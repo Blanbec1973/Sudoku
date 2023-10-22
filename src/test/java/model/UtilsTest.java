@@ -1,10 +1,10 @@
-package modele;
+package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
-import modele.grille.CandidatsCase;
+import model.grille.CandidatsCase;
 import org.junit.jupiter.api.Test;
 
 class UtilsTest {

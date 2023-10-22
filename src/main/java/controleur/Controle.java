@@ -1,8 +1,8 @@
 package controleur;
 
-import modele.Modele;
-import modele.Utils;
-import modele.grille.Grille;
+import model.Model;
+import model.Utils;
+import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import view.MyView;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class Controle implements ActionListener {
     private final MyView myView;
-    private final Modele modele;
+    private final Model model;
 	private static final Logger logger = LogManager.getLogger(Controle.class);
 	public MyView getVue() {return myView;}
     public static void main(String[] args) {new Controle();}
@@ -21,7 +21,7 @@ public class Controle implements ActionListener {
 		logger.info("Démarrage Sudoku.");
         // Initialise le modèle :
 		MyProperties myProperties = new MyProperties(System.getProperty("user.dir") + "/src/main/resources/config.properties");
-		modele = new Modele(this, myProperties);
+		model = new Model(this, myProperties);
     	
     	// Initialise la vue : 
     	myView = new MyView();
@@ -30,7 +30,7 @@ public class Controle implements ActionListener {
         myView.getBoutonRecule().addActionListener(this);
         myView.getMenuSave().addActionListener(this);
        
-        this.demandeRefreshGrille(modele.getGrille());
+        this.demandeRefreshGrille(model.getGrille());
         myView.getFenetre().setVisible(true);
     }
     
@@ -38,18 +38,18 @@ public class Controle implements ActionListener {
 		myView.refreshGrilleDisplay(g);}
     
     public void demandeRefreshAffichageCase (int numCase) {
-        if (modele.getGrille().getCase(numCase).isCaseInitiale()) {
+        if (model.getGrille().getCase(numCase).isCaseInitiale()) {
         	myView.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-        			            String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
+        			            String.valueOf(model.getGrille().getCase(numCase).getValeur()));
         	return;
         }
-    	if (modele.getGrille().getCase(numCase).isCaseTrouvee()) {
+    	if (model.getGrille().getCase(numCase).isCaseTrouvee()) {
             myView.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-            		    String.valueOf(modele.getGrille().getCase(numCase).getValeur()));
+            		    String.valueOf(model.getGrille().getCase(numCase).getValeur()));
         }
         else {
             myView.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-            		             modele.getGrille().getCase(numCase).construitLibelleCandidats());
+            		             model.getGrille().getCase(numCase).construitLibelleCandidats());
         }
     }
 
@@ -59,13 +59,14 @@ public class Controle implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO : Externaliser le gestionnaire d'évènements du contrôleur
 		Object source = e.getSource();		
 		if (source == myView.getBoutonAvance()) {
-			modele.detecteSuivant(false);
+			model.detecteSuivant(false);
 			return;
 		}
 		if (source == myView.getBoutonExplique()) {
-			modele.detecteSuivant(true);
+			model.detecteSuivant(true);
 			return;
 		}
 		if (source == myView.getBoutonRecule() && myView.getRangResolution().getText().equals("0")) {
@@ -74,8 +75,8 @@ public class Controle implements ActionListener {
 		}
 		
 		if (source == myView.getBoutonRecule()) {
-			modele.rechargeDernierHistorique();
-			this.demandeRefreshGrille(modele.getGrille());
+			model.rechargeDernierHistorique();
+			this.demandeRefreshGrille(model.getGrille());
 			this.demandeDecrementRangResolution();
 			myView.supprimeDernierLigneLog();
 			return;
@@ -83,7 +84,7 @@ public class Controle implements ActionListener {
 		
 		if (source == myView.getMenuSave()) {
 			String fileName = myView.afficheSaveFileDialog();
-			if (!fileName.isEmpty()) SauveurDeGrille.saveGrille(modele.getGrille(),fileName);
+			if (!fileName.isEmpty()) SauveurDeGrille.saveGrille(model.getGrille(),fileName);
 		}
 	}
 

@@ -1,4 +1,4 @@
-package modele;
+package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import controleur.MyProperties;
-import modele.grille.Grille;
+import model.grille.Grille;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,8 +17,8 @@ import org.mockito.Mockito;
 
 import controleur.Controle;
 
-class ModeleTest {
-	private static Modele modele;
+class ModelTest {
+	private static Model model;
 	private static Controle controle = Mockito.mock(Controle.class);
 	private static MyProperties myProperties = Mockito.mock(MyProperties.class);
 
@@ -33,7 +33,7 @@ class ModeleTest {
 	@BeforeEach
 	void setUp() {
 		when(myProperties.getFichierInitial()).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
-		modele = new Modele(controle, myProperties);
+		model = new Model(controle, myProperties);
 	}
 
 	@AfterEach
@@ -42,40 +42,40 @@ class ModeleTest {
 
 	@Test
 	void testModele() {
-		assertNotNull(modele.getGrille());
+		assertNotNull(model.getGrille());
 	}
 
 	@Test
 	void testGetGrille() {
-		assertTrue(modele.getGrille() instanceof Grille);
+		assertTrue(model.getGrille() instanceof Grille);
 	}
 
 	@Test
 	void testDetecteSuivant() {
-		modele.detecteSuivant(false);
-		assertEquals(39,modele.getGrille().getCaseEnCours().getNumCase());
-		assertTrue(modele.getGrille().getCase(39).isCaseATrouver());
-		modele.detecteSuivant(true);
-		assertEquals(6, modele.getGrille().getCase(39).getValeur());
+		model.detecteSuivant(false);
+		assertEquals(39, model.getGrille().getCaseEnCours().getNumCase());
+		assertTrue(model.getGrille().getCase(39).isCaseATrouver());
+		model.detecteSuivant(true);
+		assertEquals(6, model.getGrille().getCase(39).getValeur());
 		
-		modele.detecteSuivant(true);
-		modele.detecteSuivant(true);
-		modele.detecteSuivant(true);
-		modele.detecteSuivant(true);
+		model.detecteSuivant(true);
+		model.detecteSuivant(true);
+		model.detecteSuivant(true);
+		model.detecteSuivant(true);
 		
-		modele.detecteSuivant(false);
-		assertEquals(36,modele.getGrille().getCaseEnCours().getNumCase());
-		assertTrue(modele.getGrille().getCase(18).getCandidats().isCandidat(7));
-		modele.detecteSuivant(true);
-		assertFalse(modele.getGrille().getCase(18).getCandidats().isCandidat(7));
+		model.detecteSuivant(false);
+		assertEquals(36, model.getGrille().getCaseEnCours().getNumCase());
+		assertTrue(model.getGrille().getCase(18).getCandidats().isCandidat(7));
+		model.detecteSuivant(true);
+		assertFalse(model.getGrille().getCase(18).getCandidats().isCandidat(7));
 		
 	}
 
 	@Test
 	void testRechargeDernierHistorique() {
-		modele.detecteSuivant(true);
-		modele.rechargeDernierHistorique();
-		assertTrue(modele.getGrille().getCase(39).isCaseATrouver());
+		model.detecteSuivant(true);
+		model.rechargeDernierHistorique();
+		assertTrue(model.getGrille().getCase(39).isCaseATrouver());
 	}
 
 }

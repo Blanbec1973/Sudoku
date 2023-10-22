@@ -1,9 +1,9 @@
-package modele;
+package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

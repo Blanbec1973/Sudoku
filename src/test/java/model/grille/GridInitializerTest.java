@@ -1,4 +1,4 @@
-package modele.grille;
+package model.grille;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

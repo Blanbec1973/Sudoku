@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import modele.grille.CandidatsCase;
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
+import model.grille.CandidatsCase;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
 
 class PaireCandidats2CasesTest {
 	private Grille grille;

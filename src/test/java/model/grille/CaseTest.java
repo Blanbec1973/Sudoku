@@ -1,8 +1,7 @@
-package modele.grille;
+package model.grille;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import modele.grille.Case;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

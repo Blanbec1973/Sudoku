@@ -1,13 +1,13 @@
 package resolution;
 
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
-import modele.Utils;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
+import model.Utils;
 
 import java.util.ArrayList;
 
-import modele.grille.CandidatsCase;
+import model.grille.CandidatsCase;
 
 //Méthodes de résolution par ordre hiérarchique :
 //Méthodes qui permettent de trouver une case : 
@@ -28,7 +28,7 @@ import modele.grille.CandidatsCase;
 
 
 public abstract class MethodeResolution {
-	protected Modele modele;
+	protected Model model;
 	protected Grille grille;
 	protected ArrayList<CandidatsCase> tabCandidats;
 	protected int c1;
@@ -46,8 +46,8 @@ public abstract class MethodeResolution {
 
 	private static final String CANDIDAT =" Candidat ";
 	
-	protected MethodeResolution(Modele modele, Grille grille) {
-		this.modele=modele;
+	protected MethodeResolution(Model model, Grille grille) {
+		this.model = model;
 		this.grille=grille;
 		this.tabCandidats = new ArrayList <>();
 		c1=0;
@@ -73,6 +73,8 @@ public abstract class MethodeResolution {
 	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
 	
 	public String calculMessageLog() {
+		// TODO : Externaliser la gestion des messages (1 seule repsonsabilité)
+		// TODO : Rendre dynamique la gestion des messages
 		String message = "";
 		message+= "Case x="+CaseEnCours.getXSearchEdition();
 		message+= " y="+CaseEnCours.getYSearchEdition();

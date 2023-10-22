@@ -1,7 +1,7 @@
-package modele;
+package model;
 
-import modele.grille.CandidatsCase;
-import modele.grille.Grille;
+import model.grille.CandidatsCase;
+import model.grille.Grille;
 
 import java.util.ArrayList;
 import java.util.List;

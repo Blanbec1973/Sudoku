@@ -1,13 +1,13 @@
 package resolution;
 
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
 
 public class CandidatUniqueDansColonne extends MethodeResolution {
 
-	public CandidatUniqueDansColonne(Modele modele, Grille grille) {
-		super(modele, grille);
+	public CandidatUniqueDansColonne(Model model, Grille grille) {
+		super(model, grille);
 	}
 
 	@Override

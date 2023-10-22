@@ -1,8 +1,7 @@
-package modele.grille;
+package model.grille;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import modele.grille.Grille;
 import org.junit.jupiter.api.Test;
 
 class GrilleTest {

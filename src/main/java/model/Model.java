@@ -1,20 +1,20 @@
-package modele;
+package model;
 
 import java.util.ArrayList;
 import controleur.Controle;
 import controleur.MyProperties;
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
 import resolution.*;
 
-public class Modele {
+public class Model {
 	private Controle controle;
 	private Grille grille;
 	private ArrayList<MethodeResolution> listeMethodes;
 	private Historisation histo = new Historisation();
 
 
-	public Modele(Controle controle, MyProperties myProperties) {
+	public Model(Controle controle, MyProperties myProperties) {
 		this.controle = controle;
 		
         grille =new Grille();

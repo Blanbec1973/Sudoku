@@ -1,6 +1,6 @@
 package controleur;
 
-import modele.grille.Grille;
+import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

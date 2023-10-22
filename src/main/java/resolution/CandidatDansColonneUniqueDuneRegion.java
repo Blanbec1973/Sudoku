@@ -1,17 +1,17 @@
 package resolution;
 
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
-import modele.Utils;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
+import model.Utils;
 
 public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	int xAction;
 	int yAction;
 	int numColonne;
 	
-	public CandidatDansColonneUniqueDuneRegion(Modele modele, Grille grille) {
-		super(modele, grille);
+	public CandidatDansColonneUniqueDuneRegion(Model model, Grille grille) {
+		super(model, grille);
 	}
 
 	@Override

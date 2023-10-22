@@ -1,13 +1,13 @@
 package resolution;
 
-import modele.grille.CaseEnCours;
-import modele.grille.Grille;
-import modele.Modele;
+import model.grille.CaseEnCours;
+import model.grille.Grille;
+import model.Model;
 
 public class AbsenceCandidatEnColonneDansLesAutresRegions extends AbsenceCandidatDansLesAutresRegions {
 
-	public AbsenceCandidatEnColonneDansLesAutresRegions(Modele modele, Grille grille) {
-		super(modele,grille);
+	public AbsenceCandidatEnColonneDansLesAutresRegions(Model model, Grille grille) {
+		super(model,grille);
 	}
 	
 	protected boolean testCase(int rangCase, int candidat) {

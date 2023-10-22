@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
-import modele.grille.Grille;
+import model.grille.Grille;
 
 public class MyView {
 	private JFrame fenetre = new JFrame();
