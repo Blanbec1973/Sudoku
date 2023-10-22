@@ -1,4 +1,4 @@
-package controleur;
+package control;
 
 import model.Model;
 import model.Utils;
@@ -10,14 +10,14 @@ import view.MyView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Controle implements ActionListener {
+public class Control implements ActionListener {
     private final MyView myView;
     private final Model model;
-	private static final Logger logger = LogManager.getLogger(Controle.class);
+	private static final Logger logger = LogManager.getLogger(Control.class);
 	public MyView getVue() {return myView;}
-    public static void main(String[] args) {new Controle();}
+    public static void main(String[] args) {new Control();}
         
-    public Controle() {
+    public Control() {
 		logger.info("Démarrage Sudoku.");
         // Initialise le modèle :
 		MyProperties myProperties = new MyProperties(System.getProperty("user.dir") + "/src/main/resources/config.properties");

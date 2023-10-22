@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-import controleur.MyProperties;
+import control.MyProperties;
 import model.grille.Grille;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -15,11 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import controleur.Controle;
+import control.Control;
 
 class ModelTest {
 	private static Model model;
-	private static Controle controle = Mockito.mock(Controle.class);
+	private static Control control = Mockito.mock(Control.class);
 	private static MyProperties myProperties = Mockito.mock(MyProperties.class);
 
 	@BeforeAll
@@ -33,7 +33,7 @@ class ModelTest {
 	@BeforeEach
 	void setUp() {
 		when(myProperties.getFichierInitial()).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
-		model = new Model(controle, myProperties);
+		model = new Model(control, myProperties);
 	}
 
 	@AfterEach

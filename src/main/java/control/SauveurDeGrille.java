@@ -1,4 +1,4 @@
-package controleur;
+package control;
 
 import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;

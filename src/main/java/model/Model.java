@@ -1,21 +1,21 @@
 package model;
 
 import java.util.ArrayList;
-import controleur.Controle;
-import controleur.MyProperties;
+import control.Control;
+import control.MyProperties;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import resolution.*;
 
 public class Model {
-	private Controle controle;
+	private Control control;
 	private Grille grille;
 	private ArrayList<MethodeResolution> listeMethodes;
 	private Historisation histo = new Historisation();
 
 
-	public Model(Controle controle, MyProperties myProperties) {
-		this.controle = controle;
+	public Model(Control control, MyProperties myProperties) {
+		this.control = control;
 		
         grille =new Grille();
         grille.init(System.getProperty("user.dir")+ myProperties.getFichierInitial());
@@ -54,7 +54,7 @@ public class Model {
 			if (goPourChangement)
 				this.traiteChangement(i);
 			else
-				controle.highlightCase(listeMethodes.get(i).getNumCaseAction());
+				control.highlightCase(listeMethodes.get(i).getNumCaseAction());
 		}
 		else {
 			 javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 
@@ -78,17 +78,17 @@ public class Model {
 	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
-		controle.demandeRefreshGrille(grille);
-		controle.demandeAfficheCommande(message);
-		controle.demandeIncrementRangResolution();
+		control.demandeRefreshGrille(grille);
+		control.demandeAfficheCommande(message);
+		control.demandeIncrementRangResolution();
 		histo.historiseGrille(grille);
 	}
 	
 	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
 		grille.getCase(numCaseAction).elimineCandidat(candidatAEliminer);
-		controle.demandeRefreshAffichageCase(numCaseAction);
-		controle.demandeAfficheCommande(message);
-		controle.demandeIncrementRangResolution();		
+		control.demandeRefreshAffichageCase(numCaseAction);
+		control.demandeAfficheCommande(message);
+		control.demandeIncrementRangResolution();
 		histo.historiseGrille(grille);
 	}
 

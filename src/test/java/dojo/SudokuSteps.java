@@ -4,18 +4,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Color;
 
-import controleur.Controle;
+import control.Control;
 import cucumber.api.java.en.Given;  
 import cucumber.api.java.en.Then;  
 import cucumber.api.java.en.When;
 import model.Utils;
 
 public class SudokuSteps {
-	private Controle control;
+	private Control control;
 
 	@Given("I start my Sudoku application with file")
 	public void i_start_my_Sudoku_application_with_file_file() {
-	    control = new Controle();
+	    control = new Control();
 	}
 	// TODO : Pointer sur le fichier initial qui sert au test
 	@When("I click on nextButton")
