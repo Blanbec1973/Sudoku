@@ -37,6 +37,7 @@ class GridInitializer {
             }
         } catch (IOException|NullPointerException ex) {
         	logger.fatal("Exception : {}",ex.getMessage());
+            System.exit(-1);
         }
         logger.info("Chargement OK fichier : {}",nomFichier);
     }
