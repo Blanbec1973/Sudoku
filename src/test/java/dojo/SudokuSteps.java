@@ -33,7 +33,6 @@ public class SudokuSteps {
 		Color c = control.getVue().getCase(Utils.calculXsearch(numCase),Utils.calculYsearch(numCase)).getBackground();
 		assertEquals(Color.YELLOW,c);
 	}
-	
 
 	@When("I click {int} times on ExplainButton")
 	public void i_click_times_on_ExplainButton(Integer nombreClics) {

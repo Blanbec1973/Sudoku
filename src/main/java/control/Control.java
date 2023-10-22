@@ -19,7 +19,7 @@ public class Control implements ActionListener {
         
     public Control() {
         // Initialise le modèle :
-		MyProperties myProperties = new MyProperties(System.getProperty("user.dir") + "/src/main/resources/config.properties");
+		MyProperties myProperties = new MyProperties("config.properties");
 		model = new Model(this, myProperties);
 		logger.info(myProperties.getProperty("StartMessage"));
     	
