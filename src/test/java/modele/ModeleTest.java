@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-import controleur.MesProprietes;
+import controleur.MyProperties;
 import modele.grille.Grille;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -20,7 +20,7 @@ import controleur.Controle;
 class ModeleTest {
 	private static Modele modele;
 	private static Controle controle = Mockito.mock(Controle.class);
-	private static MesProprietes mesProprietes = Mockito.mock(MesProprietes.class);
+	private static MyProperties myProperties = Mockito.mock(MyProperties.class);
 
 	@BeforeAll
 	static void setUpBeforeClass() {
@@ -32,8 +32,8 @@ class ModeleTest {
 
 	@BeforeEach
 	void setUp() {
-		when(mesProprietes.getFichierInitial()).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
-		modele = new Modele(controle, mesProprietes);
+		when(myProperties.getFichierInitial()).thenReturn("/src/test/resources/grillesTest/init67-40.sud");
+		modele = new Modele(controle, myProperties);
 	}
 
 	@AfterEach

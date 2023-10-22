@@ -13,18 +13,15 @@ import java.awt.event.ActionListener;
 public class Controle implements ActionListener {
     private final Vue vue;
     private final Modele modele;
-
 	private static final Logger logger = LogManager.getLogger(Controle.class);
-
 	public Vue getVue() {return vue;}
-    
     public static void main(String[] args) {new Controle();}
         
     public Controle() {
 		logger.info("Démarrage Sudoku.");
         // Initialise le modèle :
-		MesProprietes mesProprietes = new MesProprietes(System.getProperty("user.dir") + "/src/main/resources/config.properties");
-		modele = new Modele(this, mesProprietes);
+		MyProperties myProperties = new MyProperties(System.getProperty("user.dir") + "/src/main/resources/config.properties");
+		modele = new Modele(this, myProperties);
     	
     	// Initialise la vue : 
     	vue = new Vue();
@@ -54,7 +51,7 @@ public class Controle implements ActionListener {
             		             modele.getGrille().getCase(numCase).construitLibelleCandidats());
         }
     }
-    
+
     public void demandeAfficheCommande(String texte) {
     	vue.getLogTextArea().insert(texte+'\n', 0);
     }
@@ -89,22 +86,19 @@ public class Controle implements ActionListener {
 		}
 	}
 
-	public void demandeHighlightCase(int numCase) {
+	public void highlightCase(int numCase) {
 		vue.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
 	}
-	
-    
+
     public void demandeIncrementRangResolution() {
     	int temp = Integer.parseInt(vue.getRangResolution().getText());
     	temp+=1;
     	vue.getRangResolution().setText(String.valueOf(temp));
     }
-    
+
     public void demandeDecrementRangResolution() {
     	int temp = Integer.parseInt(vue.getRangResolution().getText());
     	temp-=1;
     	vue.getRangResolution().setText(String.valueOf(temp));
     }
-    
-    
 }

@@ -8,10 +8,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-class InitialiseurDeGrille {
-	private Grille grille;
-    private static final Logger logger = LogManager.getLogger(InitialiseurDeGrille.class.getPackage().getName());
-	public InitialiseurDeGrille(Grille grille) {
+class GridInitializer {
+	private final Grille grille;
+    private static final Logger logger = LogManager.getLogger(GridInitializer.class.getPackage().getName());
+	public GridInitializer(Grille grille) {
 		this.grille = grille;
 	}
 

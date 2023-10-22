@@ -21,9 +21,9 @@ public class Grille {
     }
 
     public void init(String pathFile) {
-        InitialiseurDeGrille initialiseurDeGrille  = new InitialiseurDeGrille(this);
-        initialiseurDeGrille.init(pathFile);
-        initialiseurDeGrille.calculTousLesCandidats();
+        GridInitializer gridInitializer = new GridInitializer(this);
+        gridInitializer.init(pathFile);
+        gridInitializer.calculTousLesCandidats();
     }
 
 

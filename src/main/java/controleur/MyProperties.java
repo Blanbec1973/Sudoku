@@ -3,17 +3,18 @@ package controleur;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
 
-public class MesProprietes {
+public class MyProperties {
     Properties prop = new Properties();
-    private static final Logger logger = LogManager.getLogger(MesProprietes.class);
+    private static final Logger logger = LogManager.getLogger(MyProperties.class);
 
-    public MesProprietes(String nomFichier) {
-        try (InputStream input = new FileInputStream(nomFichier)) {
+    public MyProperties(String nomFichier) {
+        try (InputStream input = Files.newInputStream(Paths.get(nomFichier))) {
 
             // load a properties file
             prop.load(input);

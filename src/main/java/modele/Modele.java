@@ -2,7 +2,7 @@ package modele;
 
 import java.util.ArrayList;
 import controleur.Controle;
-import controleur.MesProprietes;
+import controleur.MyProperties;
 import modele.grille.CaseEnCours;
 import modele.grille.Grille;
 import resolution.*;
@@ -14,11 +14,11 @@ public class Modele {
 	private Historisation histo = new Historisation();
 
 
-	public Modele(Controle controle, MesProprietes mesProprietes) {
+	public Modele(Controle controle, MyProperties myProperties) {
 		this.controle = controle;
 		
         grille =new Grille();
-        grille.init(System.getProperty("user.dir")+mesProprietes.getFichierInitial());
+        grille.init(System.getProperty("user.dir")+ myProperties.getFichierInitial());
         
         histo.historiseGrille(grille);
         
@@ -54,7 +54,7 @@ public class Modele {
 			if (goPourChangement)
 				this.traiteChangement(i);
 			else
-				controle.demandeHighlightCase(listeMethodes.get(i).getNumCaseAction());
+				controle.highlightCase(listeMethodes.get(i).getNumCaseAction());
 		}
 		else {
 			 javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 
