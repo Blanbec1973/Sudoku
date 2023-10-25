@@ -1,13 +1,11 @@
 package resolution;
 
+import model.Model;
+import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
-import utils.Utils;
 
 import java.util.ArrayList;
-
-import model.grille.CandidatsCase;
 
 //Méthodes de résolution par ordre hiérarchique :
 //Méthodes qui permettent de trouver une case : 
@@ -31,6 +29,7 @@ public abstract class MethodeResolution {
 	protected Model model;
 	protected Grille grille;
 	protected ArrayList<CandidatsCase> tabCandidats;
+
 	protected int c1;
 	protected int c2;
 	protected int c3;
@@ -41,10 +40,11 @@ public abstract class MethodeResolution {
 	protected int numCaseAction;
 	protected int candidatAEliminer;
 	protected int solution;
-    private static final String COUPLE_CONJUGUEE = " Couple conjugué ";
-	private static final String ELIMINATION_CANDIDATS = ", élimination candidat ";
 
-	private static final String CANDIDAT =" Candidat ";
+	public int getC1() {return c1;}
+	public int getC2() {return c2;}
+	public int getC3() {return c3;}
+	public int getCandidatAEliminer() {return candidatAEliminer;}
 	
 	protected MethodeResolution(Model model, Grille grille) {
 		this.model = model;
@@ -68,98 +68,9 @@ public abstract class MethodeResolution {
 	public boolean isCaseTrouvee() {return caseTrouvee;}
 	public int getNumCaseAction() {return numCaseAction;}
 	public int getSolution() {return solution;}
-	public int getcandidatAEliminer() {return candidatAEliminer;}
 	
 	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
-	
-	public String calculMessageLog() {
-		// TODO : Externaliser la gestion des messages (1 seule repsonsabilité)
-		// TODO : Rendre dynamique la gestion des messages
-		String message = "";
-		message+= "Case x="+CaseEnCours.getXSearchEdition();
-		message+= " y="+CaseEnCours.getYSearchEdition();
-		message+= " ";
-		if (this instanceof CandidatUniqueDansCase) message+= "Candidat unique dans la case";
-		if (this instanceof CandidatUniqueDansLigne) message+= "Candidat unique dans la ligne "+CaseEnCours.getYSearchEdition();
-		if (this instanceof CandidatUniqueDansColonne) message+= "Candidat unique dans la colonne "+CaseEnCours.getXSearchEdition();
-		if (this instanceof CandidatUniqueDansRegion) message+= "Candidat unique dans la Région "+grille.getCaseEnCours().getRegion();
-		if (this instanceof AbsenceCandidatEnColonneDansLesAutresRegions)
-			message+="Candidat "+candidatAEliminer+ " en colonne "+CaseEnCours.getXSearchEdition()+" absent dans autres régions de la colonne.";
-		if (this instanceof PaireCandidats2CasesColonne) {
-			message+= " Couple ";
-			message+= String.valueOf(c1)+String.valueOf(c2);
-			message+= " dans deux cases de la colonne, élimination candidat ";
-			message+= String.valueOf(candidatAEliminer);
-			return message;
-		}
-		if (this instanceof PaireCandidats2CasesLigne) {
-			message+= " Couple ";
-			message+= String.valueOf(c1)+String.valueOf(c2);
-			message+= " dans deux cases de la ligne, élimination candidat ";
-			message+= String.valueOf(candidatAEliminer);
-			return message;
-		}
-		if (this instanceof PaireConjugueeEnLigne) {
-			message+= COUPLE_CONJUGUEE;
-			message+= String.valueOf(c1)+String.valueOf(c2);
-			message+= " dans deux cases de la ligne "+CaseEnCours.getYSearchEdition();
-			message+= ELIMINATION_CANDIDATS;
-			message+= String.valueOf(candidatAEliminer);
-			message+= " dans les autres cases de la ligne.";
-			return message;
-		}
-		if (this instanceof PaireConjugueeEnColonne) {
-			message+= COUPLE_CONJUGUEE;
-			message+= String.valueOf(c1)+String.valueOf(c2);
-			message+= " dans deux cases de la colonne "+CaseEnCours.getXSearchEdition();
-			message+= ELIMINATION_CANDIDATS;
-			message+= String.valueOf(candidatAEliminer);
-			message+= " dans les autres cases de la colonne.";
-			return message;
-		}
-		if (this instanceof PaireConjugueeEnRegion) {
-			message+= COUPLE_CONJUGUEE;
-			message+= String.valueOf(c1)+String.valueOf(c2);
-			message+= " dans deux cases de la région ";
-			message+= String.valueOf(Utils.calculNumeroRegion(CaseEnCours.getNumCase()));
-			message+= ELIMINATION_CANDIDATS;
-			message+= String.valueOf(candidatAEliminer);
-			message+= " dans les autres cases de la région.";
-			return message;
-		}
-		if (this instanceof AbsenceCandidatEnColonneDansLesAutresRegions) {
-			message+= CANDIDAT;
-			message+= candidatAEliminer;
-			message+= " absent des autres régions de la colonne ";
-			message+= CaseEnCours.getXSearchEdition();
-			message+= ELIMINATION_CANDIDATS;
-			message+= " dans les autres colonnes de la région.";
-			return message;
-		}
-		if (this instanceof AbsenceCandidatEnLigneDansLesAutresRegions) {
-			message+= CANDIDAT;
-			message+= candidatAEliminer;
-			message+= " absent des autres régions de la ligne ";
-			message+= CaseEnCours.getYSearchEdition();
-			message+= ELIMINATION_CANDIDATS;
-			message+= " dans les autres lignes de la région.";
-			return message;
-		}
-		if (this instanceof TripletteCandidatsEnLigne) {
-			message+= " Triplette ";
-			message+= String.valueOf(c1)+String.valueOf(c2)+String.valueOf(c3);
-			message+= " dans trois cases de la ligne, élimination candidat ";
-			message+= String.valueOf(candidatAEliminer);
-			return message;
-		}
-		if (this instanceof CandidatDansColonneUniqueDuneRegion) {
-			message+= CANDIDAT;
-			message+= String.valueOf(candidatAEliminer);
-			message+= " dans colonne unique de la région.";
-			return message;
-		}
-		message+=", solution="+solution;
-		return message;
-	}
+
+	public abstract String getSimpleName();
 	
 }

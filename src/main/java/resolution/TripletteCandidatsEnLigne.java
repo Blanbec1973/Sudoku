@@ -30,7 +30,12 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         numCaseAction=Utils.calculNumCase(xAction, yAction);
         return true;
 	}
-	
+
+	@Override
+	public String getSimpleName() {
+		return this.getClass().getSimpleName();
+	}
+
 	private boolean detecteConfiguration() {
         x2=0;
         x3=0;

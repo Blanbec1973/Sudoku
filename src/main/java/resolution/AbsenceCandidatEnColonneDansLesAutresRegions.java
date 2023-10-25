@@ -9,7 +9,12 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends AbsenceCandida
 	public AbsenceCandidatEnColonneDansLesAutresRegions(Model model, Grille grille) {
 		super(model,grille);
 	}
-	
+
+	@Override
+	public String getSimpleName() {
+		return this.getClass().getSimpleName();
+	}
+
 	protected boolean testCase(int rangCase, int candidat) {
 		return !(grille.getCaseEnCours().getRegion() != grille.getCase(CaseEnCours.getXSearch(),rangCase).getRegion() &&
 				grille.getCase(CaseEnCours.getXSearch(),rangCase).isCaseATrouver() &&

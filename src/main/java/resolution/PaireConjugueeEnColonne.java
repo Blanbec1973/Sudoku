@@ -12,7 +12,12 @@ public class PaireConjugueeEnColonne extends PaireConjuguee {
 	public PaireConjugueeEnColonne(Model model, Grille grille) {
 		super(model,grille);
 	}
-	
+
+	@Override
+	public String getSimpleName() {
+		return this.getClass().getSimpleName();
+	}
+
 	protected boolean detecteConfiguration() {
 		for (y2=0;y2<9;y2++) {
             if (y2 != CaseEnCours.getYSearch() &&

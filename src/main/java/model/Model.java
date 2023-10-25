@@ -1,26 +1,26 @@
 package model;
 
-import java.util.ArrayList;
 import control.Control;
-import control.MyProperties;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import resolution.*;
 
+import java.util.ArrayList;
+
 public class Model {
-	private Control control;
-	private Grille grille;
-	private ArrayList<MethodeResolution> listeMethodes;
-	private Historisation histo = new Historisation();
+	private final Control control;
+	private final Grille grille;
+	private final ArrayList<MethodeResolution> listeMethodes;
+	private final Historisation historizer = new Historisation();
 
 
-	public Model(Control control, MyProperties myProperties) {
+	public Model(Control control) {
 		this.control = control;
 		
         grille =new Grille();
         grille.init(control.getInitFileName());
         
-        histo.historiseGrille(grille);
+        historizer.historiseGrille(grille);
         
 	    listeMethodes = new ArrayList<>();
 	    listeMethodes.add(new CandidatUniqueDansCase(this,grille));
@@ -62,38 +62,39 @@ public class Model {
 	}
 	
 	private void traiteChangement(int numMethodeResolution) {
-		// Si une case a été trouvée :
+		MessageManager messageManager = new MessageManager(control.getProperties());
+		// Box is founded :
 		if (this.listeMethodes.get(numMethodeResolution).isCaseTrouvee()) {
 			setValeurCaseEnCours(listeMethodes.get(numMethodeResolution).getSolution(),
-					             listeMethodes.get(numMethodeResolution).calculMessageLog());
+					messageManager.createMessageSolution(listeMethodes.get(numMethodeResolution)));
 			return;
 		}
 		
-		//Il faut éliminer un candidat : 
-		elimineCandidatCase(listeMethodes.get(numMethodeResolution).getcandidatAEliminer(), 
-				            listeMethodes.get(numMethodeResolution).getNumCaseAction(), 
-				            listeMethodes.get(numMethodeResolution).calculMessageLog());
+		// A candidate must be eliminated :
+		elimineCandidatCase(listeMethodes.get(numMethodeResolution).getCandidatAEliminer(),
+				            listeMethodes.get(numMethodeResolution).getNumCaseAction(),
+				messageManager.createMessageElimination(listeMethodes.get(numMethodeResolution)));
 	}
 
 	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
-		control.demandeRefreshGrille(grille);
-		control.demandeAfficheCommande(message);
-		control.demandeIncrementRangResolution();
-		histo.historiseGrille(grille);
+		control.refreshDisplayGrid(grille);
+		control.insertDisplayMessage(message);
+		control.incrementResolutionRank();
+		historizer.historiseGrille(grille);
 	}
 	
 	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
 		grille.getCase(numCaseAction).elimineCandidat(candidatAEliminer);
-		control.demandeRefreshAffichageCase(numCaseAction);
-		control.demandeAfficheCommande(message);
-		control.demandeIncrementRangResolution();
-		histo.historiseGrille(grille);
+		control.refreshDisplayBox(numCaseAction);
+		control.insertDisplayMessage(message);
+		control.incrementResolutionRank();
+		historizer.historiseGrille(grille);
 	}
 
-	public void rechargeDernierHistorique() {
-		histo.supprimeDerniereGrille(grille);
+	public void reloadLastHistoricization() {
+		historizer.supprimeDerniereGrille(grille);
 	}
 
 }

@@ -1,29 +1,25 @@
 package control;
 
 import model.Model;
-import utils.Utils;
 import model.grille.Grille;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import utils.Utils;
 import view.MyView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Control implements ActionListener {
-	private MyProperties myProperties = new MyProperties("config.properties");
+	private final MyProperties myProperties = new MyProperties("config.properties");
 	private final MyView myView;
     private final Model model;
-	private static final Logger logger = LogManager.getLogger(Control.class);
 
-	private String initFileName;
+	private final String initFileName;
 	public MyView getVue() {return myView;}
     public static void main(String[] args) {new Control("");}
         
     public Control(String initFileName) {
 		this.initFileName = initFileName;
-		model = new Model(this, myProperties);
-		logger.info(myProperties.getProperty("StartMessage"));
+		model = new Model(this);
     	
     	// Initialise la vue : 
     	myView = new MyView();
@@ -32,14 +28,14 @@ public class Control implements ActionListener {
         myView.getBoutonRecule().addActionListener(this);
         myView.getMenuSave().addActionListener(this);
        
-        this.demandeRefreshGrille(model.getGrille());
+        this.refreshDisplayGrid(model.getGrille());
         myView.getFenetre().setVisible(true);
     }
     
-    public void demandeRefreshGrille(Grille g) {
+    public void refreshDisplayGrid(Grille g) {
 		myView.refreshGrilleDisplay(g);}
     
-    public void demandeRefreshAffichageCase (int numCase) {
+    public void refreshDisplayBox(int numCase) {
         if (model.getGrille().getCase(numCase).isCaseInitiale()) {
         	myView.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
         			            String.valueOf(model.getGrille().getCase(numCase).getValeur()));
@@ -55,13 +51,13 @@ public class Control implements ActionListener {
         }
     }
 
-    public void demandeAfficheCommande(String texte) {
-    	myView.getLogTextArea().insert(texte+'\n', 0);
+    public void insertDisplayMessage(String text) {
+    	myView.getLogTextArea().insert(text+'\n', 0);
     }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO : Externaliser le gestionnaire d'évènements du contrôleur
+		// TODO : Externalize event manager from controller
 		Object source = e.getSource();		
 		if (source == myView.getBoutonAvance()) {
 			model.detecteSuivant(false);
@@ -72,14 +68,14 @@ public class Control implements ActionListener {
 			return;
 		}
 		if (source == myView.getBoutonRecule() && myView.getRangResolution().getText().equals("0")) {
-			javax.swing.JOptionPane.showMessageDialog(null,"Position initiale.");
+			javax.swing.JOptionPane.showMessageDialog(null,myProperties.getProperty("InitialMessage"));
 			return;
 		}
 		
 		if (source == myView.getBoutonRecule()) {
-			model.rechargeDernierHistorique();
-			this.demandeRefreshGrille(model.getGrille());
-			this.demandeDecrementRangResolution();
+			model.reloadLastHistoricization();
+			this.refreshDisplayGrid(model.getGrille());
+			this.decrementResolutionRank();
 			myView.supprimeDernierLigneLog();
 			return;
 		}
@@ -94,13 +90,13 @@ public class Control implements ActionListener {
 		myView.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
 	}
 
-    public void demandeIncrementRangResolution() {
+    public void incrementResolutionRank() {
     	int temp = Integer.parseInt(myView.getRangResolution().getText());
     	temp+=1;
     	myView.getRangResolution().setText(String.valueOf(temp));
     }
 
-    public void demandeDecrementRangResolution() {
+    public void decrementResolutionRank() {
     	int temp = Integer.parseInt(myView.getRangResolution().getText());
     	temp-=1;
     	myView.getRangResolution().setText(String.valueOf(temp));
@@ -111,4 +107,6 @@ public class Control implements ActionListener {
 			return System.getProperty("user.dir")+ myProperties.getProperty("InitialFile");
 		return initFileName;
 	}
+
+    public MyProperties getProperties() {return myProperties;}
 }

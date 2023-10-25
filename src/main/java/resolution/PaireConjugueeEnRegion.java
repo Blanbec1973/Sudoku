@@ -13,6 +13,11 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 		super(model,grille);
 	}
 
+	@Override
+	public String getSimpleName() {
+		return this.getClass().getSimpleName();
+	}
+
 	protected boolean detecteConfiguration() {
 		if (grille.getCaseEnCours().getNombreCandidats() != 2) return false;
 		for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {

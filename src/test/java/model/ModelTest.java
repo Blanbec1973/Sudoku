@@ -20,7 +20,7 @@ import control.Control;
 class ModelTest {
 	private static Model model;
 	private static Control control = Mockito.mock(Control.class);
-	private static MyProperties myProperties = Mockito.mock(MyProperties.class);
+	private static MyProperties myProperties = new MyProperties("config.properties");
 
 	@BeforeAll
 	static void setUpBeforeClass() {
@@ -34,7 +34,8 @@ class ModelTest {
 	@BeforeEach
 	void setUp() {
 		when(control.getInitFileName()).thenReturn(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
-		model = new Model(control, myProperties);
+		when(control.getProperties()).thenReturn(myProperties);
+		model = new Model(control);
 	}
 
 	@AfterEach
@@ -75,7 +76,7 @@ class ModelTest {
 	@Test
 	void testRechargeDernierHistorique() {
 		model.detecteSuivant(true);
-		model.rechargeDernierHistorique();
+		model.reloadLastHistoricization();
 		assertTrue(model.getGrille().getCase(39).isCaseATrouver());
 	}
 

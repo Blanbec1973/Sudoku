@@ -28,4 +28,9 @@ public class CandidatUniqueDansLigne extends MethodeResolution {
 		
 	}
 
+	@Override
+	public String getSimpleName() {
+		return this.getClass().getSimpleName();
+	}
+
 }

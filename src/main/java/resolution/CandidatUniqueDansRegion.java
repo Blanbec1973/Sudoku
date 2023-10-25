@@ -30,4 +30,9 @@ public class CandidatUniqueDansRegion extends MethodeResolution {
 		return true;		
 	}
 
+	@Override
+	public String getSimpleName() {
+		return this.getClass().getSimpleName();
+	}
+
 }
