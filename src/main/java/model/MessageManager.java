@@ -5,7 +5,7 @@ import model.grille.CaseEnCours;
 import resolution.MethodeResolution;
 
 class MessageManager {
-    private MyProperties prop;
+    private final MyProperties prop;
 
     public MessageManager(MyProperties prop)  {
         this.prop = prop;

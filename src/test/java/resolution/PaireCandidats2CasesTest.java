@@ -46,19 +46,19 @@ class PaireCandidats2CasesTest {
 
     @Test
     void testCalculIntersections2Cases() {
-        boolean tab1 [] = {false, false, false, false, false, false, false, false, false, false};
+        boolean[] tab1 = {false, false, false, false, false, false, false, false, false, false};
         CandidatsCase c1 = new CandidatsCase(tab1);
         
-        boolean tab2 [] = {false, true, false, false, false, false, false, false, false, false};
+        boolean[] tab2 = {false, true, false, false, false, false, false, false, false, false};
         CandidatsCase c2 = new CandidatsCase(tab2);
         
-        boolean tab3 [] = {true, true, false, false, false, false, false, false, false, false};
+        boolean[] tab3 = {true, true, false, false, false, false, false, false, false, false};
         CandidatsCase c3 = new CandidatsCase(tab3);
         
-        boolean tab4 [] = {false, true, true, true, true, true, true, true, true, true};
+        boolean[] tab4 = {false, true, true, true, true, true, true, true, true, true};
         CandidatsCase c4 = new CandidatsCase(tab4);
         
-        boolean tab5 [] = {true, true, true, false, false, false, false, false, false, false};
+        boolean[] tab5 = {true, true, true, false, false, false, false, false, false, false};
         CandidatsCase c5 = new CandidatsCase(tab5);
 
         paireCandidats2Cases.calculIntersectionDeuxCases(c1, c2);

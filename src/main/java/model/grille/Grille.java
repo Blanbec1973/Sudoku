@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Grille {
-    private Case[][] mesCases = new Case [9][9];
-    private List<Integer> casesAtrouver;
+    private final Case[][] mesCases = new Case [9][9];
+    private final List<Integer> casesAtrouver;
         
     public Grille() {
         int numcase = 0;

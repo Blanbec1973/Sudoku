@@ -6,17 +6,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mockito;
-import resolution.CandidatUniqueDansCase;
 import resolution.MethodeResolution;
 
-import static model.MessageManager.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MessageManagerTest {
-    private MyProperties prop = Mockito.mock(MyProperties.class);
-    private MethodeResolution methodeResolution = Mockito.mock(MethodeResolution.class);
+    private final MyProperties prop = Mockito.mock(MyProperties.class);
+    private final MethodeResolution methodeResolution = Mockito.mock(MethodeResolution.class);
     private MessageManager messageManager;
 
     @BeforeAll

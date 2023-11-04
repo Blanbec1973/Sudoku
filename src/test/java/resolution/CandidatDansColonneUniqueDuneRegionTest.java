@@ -11,12 +11,11 @@ import model.grille.Grille;
 
 
 class CandidatDansColonneUniqueDuneRegionTest {
-	private static Grille grille;
 	private static CandidatDansColonneUniqueDuneRegion methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
-		grille = new Grille();
+		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatDansColonneUniqueDuneRegion.sud");
 		methode = new CandidatDansColonneUniqueDuneRegion(null, grille);
 	}

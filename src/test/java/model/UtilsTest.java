@@ -2,8 +2,6 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-
 import model.grille.CandidatsCase;
 import org.junit.jupiter.api.Test;
 import utils.Utils;
@@ -15,17 +13,17 @@ class UtilsTest {
     
     @Test
     void testCalculOuLogique2Candidats() {
-        boolean tab1 [] = {true, true, false, false, false, false, false, false, false, false};
-        boolean tab2 [] = {true, false, true, false, false, false, false, false, false, false};
-        boolean res  [] = {true, true, true, false, false, false, false, false, false, false};
-        assertTrue(Arrays.equals(res, Utils.calculOuLogique2Candidats(tab1, tab2)));
+        boolean[] tab1 = {true, true, false, false, false, false, false, false, false, false};
+        boolean[] tab2 = {true, false, true, false, false, false, false, false, false, false};
+        boolean[] res = {true, true, true, false, false, false, false, false, false, false};
+        assertArrayEquals(res, Utils.calculOuLogique2Candidats(tab1, tab2));
     }
     @Test
     void testCalculEtLogique2Candidats() {
-        boolean tab1 [] = {true, true, false, false, false, false, false, false, false, false};
-        boolean tab2 [] = {true, false, true, false, false, false, false, false, false, false};
-        boolean res  [] = {true, false, false, false, false, false, false, false, false, false};
-        assertTrue(Arrays.equals(res,Utils.calculEtLogique2Candidats(tab1, tab2)));
+        boolean[] tab1 = {true, true, false, false, false, false, false, false, false, false};
+        boolean[] tab2 = {true, false, true, false, false, false, false, false, false, false};
+        boolean[] res = {true, false, false, false, false, false, false, false, false, false};
+        assertArrayEquals(res, Utils.calculEtLogique2Candidats(tab1, tab2));
     }
             
     @Test

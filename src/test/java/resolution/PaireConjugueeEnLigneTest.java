@@ -9,12 +9,11 @@ import model.grille.CaseEnCours;
 import model.grille.Grille;
 
 class PaireConjugueeEnLigneTest {
-	private static Grille grille;
 	private static PaireConjugueeEnLigne methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
-		grille = new Grille();
+		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnLigne.sud");
 		methode = new PaireConjugueeEnLigne(null, grille);
 	}

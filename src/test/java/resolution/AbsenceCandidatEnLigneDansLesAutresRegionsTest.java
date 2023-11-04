@@ -13,12 +13,11 @@ import model.grille.Grille;
 
 class AbsenceCandidatEnLigneDansLesAutresRegionsTest {
 
-	private static Grille grille;
 	private static AbsenceCandidatEnLigneDansLesAutresRegions methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
-		grille = new Grille();
+		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/AbsenceCandidatEnLigneDansLesAutresRegions.sud");
 		methode = new AbsenceCandidatEnLigneDansLesAutresRegions(null, grille);
 	}

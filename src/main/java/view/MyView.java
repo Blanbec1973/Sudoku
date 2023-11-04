@@ -7,15 +7,15 @@ import java.awt.*;
 import model.grille.Grille;
 
 public class MyView {
-	private JFrame fenetre = new JFrame();
-    private JButton [][] maGrilleDisplay = new JButton [9][9];
+	private final JFrame fenetre = new JFrame();
+    private final JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille  panGrille = new MonPaneauGrille();
-    private TextArea logTextArea  = new TextArea("Grille initiale chargée.",100,100);
+    private final TextArea logTextArea  = new TextArea("Grille initiale chargée.",100,100);
     private final JScrollPane  panCommande = new JScrollPane(logTextArea);
-    private JButton boutonAvance= new JButton(">>");
-    private JButton boutonExplique= new JButton("?");
-    private JButton boutonRecule= new JButton("<<");
-    private JLabel rangResolution= new JLabel("0");
+    private final JButton boutonAvance= new JButton(">>");
+    private final JButton boutonExplique= new JButton("?");
+    private final JButton boutonRecule= new JButton("<<");
+    private final JLabel rangResolution= new JLabel("0");
     private final JMenuItem menuSave = new JMenuItem("Save as ...");
 
     public JButton[][] getMaGrilleDisplay() {return maGrilleDisplay;}

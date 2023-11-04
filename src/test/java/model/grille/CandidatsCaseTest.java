@@ -1,10 +1,9 @@
 package model.grille;
 
-import java.util.Arrays;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class CandidatsCaseTest {
     CandidatsCase c1, c2, c3, c4, c5;
@@ -14,19 +13,19 @@ class CandidatsCaseTest {
     
     @BeforeEach
     void setUp() {
-        boolean tab1 [] = {false, false, false, false, false, false, false, false, false, false};
+        boolean[] tab1 = {false, false, false, false, false, false, false, false, false, false};
         this.c1 = new CandidatsCase(tab1);
         
-        boolean tab2 [] = {false, true, false, false, false, false, false, false, false, false};
+        boolean[] tab2 = {false, true, false, false, false, false, false, false, false, false};
         this.c2 = new CandidatsCase(tab2);
         
-        boolean tab3 [] = {true, true, false, false, false, false, false, false, false, false};
+        boolean[] tab3 = {true, true, false, false, false, false, false, false, false, false};
         this.c3 = new CandidatsCase(tab3);
         
-        boolean tab4 [] = {false, true, true, true, true, true, true, true, true, true};
+        boolean[] tab4 = {false, true, true, true, true, true, true, true, true, true};
         this.c4 = new CandidatsCase(tab4);
         
-        boolean tab5 [] = {true, true, true, true, true, true, true, true, true, true};
+        boolean[] tab5 = {true, true, true, true, true, true, true, true, true, true};
         this.c5 = new CandidatsCase(tab5);
     }
       
@@ -43,14 +42,14 @@ class CandidatsCaseTest {
     void testelimineCandidat() {
         c2.elimineCandidat(1);
         assertEquals(0, c2.getNombreCandidats());
-        assertTrue(Arrays.equals(c1.getCandidats(), c2.getCandidats()));    
+        assertArrayEquals(c1.getCandidats(), c2.getCandidats());
     }
     
     @Test
     void testSetCandidats() {
         c1.setCandidats(c5.getCandidats());
         assertEquals(9, c1.getNombreCandidats());
-        assertTrue(Arrays.equals(c1.getCandidats(), c5.getCandidats())); 
+        assertArrayEquals(c1.getCandidats(), c5.getCandidats());
     }
     
     @Test

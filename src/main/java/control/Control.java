@@ -9,7 +9,6 @@ public class Control  {
 	private final MyProperties myProperties = new MyProperties("config.properties");
 	private final MyView myView;
     private final Model model;
-	private final EventManager eventManager;
 	private final String initFileName;
 	public MyView getVue() {return myView;}
 	public Model getModel() {return model;}
@@ -21,7 +20,7 @@ public class Control  {
     	
     	// Initialize view and eventManager :
     	myView = new MyView();
-		eventManager = new EventManager(this, myView);
+		EventManager eventManager = new EventManager(this, myView);
         myView.getBoutonAvance().addActionListener(eventManager);
         myView.getBoutonExplique().addActionListener(eventManager);
         myView.getBoutonRecule().addActionListener(eventManager);

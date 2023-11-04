@@ -26,9 +26,9 @@ import java.util.ArrayList;
 
 
 public abstract class MethodeResolution {
-	protected Model model;
-	protected Grille grille;
-	protected ArrayList<CandidatsCase> tabCandidats;
+	protected final Model model;
+	protected final Grille grille;
+	protected final ArrayList<CandidatsCase> tabCandidats;
 
 	protected int c1;
 	protected int c2;

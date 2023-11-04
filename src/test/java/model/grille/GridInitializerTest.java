@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,18 +18,12 @@ class GridInitializerTest {
         gridInitializer = new GridInitializer(grille);
 	}
 
-	@AfterAll
-	static void tearDownAfterClass() {
-	}
 
 	@BeforeEach
 	void setUp() {
         gridInitializer.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
 	}
 
-	@AfterEach
-	void tearDown() {
-	}
 
 	@Test
 	void testInitialiseurDeGrille() {

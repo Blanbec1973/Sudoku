@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class MyProperties {
-    Properties prop = new Properties();
+    final Properties prop = new Properties();
     private static final Logger logger = LogManager.getLogger(MyProperties.class);
 
     public MyProperties(String nomFichier) {

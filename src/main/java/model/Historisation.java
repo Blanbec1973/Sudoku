@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Historisation {
-	private List<Grille> histoGrille = new ArrayList<>();
+	private final List<Grille> histoGrille = new ArrayList<>();
 	
 	
 	public Grille getHistoGrille(int i) {return histoGrille.get(i);}

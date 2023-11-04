@@ -2,10 +2,7 @@ package resolution;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.grille.CaseEnCours;
@@ -13,26 +10,13 @@ import model.grille.Grille;
 
 
 class CandidatUniqueDansColonneTest {
-	private static Grille grille;
 	private static CandidatUniqueDansColonne methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
-		grille = new Grille();
+		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansColonne.sud");
 		methode = new CandidatUniqueDansColonne(null, grille);
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() {
-	}
-
-	@BeforeEach
-	void setUp() {
-	}
-
-	@AfterEach
-	void tearDown() {
 	}
 
 	@Test

@@ -9,12 +9,11 @@ import model.grille.CaseEnCours;
 import model.grille.Grille;
 
 class CandidatUniqueDansCaseTest {
-	private static Grille grille;
 	private static CandidatUniqueDansCase methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
-		grille = new Grille();
+		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansCase.sud");
 		methode = new CandidatUniqueDansCase(null, grille);
 	}

@@ -13,7 +13,7 @@ class ActingOnView {
         myView.getFenetre().setSize(1200,660);
         myView.getFenetre().setResizable(false);
         myView.getFenetre().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Container contenu= myView.getFenetre().getContentPane();
+        Container container= myView.getFenetre().getContentPane();
 
         JMenuBar barreMenus = new JMenuBar();
         myView.getFenetre().setJMenuBar(barreMenus);
@@ -39,14 +39,14 @@ class ActingOnView {
         myView.getPanCommande().setMinimumSize(d2);
         myView.getPanCommande().setSize(600,660);
 
-        JSplitPane split = new JSplitPane(SwingConstants.VERTICAL, myView.getPanGrille(), myView.getPanCommande());
-        contenu.add(split);
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, myView.getPanGrille(), myView.getPanCommande());
+        container.add(split);
 
         for (int y=0;y<9;y++) {
             for (int x=0;x<9;x++) {
                 myView.getMaGrilleDisplay()[x][y] = new JButton();
-                formateMaCase(myView.getMaGrilleDisplay()[x][y]);
-                myView.getMaGrilleDisplay()[x][y].setText(String.valueOf(x)+String.valueOf(y));
+                formatMaCase(myView.getMaGrilleDisplay()[x][y]);
+                myView.getMaGrilleDisplay()[x][y].setText(x +String.valueOf(y));
                 myView.getPanGrille().add(myView.getMaGrilleDisplay()[x][y]);
             }
         }
@@ -56,18 +56,18 @@ class ActingOnView {
         myView.getPanGrille().add(myView.getBoutonExplique());
     }
 
-    private static void formateMaCase(JButton bouton) {
+    private static void formatMaCase(JButton button) {
         Dimension expectedDimension = new Dimension(54, 54);
-        bouton.setPreferredSize(expectedDimension);
-        bouton.setMaximumSize(expectedDimension);
-        bouton.setMinimumSize(expectedDimension);
-        bouton.setSize(50, 50);
-        bouton.setBackground(Color.WHITE);
-        Border lineborder = BorderFactory.createLineBorder(Color.black, 1);
-        bouton.setBorder(lineborder);
-        bouton.setHorizontalTextPosition(SwingConstants.CENTER);
-        bouton.setVerticalTextPosition(SwingConstants.CENTER);
-        bouton.setHorizontalAlignment(SwingConstants.CENTER);
-        bouton.setVerticalAlignment(SwingConstants.CENTER);
+        button.setPreferredSize(expectedDimension);
+        button.setMaximumSize(expectedDimension);
+        button.setMinimumSize(expectedDimension);
+        button.setSize(50, 50);
+        button.setBackground(Color.WHITE);
+        Border lineBorder = BorderFactory.createLineBorder(Color.black, 1);
+        button.setBorder(lineBorder);
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
+        button.setHorizontalAlignment(SwingConstants.CENTER);
+        button.setVerticalAlignment(SwingConstants.CENTER);
     }
 }

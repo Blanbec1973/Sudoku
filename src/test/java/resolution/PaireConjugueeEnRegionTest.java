@@ -10,12 +10,11 @@ import model.grille.Grille;
 
 
 class PaireConjugueeEnRegionTest {
-	private static Grille grille;
 	private static PaireConjugueeEnRegion methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
-		grille = new Grille();
+		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnRegion.sud");
 		methode = new PaireConjugueeEnRegion(null, grille);
 	}

@@ -4,10 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class HistorisationTest {
@@ -19,18 +16,6 @@ class HistorisationTest {
 		grilleOrigine =new Grille();
         grilleOrigine.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
         histo = new Historisation();
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() {
-	}
-
-	@BeforeEach
-	void setUp() {
-	}
-
-	@AfterEach
-	void tearDown() {
 	}
 
 	@Test
