@@ -43,7 +43,7 @@ public class Utils {
     public static int calculNombreCaseATrouverDansLigne(Grille maGrille, int ySearch) {
         int resultat = 0;
         for (int i=0;i<9;i++) {
-            if (maGrille.getCase(i, ySearch).nEstPasCaseInitiale() && maGrille.getCase(i, ySearch).nEstPasCaseTrouvee())
+            if (maGrille.nEstPasCaseInitiale(calculNumCase(i,ySearch)) && maGrille.nEstPasCaseTrouvee(calculNumCase(i,ySearch)))
                 resultat+=1;
         }
         return resultat;

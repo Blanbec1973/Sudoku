@@ -5,11 +5,16 @@ public class CandidatsCase {
     private int nombreCandidats;
     
     public CandidatsCase() {
+        setAllCandidatsToTrue();
+    }
+
+    public void setAllCandidatsToTrue() {
         for (int i=0;i<10;i++) {this.candidats[i]=true;}
         this.nombreCandidats=10;
         this.elimineCandidat(0);
     }
-    
+
+
     public CandidatsCase (boolean [] entree) {this.candidats = entree; this.calculNombreCandidats();}
 
     public boolean[] getCandidats() {return candidats;}

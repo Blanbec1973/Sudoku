@@ -25,6 +25,7 @@ public class Control  {
         myView.getBoutonExplique().addActionListener(eventManager);
         myView.getBoutonRecule().addActionListener(eventManager);
         myView.getMenuSave().addActionListener(eventManager);
+		myView.getMenuOpen().addActionListener(eventManager);
        
         this.refreshDisplayGrid(model.getGrille());
         myView.getFenetre().setVisible(true);
@@ -34,18 +35,18 @@ public class Control  {
 		myView.refreshGrilleDisplay(g);}
     
     public void refreshDisplayBox(int numCase) {
-        if (model.getGrille().getCase(numCase).isCaseInitiale()) {
+        if (model.getGrille().isCaseInitiale(numCase)) {
         	myView.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-        			            String.valueOf(model.getGrille().getCase(numCase).getValeur()));
+        			            String.valueOf(model.getGrille().getValeurCase(numCase)));
         	return;
         }
-    	if (model.getGrille().getCase(numCase).isCaseTrouvee()) {
+    	if (model.getGrille().isCaseTrouvee(numCase)) {
             myView.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-            		    String.valueOf(model.getGrille().getCase(numCase).getValeur()));
+            		    String.valueOf(model.getGrille().getValeurCase(numCase)));
         }
         else {
             myView.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-            		             model.getGrille().getCase(numCase).construitLibelleCandidats());
+            		             model.getGrille().construitLibelleCandidats(numCase));
         }
     }
 
@@ -71,4 +72,12 @@ public class Control  {
 	}
 
     public MyProperties getProperties() {return myProperties;}
+
+	void reloadGrille(String fileName2) {
+		model.reload(fileName2);
+		this.refreshDisplayGrid(model.getGrille());
+		myView.getRangResolution().setText("0");
+		myView.getLogTextArea().setText("Grille initiale chargée.");
+	}
 }
+

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import control.MyProperties;
+import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,10 +40,10 @@ class ModelTest {
 	@Test
 	void testDetecteSuivant() {
 		model.detecteSuivant(false);
-		assertEquals(39, model.getGrille().getCaseEnCours().getNumCase());
-		assertTrue(model.getGrille().getCase(39).isCaseATrouver());
+		assertEquals(39, CaseEnCours.getNumCase());
+		assertTrue(model.getGrille().isCaseATrouver(39));
 		model.detecteSuivant(true);
-		assertEquals(6, model.getGrille().getCase(39).getValeur());
+		assertEquals(6, model.getGrille().getValeurCase(39));
 		
 		model.detecteSuivant(true);
 		model.detecteSuivant(true);
@@ -50,10 +51,10 @@ class ModelTest {
 		model.detecteSuivant(true);
 		
 		model.detecteSuivant(false);
-		assertEquals(36, model.getGrille().getCaseEnCours().getNumCase());
-		assertTrue(model.getGrille().getCase(18).getCandidats().isCandidat(7));
+		assertEquals(36, CaseEnCours.getNumCase());
+		assertTrue(model.getGrille().isCandidat(18,7));
 		model.detecteSuivant(true);
-		assertFalse(model.getGrille().getCase(18).getCandidats().isCandidat(7));
+		assertFalse(model.getGrille().isCandidat(18, 7));
 		
 	}
 
@@ -61,7 +62,7 @@ class ModelTest {
 	void testRechargeDernierHistorique() {
 		model.detecteSuivant(true);
 		model.reloadLastHistoricization();
-		assertTrue(model.getGrille().getCase(39).isCaseATrouver());
+		assertTrue(model.getGrille().isCaseATrouver(39));
 	}
 
 }

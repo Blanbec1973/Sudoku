@@ -15,7 +15,7 @@ public class CandidatUniqueDansColonne extends MethodeResolution {
 		caseTrouvee = false;
 		int candidat;
 		for (candidat=1;candidat<10;candidat++) {
-			if (grille.getCaseEnCours().isCandidat(candidat) &&
+			if (grille.isCandidat(CaseEnCours.getNumCase(),candidat) &&
 				!grille.checkPresenceCandidatColonne(candidat, CaseEnCours.getXSearch(),CaseEnCours.getYSearch())) {
 				caseTrouvee = true;
   	            break;

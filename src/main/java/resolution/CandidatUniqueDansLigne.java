@@ -13,7 +13,7 @@ public class CandidatUniqueDansLigne extends MethodeResolution {
 		caseTrouvee = false;
 		int candidat =0;
 		for (candidat=1;candidat<10;candidat++) {
-  	        if (grille.getCaseEnCours().isCandidat(candidat) &&
+  	        if (grille.isCandidat(CaseEnCours.getNumCase(),candidat) &&
 	            !grille.checkPresenceCandidatLigne(candidat, CaseEnCours.getXSearch(),CaseEnCours.getYSearch())) {
   	        	caseTrouvee = true;
   	           	break;

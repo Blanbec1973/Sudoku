@@ -1,14 +1,10 @@
-package model;
-
-import model.grille.CandidatsCase;
-import model.grille.Grille;
+package model.grille;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Historisation {
 	private final List<Grille> histoGrille = new ArrayList<>();
-	
 	
 	public Grille getHistoGrille(int i) {return histoGrille.get(i);}
 	public List<Grille> getHistoGrille() {return histoGrille;}
@@ -34,7 +30,7 @@ public class Historisation {
 		}
 		
 		for (int i=1;i<82;i++) {		
-			cible.getCase(i).setValeurCase(source.getCase(i).getValeur());
+			cible.getCase(i).setValeurCase(source.getValeurCase(i));
 			cible.getCase(i).setEtatCase(source.getCase(i).getEtatCase());
 			this.copyCandidats(source.getCase(i).getCandidats(), cible.getCase(i).getCandidats());				                                                          
 		}
@@ -48,4 +44,9 @@ public class Historisation {
 				candidats2.elimineCandidat(i);
 		}
 	}
+
+    public void reloadGrille(Grille grille) {
+		histoGrille.clear();
+		historiseGrille(grille);
+    }
 }

@@ -24,7 +24,7 @@ class TripletteCandidatsEnLigneTest {
 	@Test
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(74);
-		grille.getCase(75).elimineCandidat(8);
+		grille.elimineCandidat(75, 8);
 		assertTrue(methode.traiteCaseEnCours(false));
 		assertEquals(76,methode.numCaseAction);
 		assertEquals(3,methode.candidatAEliminer);

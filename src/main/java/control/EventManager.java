@@ -38,8 +38,14 @@ class EventManager implements ActionListener {
         }
 
         if (source == myView.getMenuSave()) {
-            String fileName = myView.afficheSaveFileDialog();
+            String fileName = myView.afficheSaveFileDialog("SAVE");
             if (!fileName.isEmpty()) GridSaver.saveGrid(control.getModel().getGrille(),fileName);
+        }
+
+        if (source == myView.getMenuOpen()) {
+            String fileName2 = myView.afficheSaveFileDialog("OPEN");
+            System.out.println("Demande chargement fichier : "+fileName2);
+            if (!fileName2.isEmpty()) control.reloadGrille(fileName2);
         }
     }
     public void decrementResolutionRank() {

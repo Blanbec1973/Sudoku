@@ -21,17 +21,39 @@ public class Grille {
     }
 
     public void init(String pathFile) {
+        casesAtrouver.clear();
         GridInitializer gridInitializer = new GridInitializer(this);
         gridInitializer.init(pathFile);
         gridInitializer.calculTousLesCandidats();
     }
 
-
     public Case getCase(int x, int y) {return mesCases[x][y];}
     public Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
     public Case getCaseEnCours() {return mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()];}
     public List<Integer> getCasesAtrouver() {return casesAtrouver;}
-    
+    public CandidatsCase getCandidats(int numCase) {return this.getCase(numCase).getCandidats();}
+    public void setAllCandidatsToFalse(int numCase) {this.getCase(numCase).getCandidats().setAllCandidatsToFalse();}
+    public void setCandidat(int numCase, int candidat) {this.getCase(numCase).getCandidats().setCandidat(candidat);}
+    public void elimineCandidat (int numCase, int candidatAEliminer) {
+        this.getCase(numCase).elimineCandidat(candidatAEliminer);
+    }
+
+    public boolean isCaseInitiale(int numCase) {return this.getCase(numCase).isCaseInitiale();}
+    public boolean isCaseTrouvee(int numCase) {return this.getCase(numCase).isCaseTrouvee();}
+    public boolean isCaseATrouver(int numCase) {return this.getCase(numCase).isCaseATrouver();}
+    public boolean nEstPasCaseInitiale(int numCase) {return this.getCase(numCase).nEstPasCaseInitiale();}
+    public boolean nEstPasCaseTrouvee(int numCase) {return this.getCase(numCase).nEstPasCaseTrouvee();}
+    public boolean contientCandidatUnique(int numCase) {return this.getCase(numCase).contientCandidatUnique();}
+    public boolean isCandidat(int numCase, int candidat) {return this.getCase(numCase).isCandidat(candidat);}
+    public int getValeurCase(int numCase) {return this.getCase(numCase).getValeur();}
+    public int getNombreCandidats(int numCase) {return this.getCase(numCase).getNombreCandidats();}
+    public int getxCase(int numCase) { return this.getCase(numCase).getxCase();}
+    public int getyCase(int numCase) { return this.getCase(numCase).getyCase();}
+    public int getRegion(int numCase) {return this.getCase(numCase).getRegion();}
+    public boolean [] getCandidatsTabBoolean(int numCase) {return this.getCase(numCase).getCandidatsTabBoolean();}
+    public int calculValeurUnique(int numCase) {return this.getCase(numCase).calculValeurUnique();}
+    public String construitLibelleCandidats(int numCase) {return this.getCase(numCase).construitLibelleCandidats();}
+
     @Override
     public String toString() {
     	StringBuilder sb = new StringBuilder();

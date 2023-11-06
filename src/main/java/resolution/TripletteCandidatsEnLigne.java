@@ -1,9 +1,9 @@
 package resolution;
 
+import model.Model;
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
 import utils.Utils;
 
 public class TripletteCandidatsEnLigne extends MethodeResolution {
@@ -41,7 +41,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         x3=0;
 
         while (x2<9) {
-            if (x2!=CaseEnCours.getXSearch() && grille.getCase(x2,CaseEnCours.getYSearch()).isCaseATrouver()) {
+            if (x2!=CaseEnCours.getXSearch() && grille.isCaseATrouver(Utils.calculNumCase(x2,CaseEnCours.getYSearch()))) {
                 x3=x2;
                 while (x3<9) {
                     if (testTriplette()) {return true;}
@@ -54,16 +54,16 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
 	}
 	
 	private boolean testTriplette() {
-		 return (x3!=x2 && x3!=CaseEnCours.getXSearch() && grille.getCase(x3,CaseEnCours.getYSearch()).isCaseATrouver() &&
+		 return (x3!=x2 && x3!=CaseEnCours.getXSearch() && grille.isCaseATrouver(Utils.calculNumCase(x3,CaseEnCours.getYSearch())) &&
 		     this.detecteTripletteEnLigne(CaseEnCours.getYSearch(), x2, x3) && this.detecteCandidatAEliminer()) ;
 	}
 	
 	private boolean detecteTripletteEnLigne(int ySearch, int x2, int x3) {
         CandidatsCase testCandidats = new CandidatsCase();
-        testCandidats.setCandidats(Utils.calculOuLogique2Candidats(grille.getCaseEnCours().getCandidatsTabBoolean(),
-                                                       grille.getCase(x2, ySearch).getCandidatsTabBoolean()));
+        testCandidats.setCandidats(Utils.calculOuLogique2Candidats(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
+                                                       grille.getCandidatsTabBoolean(Utils.calculNumCase(x2, ySearch))));
         testCandidats.setCandidats(Utils.calculOuLogique2Candidats(testCandidats.getCandidats(),
-                                                       grille.getCase(x3, ySearch).getCandidatsTabBoolean()));
+                                                       grille.getCandidatsTabBoolean(Utils.calculNumCase(x3, ySearch))));
         if (testCandidats.getNombreCandidats()>3) {return false;}
         
         c1 = Utils.trouveCandidatNumero(testCandidats, 1);
@@ -75,19 +75,19 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
 
 	private boolean detecteCandidatAEliminer() {
 		for (int abs = 0 ; abs < 9 ; abs++) {
-			if (grille.getCase(abs, CaseEnCours.getYSearch()).isCaseATrouver() &&
+			if (grille.isCaseATrouver(Utils.calculNumCase(abs, CaseEnCours.getYSearch())) &&
 				abs != CaseEnCours.getXSearch() && abs != x2 && abs != x3) {
-				if (grille.getCase(abs, CaseEnCours.getYSearch()).isCandidat(c1)) {
+				if (grille.isCandidat(Utils.calculNumCase(abs, CaseEnCours.getYSearch()), c1)) {
 					candidatAEliminer = c1;
 					xAction = abs;
 					return true;
 				}
-				if (grille.getCase(abs, CaseEnCours.getYSearch()).isCandidat(c2)) {
+				if (grille.isCandidat(Utils.calculNumCase(abs, CaseEnCours.getYSearch()), c2)) {
 					candidatAEliminer = c2;
 					xAction = abs;
 					return true;
 				}
-				if (grille.getCase(abs, CaseEnCours.getYSearch()).isCandidat(c3)) {
+				if (grille.isCandidat(Utils.calculNumCase(abs, CaseEnCours.getYSearch()), c3)) {
 					candidatAEliminer = c3;
 					xAction = abs;
 					return true;

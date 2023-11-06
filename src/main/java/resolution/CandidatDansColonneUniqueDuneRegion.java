@@ -33,7 +33,7 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 		// Pour tous les candidats de la case en cours, je regarde si je ne suis que dans la colonne de ma région
 		for (int i=1; i < 9 ;i++) {
 			candidatAEliminer = i;
-			if (grille.getCaseEnCours().isCandidat(i) && candidatDansColonneUnique()) return true;
+			if (grille.isCandidat(CaseEnCours.getNumCase(), i) && candidatDansColonneUnique()) return true;
 		}
 	
 		return false;
@@ -46,11 +46,11 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 
 		// vérification absence candidat col1 :
 		for (int i=CaseEnCours.getyRegion(); i<CaseEnCours.getyRegion()+3;i++) {
-			if (grille.getCase(col1, i).isCaseATrouver() && grille.getCase(col1, i).isCandidat(candidatAEliminer)) return false;
+			if (grille.isCaseATrouver(Utils.calculNumCase(col1, i)) && grille.isCandidat(Utils.calculNumCase(col1, i), candidatAEliminer)) return false;
 		}
 		
 		for (int i=CaseEnCours.getyRegion(); i<CaseEnCours.getyRegion()+3;i++) {
-			if (grille.getCase(col2, i).isCaseATrouver() && grille.getCase(col2, i).isCandidat(candidatAEliminer)) return false;
+			if (grille.isCaseATrouver(Utils.calculNumCase(col2, i)) && grille.isCandidat(Utils.calculNumCase(col2, i), candidatAEliminer)) return false;
 		}
 		return true;
 	}
@@ -59,8 +59,8 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 		// Recherche présence candidatAEliminer dans les autres régions de la colonne
 		for (int i=0;i<9;i++) {
 			if (CaseEnCours.getNumRegion() != Utils.calculNumeroRegion(Utils.calculNumCase(numColonne,i)) &&
-			    grille.getCase(numColonne,i).isCaseATrouver() &&
-					grille.getCase(numColonne,i).isCandidat(candidatAEliminer)) {
+			    grille.isCaseATrouver(Utils.calculNumCase(numColonne,i)) &&
+					grille.isCandidat(Utils.calculNumCase(numColonne,i),candidatAEliminer)) {
 				xAction=numColonne;
 				yAction=i;
 				numCaseAction=Utils.calculNumCase(xAction,yAction);

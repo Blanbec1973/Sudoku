@@ -1,5 +1,6 @@
 package resolution;
 
+import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.Model;
 import utils.Utils;
@@ -13,13 +14,13 @@ public abstract class PaireConjuguee extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		if (grille.getCaseEnCours().getNombreCandidats() != 2) return false;
+		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) != 2) return false;
 		
 		boolean trouve = this.detecteConfiguration();
 		if (!trouve) {return false;}
 
-		c1 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 1);
-        c2 = Utils.trouveCandidatNumero(grille.getCaseEnCours().getCandidats(), 2);
+		c1 = Utils.trouveCandidatNumero(grille.getCandidats(CaseEnCours.getNumCase()), 1);
+        c2 = Utils.trouveCandidatNumero(grille.getCandidats(CaseEnCours.getNumCase()), 2);
 		
         return this.detecteCandidatAEliminer();
 	}

@@ -25,12 +25,12 @@ class PaireCandidats2CasesTest {
 
     @Test
 	void testInserePaireCandidatsDansTab() {
-		grille.getCaseEnCours().getCandidats().setAllCandidatsToFalse();
-		grille.getCaseEnCours().getCandidats().setCandidat(1);
-		grille.getCaseEnCours().getCandidats().setCandidat(5);
-		grille.getCaseEnCours().getCandidats().setCandidat(6);
-		grille.getCaseEnCours().getCandidats().setCandidat(7);
-		grille.getCaseEnCours().getCandidats().setCandidat(8);
+		grille.setAllCandidatsToFalse(CaseEnCours.getNumCase());
+		grille.setCandidat(CaseEnCours.getNumCase(),1);
+		grille.setCandidat(CaseEnCours.getNumCase(), 5);
+		grille.setCandidat(CaseEnCours.getNumCase(), 6);
+		grille.setCandidat(CaseEnCours.getNumCase(), 7);
+		grille.setCandidat(CaseEnCours.getNumCase(), 8);
 		paireCandidats2Cases.inserePaireCandidatsDansTab();
     	assertEquals("100010000",paireCandidats2Cases.tabCandidats.get(0).toString());
     	assertEquals("100001000",paireCandidats2Cases.tabCandidats.get(1).toString());

@@ -3,6 +3,7 @@ package model;
 import control.Control;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
+import model.grille.Historisation;
 import resolution.*;
 
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class Model {
 	}
 	
 	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
-		grille.getCase(numCaseAction).elimineCandidat(candidatAEliminer);
+		grille.elimineCandidat(numCaseAction, candidatAEliminer);
 		control.refreshDisplayBox(numCaseAction);
 		control.insertDisplayMessage(message);
 		control.incrementResolutionRank();
@@ -97,4 +98,8 @@ public class Model {
 		historizer.supprimeDerniereGrille(grille);
 	}
 
+    public void reload(String fileName) {
+		grille.init(fileName);
+		historizer.reloadGrille(grille);
+    }
 }

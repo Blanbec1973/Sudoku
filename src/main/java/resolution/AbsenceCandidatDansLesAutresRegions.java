@@ -1,5 +1,6 @@
 package resolution;
 
+import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.Model;
 import utils.Utils;
@@ -25,7 +26,7 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 	private boolean detecteConfiguration() {
 		boolean candidatNonTrouve;
 		for (int candidat=1;candidat<10;candidat++) {
-			if (grille.getCaseEnCours().isCandidat(candidat)) {
+			if (grille.isCandidat(CaseEnCours.getNumCase(),candidat)) {
 				candidatNonTrouve = true;
 				candidatAEliminer = candidat;
 				for (int i=0;i<9;i++) {

@@ -21,7 +21,7 @@ class GridSaver {
 		
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(fileName))) {
 			for (int numCase = 1; numCase < 82; numCase++) {
-				writeLine.append(grille.getCase(numCase).getValeur());
+				writeLine.append(grille.getValeurCase(numCase));
 				if (numCase % 9 == 0) {
 					b.write(writeLine.toString());
 					if (numCase != 81) b.newLine();

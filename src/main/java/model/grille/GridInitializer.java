@@ -26,10 +26,11 @@ class GridInitializer {
                 for (int x=0;x<9;x++) {
                     valeur = Integer.parseInt(readLine.substring(x,x+1));
                     if (valeur != 0) {
-                        grille.getCase(x, y).setCaseInitiale(valeur);
+                        grille.getCase(x,y).setCaseInitiale(valeur);
                     }
                     else {
                     	grille.getCasesAtrouver().add(indexCase);
+                        grille.getCase(x,y).getCandidats().setAllCandidatsToTrue();
                     }
                     indexCase+=1;
                 }
@@ -48,7 +49,6 @@ class GridInitializer {
     		this.calculCandidatsInitiaux(CaseEnCours.getXSearch(), CaseEnCours.getYSearch());
     	}
     }
-    
     
     private void calculCandidatsInitiaux(int x, int y) {
         for (int valeur=1;valeur<10;valeur++) {

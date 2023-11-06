@@ -19,8 +19,8 @@ class ActingOnView {
         myView.getFenetre().setJMenuBar(barreMenus);
         JMenu menu1 = new JMenu("Fichier");
         barreMenus.add(menu1);
+        menu1.add(myView.getMenuOpen());
         menu1.add(myView.getMenuSave());
-
 
         Dimension expectedDimension = new Dimension(580, 660);
         myView.getPanGrille().setPreferredSize(expectedDimension);
@@ -28,8 +28,6 @@ class ActingOnView {
         myView.getPanGrille().setMinimumSize(expectedDimension);
         myView.getPanGrille().setSize(600, 660);
         myView.getPanGrille().setBackground(Color.cyan);
-
-
 
         myView.getLogTextArea().setEditable(false);
 

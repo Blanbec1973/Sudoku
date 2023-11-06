@@ -17,6 +17,7 @@ public class MyView {
     private final JButton boutonRecule= new JButton("<<");
     private final JLabel rangResolution= new JLabel("0");
     private final JMenuItem menuSave = new JMenuItem("Save as ...");
+    private final JMenuItem menuOpen = new JMenuItem("Open...");
 
     public JButton[][] getMaGrilleDisplay() {return maGrilleDisplay;}
     public JScrollPane getPanCommande() {return panCommande;}
@@ -63,16 +64,16 @@ public class MyView {
     public void refreshGrilleDisplay(Grille maGrille) {
         String valeurCase;
         for (int numCase=1;numCase<82;numCase++) {
-            valeurCase = String.valueOf(maGrille.getCase(numCase).getValeur());
-            if (maGrille.getCase(numCase).isCaseInitiale()) {
-                this.setCaseInitiale(maGrille.getCase(numCase).getxCase(),maGrille.getCase(numCase).getyCase(), valeurCase); 
+            valeurCase = String.valueOf(maGrille.getValeurCase(numCase));
+            if (maGrille.isCaseInitiale(numCase)) {
+                this.setCaseInitiale(maGrille.getxCase(numCase),maGrille.getyCase(numCase), valeurCase);
                 }
-            if (maGrille.getCase(numCase).isCaseATrouver()) { 
-                this.setCaseCandidats(maGrille.getCase(numCase).getxCase(),maGrille.getCase(numCase).getyCase(), 
-                		              maGrille.getCase(numCase).construitLibelleCandidats());
+            if (maGrille.isCaseATrouver(numCase)) {
+                this.setCaseCandidats(maGrille.getxCase(numCase),maGrille.getyCase(numCase),
+                		              maGrille.construitLibelleCandidats(numCase));
             }
-            if (maGrille.getCase(numCase).isCaseTrouvee()) {
-            	this.setCase(maGrille.getCase(numCase).getxCase(),maGrille.getCase(numCase).getyCase(), valeurCase);
+            if (maGrille.isCaseTrouvee(numCase)) {
+            	this.setCase(maGrille.getxCase(numCase),maGrille.getyCase(numCase), valeurCase);
             }
         }
     }
@@ -84,15 +85,19 @@ public class MyView {
     
 
     
-    public String afficheSaveFileDialog() {
+    public String afficheSaveFileDialog(String typeDialog) {
 	    String fileName="";
+        int returnVal = 0;
     	JFileChooser chooser = new JFileChooser();
 	    
     	FileNameExtensionFilter filter = new FileNameExtensionFilter(
 	        "*.sud", "sud");
 	    chooser.setFileFilter(filter);
-	    int returnVal = chooser.showSaveDialog(this.fenetre);
-	    
+	    if (typeDialog == "SAVE") {
+            returnVal = chooser.showSaveDialog(this.fenetre);}
+        if (typeDialog == "OPEN") {
+            returnVal = chooser.showOpenDialog(this.fenetre);}
+
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {
 		    if (chooser.getSelectedFile().getName().contains("."))
 		    	fileName = chooser.getSelectedFile().getAbsolutePath();
@@ -101,7 +106,11 @@ public class MyView {
 		}
 	    return fileName;
     }
-    
+
+    public JMenuItem getMenuOpen() {
+        return this.menuOpen;
+    }
+
 }
 
  

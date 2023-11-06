@@ -24,8 +24,9 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		caseTrouvee = false;
 		boolean trouve = false;
 		candidatAEliminer=0;
-		
-		if (grille.getCaseEnCours().getNombreCandidats()<3) return false;
+
+		//On ne traite la case en cours que si elle n'a que 2 candidats :
+		if (grille.getNombreCandidats(CaseEnCours.getNumCase())<3) return false;
 		
 		// Recherche des paires de candidats dans la case en cours, mise en tableau :
 		this.inserePaireCandidatsDansTab();
@@ -40,11 +41,11 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		}
 			
 		if (!trouve) return false;
-		if (grille.getCaseEnCours().getNombreCandidats() == 2) return false;
+		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) == 2) return false;
 		
 		//Recherche du premier candidat à éliminer : 
 		for (candidatAEliminer=1;candidatAEliminer<10;candidatAEliminer++) {
-			if (grille.getCaseEnCours().isCandidat(candidatAEliminer) && candidatAEliminer !=c1 && candidatAEliminer != c2) {
+			if (grille.isCandidat(CaseEnCours.getNumCase(), candidatAEliminer) && candidatAEliminer !=c1 && candidatAEliminer != c2) {
 				break;
 			}
 		}
@@ -61,7 +62,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	public void inserePaireCandidatsDansTab() {
 		ArrayList<Integer> tabTemp = new ArrayList<>();
 		for (int i=1;i<10;i++) {
-			if (grille.getCaseEnCours().isCandidat(i)) tabTemp.add(i);
+			if (grille.isCandidat(CaseEnCours.getNumCase(), i)) tabTemp.add(i);
 		}
 		
 		int i = 0;

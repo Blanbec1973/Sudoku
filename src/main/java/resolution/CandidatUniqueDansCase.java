@@ -16,7 +16,7 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		
 		if (!caseTrouvee) return false;
 		
-		solution = grille.getCaseEnCours().calculValeurUnique();
+		solution = grille.calculValeurUnique(CaseEnCours.getNumCase());
 		numCaseAction = CaseEnCours.getNumCase();
 		return true;
 	}
@@ -27,7 +27,8 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 	}
 
 	private boolean detecteConfiguration() {
-		return (grille.getCaseEnCours().contientCandidatUnique());
+
+		return (grille.contientCandidatUnique(CaseEnCours.getNumCase()));
 	}
 
 }
