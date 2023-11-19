@@ -8,7 +8,7 @@ public class CandidatsCase {
         setAllCandidatsToTrue();
     }
 
-    public void setAllCandidatsToTrue() {
+    protected void setAllCandidatsToTrue() {
         for (int i=0;i<10;i++) {this.candidats[i]=true;}
         this.nombreCandidats=10;
         this.elimineCandidat(0);
