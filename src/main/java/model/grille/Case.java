@@ -26,6 +26,7 @@ class Case {
     protected int getyCase() {return yCase;}
     private void setY(int yCase) {this.yCase = yCase;}
     protected int getValeur() {return valeur;}
+    protected void setValeur(int valeur) {this.valeur=valeur;}
     protected void setValeurCase(int valeur)
         {
             this.valeur = valeur;
@@ -55,4 +56,15 @@ class Case {
     protected int calculValeurUnique() {return candidats.calculValeurUnique();}
     protected String construitLibelleCandidats() {return candidats.construitLibelleCandidats();}
     protected void elimineCandidat(int valeur) {candidats.elimineCandidat(valeur);}
+
+    public String toString() {
+        StringBuilder sbd = new StringBuilder();
+        sbd.append("Case "+this.numCase);
+        if (this.isCaseInitiale()) sbd.append(" initial " + this.valeur);
+        if (this.isCaseTrouvee()) sbd.append(" found " + this.valeur);
+        if (this.isCaseATrouver()) sbd.append(" to be found "+ this.valeur);
+        sbd.append( " / "+this.getCandidats().toString());
+        sbd.append(" |");
+        return sbd.toString();
+    }
 }

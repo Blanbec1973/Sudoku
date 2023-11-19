@@ -29,7 +29,9 @@ class GridInitializer {
                         grille.getCase(x,y).setCaseInitiale(valeur);
                     }
                     else {
+                        grille.getCase(x,y).setValeur(0);
                     	grille.getCasesAtrouver().add(indexCase);
+                        grille.getCase(x,y).setEtatCase(EtatCase.NOT_FOUNDED);
                         grille.getCase(x,y).getCandidats().setAllCandidatsToTrue();
                     }
                     indexCase+=1;

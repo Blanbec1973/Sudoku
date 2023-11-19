@@ -76,6 +76,7 @@ public class MyView {
             	this.setCase(maGrille.getxCase(numCase),maGrille.getyCase(numCase), valeurCase);
             }
         }
+        panGrille.repaint();
     }
     
     public void supprimeDernierLigneLog() {
@@ -93,9 +94,9 @@ public class MyView {
     	FileNameExtensionFilter filter = new FileNameExtensionFilter(
 	        "*.sud", "sud");
 	    chooser.setFileFilter(filter);
-	    if (typeDialog == "SAVE") {
+	    if (typeDialog.equals("SAVE")) {
             returnVal = chooser.showSaveDialog(this.fenetre);}
-        if (typeDialog == "OPEN") {
+        if (typeDialog.equals("OPEN")) {
             returnVal = chooser.showOpenDialog(this.fenetre);}
 
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {

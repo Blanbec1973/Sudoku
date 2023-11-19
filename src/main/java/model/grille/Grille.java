@@ -67,6 +67,8 @@ public class Grille {
     		sb.append(this.getCase(i).getCandidats().getNombreCandidats());
     		sb.append(" ==> ");
     		sb.append(this.getCase(i).getCandidats().toString());
+            sb.append(" / Valeur : ");
+            sb.append(this.getCase(i).getValeur());
     		sb.append(" | ");
     	}
     	return sb.toString();	
