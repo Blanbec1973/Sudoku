@@ -36,5 +36,14 @@ class CaseTest {
         assertEquals(5,maCase.getValeur());
         assertFalse(maCase.nEstPasCaseTrouvee());
     }
-    
+
+    @Test
+    void testToString() {
+        assertEquals("Case 1 to be found 0 / 111111111 |", maCase.toString());
+        maCase.setValeurCase(3);
+        assertEquals("Case 1 found 3 / 000000000 |", maCase.toString());
+        maCase.setCaseInitiale(7);
+        assertEquals("Case 1 initial 7 / 000000000 |", maCase.toString());
+
+    }
 }

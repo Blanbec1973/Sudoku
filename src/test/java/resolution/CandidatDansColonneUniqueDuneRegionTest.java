@@ -1,39 +1,56 @@
 package resolution;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import model.grille.CaseEnCours;
 import model.grille.Grille;
+import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CandidatDansColonneUniqueDuneRegionTest {
-	private static CandidatDansColonneUniqueDuneRegion methode;
+	private CandidatDansColonneUniqueDuneRegion methode;
+	private Grille grille = new Grille();
 	
 	@BeforeAll
-	static void setUpBeforeClass() {
-		Grille grille = new Grille();
+	void setUpBeforeClass() {
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatDansColonneUniqueDuneRegion.sud");
 		methode = new CandidatDansColonneUniqueDuneRegion(null, grille);
 	}
 
 	@Test
 	void testTraiteCaseEnCours() {
+		CaseEnCours.setCaseEnCours(3);
+		assertFalse(methode.traiteCaseEnCours(false));
+
 		CaseEnCours.setCaseEnCours(28);
 		assertTrue(methode.traiteCaseEnCours(false));
 		assertEquals(1,methode.numCaseAction);
 		assertEquals(6, methode.candidatAEliminer);
 		assertEquals(0, methode.xAction);
 		assertEquals(0,methode.yAction);
+
+		grille.elimineCandidat(1,6);
+		grille.elimineCandidat(73,6);
+		assertFalse(methode.detecteCandidatAEliminer());
 	}
 
 	@Test
 	void testCandidatDansColonneUnique() {
 		CaseEnCours.setCaseEnCours(28);
 		assertTrue(methode.candidatDansColonneUnique());
+
+		CaseEnCours.setCaseEnCours(25);
+		methode.candidatAEliminer = 3;
+		assertFalse(methode.candidatDansColonneUnique());
+		methode.candidatAEliminer = 7;
+		assertFalse(methode.candidatDansColonneUnique());
 	}
 
+	@Test
+	void testGetSimpleName() {
+		assertEquals("CandidatDansColonneUniqueDuneRegion",methode.getSimpleName());
+	}
 }

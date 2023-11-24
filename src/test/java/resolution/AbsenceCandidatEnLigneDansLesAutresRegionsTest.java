@@ -44,5 +44,8 @@ class AbsenceCandidatEnLigneDansLesAutresRegionsTest {
 		assertEquals(3,methode.xAction);
 		assertEquals(7,methode.yAction);
 	}
-
+	@Test
+	void testGetSimpleName() {
+		assertEquals("AbsenceCandidatEnLigneDansLesAutresRegions",methode.getSimpleName());
+	}
 }

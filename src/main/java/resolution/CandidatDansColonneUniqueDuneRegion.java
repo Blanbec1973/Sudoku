@@ -55,7 +55,7 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 		return true;
 	}
 
-	private boolean detecteCandidatAEliminer() {
+	boolean detecteCandidatAEliminer() {
 		// Recherche présence candidatAEliminer dans les autres régions de la colonne
 		for (int i=0;i<9;i++) {
 			if (CaseEnCours.getNumRegion() != Utils.calculNumeroRegion(Utils.calculNumCase(numColonne,i)) &&

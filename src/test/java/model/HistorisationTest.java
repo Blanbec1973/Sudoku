@@ -63,4 +63,15 @@ class HistorisationTest {
 		assertFalse(histo.getHistoGrille(dernier-1).isCandidat(50,9));	
 	}
 
+	@Test
+	void testReloadGrille() {
+		Grille grille2 = new Grille();
+		grille2.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/initFacile.sud");
+		histo.reloadGrille(grille2);
+		assertEquals(1,histo.getHistoGrille().size());
+		assertTrue(histo.getHistoGrille(0).isCaseInitiale(1));
+		assertTrue(histo.getHistoGrille(0).isCaseInitiale(2));
+		assertTrue(histo.getHistoGrille(0).isCaseATrouver(3));
+	}
+
 }

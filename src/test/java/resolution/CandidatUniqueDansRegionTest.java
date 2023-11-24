@@ -28,4 +28,8 @@ class CandidatUniqueDansRegionTest {
 		assertEquals(4, methode.getSolution());
 	}
 
+	@Test
+	void testGetSimpleName() {
+		assertEquals("CandidatUniqueDansRegion",methode.getSimpleName());
+	}
 }

@@ -29,4 +29,9 @@ class CandidatUniqueDansCaseTest {
 		assertEquals(69,methode.getNumCaseAction());
 	}
 
+	@Test
+	void testGetSimpleName() {
+		assertEquals("CandidatUniqueDansCase",methode.getSimpleName());
+	}
+
 }

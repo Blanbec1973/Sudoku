@@ -28,6 +28,9 @@ class CandidatUniqueDansLigneTest {
 		assertTrue(methode.traiteCaseEnCours(false));
 		assertEquals(6, methode.getSolution());
 	}
-
+	@Test
+	void testGetSimpleName() {
+		assertEquals("CandidatUniqueDansLigne",methode.getSimpleName());
+	}
 
 }

@@ -29,4 +29,8 @@ class CandidatUniqueDansColonneTest {
 		assertEquals(9, methode.getSolution());
 	}
 
+	@Test
+	void testGetSimpleName() {
+		assertEquals("CandidatUniqueDansColonne",methode.getSimpleName());
+	}
 }
