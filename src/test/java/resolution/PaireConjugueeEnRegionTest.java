@@ -11,7 +11,7 @@ import model.grille.Grille;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PaireConjugueeEnRegionTest {
 	private PaireConjugueeEnRegion methode;
-	private Grille grille = new Grille();
+	private final Grille grille = new Grille();
 
 
 

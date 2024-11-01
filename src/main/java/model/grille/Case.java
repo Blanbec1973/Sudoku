@@ -59,11 +59,11 @@ class Case {
 
     public String toString() {
         StringBuilder sbd = new StringBuilder();
-        sbd.append("Case "+this.numCase);
-        if (this.isCaseInitiale()) sbd.append(" initial " + this.valeur);
-        if (this.isCaseTrouvee()) sbd.append(" found " + this.valeur);
-        if (this.isCaseATrouver()) sbd.append(" to be found "+ this.valeur);
-        sbd.append( " / "+this.getCandidats().toString());
+        sbd.append("Case ").append(this.numCase);
+        if (this.isCaseInitiale()) sbd.append(" initial ").append(this.valeur);
+        if (this.isCaseTrouvee()) sbd.append(" found ").append(this.valeur);
+        if (this.isCaseATrouver()) sbd.append(" to be found ").append(this.valeur);
+        sbd.append(" / ").append(this.getCandidats().toString());
         sbd.append(" |");
         return sbd.toString();
     }

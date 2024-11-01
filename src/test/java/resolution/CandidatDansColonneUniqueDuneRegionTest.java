@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CandidatDansColonneUniqueDuneRegionTest {
 	private CandidatDansColonneUniqueDuneRegion methode;
-	private Grille grille = new Grille();
+	private final Grille grille = new Grille();
 	
 	@BeforeAll
 	void setUpBeforeClass() {

@@ -66,7 +66,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		}
 		
 		int i = 0;
-		int j = 0;
+		int j;
 
 		while (i<tabTemp.size()) {
 			j = i+1;

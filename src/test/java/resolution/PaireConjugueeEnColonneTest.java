@@ -11,7 +11,7 @@ import model.grille.Grille;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PaireConjugueeEnColonneTest {
 	private static PaireConjugueeEnColonne methode;
-	private Grille grille = new Grille();
+	private final Grille grille = new Grille();
 	
 	@BeforeAll
 	void setUpBeforeClass() {

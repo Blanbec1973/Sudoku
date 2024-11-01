@@ -43,7 +43,7 @@ public class Model {
 	
 	public void detecteSuivant(boolean goPourChangement) {
 		int i =0;
-		boolean trouve = false;
+		boolean trouve;
 		
 		do { 
 			trouve = listeMethodes.get(i).detecteSuivant(goPourChangement);

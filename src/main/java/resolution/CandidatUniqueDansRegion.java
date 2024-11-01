@@ -14,7 +14,7 @@ public class CandidatUniqueDansRegion extends MethodeResolution {
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
 		caseTrouvee = false;
 		
-		int candidat =0;
+		int candidat;
 		for (candidat=1;candidat<10;candidat++) {
   	        if (grille.isCandidat(CaseEnCours.getNumCase(),candidat) &&
 	           !grille.checkPresenceCandidatRegion(candidat, CaseEnCours.getXSearch(),CaseEnCours.getYSearch())) {
