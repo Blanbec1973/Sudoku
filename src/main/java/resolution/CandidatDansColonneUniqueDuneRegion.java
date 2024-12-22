@@ -45,12 +45,12 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 		int col2 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getXSearch(),2) ;
 
 		// vérification absence candidat col1 :
-		for (int i=CaseEnCours.getyRegion(); i<CaseEnCours.getyRegion()+3;i++) {
-			if (grille.isCaseATrouver(Utils.calculNumCase(col1, i)) && grille.isCandidat(Utils.calculNumCase(col1, i), candidatAEliminer)) return false;
+		for (int numLigne=CaseEnCours.getyRegion(); numLigne<CaseEnCours.getyRegion()+3;numLigne++) {
+			if (grille.isCaseATrouver(col1, numLigne) && grille.isCandidat(col1, numLigne, candidatAEliminer)) return false;
 		}
 		
 		for (int i=CaseEnCours.getyRegion(); i<CaseEnCours.getyRegion()+3;i++) {
-			if (grille.isCaseATrouver(Utils.calculNumCase(col2, i)) && grille.isCandidat(Utils.calculNumCase(col2, i), candidatAEliminer)) return false;
+			if (grille.isCaseATrouver(col2, i) && grille.isCandidat(col2, i, candidatAEliminer)) return false;
 		}
 		return true;
 	}

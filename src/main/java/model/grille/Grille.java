@@ -41,10 +41,12 @@ public class Grille {
     public boolean isCaseInitiale(int numCase) {return this.getCase(numCase).isCaseInitiale();}
     public boolean isCaseTrouvee(int numCase) {return this.getCase(numCase).isCaseTrouvee();}
     public boolean isCaseATrouver(int numCase) {return this.getCase(numCase).isCaseATrouver();}
+    public boolean isCaseATrouver(int x, int y) {return this.getCase(x,y).isCaseATrouver();}
     public boolean nEstPasCaseInitiale(int numCase) {return this.getCase(numCase).nEstPasCaseInitiale();}
     public boolean nEstPasCaseTrouvee(int numCase) {return this.getCase(numCase).nEstPasCaseTrouvee();}
     public boolean contientCandidatUnique(int numCase) {return this.getCase(numCase).contientCandidatUnique();}
     public boolean isCandidat(int numCase, int candidat) {return this.getCase(numCase).isCandidat(candidat);}
+    public boolean isCandidat(int x, int y, int candidat) {return this.getCase(x,y).isCandidat(candidat);}
     public int getValeurCase(int numCase) {return this.getCase(numCase).getValeur();}
     public int getNombreCandidats(int numCase) {return this.getCase(numCase).getNombreCandidats();}
     public int getxCase(int numCase) { return this.getCase(numCase).getxCase();}
