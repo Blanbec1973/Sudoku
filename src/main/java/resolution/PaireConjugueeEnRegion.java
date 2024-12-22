@@ -22,7 +22,7 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) != 2) return false;
 		for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
             for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if ((CaseEnCours.getXSearch() != abs || CaseEnCours.getYSearch() != ord) &&
+                if ((CaseEnCours.getX() != abs || CaseEnCours.getY() != ord) &&
                     grille.isCaseATrouver(abs, ord) &&
                     Arrays.equals(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
                     		      grille.getCandidatsTabBoolean(abs, ord))) {

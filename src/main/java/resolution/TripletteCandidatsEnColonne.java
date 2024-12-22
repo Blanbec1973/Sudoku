@@ -17,7 +17,7 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		if (Utils.calculNombreCaseATrouverDansColonne(this.grille, CaseEnCours.getXSearch())<=3) return false;
+		if (Utils.calculNombreCaseATrouverDansColonne(this.grille, CaseEnCours.getX())<=3) return false;
 
 		boolean trouve = this.detecteConfiguration();   	
         if (!trouve) return false;
@@ -25,7 +25,7 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
         trouve = this.detecteCandidatAEliminer();
         if (!trouve) return false;
         
-        xAction = CaseEnCours.getXSearch();
+        xAction = CaseEnCours.getX();
         
         numCaseAction=Utils.calculNumCase(xAction, yAction);
         return true;
@@ -41,7 +41,7 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
         y3=0;
 
         while (y2<9) {
-            if (y2!=CaseEnCours.getYSearch() && grille.isCaseATrouver(CaseEnCours.getXSearch(),y2)) {
+            if (y2!=CaseEnCours.getY() && grille.isCaseATrouver(CaseEnCours.getX(),y2)) {
                 y3=y2;
                 while (y3<9) {
                     if (testTriplette()) {return true;}
@@ -54,8 +54,8 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 	}
 	
 	private boolean testTriplette() {
-		 return (y3!=y2 && y3!=CaseEnCours.getYSearch() && grille.isCaseATrouver(CaseEnCours.getXSearch(),y3) &&
-		     this.detecteTripletteEnLigne(CaseEnCours.getXSearch(), y2, y3) && this.detecteCandidatAEliminer()) ;
+		 return (y3!=y2 && y3!=CaseEnCours.getY() && grille.isCaseATrouver(CaseEnCours.getX(),y3) &&
+		     this.detecteTripletteEnLigne(CaseEnCours.getX(), y2, y3) && this.detecteCandidatAEliminer()) ;
 	}
 	
 	private boolean detecteTripletteEnLigne(int xSearch, int y2, int y3) {
@@ -75,19 +75,19 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 
 	private boolean detecteCandidatAEliminer() {
 		for (int ord = 0 ; ord < 9 ; ord++) {
-			if (grille.isCaseATrouver(CaseEnCours.getXSearch(), ord) &&
-				ord != CaseEnCours.getYSearch() && ord != y2 && ord != y3) {
-				if (grille.isCandidat(CaseEnCours.getXSearch(),ord, c1)) {
+			if (grille.isCaseATrouver(CaseEnCours.getX(), ord) &&
+				ord != CaseEnCours.getY() && ord != y2 && ord != y3) {
+				if (grille.isCandidat(CaseEnCours.getX(),ord, c1)) {
 					candidatAEliminer = c1;
 					yAction = ord;
 					return true;
 				}
-				if (grille.isCandidat(CaseEnCours.getXSearch(), ord, c2)) {
+				if (grille.isCandidat(CaseEnCours.getX(), ord, c2)) {
 					candidatAEliminer = c2;
 					yAction = ord;
 					return true;
 				}
-				if (grille.isCandidat(CaseEnCours.getXSearch(), ord, c3)) {
+				if (grille.isCandidat(CaseEnCours.getX(), ord, c3)) {
 					candidatAEliminer = c3;
 					yAction = ord;
 					return true;

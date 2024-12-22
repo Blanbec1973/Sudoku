@@ -3,11 +3,8 @@ package view;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Color;
-import java.awt.TextArea;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -27,25 +24,25 @@ class MyViewTest {
 
 	@Test
 	void testGetFenetre() {
-		assertTrue(myView.getFenetre() instanceof JFrame);
+		assertNotNull(myView.getFenetre());
 		assertEquals("Sudoku", myView.getFenetre().getTitle());
 	}
 
 	@Test
 	void testGetLogTextArea() {
-		assertTrue(myView.getLogTextArea() instanceof TextArea);
+		assertNotNull(myView.getLogTextArea());
 		assertEquals("Grille initiale chargée.", myView.getLogTextArea().getText());
 	}
 
 	@Test
 	void testGetBoutonAvance() {
-		assertTrue(myView.getBoutonAvance() instanceof JButton);
+		assertNotNull(myView.getBoutonAvance());
 		assertEquals(">>", myView.getBoutonAvance().getText());
 	}
 
 	@Test
 	void testGetBoutonExplique() {
-		assertTrue(myView.getBoutonExplique() instanceof JButton);
+		assertNotNull(myView.getBoutonExplique());
 		assertEquals("?", myView.getBoutonExplique().getText());
 	}
 
@@ -57,13 +54,13 @@ class MyViewTest {
 
 	@Test
 	void testGetRangResolution() {
-		assertTrue(myView.getRangResolution() instanceof JLabel);
+		assertNotNull(myView.getRangResolution());
 		assertEquals("0", myView.getRangResolution().getText());
 	}
 
 	@Test
 	void testGetCase() {
-		assertTrue(myView.getCase(0, 0) instanceof JButton);
+		assertNotNull(myView.getCase(0, 0));
 	}
 
 	@Test

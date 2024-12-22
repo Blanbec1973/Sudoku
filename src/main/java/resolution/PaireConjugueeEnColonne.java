@@ -20,10 +20,10 @@ public class PaireConjugueeEnColonne extends PaireConjuguee {
 
 	protected boolean detecteConfiguration() {
 		for (y2=0;y2<9;y2++) {
-            if (y2 != CaseEnCours.getYSearch() &&
-                grille.isCaseATrouver(CaseEnCours.getXSearch(),y2) &&
+            if (y2 != CaseEnCours.getY() &&
+                grille.isCaseATrouver(CaseEnCours.getX(),y2) &&
                 Arrays.equals(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
-                		grille.getCandidatsTabBoolean(CaseEnCours.getXSearch(),y2))) {
+                		grille.getCandidatsTabBoolean(CaseEnCours.getX(),y2))) {
             	return true;
             }
         }
@@ -32,14 +32,14 @@ public class PaireConjugueeEnColonne extends PaireConjuguee {
 	
 	protected boolean detecteCandidatAEliminer() {
 		for (int yAction=0;yAction<9;yAction++) {
-        	if (grille.isCaseATrouver(CaseEnCours.getXSearch(),yAction) &&
-        			yAction!=CaseEnCours.getYSearch() && yAction !=y2) {
-        		numCaseAction=Utils.calculNumCase(CaseEnCours.getXSearch(), yAction);
-        		if (grille.isCandidat(CaseEnCours.getXSearch(),yAction, c1) ) {
+        	if (grille.isCaseATrouver(CaseEnCours.getX(),yAction) &&
+        			yAction!=CaseEnCours.getY() && yAction !=y2) {
+        		numCaseAction=Utils.calculNumCase(CaseEnCours.getX(), yAction);
+        		if (grille.isCandidat(CaseEnCours.getX(),yAction, c1) ) {
         			candidatAEliminer = c1;
         			return true;
         		}
-        		if (grille.isCandidat(CaseEnCours.getXSearch(),yAction, c2) ) {
+        		if (grille.isCandidat(CaseEnCours.getX(),yAction, c2) ) {
         			candidatAEliminer = c2;
         			return true;
         		}

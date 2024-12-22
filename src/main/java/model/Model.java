@@ -81,7 +81,7 @@ public class Model {
 
 	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
-		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
+		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getX(), CaseEnCours.getY(), solution);
 		control.refreshDisplayGrid(grille);
 		control.insertDisplayMessage(message);
 		control.incrementResolutionRank();

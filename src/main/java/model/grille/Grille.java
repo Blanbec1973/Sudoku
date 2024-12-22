@@ -29,7 +29,7 @@ public class Grille {
 
     public Case getCase(int x, int y) {return mesCases[x][y];}
     public Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
-    public Case getCaseEnCours() {return mesCases[CaseEnCours.getXSearch()][CaseEnCours.getYSearch()];}
+    public Case getCaseEnCours() {return mesCases[CaseEnCours.getX()][CaseEnCours.getY()];}
     public List<Integer> getCasesAtrouver() {return casesAtrouver;}
     public CandidatsCase getCandidats(int numCase) {return this.getCase(numCase).getCandidats();}
     public void setAllCandidatsToFalse(int numCase) {this.getCase(numCase).getCandidats().setAllCandidatsToFalse();}
@@ -79,8 +79,8 @@ public class Grille {
     
     public void setValeurCaseEnCours(int solution) {
         this.getCaseEnCours().setValeurCase(solution);
-        this.elimineCandidatsCaseTrouvee(CaseEnCours.getXSearch(), CaseEnCours.getYSearch(), solution);
-        casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getXSearch(), CaseEnCours.getYSearch())));
+        this.elimineCandidatsCaseTrouvee(CaseEnCours.getX(), CaseEnCours.getY(), solution);
+        casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getX(), CaseEnCours.getY())));
     }        
     
     public boolean checkPresenceCandidatLigne(int valeur, int x, int numLigne) {

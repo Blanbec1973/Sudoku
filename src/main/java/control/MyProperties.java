@@ -22,10 +22,6 @@ public class MyProperties {
         }
     }
 
-    public String getFichierInitial() {
-        return prop.getProperty("FichierInitial");
-    }
-
     public String getProperty(String keyProperty) { return prop.getProperty(keyProperty);}
 
 }

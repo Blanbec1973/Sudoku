@@ -6,7 +6,7 @@ class Case {
     private int numCase;
     private int xCase;
     private int yCase;
-    private int valeur;
+    private int valeur=0;
     private int region;
     private EtatCase etatCase;
 	private final CandidatsCase candidats = new CandidatsCase();
@@ -26,7 +26,6 @@ class Case {
     protected int getyCase() {return yCase;}
     private void setY(int yCase) {this.yCase = yCase;}
     protected int getValeur() {return valeur;}
-    protected void setValeur(int valeur) {this.valeur=valeur;}
     protected void setValeurCase(int valeur)
         {
             this.valeur = valeur;

@@ -10,9 +10,9 @@ import java.util.ArrayList;
 //Méthodes de résolution par ordre hiérarchique :
 //Méthodes qui permettent de trouver une case : 
 //    CandidatUniqueDansCase    : La case n'a plus qu'un candidat
-//	  CandidatUniqueDansLigne   : un candidat de la case n'existe pas dans les cases de la ligne
-//    CandidatUniqueDansColonne : un candidat de la case n'existe pas dans les cases de la colonne
-//    CandidatUniqueDansRegion  : un candidat de la case n'existe pas dans les cases de la région
+//	  CandidatUniqueDansLigne   : un candidat de la case n'existe pas dans les autres cases de la ligne
+//    CandidatUniqueDansColonne : un candidat de la case n'existe pas dans les autres cases de la colonne
+//    CandidatUniqueDansRegion  : un candidat de la case n'existe pas dans les autres cases de la région
 //
 //Méthodes qui permettent d'éliminer des candidats :
 //  PaireCandidats2CasesColonne : paire de candidats seulement dans 2 cases d'un colonne.

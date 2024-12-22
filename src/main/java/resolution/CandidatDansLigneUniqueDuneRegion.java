@@ -16,7 +16,7 @@ public class CandidatDansLigneUniqueDuneRegion extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		numLigne = CaseEnCours.getYSearch();
+		numLigne = CaseEnCours.getY();
 		boolean trouve = this.detectConfiguration();
         if (!trouve) return false;
         
@@ -41,8 +41,8 @@ public class CandidatDansLigneUniqueDuneRegion extends MethodeResolution {
 	
 	boolean candidatDansLigneUnique() {
 		// les deux lignes de la région où on devra chercher le candidat :
-		int lig1 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getYSearch(),1) ;
-		int lig2 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getYSearch(),2) ;
+		int lig1 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getY(),1) ;
+		int lig2 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getY(),2) ;
 
 		// vérification absence candidat lig1 :
 		for (int x=CaseEnCours.getxRegion(); x<CaseEnCours.getxRegion()+3;x++) {

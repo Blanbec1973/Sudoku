@@ -14,34 +14,34 @@ class CaseEnCoursTest {
 
 	@Test
 	void testSetCaseEnCours() {
-		assertEquals(4,CaseEnCours.getXSearch());
-		assertEquals(4,CaseEnCours.getYSearch());
+		assertEquals(4,CaseEnCours.getX());
+		assertEquals(4,CaseEnCours.getY());
 		assertEquals(3,CaseEnCours.getxRegion());
 		assertEquals(3,CaseEnCours.getyRegion());
-		assertEquals("5",CaseEnCours.getXSearchEdition());
-		assertEquals("5",CaseEnCours.getYSearchEdition());
+		assertEquals("5",CaseEnCours.getXEdition());
+		assertEquals("5",CaseEnCours.getYEdition());
 	}
 	
 	@Test
 	void testSetCaseEnCours2() {
 		CaseEnCours.setCaseEnCours(0, 0);
-		assertEquals(0,CaseEnCours.getXSearch());
-		assertEquals(0,CaseEnCours.getYSearch());
+		assertEquals(0,CaseEnCours.getX());
+		assertEquals(0,CaseEnCours.getY());
 		assertEquals(0,CaseEnCours.getxRegion());
 		assertEquals(0,CaseEnCours.getyRegion());
-		assertEquals("1",CaseEnCours.getXSearchEdition());
-		assertEquals("1",CaseEnCours.getYSearchEdition());
+		assertEquals("1",CaseEnCours.getXEdition());
+		assertEquals("1",CaseEnCours.getYEdition());
 		assertEquals(1, CaseEnCours.getNumRegion());
 	}
 	
 	@Test
 	void testGetXSearch() {
-		assertEquals(4,CaseEnCours.getXSearch());
+		assertEquals(4,CaseEnCours.getX());
 	}
 	
 	@Test
 	void testGetYSearch() {
-		assertEquals(4,CaseEnCours.getYSearch());
+		assertEquals(4,CaseEnCours.getY());
 	}
 	
 	@Test

@@ -14,7 +14,7 @@ public class CandidatUniqueDansLigne extends MethodeResolution {
 		int candidat;
 		for (candidat=1;candidat<10;candidat++) {
   	        if (grille.isCandidat(CaseEnCours.getNumCase(),candidat) &&
-	            !grille.checkPresenceCandidatLigne(candidat, CaseEnCours.getXSearch(),CaseEnCours.getYSearch())) {
+	            !grille.checkPresenceCandidatLigne(candidat, CaseEnCours.getX(),CaseEnCours.getY())) {
   	        	caseTrouvee = true;
   	           	break;
   	        }
