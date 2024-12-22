@@ -48,7 +48,14 @@ public class Utils {
         }
         return resultat;
     }
-    
+    public static int calculNombreCaseATrouverDansColonne(Grille maGrille, int xSearch) {
+        int resultat = 0;
+        for (int i=0;i<9;i++) {
+            if (maGrille.nEstPasCaseInitiale(calculNumCase(xSearch,i)) && maGrille.nEstPasCaseTrouvee(calculNumCase(xSearch,i)))
+                resultat+=1;
+        }
+        return resultat;
+    }
     public static int calculNombreTriplettes(int nombreCasesATrouver) {
         int resultat;
         int i;
@@ -114,4 +121,6 @@ public class Utils {
         }
         return 0;
     }
+
+
 }

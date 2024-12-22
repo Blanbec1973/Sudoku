@@ -37,6 +37,8 @@ public abstract class MethodeResolution {
 	protected int x2;
 	protected int x3;
 	protected int y2;
+
+	protected int y3;
 	protected boolean caseTrouvee;
 	protected int numCaseAction;
 	protected int candidatAEliminer;
