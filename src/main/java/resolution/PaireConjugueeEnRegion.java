@@ -23,9 +23,9 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 		for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
             for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
                 if ((CaseEnCours.getXSearch() != abs || CaseEnCours.getYSearch() != ord) &&
-                    grille.isCaseATrouver(Utils.calculNumCase(abs, ord)) &&
+                    grille.isCaseATrouver(abs, ord) &&
                     Arrays.equals(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
-                    		      grille.getCandidatsTabBoolean(Utils.calculNumCase(abs, ord)))) {
+                    		      grille.getCandidatsTabBoolean(abs, ord))) {
                 	return true;
                 }
             }
@@ -38,7 +38,7 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
             for (int yAction=CaseEnCours.getyRegion();yAction<CaseEnCours.getyRegion()+3;yAction++) {
                 if (grille.isCaseATrouver(Utils.calculNumCase(xAction, yAction)) &&
                     !Arrays.equals(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
-                    grille.getCandidatsTabBoolean(Utils.calculNumCase(xAction, yAction)))) {
+                    grille.getCandidatsTabBoolean(xAction, yAction))) {
                 	numCaseAction=Utils.calculNumCase(xAction, yAction);
                 	if (grille.isCandidat(Utils.calculNumCase(xAction, yAction), c1) ) {
             			candidatAEliminer = c1;

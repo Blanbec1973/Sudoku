@@ -53,6 +53,7 @@ public class Grille {
     public int getyCase(int numCase) { return this.getCase(numCase).getyCase();}
     public int getRegion(int numCase) {return this.getCase(numCase).getRegion();}
     public boolean [] getCandidatsTabBoolean(int numCase) {return this.getCase(numCase).getCandidatsTabBoolean();}
+    public boolean [] getCandidatsTabBoolean(int x, int y) {return this.getCase(x,y).getCandidatsTabBoolean();}
     public int calculValeurUnique(int numCase) {return this.getCase(numCase).calculValeurUnique();}
     public String construitLibelleCandidats(int numCase) {return this.getCase(numCase).construitLibelleCandidats();}
 

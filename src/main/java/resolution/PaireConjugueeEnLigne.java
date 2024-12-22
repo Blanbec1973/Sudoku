@@ -21,9 +21,9 @@ public class PaireConjugueeEnLigne extends PaireConjuguee {
 	protected boolean detecteConfiguration() {
         for (x2=0;x2<9;x2++) {
             if (x2 != CaseEnCours.getXSearch() &&
-                grille.isCaseATrouver(Utils.calculNumCase(x2, CaseEnCours.getYSearch())) &&
+                grille.isCaseATrouver(x2, CaseEnCours.getYSearch()) &&
                 Arrays.equals(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
-                		grille.getCandidatsTabBoolean(Utils.calculNumCase(x2, CaseEnCours.getYSearch())))) {
+                		grille.getCandidatsTabBoolean(x2, CaseEnCours.getYSearch()))) {
             	return true;
             }
         }

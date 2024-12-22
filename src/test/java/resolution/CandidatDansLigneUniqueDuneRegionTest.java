@@ -22,11 +22,9 @@ class CandidatDansLigneUniqueDuneRegionTest {
 	@Test
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(19);
-		System.out.println("Case "+ CaseEnCours.getNumCase());
 		assertFalse(methode.traiteCaseEnCours(false));
 
 		CaseEnCours.setCaseEnCours(4);
-		System.out.println("Case "+ CaseEnCours.getNumCase());
 		assertTrue(methode.traiteCaseEnCours(false));
 		assertEquals(1,methode.numCaseAction);
 		assertEquals(6, methode.candidatAEliminer);
