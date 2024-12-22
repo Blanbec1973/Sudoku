@@ -37,6 +37,7 @@ public class Model {
 	    listeMethodes.add(new PaireCandidats2CasesLigne(this, grille));
 	    listeMethodes.add(new TripletteCandidatsEnLigne(this, grille));
 		listeMethodes.add(new CandidatDansColonneUniqueDuneRegion(this, grille));
+		listeMethodes.add(new CandidatDansLigneUniqueDuneRegion(this,grille));
 	}
 
 	public Grille getGrille() {return grille;}

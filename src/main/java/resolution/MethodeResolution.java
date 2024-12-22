@@ -22,7 +22,8 @@ import java.util.ArrayList;
 //     PaireConjugueeEnLigne   : une case de le ligne comporte les mêmes 2 candidats que la caseEnCours
 //     PaireConjugueeEnColonne : une case de le colonne comporte les mêmes 2 candidats que la caseEnCours
 //     PaireConjugueeEnRegion  : une case de le région comporte les mêmes 2 candidats que la caseEnCours
-//
+// Candidat dans colonne unique d'une région
+// Candidat dans ligne unique d'une région
 
 
 public abstract class MethodeResolution {

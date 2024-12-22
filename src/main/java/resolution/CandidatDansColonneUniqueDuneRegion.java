@@ -31,7 +31,7 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 
 	private boolean detectConfiguration() {
 		// Pour tous les candidats de la case en cours, je regarde si je ne suis que dans la colonne de ma région
-		for (int i=1; i < 9 ;i++) {
+		for (int i=1; i <= 9 ;i++) {
 			candidatAEliminer = i;
 			if (grille.isCandidat(CaseEnCours.getNumCase(), i) && candidatDansColonneUnique()) return true;
 		}
