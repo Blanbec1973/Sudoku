@@ -70,9 +70,9 @@ public class Grille {
     		sb.append(this.getCase(i).getCandidats().getNombreCandidats());
     		sb.append(" ==> ");
     		sb.append(this.getCase(i).getCandidats().toString());
-            sb.append(" / Valeur : ");
+            sb.append("=");
             sb.append(this.getCase(i).getValeur());
-    		sb.append(" | ");
+    		if (i % 9 == 0) {sb.append("\n");} else {sb.append(" | ");}
     	}
     	return sb.toString();	
     }

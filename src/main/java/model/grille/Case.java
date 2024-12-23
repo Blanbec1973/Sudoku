@@ -6,7 +6,7 @@ class Case {
     private int numCase;
     private int xCase;
     private int yCase;
-    private int valeur=0;
+    private int valeur;
     private int region;
     private EtatCase etatCase;
 	private final CandidatsCase candidats = new CandidatsCase();
@@ -15,6 +15,7 @@ class Case {
         this.setNumCase(numCase);
         this.setX(x);
         this.setY(y);
+        this.valeur=0;
         this.etatCase = EtatCase.NOT_FOUNDED;
         this.setRegion(Utils.calculNumeroRegion(numCase));
     }
@@ -26,6 +27,9 @@ class Case {
     protected int getyCase() {return yCase;}
     private void setY(int yCase) {this.yCase = yCase;}
     protected int getValeur() {return valeur;}
+    protected void razValeur(int valeur) {
+        this.valeur=valeur;
+    }
     protected void setValeurCase(int valeur)
         {
             this.valeur = valeur;
