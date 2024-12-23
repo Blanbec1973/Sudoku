@@ -2,13 +2,15 @@ package view;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.Color;
+import java.awt.*;
 
 import javax.swing.JButton;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(DisplayCondition.class)
 class MyViewTest {
 	private static MyView myView;
 	
