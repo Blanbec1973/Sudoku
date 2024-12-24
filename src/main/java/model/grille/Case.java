@@ -3,51 +3,50 @@ package model.grille;
 import utils.Utils;
 
 class Case {
-    private int numCase;
-    private int xCase;
-    private int yCase;
+    private final int numCase;
+    private final int xCase;
+    private final int yCase;
     private int valeur;
-    private int region;
+    private final int region;
     private EtatCase etatCase;
 	private final CandidatsCase candidats = new CandidatsCase();
     
     protected Case(int numCase, int x, int y) {
-        this.setNumCase(numCase);
-        this.setX(x);
-        this.setY(y);
+        this.numCase = numCase;
+        this.xCase = x;
+        this.yCase = y;
         this.valeur=0;
         this.etatCase = EtatCase.NOT_FOUNDED;
-        this.setRegion(Utils.calculNumeroRegion(numCase));
+        this.region = Utils.calculNumeroRegion(numCase);
     }
-    
+    protected void setCaseInitiale(int valeur)
+    {
+        this.valeur = valeur;
+        this.etatCase = EtatCase.INITIAL;
+        candidats.setAllCandidatsToFalse();
+        candidats.setCandidat(valeur);
+    }
+    protected void setCaseATrouver() {
+        this.valeur = 0;
+        this.etatCase =EtatCase.NOT_FOUNDED;
+        candidats.setAllCandidatsToTrue();
+    }
+    protected void setCaseTrouvee(int valeur)
+    {
+        this.valeur = valeur;
+        this.etatCase = EtatCase.FOUNDED;
+        candidats.setAllCandidatsToFalse();
+        candidats.setCandidat(valeur);
+    }
     protected int getNumCase() {return numCase;}
-    private void setNumCase(int numCase) {this.numCase = numCase;}
     protected int getxCase() {return xCase;}
-    private void setX(int xCase) {this.xCase = xCase;}
     protected int getyCase() {return yCase;}
-    private void setY(int yCase) {this.yCase = yCase;}
     protected int getValeur() {return valeur;}
-    protected void razValeur(int valeur) {
-        this.valeur=valeur;
-    }
-    protected void setValeurCase(int valeur)
-        {
-            this.valeur = valeur;
-            this.etatCase = EtatCase.FOUNDED;
-            candidats.setAllCandidatsToFalse();
-        }
     protected int getRegion() {return region;}
-    private void setRegion(int region) {this.region = region;}
     protected EtatCase getEtatCase() {return etatCase;}
 	protected void setEtatCase(EtatCase etatCase) {this.etatCase = etatCase;}
     protected boolean isCaseInitiale() {return this.etatCase == EtatCase.INITIAL;}
     protected boolean nEstPasCaseInitiale() {return (this.etatCase != EtatCase.INITIAL);}
-    protected void setCaseInitiale(int valeur)
-        {
-            this.valeur = valeur;
-            this.etatCase = EtatCase.INITIAL;
-            candidats.setAllCandidatsToFalse();
-        }
     protected boolean isCaseTrouvee() {return this.etatCase == EtatCase.FOUNDED;}
     protected boolean isCaseATrouver() { return this.etatCase == EtatCase.NOT_FOUNDED;}
     protected boolean nEstPasCaseTrouvee() {return (this.etatCase != EtatCase.FOUNDED);}

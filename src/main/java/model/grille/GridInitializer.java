@@ -30,9 +30,7 @@ class GridInitializer {
                     }
                     else {
                     	grille.getCasesAtrouver().add(indexCase);
-                        grille.getCase(x,y).razValeur(0);
-                        grille.getCase(x,y).setEtatCase(EtatCase.NOT_FOUNDED);
-                        grille.getCase(x,y).getCandidats().setAllCandidatsToTrue();
+                        grille.getCase(x,y).setCaseATrouver();
                     }
                     indexCase+=1;
                 }

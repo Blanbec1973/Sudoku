@@ -78,7 +78,7 @@ public class Grille {
     }
     
     public void setValeurCaseEnCours(int solution) {
-        this.getCaseEnCours().setValeurCase(solution);
+        this.getCaseEnCours().setCaseTrouvee(solution);
         this.elimineCandidatsCaseTrouvee(CaseEnCours.getX(), CaseEnCours.getY(), solution);
         casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getX(), CaseEnCours.getY())));
     }        

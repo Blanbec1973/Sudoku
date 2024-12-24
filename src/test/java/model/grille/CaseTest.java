@@ -29,7 +29,7 @@ class CaseTest {
         assertTrue(maCase.nEstPasCaseTrouvee());
         
         
-        maCase.setValeurCase(5);
+        maCase.setCaseTrouvee(5);
         assertTrue(maCase.isCaseTrouvee());
         assertFalse(maCase.isCaseInitiale());
         assertTrue(maCase.nEstPasCaseInitiale());
@@ -40,10 +40,10 @@ class CaseTest {
     @Test
     void testToString() {
         assertEquals("Case 1 to be found 0 / 111111111 |", maCase.toString());
-        maCase.setValeurCase(3);
-        assertEquals("Case 1 found 3 / 000000000 |", maCase.toString());
+        maCase.setCaseTrouvee(3);
+        assertEquals("Case 1 found 3 / 001000000 |", maCase.toString());
         maCase.setCaseInitiale(7);
-        assertEquals("Case 1 initial 7 / 000000000 |", maCase.toString());
+        assertEquals("Case 1 initial 7 / 000000100 |", maCase.toString());
 
     }
 }

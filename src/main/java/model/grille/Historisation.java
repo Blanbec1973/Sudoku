@@ -30,7 +30,7 @@ public class Historisation {
 		}
 		
 		for (int i=1;i<82;i++) {		
-			cible.getCase(i).setValeurCase(source.getValeurCase(i));
+			cible.getCase(i).setCaseTrouvee(source.getValeurCase(i));
 			cible.getCase(i).setEtatCase(source.getCase(i).getEtatCase());
 			this.copyCandidats(source.getCase(i).getCandidats(), cible.getCase(i).getCandidats());				                                                          
 		}
