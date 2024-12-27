@@ -1,6 +1,7 @@
 package model;
 
 import control.Control;
+import control.MyProperties;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.grille.Historisation;
@@ -10,16 +11,18 @@ import java.util.ArrayList;
 
 public class Model {
 	private final Control control;
+	private final MessageManager messageManager;
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final Historisation historizer = new Historisation();
 
 
-	public Model(Control control) {
+	public Model(Control control, MyProperties myProperties) {
 		this.control = control;
+		messageManager = new MessageManager(myProperties);
 		
         grille =new Grille();
-        grille.init(control.getInitFileName());
+        grille.init(System.getProperty("user.dir")+ myProperties.getProperty("InitialFile"));
         
         historizer.historiseGrille(grille);
         
@@ -65,7 +68,6 @@ public class Model {
 	}
 	
 	private void traiteChangement(int numMethodeResolution) {
-		MessageManager messageManager = new MessageManager(control.getProperties());
 		// Box is founded :
 		if (this.listeMethodes.get(numMethodeResolution).isCaseTrouvee()) {
 			setValeurCaseEnCours(listeMethodes.get(numMethodeResolution).getSolution(),

@@ -16,7 +16,7 @@ public class Control  {
         
     public Control(String initFileName) {
 		this.initFileName = initFileName;
-		model = new Model(this);
+		model = new Model(this, myProperties);
     	
     	// Initialize view and eventManager :
     	myView = new MyView();
