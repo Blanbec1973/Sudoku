@@ -1,5 +1,8 @@
 package control;
 
+import model.EventFromModel;
+import model.ModelListener;
+import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import view.MyView;
@@ -7,7 +10,7 @@ import view.MyView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class EventManager implements ActionListener {
+class EventManager implements ActionListener, ModelListener {
     private final Control control;
     private final MyView myView;
     private static final Logger logger = LogManager.getLogger(EventManager.class);
@@ -57,6 +60,45 @@ class EventManager implements ActionListener {
         myView.getRangResolution().setText(String.valueOf(temp));
     }
 
+    private void incrementResolutionRank() {
+        int temp = Integer.parseInt(myView.getRangResolution().getText());
+        temp+=1;
+        myView.getRangResolution().setText(String.valueOf(temp));
+    }
+    private void insertDisplayMessage(String text) {
+        myView.getLogTextArea().insert(text+'\n', 0);
+        myView.getLogTextArea().setCaretPosition(0);
+        myView.getPanCommande().revalidate();
+        myView.getPanCommande().repaint();
+    }
+    @Override
+    public void onEventFromModel(Grille grille, EventFromModel eventFromModel) {
+        switch (eventFromModel.getEventFromModelType()) {
+            case AJOUT_SOLUTION:
+                myView.refreshGrilleDisplay(grille);
+                insertDisplayMessage(eventFromModel.getMessage());
+                incrementResolutionRank();
+                break;
+            case HIGHLIGHT_CASE:
+                break;
+            case ELIMINE_CANDIDAT:
+                refreshDisplayBox(grille, eventFromModel.getNumCase());
+                insertDisplayMessage(eventFromModel.getMessage());
+                incrementResolutionRank();
+                break;
 
-
+        }
+    }
+    private void refreshDisplayBox(Grille grille, int numCase) {
+        if (grille.isCaseInitiale(numCase)) {
+            myView.setCaseInitiale(numCase, String.valueOf(grille.getValeurCase(numCase)));
+            return;
+        }
+        if (grille.isCaseTrouvee(numCase)) {
+            myView.setCase(numCase, String.valueOf(grille.getValeurCase(numCase)));
+        }
+        else {
+            myView.setCaseCandidats(numCase, grille.construitLibelleCandidats(numCase));
+        }
+    }
 }

@@ -5,7 +5,7 @@ import model.grille.Grille;
 import utils.Utils;
 import view.MyView;
 
-public class Control  {
+public class Control {
 	private final MyProperties myProperties = new MyProperties("config.properties");
 	private final MyView myView;
     private final Model model;
@@ -16,7 +16,6 @@ public class Control  {
         
     public Control(String initFileName) {
 		this.initFileName = initFileName;
-		model = new Model(this, myProperties);
     	
     	// Initialize view and eventManager :
     	myView = new MyView();
@@ -26,6 +25,8 @@ public class Control  {
         myView.getBoutonRecule().addActionListener(eventManager);
         myView.getMenuSave().addActionListener(eventManager);
 		myView.getMenuOpen().addActionListener(eventManager);
+
+		model = new Model(this, eventManager, myProperties);
        
         this.refreshDisplayGrid(model.getGrille());
         myView.getFenetre().setVisible(true);
@@ -34,36 +35,9 @@ public class Control  {
     public void refreshDisplayGrid(Grille g) {
 		myView.refreshGrilleDisplay(g);}
     
-    public void refreshDisplayBox(int numCase) {
-        if (model.getGrille().isCaseInitiale(numCase)) {
-        	myView.setCaseInitiale(numCase, String.valueOf(model.getGrille().getValeurCase(numCase)));
-        	return;
-        }
-    	if (model.getGrille().isCaseTrouvee(numCase)) {
-            myView.setCase(numCase, String.valueOf(model.getGrille().getValeurCase(numCase)));
-        }
-        else {
-            myView.setCaseCandidats(numCase, model.getGrille().construitLibelleCandidats(numCase));
-        }
-    }
-
-    public void insertDisplayMessage(String text) {
-		myView.getLogTextArea().insert(text+'\n', 0);
-		myView.getLogTextArea().setCaretPosition(0);
-		myView.getPanCommande().revalidate();
-		myView.getPanCommande().repaint();
-    }
-
-
 	public void highlightCase(int numCase) {
 		myView.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
 	}
-
-    public void incrementResolutionRank() {
-    	int temp = Integer.parseInt(myView.getRangResolution().getText());
-    	temp+=1;
-    	myView.getRangResolution().setText(String.valueOf(temp));
-    }
 
 	public String getInitFileName() {
 		if (initFileName.isEmpty())
@@ -79,5 +53,7 @@ public class Control  {
 		myView.getRangResolution().setText("0");
 		myView.getLogTextArea().setText(myProperties.getProperty("StartMessage"));
 	}
+
+
 }
 

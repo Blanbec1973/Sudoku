@@ -11,14 +11,16 @@ import java.util.ArrayList;
 
 public class Model {
 	private final Control control;
+	private final ModelListener modelListener;
 	private final MessageManager messageManager;
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final Historisation historizer = new Historisation();
 
 
-	public Model(Control control, MyProperties myProperties) {
+	public Model(Control control, ModelListener modelListener, MyProperties myProperties) {
 		this.control = control;
+		this.modelListener = modelListener;
 		messageManager = new MessageManager(myProperties);
 		
         grille =new Grille();
@@ -84,17 +86,19 @@ public class Model {
 	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
 		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getX(), CaseEnCours.getY(), solution);
-		control.refreshDisplayGrid(grille);
-		control.insertDisplayMessage(message);
-		control.incrementResolutionRank();
+
+		modelListener.onEventFromModel(grille,
+		      new EventFromModel(EventFromModelType.AJOUT_SOLUTION,CaseEnCours.getNumCase(),message));
+
 		historizer.historiseGrille(grille);
 	}
 	
 	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
 		grille.elimineCandidat(numCaseAction, candidatAEliminer);
-		control.refreshDisplayBox(numCaseAction);
-		control.insertDisplayMessage(message);
-		control.incrementResolutionRank();
+
+		modelListener.onEventFromModel(grille,
+				new EventFromModel(EventFromModelType.ELIMINE_CANDIDAT, numCaseAction, message));
+
 		historizer.historiseGrille(grille);
 	}
 

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import control.MyProperties;
@@ -18,14 +19,16 @@ import control.Control;
 class ModelTest {
 	private static Model model;
 	private static final Control control = Mockito.mock(Control.class);
+	private static final ModelListener modelListener = Mockito.mock(ModelListener.class);
 	private static final MyProperties myProperties = new MyProperties("config.properties");
 
 	@BeforeEach
 	void setUp() {
 		when(control.getInitFileName()).thenReturn(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
 		when(control.getProperties()).thenReturn(myProperties);
-		model = new Model(control,myProperties);
+		model = new Model(control, modelListener, myProperties);
 		model.reload(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
+		doNothing().when(modelListener).onEventFromModel(any(),any());
 	}
 
 	@Test
