@@ -80,7 +80,7 @@ public class Control  {
 		model.reload(fileName2);
 		this.refreshDisplayGrid(model.getGrille());
 		myView.getRangResolution().setText("0");
-		myView.getLogTextArea().setText("Grille initiale chargée.");
+		myView.getLogTextArea().setText(myProperties.getProperty("StartMessage"));
 	}
 }
 
