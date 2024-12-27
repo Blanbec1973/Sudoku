@@ -67,7 +67,7 @@ class MyViewTest {
 
 	@Test
 	void testSetCase() {
-		myView.setCase(1, 1, "toto");
+		myView.setCase(1, "toto");
 		assertEquals("toto", myView.getCase(1, 1).getText());
 		assertEquals(Color.GREEN, myView.getCase(1, 1).getBackground());
 	}
@@ -80,7 +80,7 @@ class MyViewTest {
 
 	@Test
 	void testSetCaseCandidats() {
-		myView.setCaseCandidats(3, 3, "titi");
+		myView.setCaseCandidats(21, "titi");
 		assertEquals("titi", myView.getCase(3, 3).getText());
 		assertEquals(Color.WHITE, myView.getCase(3, 3).getBackground());
 		assertEquals(12, myView.getCase(3, 3).getFont().getSize());
@@ -88,7 +88,7 @@ class MyViewTest {
 
 	@Test
 	void testSetCaseInitiale() {
-		myView.setCaseInitiale(5, 5, "tutu");
+		myView.setCaseInitiale(39, "tutu");
 		assertEquals("tutu", myView.getCase(5, 5).getText());
 		assertEquals(Color.GRAY, myView.getCase(5, 5).getBackground());
 		assertEquals(24, myView.getCase(5, 5).getFont().getSize());

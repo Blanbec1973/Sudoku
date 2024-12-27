@@ -5,6 +5,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 import model.grille.Grille;
+import utils.Utils;
 
 public class MyView {
 	private final JFrame fenetre = new JFrame();
@@ -35,7 +36,9 @@ public class MyView {
     	ActingOnView.init(this);
     }
     
-    public void setCase(int x, int y, String value) {
+    public void setCase(int numCase, String value) {
+        int x = Utils.calculXsearch(numCase);
+        int y = Utils.calculYsearch(numCase);
         maGrilleDisplay[x][y].setFont(new Font("Dialog",Font.BOLD,24));
         maGrilleDisplay[x][y].setText(value);
         maGrilleDisplay[x][y].setOpaque(true);
@@ -46,13 +49,17 @@ public class MyView {
         maGrilleDisplay[x][y].setBackground(Color.YELLOW);
     }
     
-     public void setCaseCandidats(int x, int y, String value) {
+     public void setCaseCandidats(int numCase, String value) {
+        int x = Utils.calculXsearch(numCase);
+        int y = Utils.calculYsearch(numCase);
         maGrilleDisplay[x][y].setFont(new Font("Courrier new",Font.PLAIN,12));
         maGrilleDisplay[x][y].setText(value);
         maGrilleDisplay[x][y].setBackground(Color.WHITE);
     }
     
-    public void setCaseInitiale(int x, int y, String value){
+    public void setCaseInitiale(int numCase, String value){
+        int x = Utils.calculXsearch(numCase);
+        int y = Utils.calculYsearch(numCase);
         maGrilleDisplay[x][y].setFont(new Font("Dialog",Font.BOLD,24));
     	maGrilleDisplay[x][y].setText(value);
         if (!value.isEmpty()) {
@@ -66,14 +73,13 @@ public class MyView {
         for (int numCase=1;numCase<82;numCase++) {
             valeurCase = String.valueOf(maGrille.getValeurCase(numCase));
             if (maGrille.isCaseInitiale(numCase)) {
-                this.setCaseInitiale(maGrille.getxCase(numCase),maGrille.getyCase(numCase), valeurCase);
+                this.setCaseInitiale(numCase, valeurCase);
                 }
             if (maGrille.isCaseATrouver(numCase)) {
-                this.setCaseCandidats(maGrille.getxCase(numCase),maGrille.getyCase(numCase),
-                		              maGrille.construitLibelleCandidats(numCase));
+                this.setCaseCandidats(numCase, maGrille.construitLibelleCandidats(numCase));
             }
             if (maGrille.isCaseTrouvee(numCase)) {
-            	this.setCase(maGrille.getxCase(numCase),maGrille.getyCase(numCase), valeurCase);
+            	this.setCase(numCase, valeurCase);
             }
         }
         panGrille.repaint();

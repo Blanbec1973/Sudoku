@@ -36,17 +36,14 @@ public class Control  {
     
     public void refreshDisplayBox(int numCase) {
         if (model.getGrille().isCaseInitiale(numCase)) {
-        	myView.setCaseInitiale(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-        			            String.valueOf(model.getGrille().getValeurCase(numCase)));
+        	myView.setCaseInitiale(numCase, String.valueOf(model.getGrille().getValeurCase(numCase)));
         	return;
         }
     	if (model.getGrille().isCaseTrouvee(numCase)) {
-            myView.setCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-            		    String.valueOf(model.getGrille().getValeurCase(numCase)));
+            myView.setCase(numCase, String.valueOf(model.getGrille().getValeurCase(numCase)));
         }
         else {
-            myView.setCaseCandidats(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase),
-            		             model.getGrille().construitLibelleCandidats(numCase));
+            myView.setCaseCandidats(numCase, model.getGrille().construitLibelleCandidats(numCase));
         }
     }
 
