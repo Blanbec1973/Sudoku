@@ -52,6 +52,13 @@ class ActingOnView {
         myView.getPanGrille().add(myView.getRangResolution());
         myView.getPanGrille().add(myView.getBoutonAvance());
         myView.getPanGrille().add(myView.getBoutonExplique());
+
+        myView.getPanCommande().getVerticalScrollBar().addAdjustmentListener(e -> {
+            myView.getPanCommande().revalidate();
+            myView.getPanCommande().repaint();
+        });
+
+
     }
 
     private static void formatMaCase(JButton button) {

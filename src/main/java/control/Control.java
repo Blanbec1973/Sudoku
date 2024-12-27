@@ -51,7 +51,10 @@ public class Control  {
     }
 
     public void insertDisplayMessage(String text) {
-    	myView.getLogTextArea().insert(text+'\n', 0);
+		myView.getLogTextArea().insert(text+'\n', 0);
+		myView.getLogTextArea().setCaretPosition(0);
+		myView.getPanCommande().revalidate();
+		myView.getPanCommande().repaint();
     }
 
 

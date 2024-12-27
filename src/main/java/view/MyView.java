@@ -10,7 +10,7 @@ public class MyView {
 	private final JFrame fenetre = new JFrame();
     private final JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille  panGrille = new MonPaneauGrille();
-    private final TextArea logTextArea  = new TextArea("Grille initiale chargée.",100,100);
+    private final JTextArea logTextArea  = new JTextArea("Grille initiale chargée.",100,100);
     private final JScrollPane  panCommande = new JScrollPane(logTextArea);
     private final JButton boutonAvance= new JButton(">>");
     private final JButton boutonExplique= new JButton("?");
@@ -23,7 +23,7 @@ public class MyView {
     public JScrollPane getPanCommande() {return panCommande;}
     public MonPaneauGrille getPanGrille() {return panGrille;}
     public JFrame getFenetre() {return fenetre;}
-    public TextArea getLogTextArea() {return logTextArea;}
+    public JTextArea getLogTextArea() {return logTextArea;}
     public JButton getBoutonAvance() {return this.boutonAvance;}
     public JButton getBoutonExplique() {return this.boutonExplique;}
 	public AbstractButton getBoutonRecule() {return this.boutonRecule;}
