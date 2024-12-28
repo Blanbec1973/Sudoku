@@ -1,1 +1,0 @@
-mvn clean verify sonar:sonar -Dsonar.projectKey=Sudoku -Dsonar.projectName='Sudoku' -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_7d86dd09d02053fcd84b5fbf13ab14a5dbfc57f2
