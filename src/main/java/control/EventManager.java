@@ -11,7 +11,7 @@ import view.MyView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class EventManager implements ActionListener, ModelListener {
+class EventManager implements ActionListener, ModelListener, IEventManager {
     private final Control control;
     private final MyView myView;
     private static final Logger logger = LogManager.getLogger(EventManager.class);
@@ -60,18 +60,18 @@ class EventManager implements ActionListener, ModelListener {
             if (!fileName2.isEmpty()) control.reloadGrille(fileName2);
         }
     }
-    private void decrementResolutionRank() {
+    public void decrementResolutionRank() {
         int temp = Integer.parseInt(myView.getRangResolution().getText());
         temp-=1;
         myView.getRangResolution().setText(String.valueOf(temp));
     }
 
-    private void incrementResolutionRank() {
+    public void incrementResolutionRank() {
         int temp = Integer.parseInt(myView.getRangResolution().getText());
         temp+=1;
         myView.getRangResolution().setText(String.valueOf(temp));
     }
-    private void insertDisplayMessage(String text) {
+    public void insertDisplayMessage(String text) {
         myView.getLogTextArea().insert(text+'\n', 0);
         myView.getLogTextArea().setCaretPosition(0);
         myView.getPanCommande().revalidate();
@@ -97,7 +97,7 @@ class EventManager implements ActionListener, ModelListener {
 
         }
     }
-    private void refreshDisplayBox(Grille grille, int numCase) {
+    public void refreshDisplayBox(Grille grille, int numCase) {
         if (grille.isCaseInitiale(numCase)) {
             myView.setCaseInitiale(numCase, String.valueOf(grille.getValeurCase(numCase)));
             return;

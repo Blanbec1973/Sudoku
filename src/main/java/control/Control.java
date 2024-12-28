@@ -1,6 +1,7 @@
 package control;
 
 import model.Model;
+import model.ModelListener;
 import view.MyView;
 
 public class Control {
@@ -15,9 +16,9 @@ public class Control {
     public Control() {
 
     	myView = new MyView();
-		EventManager eventManager = new EventManager(this, myView);
+		IEventManager eventManager = new EventManager(this, myView);
 
-		model = new Model(eventManager, myProperties);
+		model = new Model((ModelListener) eventManager, myProperties);
 
 		myView.refreshGrilleDisplay(model.getGrille());
         myView.getFenetre().setVisible(true);

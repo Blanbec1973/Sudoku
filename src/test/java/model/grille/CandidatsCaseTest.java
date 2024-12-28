@@ -7,10 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CandidatsCaseTest {
     CandidatsCase c1, c2, c3, c4, c5;
-    
-    public CandidatsCaseTest() {
-    }
-    
     @BeforeEach
     void setUp() {
         boolean[] tab1 = {false, false, false, false, false, false, false, false, false, false};
