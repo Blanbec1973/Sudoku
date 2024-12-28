@@ -2,7 +2,6 @@ package control;
 
 import model.Model;
 import model.grille.Grille;
-import utils.Utils;
 import view.MyView;
 
 public class Control {
@@ -26,7 +25,7 @@ public class Control {
         myView.getMenuSave().addActionListener(eventManager);
 		myView.getMenuOpen().addActionListener(eventManager);
 
-		model = new Model(this, eventManager, myProperties);
+		model = new Model(eventManager, myProperties);
        
         this.refreshDisplayGrid(model.getGrille());
         myView.getFenetre().setVisible(true);
@@ -34,10 +33,6 @@ public class Control {
     
     public void refreshDisplayGrid(Grille g) {
 		myView.refreshGrilleDisplay(g);}
-    
-	public void highlightCase(int numCase) {
-		myView.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
-	}
 
 	public String getInitFileName() {
 		if (initFileName.isEmpty())

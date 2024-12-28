@@ -1,6 +1,5 @@
 package model;
 
-import control.Control;
 import control.MyProperties;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
@@ -10,16 +9,13 @@ import resolution.*;
 import java.util.ArrayList;
 
 public class Model {
-	private final Control control;
 	private final ModelListener modelListener;
 	private final MessageManager messageManager;
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final Historisation historizer = new Historisation();
 
-
-	public Model(Control control, ModelListener modelListener, MyProperties myProperties) {
-		this.control = control;
+	public Model(ModelListener modelListener, MyProperties myProperties) {
 		this.modelListener = modelListener;
 		messageManager = new MessageManager(myProperties);
 		
@@ -62,7 +58,10 @@ public class Model {
 			if (goPourChangement)
 				this.traiteChangement(i);
 			else
-				control.highlightCase(listeMethodes.get(i).getNumCaseAction());
+				modelListener.onEventFromModel(grille,
+						new EventFromModel(EventFromModelType.HIGHLIGHT_CASE,
+								listeMethodes.get(i).getNumCaseAction(),
+								""));
 		}
 		else {
 			 javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 

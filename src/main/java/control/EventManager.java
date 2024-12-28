@@ -5,6 +5,7 @@ import model.ModelListener;
 import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utils.Utils;
 import view.MyView;
 
 import java.awt.event.ActionEvent;
@@ -80,6 +81,8 @@ class EventManager implements ActionListener, ModelListener {
                 incrementResolutionRank();
                 break;
             case HIGHLIGHT_CASE:
+                myView.setCaseAvantExplication(Utils.calculXsearch(eventFromModel.getNumCase()),
+                                                Utils.calculYsearch(eventFromModel.getNumCase()));
                 break;
             case ELIMINE_CANDIDAT:
                 refreshDisplayBox(grille, eventFromModel.getNumCase());
