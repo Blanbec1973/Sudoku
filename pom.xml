@@ -17,6 +17,8 @@
         <maven.compiler.target>9</maven.compiler.target>
         <junit.version>5.4.0</junit.version>
         <jacoco.agent.argLine />
+        <sonar.organization>blanbec1973</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <build>
         <plugins>
