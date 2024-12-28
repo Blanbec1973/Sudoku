@@ -26,14 +26,10 @@ class GridSaverTest {
 		GridSaver.saveGrid(grille, nomFichierCible);
 		File fichierSource = new File(nomFichierSource);
 		File fichierCible = new File(nomFichierCible);
-		//assertEquals(97, fichierCible.length());
 		Assertions.assertTrue(FileUtils.contentEquals(fichierSource, fichierCible), "The files differ!");
-		if (fichierCible.exists()) {
-			if (!fichierCible.delete()) {
-				System.err.println("Failed to delete the file: " + fichierCible.getAbsolutePath());
-			}
+		if (fichierCible.exists()&& !fichierCible.delete()) {
+			System.err.println("Failed to delete the file: " + fichierCible.getAbsolutePath());
 		}
-
 	}
 
 }

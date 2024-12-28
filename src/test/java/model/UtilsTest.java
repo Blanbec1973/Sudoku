@@ -8,9 +8,6 @@ import utils.Utils;
 
 class UtilsTest {
     
-    public UtilsTest() {
-    }
-    
     @Test
     void testCalculOuLogique2Candidats() {
         boolean[] tab1 = {true, true, false, false, false, false, false, false, false, false};

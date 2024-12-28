@@ -12,10 +12,7 @@ import model.grille.Grille;
 class PaireCandidats2CasesTest {
 	private Grille grille;
 	private PaireCandidats2Cases paireCandidats2Cases;
-	
-    public PaireCandidats2CasesTest() {
-    }
-    
+
     @BeforeEach
     public void setUp() {
     	grille = new Grille();

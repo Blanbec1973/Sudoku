@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Test;
 class CaseTest {
     Case maCase;
     
-    public CaseTest() {
-    }
-    
     @BeforeEach
     public void setUp() {
         maCase = new Case(1,0,0);
