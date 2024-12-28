@@ -15,7 +15,8 @@ public class SudokuSteps {
 
 	@Given("I start my Sudoku application with file {string}")
 	public void i_start_my_Sudoku_application_with_file_fileName(String fileName) {
-	    control = new Control(System.getProperty("user.dir")+fileName);
+	    control = new Control();
+		control.reloadGrille(System.getProperty("user.dir")+fileName);
 	}
 
 	@When("I click on nextButton")

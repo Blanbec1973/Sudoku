@@ -18,6 +18,11 @@ class EventManager implements ActionListener, ModelListener {
     public EventManager(Control control, MyView view) {
         this.control = control;
         this.myView = view;
+        myView.getBoutonAvance().addActionListener(this);
+        myView.getBoutonExplique().addActionListener(this);
+        myView.getBoutonRecule().addActionListener(this);
+        myView.getMenuSave().addActionListener(this);
+        myView.getMenuOpen().addActionListener(this);
     }
 
     @Override
@@ -32,13 +37,13 @@ class EventManager implements ActionListener, ModelListener {
             return;
         }
         if (source == myView.getBoutonRecule() && myView.getRangResolution().getText().equals("0")) {
-            javax.swing.JOptionPane.showMessageDialog(null,control.getProperties().getProperty("InitialMessage"));
+            javax.swing.JOptionPane.showMessageDialog(null,control.getMyProperties().getProperty("InitialMessage"));
             return;
         }
 
         if (source == myView.getBoutonRecule()) {
             control.getModel().reloadLastHistoricization();
-            control.refreshDisplayGrid(control.getModel().getGrille());
+            myView.refreshGrilleDisplay(control.getModel().getGrille());
             this.decrementResolutionRank();
             myView.supprimeDernierLigneLog();
             return;
