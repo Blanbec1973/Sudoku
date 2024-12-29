@@ -27,7 +27,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         
         yAction = CaseEnCours.getY();
         
-        numCaseAction=grille.calculNumCase(xAction, yAction);
+        numCaseAction= Grille.calculNumCase(xAction, yAction);
         return true;
 	}
 

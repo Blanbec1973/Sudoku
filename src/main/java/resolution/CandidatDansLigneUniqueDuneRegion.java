@@ -58,12 +58,12 @@ public class CandidatDansLigneUniqueDuneRegion extends MethodeResolution {
 	boolean detecteCandidatAEliminer() {
 		// Recherche présence candidatAEliminer dans les autres régions de la ligne
 		for (int i=0;i<9;i++) {
-			if (CaseEnCours.getNumRegion() != Utils.calculNumeroRegion(grille.calculNumCase(i, numLigne)) &&
-			    grille.isCaseATrouver(grille.calculNumCase(i, numLigne)) &&
-					grille.isCandidat(grille.calculNumCase(i, numLigne),candidatAEliminer)) {
+			if (CaseEnCours.getNumRegion() != Utils.calculNumeroRegion(Grille.calculNumCase(i, numLigne)) &&
+			    grille.isCaseATrouver(Grille.calculNumCase(i, numLigne)) &&
+					grille.isCandidat(Grille.calculNumCase(i, numLigne),candidatAEliminer)) {
 				xAction=i;
 				yAction=numLigne;
-				numCaseAction=grille.calculNumCase(xAction,yAction);
+				numCaseAction= Grille.calculNumCase(xAction,yAction);
 				return true;
 			}
 		}

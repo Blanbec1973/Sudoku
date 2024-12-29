@@ -1,7 +1,6 @@
 package utils;
 
 import model.grille.CandidatsCase;
-import model.grille.Grille;
 
 public class Utils {
 	

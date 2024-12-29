@@ -1,9 +1,8 @@
 package resolution;
 
+import model.Model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
-import utils.Utils;
 
 public class AbsenceCandidatEnColonneDansLesAutresRegions extends AbsenceCandidatDansLesAutresRegions {
 
@@ -17,7 +16,7 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends AbsenceCandida
 	}
 
 	protected boolean testCase(int rangCase, int candidat) {
-		return !(grille.getRegion(CaseEnCours.getNumCase()) != grille.getRegion(grille.calculNumCase(CaseEnCours.getX(),rangCase)) &&
+		return !(grille.getRegion(CaseEnCours.getNumCase()) != grille.getRegion(Grille.calculNumCase(CaseEnCours.getX(),rangCase)) &&
 				grille.isCaseATrouver(CaseEnCours.getX(),rangCase) &&
         	    grille.isCandidat(CaseEnCours.getX(),rangCase, candidat));
 	}

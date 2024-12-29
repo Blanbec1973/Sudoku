@@ -1,9 +1,8 @@
 package resolution;
 
+import model.Model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
-import utils.Utils;
 
 public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolution {
 	int xAction;
@@ -17,7 +16,7 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		boolean changementAFaire = this.detecteConfiguration();
 		
 		if (changementAFaire) {
-			numCaseAction=grille.calculNumCase(xAction, yAction);
+			numCaseAction= Grille.calculNumCase(xAction, yAction);
 			return true;
 		}
 		else return false ;

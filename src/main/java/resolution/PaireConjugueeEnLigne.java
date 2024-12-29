@@ -1,11 +1,10 @@
 package resolution;
 
-import java.util.Arrays;
-
+import model.Model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
-import utils.Utils;
+
+import java.util.Arrays;
 
 public class PaireConjugueeEnLigne extends PaireConjuguee {
 
@@ -32,14 +31,14 @@ public class PaireConjugueeEnLigne extends PaireConjuguee {
 	
 	protected boolean detecteCandidatAEliminer() {
         for (int xAction=0;xAction<9;xAction++) {
-        	if (grille.isCaseATrouver(grille.calculNumCase(xAction, CaseEnCours.getY())) &&
+        	if (grille.isCaseATrouver(Grille.calculNumCase(xAction, CaseEnCours.getY())) &&
         			xAction!=CaseEnCours.getX() && xAction !=x2) {
-        		numCaseAction=grille.calculNumCase(xAction, CaseEnCours.getY());
-        		if (grille.isCandidat(grille.calculNumCase(xAction, CaseEnCours.getY()), c1) ) {
+        		numCaseAction= Grille.calculNumCase(xAction, CaseEnCours.getY());
+        		if (grille.isCandidat(Grille.calculNumCase(xAction, CaseEnCours.getY()), c1) ) {
         			candidatAEliminer = c1;
         			return true;
         		}
-        		if (grille.isCandidat(grille.calculNumCase(xAction, CaseEnCours.getY()), c2) ) {
+        		if (grille.isCandidat(Grille.calculNumCase(xAction, CaseEnCours.getY()), c2) ) {
         			candidatAEliminer = c2;
         			return true;
         		}
