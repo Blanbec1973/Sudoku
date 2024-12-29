@@ -1,6 +1,7 @@
 package control;
 
 import model.EventFromModel;
+import model.Model;
 import model.ModelListener;
 import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
@@ -12,12 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class EventManager implements ActionListener, ModelListener, IEventManager {
-    private final Control control;
+    private Model model;
     private final MyView myView;
+
+    private final MyProperties properties;
     private static final Logger logger = LogManager.getLogger(EventManager.class);
-    public EventManager(Control control, MyView view) {
-        this.control = control;
+    public EventManager(MyView view, MyProperties properties) {
         this.myView = view;
+        this.properties=properties;
         myView.getBoutonAvance().addActionListener(this);
         myView.getBoutonExplique().addActionListener(this);
         myView.getBoutonRecule().addActionListener(this);
@@ -25,25 +28,27 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
         myView.getMenuOpen().addActionListener(this);
     }
 
+    public void setModel(Model model) {this.model=model;}
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source == myView.getBoutonAvance()) {
-            control.getModel().detecteSuivant(false);
+            model.detecteSuivant(false);
             return;
         }
         if (source == myView.getBoutonExplique()) {
-            control.getModel().detecteSuivant(true);
+            model.detecteSuivant(true);
             return;
         }
         if (source == myView.getBoutonRecule() && myView.getRangResolution().getText().equals("0")) {
-            javax.swing.JOptionPane.showMessageDialog(null,control.getMyProperties().getProperty("InitialMessage"));
+            javax.swing.JOptionPane.showMessageDialog(null,properties.getProperty("InitialMessage"));
             return;
         }
 
         if (source == myView.getBoutonRecule()) {
-            control.getModel().reloadLastHistoricization();
-            myView.refreshGrilleDisplay(control.getModel().getGrille());
+            model.reloadLastHistoricization();
+            myView.refreshGrilleDisplay(model.getGrille());
             this.decrementResolutionRank();
             myView.supprimeDernierLigneLog();
             return;
@@ -51,13 +56,13 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
 
         if (source == myView.getMenuSave()) {
             String fileName = myView.afficheSaveFileDialog("SAVE");
-            if (!fileName.isEmpty()) GridSaver.saveGrid(control.getModel().getGrille(),fileName);
+            if (!fileName.isEmpty()) GridSaver.saveGrid(model.getGrille(),fileName);
         }
 
         if (source == myView.getMenuOpen()) {
             String fileName2 = myView.afficheSaveFileDialog("OPEN");
             logger.info("Demande chargement fichier : {}",fileName2);
-            if (!fileName2.isEmpty()) control.reloadGrille(fileName2);
+            if (!fileName2.isEmpty()) this.reloadGrille(fileName2);
         }
     }
     public void decrementResolutionRank() {
@@ -108,5 +113,12 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
         else {
             myView.setCaseCandidats(numCase, grille.construitLibelleCandidats(numCase));
         }
+    }
+
+    public void reloadGrille(String fileName2) {
+        model.reload(fileName2);
+        myView.refreshGrilleDisplay(model.getGrille());
+        myView.getRangResolution().setText("0");
+        myView.getLogTextArea().setText(properties.getProperty("StartMessage"));
     }
 }
