@@ -4,11 +4,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-class ActingOnView {
-    private ActingOnView() {
-        throw new IllegalStateException("Utility class");
-    }
-    static void init(MyView myView) {
+public class ActingOnView implements IViewActions {
+    public void init(MyView myView) {
         myView.getFenetre().setTitle("Sudoku");
         myView.getFenetre().setSize(1200,660);
         myView.getFenetre().setResizable(false);
@@ -57,11 +54,9 @@ class ActingOnView {
             myView.getPanCommande().revalidate();
             myView.getPanCommande().repaint();
         });
-
-
     }
 
-    private static void formatMaCase(JButton button) {
+    private void formatMaCase(JButton button) {
         Dimension expectedDimension = new Dimension(54, 54);
         button.setPreferredSize(expectedDimension);
         button.setMaximumSize(expectedDimension);

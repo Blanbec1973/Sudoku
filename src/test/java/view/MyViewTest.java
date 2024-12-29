@@ -16,7 +16,7 @@ class MyViewTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
-		myView = new MyView();
+		myView = new MyView(new ActingOnView());
 	}
 
 	@Test

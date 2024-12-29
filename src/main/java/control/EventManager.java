@@ -15,7 +15,6 @@ import java.awt.event.ActionListener;
 class EventManager implements ActionListener, ModelListener, IEventManager {
     private Model model;
     private final MyView myView;
-
     private final MyProperties properties;
     private static final Logger logger = LogManager.getLogger(EventManager.class);
     public EventManager(MyView view, MyProperties properties) {

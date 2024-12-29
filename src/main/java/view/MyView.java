@@ -8,6 +8,7 @@ import model.grille.Grille;
 import utils.Utils;
 
 public class MyView {
+    private final IViewActions actions;
 	private final JFrame fenetre = new JFrame();
     private final JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille  panGrille = new MonPaneauGrille();
@@ -31,9 +32,13 @@ public class MyView {
     public JLabel getRangResolution() {return this.rangResolution;}
     public JButton getCase(int x, int y) {return maGrilleDisplay[x][y];}
     public JMenuItem getMenuSave() {return this.menuSave;}
+    public JMenuItem getMenuOpen() {
+        return this.menuOpen;
+    }
         
-    public MyView(){
-    	ActingOnView.init(this);
+    public MyView(IViewActions actions){
+        this.actions=actions;
+    	this.actions.init(this);
     }
     
     public void setCase(int numCase, String value) {
@@ -89,9 +94,7 @@ public class MyView {
     	int premierSautDeLigne = logTextArea.getText().indexOf("\n");
     	logTextArea.replaceRange("", 0,premierSautDeLigne+1);
     }
-    
 
-    
     public String afficheSaveFileDialog(String typeDialog) {
 	    String fileName="";
         int returnVal = 0;
@@ -112,10 +115,6 @@ public class MyView {
 		    	fileName = chooser.getSelectedFile().getAbsolutePath()+".sud";
 		}
 	    return fileName;
-    }
-
-    public JMenuItem getMenuOpen() {
-        return this.menuOpen;
     }
 
 }
