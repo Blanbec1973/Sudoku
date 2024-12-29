@@ -2,7 +2,6 @@ package control;
 
 import model.Model;
 import model.ModelListener;
-import view.ActingOnView;
 import view.MyView;
 
 public class Control {
@@ -17,7 +16,7 @@ public class Control {
         
     public Control() {
 
-    	myView = new MyView(new ActingOnView());
+    	myView = new MyView();
 		eventManager = new EventManager(myView, myProperties);
 
 		model = new Model((ModelListener) eventManager, myProperties);

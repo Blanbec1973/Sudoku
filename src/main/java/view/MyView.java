@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
@@ -8,7 +9,6 @@ import model.grille.Grille;
 import utils.Utils;
 
 public class MyView {
-    private final IViewActions actions;
 	private final JFrame fenetre = new JFrame();
     private final JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille  panGrille = new MonPaneauGrille();
@@ -36,9 +36,55 @@ public class MyView {
         return this.menuOpen;
     }
         
-    public MyView(IViewActions actions){
-        this.actions=actions;
-    	this.actions.init(this);
+    public MyView(){
+        this.getFenetre().setTitle("Sudoku");
+        this.getFenetre().setSize(1200,660);
+        this.getFenetre().setResizable(false);
+        this.getFenetre().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Container container= this.getFenetre().getContentPane();
+
+        JMenuBar barreMenus = new JMenuBar();
+        this.getFenetre().setJMenuBar(barreMenus);
+        JMenu menu1 = new JMenu("Fichier");
+        barreMenus.add(menu1);
+        menu1.add(this.getMenuOpen());
+        menu1.add(this.getMenuSave());
+
+        Dimension expectedDimension = new Dimension(580, 660);
+        this.getPanGrille().setPreferredSize(expectedDimension);
+        this.getPanGrille().setMaximumSize(expectedDimension);
+        this.getPanGrille().setMinimumSize(expectedDimension);
+        this.getPanGrille().setSize(600, 660);
+        this.getPanGrille().setBackground(Color.cyan);
+
+        this.getLogTextArea().setEditable(false);
+
+        Dimension d2 = new Dimension(600,660);
+        this.getPanCommande().setPreferredSize(d2);
+        this.getPanCommande().setMaximumSize(d2);
+        this.getPanCommande().setMinimumSize(d2);
+        this.getPanCommande().setSize(600,660);
+
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, this.getPanGrille(), this.getPanCommande());
+        container.add(split);
+
+        for (int y=0;y<9;y++) {
+            for (int x=0;x<9;x++) {
+                this.getMaGrilleDisplay()[x][y] = new JButton();
+                formatMaCase(this.getMaGrilleDisplay()[x][y]);
+                this.getMaGrilleDisplay()[x][y].setText(x +String.valueOf(y));
+                this.getPanGrille().add(this.getMaGrilleDisplay()[x][y]);
+            }
+        }
+        this.getPanGrille().add(this.getBoutonRecule());
+        this.getPanGrille().add(this.getRangResolution());
+        this.getPanGrille().add(this.getBoutonAvance());
+        this.getPanGrille().add(this.getBoutonExplique());
+
+        this.getPanCommande().getVerticalScrollBar().addAdjustmentListener(e -> {
+            this.getPanCommande().revalidate();
+            this.getPanCommande().repaint();
+        });
     }
     
     public void setCase(int numCase, String value) {
@@ -116,7 +162,20 @@ public class MyView {
 		}
 	    return fileName;
     }
-
+    private void formatMaCase(JButton button) {
+        Dimension expectedDimension = new Dimension(54, 54);
+        button.setPreferredSize(expectedDimension);
+        button.setMaximumSize(expectedDimension);
+        button.setMinimumSize(expectedDimension);
+        button.setSize(50, 50);
+        button.setBackground(Color.WHITE);
+        Border lineBorder = BorderFactory.createLineBorder(Color.black, 1);
+        button.setBorder(lineBorder);
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
+        button.setHorizontalAlignment(SwingConstants.CENTER);
+        button.setVerticalAlignment(SwingConstants.CENTER);
+    }
 }
 
  
