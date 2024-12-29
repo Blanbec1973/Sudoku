@@ -17,7 +17,7 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		boolean changementAFaire = this.detecteConfiguration();
 		
 		if (changementAFaire) {
-			numCaseAction=Utils.calculNumCase(xAction, yAction);
+			numCaseAction=grille.calculNumCase(xAction, yAction);
 			return true;
 		}
 		else return false ;

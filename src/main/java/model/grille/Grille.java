@@ -110,7 +110,7 @@ public class Grille {
     public void setValeurCaseEnCours(int solution) {
         this.getCaseEnCours().setCaseTrouvee(solution);
         this.elimineCandidatsCaseTrouvee(CaseEnCours.getX(), CaseEnCours.getY(), solution);
-        casesAtrouver.remove(casesAtrouver.indexOf(Utils.calculNumCase(CaseEnCours.getX(), CaseEnCours.getY())));
+        casesAtrouver.remove(casesAtrouver.indexOf(calculNumCase(CaseEnCours.getX(), CaseEnCours.getY())));
     }        
     
     public boolean checkPresenceCandidatLigne(int valeur, int x, int numLigne) {
@@ -204,5 +204,25 @@ public class Grille {
             }
         }
         return false;
+    }
+    public static int calculNumCase(int x, int y) {
+        return (y*9+x+1);
+    }
+    public int calculNombreCaseATrouverDansLigne(int ySearch) {
+        int resultat = 0;
+        for (int i=0;i<9;i++) {
+            if (this.nEstPasCaseInitiale(calculNumCase(i,ySearch)) && this.nEstPasCaseTrouvee(calculNumCase(i,ySearch)))
+                resultat+=1;
+        }
+        return resultat;
+    }
+
+    public int calculNombreCaseATrouverDansColonne(int xSearch) {
+        int resultat = 0;
+        for (int i=0;i<9;i++) {
+            if (this.nEstPasCaseInitiale(calculNumCase(xSearch,i)) && this.nEstPasCaseTrouvee(calculNumCase(xSearch,i)))
+                resultat+=1;
+        }
+        return resultat;
     }
 }

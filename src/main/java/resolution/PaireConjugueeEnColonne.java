@@ -34,7 +34,7 @@ public class PaireConjugueeEnColonne extends PaireConjuguee {
 		for (int yAction=0;yAction<9;yAction++) {
         	if (grille.isCaseATrouver(CaseEnCours.getX(),yAction) &&
         			yAction!=CaseEnCours.getY() && yAction !=y2) {
-        		numCaseAction=Utils.calculNumCase(CaseEnCours.getX(), yAction);
+        		numCaseAction=grille.calculNumCase(CaseEnCours.getX(), yAction);
         		if (grille.isCandidat(CaseEnCours.getX(),yAction, c1) ) {
         			candidatAEliminer = c1;
         			return true;

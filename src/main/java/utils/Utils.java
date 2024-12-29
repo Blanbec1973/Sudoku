@@ -40,22 +40,8 @@ public class Utils {
         return region+2;
     }
     
-    public static int calculNombreCaseATrouverDansLigne(Grille maGrille, int ySearch) {
-        int resultat = 0;
-        for (int i=0;i<9;i++) {
-            if (maGrille.nEstPasCaseInitiale(calculNumCase(i,ySearch)) && maGrille.nEstPasCaseTrouvee(calculNumCase(i,ySearch)))
-                resultat+=1;
-        }
-        return resultat;
-    }
-    public static int calculNombreCaseATrouverDansColonne(Grille maGrille, int xSearch) {
-        int resultat = 0;
-        for (int i=0;i<9;i++) {
-            if (maGrille.nEstPasCaseInitiale(calculNumCase(xSearch,i)) && maGrille.nEstPasCaseTrouvee(calculNumCase(xSearch,i)))
-                resultat+=1;
-        }
-        return resultat;
-    }
+
+
     public static int calculNombreTriplettes(int nombreCasesATrouver) {
         int resultat;
         int i;
@@ -89,9 +75,7 @@ public class Utils {
     	return resultat;
     }
     
-    public static int calculNumCase(int x, int y) {
-    	return (y*9+x+1);
-    }
+
 
 	public static int trouveCandidatNumero(CandidatsCase candidat, int rang) {
 		int rangTrouve = 0;

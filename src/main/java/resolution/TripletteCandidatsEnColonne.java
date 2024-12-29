@@ -17,7 +17,7 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		if (Utils.calculNombreCaseATrouverDansColonne(this.grille, CaseEnCours.getX())<=3) return false;
+		if (grille.calculNombreCaseATrouverDansColonne(CaseEnCours.getX())<=3) return false;
 
 		boolean trouve = this.detecteConfiguration();   	
         if (!trouve) return false;
@@ -27,7 +27,7 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
         
         xAction = CaseEnCours.getX();
         
-        numCaseAction=Utils.calculNumCase(xAction, yAction);
+        numCaseAction=grille.calculNumCase(xAction, yAction);
         return true;
 	}
 
