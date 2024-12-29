@@ -1,12 +1,19 @@
 package model.grille;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import utils.Utils;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Grille {
     private final Case[][] mesCases = new Case [9][9];
+    private static final Logger logger = LogManager.getLogger(Grille.class.getPackage().getName());
     private final List<Integer> casesAtrouver;
         
     public Grille() {
@@ -22,9 +29,32 @@ public class Grille {
 
     public void init(String pathFile) {
         casesAtrouver.clear();
-        GridInitializer gridInitializer = new GridInitializer(this);
-        gridInitializer.init(pathFile);
-        gridInitializer.calculTousLesCandidats();
+        String readLine;
+        int valeur;
+        int indexCase = 1;
+        File monFichier = new File(pathFile);
+        int y=0;
+        try (BufferedReader b = new BufferedReader(new FileReader(monFichier))){
+            while ((readLine = b.readLine()) != null) {
+                for (int x=0;x<9;x++) {
+                    valeur = Integer.parseInt(readLine.substring(x,x+1));
+                    if (valeur != 0) {
+                        this.getCase(x,y).setCaseInitiale(valeur);
+                    }
+                    else {
+                        this.getCasesAtrouver().add(indexCase);
+                        this.getCase(x,y).setCaseATrouver();
+                    }
+                    indexCase+=1;
+                }
+                y++;
+            }
+        } catch (IOException | NullPointerException ex) {
+            logger.fatal("Exception : {}",ex.getMessage());
+            System.exit(-1);
+        }
+        logger.info("Chargement OK fichier : {}",pathFile);
+        calculTousLesCandidats();
     }
 
     public Case getCase(int x, int y) {return mesCases[x][y];}
@@ -133,5 +163,46 @@ public class Grille {
                 mesCases[abs][ord].elimineCandidat(solution);
             }
         }
+    }
+    void calculTousLesCandidats() {
+        for (Integer caseATrouver : this.getCasesAtrouver()) {
+            logger.debug("Avant : {} {}", caseATrouver, this.getCase(caseATrouver));
+            CaseEnCours.setCaseEnCours(caseATrouver);
+            this.calculCandidatsInitiaux(CaseEnCours.getX(), CaseEnCours.getY());
+            logger.debug("Après : {} {}", caseATrouver, this.getCase(caseATrouver));
+        }
+    }
+
+    private void calculCandidatsInitiaux(int x, int y) {
+        for (int valeur=1;valeur<10;valeur++) {
+            if (this.checkPresenceValeurLigne(valeur, y))
+            {this.getCase(x, y).elimineCandidat(valeur);}
+            if (this.checkPresenceValeurColonne(valeur, x))
+            {this.getCase(x, y).elimineCandidat(valeur);}
+            if (this.checkPresenceValeurRegion(valeur))
+            {this.getCase(x, y).elimineCandidat(valeur);}
+        }
+    }
+    boolean checkPresenceValeurLigne(int valeur, int numLigne) {
+        for (int i=0;i<9;i++) {
+            if (this.getCase(i, numLigne).getValeur()==valeur) {return true;}
+        }
+        return false;
+    }
+
+    boolean checkPresenceValeurColonne(int valeur, int numColonne) {
+        for (int i=0;i<9;i++) {
+            if (this.getCase(numColonne, i).getValeur()==valeur) {return true;}
+        }
+        return false;
+    }
+
+    boolean checkPresenceValeurRegion(int valeur) {
+        for (int x=CaseEnCours.getxRegion();x<CaseEnCours.getxRegion()+3;x++) {
+            for (int y=CaseEnCours.getyRegion();y<CaseEnCours.getyRegion()+3;y++) {
+                if (this.getCase(x, y).getValeur() == valeur) {return true;}
+            }
+        }
+        return false;
     }
 }
