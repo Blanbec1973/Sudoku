@@ -3,13 +3,12 @@ package resolution;
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
 import utils.Utils;
 
 public class PaireCandidats2CasesLigne extends PaireCandidats2Cases {
 
-	public PaireCandidats2CasesLigne(Model model, Grille grille) {
-		super(model,grille);
+	public PaireCandidats2CasesLigne(Grille grille) {
+		super(grille);
 	}
 
 	@Override

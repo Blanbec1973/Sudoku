@@ -1,6 +1,5 @@
 package resolution;
 
-import model.Model;
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 
 
 public abstract class MethodeResolution {
-	protected final Model model;
 	protected final Grille grille;
 	protected final ArrayList<CandidatsCase> tabCandidats;
 
@@ -49,8 +47,7 @@ public abstract class MethodeResolution {
 	public int getC3() {return c3;}
 	public int getCandidatAEliminer() {return candidatAEliminer;}
 	
-	protected MethodeResolution(Model model, Grille grille) {
-		this.model = model;
+	protected MethodeResolution(Grille grille) {
 		this.grille=grille;
 		this.tabCandidats = new ArrayList <>();
 		c1=0;

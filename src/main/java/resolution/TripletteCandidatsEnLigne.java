@@ -1,6 +1,5 @@
 package resolution;
 
-import model.Model;
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
@@ -10,8 +9,8 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
 	int xAction;
 	int yAction;
 	
-	public TripletteCandidatsEnLigne(Model model, Grille grille) {
-		super(model,grille);
+	public TripletteCandidatsEnLigne(Grille grille) {
+		super(grille);
 		caseTrouvee=false;
 	}
 

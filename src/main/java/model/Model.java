@@ -25,21 +25,21 @@ public class Model {
         historizer.historiseGrille(grille);
         
 	    listeMethodes = new ArrayList<>();
-	    listeMethodes.add(new CandidatUniqueDansCase(this,grille));
-	    listeMethodes.add(new CandidatUniqueDansLigne(this,grille));
-	    listeMethodes.add(new CandidatUniqueDansColonne(this,grille));
-	    listeMethodes.add(new CandidatUniqueDansRegion(this,grille));
-	    listeMethodes.add(new PaireCandidats2CasesColonne(this, grille));
-	    listeMethodes.add(new PaireConjugueeEnLigne(this, grille));
-	    listeMethodes.add(new PaireConjugueeEnColonne(this, grille));
-	    listeMethodes.add(new PaireConjugueeEnRegion(this, grille));
-	    listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(this, grille));
-	    listeMethodes.add(new AbsenceCandidatEnLigneDansLesAutresRegions(this, grille));
-	    listeMethodes.add(new PaireCandidats2CasesLigne(this, grille));
-	    listeMethodes.add(new TripletteCandidatsEnLigne(this, grille));
-		listeMethodes.add(new CandidatDansColonneUniqueDuneRegion(this, grille));
-		listeMethodes.add(new CandidatDansLigneUniqueDuneRegion(this,grille));
-		listeMethodes.add(new TripletteCandidatsEnColonne(this,grille	));
+	    listeMethodes.add(new CandidatUniqueDansCase(grille));
+	    listeMethodes.add(new CandidatUniqueDansLigne(grille));
+	    listeMethodes.add(new CandidatUniqueDansColonne(grille));
+	    listeMethodes.add(new CandidatUniqueDansRegion(grille));
+	    listeMethodes.add(new PaireCandidats2CasesColonne(grille));
+	    listeMethodes.add(new PaireConjugueeEnLigne(grille));
+	    listeMethodes.add(new PaireConjugueeEnColonne(grille));
+	    listeMethodes.add(new PaireConjugueeEnRegion(grille));
+	    listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(grille));
+	    listeMethodes.add(new AbsenceCandidatEnLigneDansLesAutresRegions(grille));
+	    listeMethodes.add(new PaireCandidats2CasesLigne(grille));
+	    listeMethodes.add(new TripletteCandidatsEnLigne(grille));
+		listeMethodes.add(new CandidatDansColonneUniqueDuneRegion(grille));
+		listeMethodes.add(new CandidatDansLigneUniqueDuneRegion(grille));
+		listeMethodes.add(new TripletteCandidatsEnColonne(grille));
 	}
 
 	public Grille getGrille() {return grille;}

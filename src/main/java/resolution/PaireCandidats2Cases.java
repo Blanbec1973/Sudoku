@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
 import utils.Utils;
 
 public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb2inter = 0;
 	protected int nb1inter = 0;
 	
-	protected PaireCandidats2Cases(Model model, Grille grille) {
-		super(model,grille);
+	protected PaireCandidats2Cases(Grille grille) {
+		super(grille);
 		c1=0;
 		c2=0;
 		caseTrouvee=false;

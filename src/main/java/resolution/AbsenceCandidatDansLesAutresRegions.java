@@ -1,6 +1,5 @@
 package resolution;
 
-import model.Model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 
@@ -8,8 +7,8 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 	int xAction;
 	int yAction;
 	
-	protected AbsenceCandidatDansLesAutresRegions(Model model, Grille grille) {
-		super(model,grille);
+	protected AbsenceCandidatDansLesAutresRegions(Grille grille) {
+		super(grille);
 	}
 
 	public boolean traiteCaseEnCours(boolean goPourChangement) {	

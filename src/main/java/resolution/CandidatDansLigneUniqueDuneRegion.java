@@ -1,6 +1,5 @@
 package resolution;
 
-import model.Model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import utils.Utils;
@@ -10,8 +9,8 @@ public class CandidatDansLigneUniqueDuneRegion extends MethodeResolution {
 	int yAction;
 	int numLigne;
 
-	public CandidatDansLigneUniqueDuneRegion(Model model, Grille grille) {
-		super(model, grille);
+	public CandidatDansLigneUniqueDuneRegion(Grille grille) {
+		super(grille);
 	}
 
 	@Override

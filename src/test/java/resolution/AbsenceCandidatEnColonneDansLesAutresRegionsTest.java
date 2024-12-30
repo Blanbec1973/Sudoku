@@ -15,7 +15,7 @@ class AbsenceCandidatEnColonneDansLesAutresRegionsTest {
 	static void setUpBeforeClass() {
 		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/AbsenceCandidatEnColonneDansLesAutresRegions.sud");
-		methode = new AbsenceCandidatEnColonneDansLesAutresRegions(null, grille);
+		methode = new AbsenceCandidatEnColonneDansLesAutresRegions(grille);
 	}
 
 	@Test

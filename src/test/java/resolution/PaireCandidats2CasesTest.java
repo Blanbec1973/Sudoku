@@ -17,7 +17,7 @@ class PaireCandidats2CasesTest {
     public void setUp() {
     	grille = new Grille();
     	CaseEnCours.setCaseEnCours(1);
-    	paireCandidats2Cases = new PaireCandidats2CasesColonne(null,grille);
+    	paireCandidats2Cases = new PaireCandidats2CasesColonne(grille);
     }
 
     @Test

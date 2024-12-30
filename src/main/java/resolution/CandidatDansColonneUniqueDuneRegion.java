@@ -2,7 +2,6 @@ package resolution;
 
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
 import utils.Utils;
 
 public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
@@ -10,8 +9,8 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	int yAction;
 	int numColonne;
 	
-	public CandidatDansColonneUniqueDuneRegion(Model model, Grille grille) {
-		super(model, grille);
+	public CandidatDansColonneUniqueDuneRegion(Grille grille) {
+		super(grille);
 	}
 
 	@Override

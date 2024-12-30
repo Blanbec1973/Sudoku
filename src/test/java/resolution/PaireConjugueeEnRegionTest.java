@@ -18,7 +18,7 @@ class PaireConjugueeEnRegionTest {
 	@BeforeAll
 	void setUpBeforeClass() {
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnRegion.sud");
-		methode = new PaireConjugueeEnRegion(null, grille);
+		methode = new PaireConjugueeEnRegion(grille);
 	}
 
 	@Test

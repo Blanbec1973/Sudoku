@@ -2,12 +2,11 @@ package resolution;
 
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
 
 public class CandidatUniqueDansRegion extends MethodeResolution {
 
-	public CandidatUniqueDansRegion(Model model, Grille grille) {
-		super(model, grille);
+	public CandidatUniqueDansRegion(Grille grille) {
+		super(grille);
 	}
 
 	@Override

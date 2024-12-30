@@ -1,13 +1,12 @@
 package resolution;
 
-import model.Model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 
 public class AbsenceCandidatEnLigneDansLesAutresRegions extends AbsenceCandidatDansLesAutresRegions {
 
-	public AbsenceCandidatEnLigneDansLesAutresRegions(Model model, Grille grille) {
-		super(model,grille);
+	public AbsenceCandidatEnLigneDansLesAutresRegions(Grille grille) {
+		super(grille);
 	}
 
 	@Override

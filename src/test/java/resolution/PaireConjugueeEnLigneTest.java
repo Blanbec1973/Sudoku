@@ -16,7 +16,7 @@ class PaireConjugueeEnLigneTest {
 	@BeforeAll
 	void setUpBeforeClass() {
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnLigne.sud");
-		methode = new PaireConjugueeEnLigne(null, grille);
+		methode = new PaireConjugueeEnLigne(grille);
 	}
 	
 	@Test

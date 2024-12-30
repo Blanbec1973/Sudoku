@@ -2,11 +2,10 @@ package resolution;
 
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
 
 public class CandidatUniqueDansLigne extends MethodeResolution {
 
-	public CandidatUniqueDansLigne(Model model, Grille grille) {super(model,grille);}
+	public CandidatUniqueDansLigne(Grille grille) {super(grille);}
 
 	@Override
 	public boolean traiteCaseEnCours(boolean goPourChangement) {

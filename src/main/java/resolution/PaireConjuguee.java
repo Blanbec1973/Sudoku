@@ -2,13 +2,12 @@ package resolution;
 
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.Model;
 import utils.Utils;
 
 public abstract class PaireConjuguee extends MethodeResolution {
 
-	protected PaireConjuguee(Model model, Grille grille) {
-		super(model,grille);
+	protected PaireConjuguee(Grille grille) {
+		super(grille);
 		caseTrouvee=false;
 	}
 

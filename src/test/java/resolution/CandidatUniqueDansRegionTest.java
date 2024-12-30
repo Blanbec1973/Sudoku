@@ -15,7 +15,7 @@ class CandidatUniqueDansRegionTest {
 	static void setUpBeforeClass() {
 		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansRegion.sud");
-		methode = new CandidatUniqueDansRegion(null, grille);
+		methode = new CandidatUniqueDansRegion(grille);
 	}
 
 	@Test

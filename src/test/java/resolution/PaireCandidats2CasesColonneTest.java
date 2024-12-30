@@ -15,7 +15,7 @@ class PaireCandidats2CasesColonneTest {
     void setUp() {
         grille = new Grille();
         grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireCandidats2CasesColonne.sud");
-        methode = new PaireCandidats2CasesColonne(null,grille);
+        methode = new PaireCandidats2CasesColonne(grille);
     }
 
     @Test

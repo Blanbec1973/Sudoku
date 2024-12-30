@@ -16,7 +16,7 @@ class CandidatDansLigneUniqueDuneRegionTest {
 	@BeforeAll
 	void setUpBeforeClass() {
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatDansLigneUniqueDuneRegion.sud");
-		methode = new CandidatDansLigneUniqueDuneRegion(null, grille);
+		methode = new CandidatDansLigneUniqueDuneRegion(grille);
 	}
 
 	@Test

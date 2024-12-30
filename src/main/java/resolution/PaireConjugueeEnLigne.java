@@ -1,6 +1,5 @@
 package resolution;
 
-import model.Model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 
@@ -8,8 +7,8 @@ import java.util.Arrays;
 
 public class PaireConjugueeEnLigne extends PaireConjuguee {
 
-	public PaireConjugueeEnLigne(Model model, Grille grille) {
-		super(model,grille);
+	public PaireConjugueeEnLigne(Grille grille) {
+		super(grille);
 	}
 
 	@Override

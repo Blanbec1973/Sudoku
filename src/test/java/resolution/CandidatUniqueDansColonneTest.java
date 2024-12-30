@@ -16,7 +16,7 @@ class CandidatUniqueDansColonneTest {
 	static void setUpBeforeClass() {
 		Grille grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatUniqueDansColonne.sud");
-		methode = new CandidatUniqueDansColonne(null, grille);
+		methode = new CandidatUniqueDansColonne(grille);
 	}
 
 	@Test

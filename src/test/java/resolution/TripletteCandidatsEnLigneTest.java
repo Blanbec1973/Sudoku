@@ -17,7 +17,7 @@ class TripletteCandidatsEnLigneTest {
 	static void setUpBeforeClass() {
 		grille = new Grille();
 		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/TripletteCandidatsEnLigne.sud");
-		methode = new TripletteCandidatsEnLigne(null, grille);
+		methode = new TripletteCandidatsEnLigne(grille);
 	}
 
 	@Test
