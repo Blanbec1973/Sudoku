@@ -32,7 +32,7 @@ public class CaseEnCours {
 	public static void setCaseEnCours(int x, int y) {
 		CaseEnCours.x = x;
 		CaseEnCours.y = y;
-		numCase = Grille.calculNumCase(x, y);
+		numCase = y*9+x+1;
 		CaseEnCours.calculeXYRegion();
 		numRegion=Utils.calculNumeroRegion(numCase);
 	}

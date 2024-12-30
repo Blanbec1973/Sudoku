@@ -164,6 +164,7 @@ public class Grille {
             }
         }
     }
+
     void calculTousLesCandidats() {
         for (Integer caseATrouver : this.getCasesAtrouver()) {
             logger.debug("Avant : {} {}", caseATrouver, this.getCase(caseATrouver));
@@ -183,6 +184,7 @@ public class Grille {
             {this.getCase(x, y).elimineCandidat(valeur);}
         }
     }
+
     boolean checkPresenceValeurLigne(int valeur, int numLigne) {
         for (int i=0;i<9;i++) {
             if (this.getCase(i, numLigne).getValeur()==valeur) {return true;}
@@ -205,9 +207,11 @@ public class Grille {
         }
         return false;
     }
+
     public static int calculNumCase(int x, int y) {
         return (y*9+x+1);
     }
+
     public int calculNombreCaseATrouverDansLigne(int ySearch) {
         int resultat = 0;
         for (int i=0;i<9;i++) {
