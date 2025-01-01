@@ -11,6 +11,8 @@ import view.MyView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 class EventManager implements ActionListener, ModelListener, IEventManager {
     private Model model;
@@ -25,6 +27,7 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
         myView.getBoutonRecule().addActionListener(this);
         myView.getMenuSave().addActionListener(this);
         myView.getMenuOpen().addActionListener(this);
+        myView.getMenuResolution().addActionListener(this);
     }
 
     public void setModel(Model model) {this.model=model;}
@@ -63,7 +66,25 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
             logger.info("Demande chargement fichier : {}",fileName2);
             if (!fileName2.isEmpty()) this.reloadGrille(fileName2);
         }
+
+        if (source == myView.getMenuResolution()) {
+            resolution();
+        }
     }
+
+    private void resolution() {
+        logger.info("Demande de résolution globale.");
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (!model.detecteSuivant(true))
+                    timer.cancel();
+            }
+        }, 0, 200); // Démarre immédiatement, répète toutes les secondes
+
+    }
+
     public void decrementResolutionRank() {
         int temp = Integer.parseInt(myView.getRangResolution().getText());
         temp-=1;

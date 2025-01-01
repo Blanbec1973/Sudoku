@@ -44,7 +44,7 @@ public class Model {
 
 	public Grille getGrille() {return grille;}
 	
-	public void detecteSuivant(boolean goPourChangement) {
+	public boolean detecteSuivant(boolean goPourChangement) {
 		int i =0;
 		boolean trouve;
 		
@@ -64,8 +64,10 @@ public class Model {
 								""));
 		}
 		else {
-			 javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !"); 
+			javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !");
+			return false;
 		}
+		return true;
 	}
 	
 	private void traiteChangement(int numMethodeResolution) {

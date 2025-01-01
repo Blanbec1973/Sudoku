@@ -20,7 +20,7 @@ public class MyView {
     private final JLabel rangResolution= new JLabel("0");
     private final JMenuItem menuSave = new JMenuItem("Save as ...");
     private final JMenuItem menuOpen = new JMenuItem("Open...");
-
+    private final JMenuItem menuResolution = new JMenuItem("Résolution");
     public JButton[][] getMaGrilleDisplay() {return maGrilleDisplay;}
     public JScrollPane getPanCommande() {return panCommande;}
     public MonPaneauGrille getPanGrille() {return panGrille;}
@@ -35,6 +35,7 @@ public class MyView {
     public JMenuItem getMenuOpen() {
         return this.menuOpen;
     }
+    public JMenuItem getMenuResolution() {return this.menuResolution;}
         
     public MyView(){
         this.getFenetre().setTitle("Sudoku");
@@ -49,6 +50,7 @@ public class MyView {
         barreMenus.add(menu1);
         menu1.add(this.getMenuOpen());
         menu1.add(this.getMenuSave());
+        menu1.add(this.getMenuResolution());
 
         Dimension expectedDimension = new Dimension(580, 660);
         this.getPanGrille().setPreferredSize(expectedDimension);
