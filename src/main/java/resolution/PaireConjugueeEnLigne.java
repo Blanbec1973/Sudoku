@@ -11,11 +11,6 @@ public class PaireConjugueeEnLigne extends PaireConjuguee {
 		super(grille);
 	}
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
 	protected boolean detecteConfiguration() {
         for (x2=0;x2<9;x2++) {
             if (x2 != CaseEnCours.getX() &&

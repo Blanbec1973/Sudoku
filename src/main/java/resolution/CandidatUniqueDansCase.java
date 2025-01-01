@@ -20,11 +20,6 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		return true;
 	}
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
 	private boolean detecteConfiguration() {
 
 		return (grille.contientCandidatUnique(CaseEnCours.getNumCase()));

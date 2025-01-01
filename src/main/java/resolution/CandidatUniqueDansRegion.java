@@ -14,9 +14,4 @@ public class CandidatUniqueDansRegion extends CandidatUniqueDansZone {
 		return grille.checkPresenceCandidatRegion(candidat, CaseEnCours.getX(),CaseEnCours.getY());
 	}
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
 }

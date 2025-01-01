@@ -71,6 +71,8 @@ public abstract class MethodeResolution {
 	
 	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
 
-	public abstract String getSimpleName();
+	public String getSimpleName() {
+		return this.getClass().getSimpleName();
+	}
 	
 }

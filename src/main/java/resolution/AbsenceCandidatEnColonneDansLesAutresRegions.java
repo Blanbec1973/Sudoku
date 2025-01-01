@@ -9,11 +9,6 @@ public class AbsenceCandidatEnColonneDansLesAutresRegions extends AbsenceCandida
 		super(grille);
 	}
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
 	protected boolean testCase(int rangCase, int candidat) {
 		return !(grille.getRegion(CaseEnCours.getNumCase()) != grille.getRegion(Grille.calculNumCase(CaseEnCours.getX(),rangCase)) &&
 				grille.isCaseATrouver(CaseEnCours.getX(),rangCase) &&

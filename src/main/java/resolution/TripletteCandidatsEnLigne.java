@@ -30,11 +30,6 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         return true;
 	}
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
 	private boolean detecteConfiguration() {
         x2=0;
         x3=0;

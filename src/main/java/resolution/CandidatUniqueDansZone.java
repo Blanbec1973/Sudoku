@@ -30,9 +30,4 @@ abstract class CandidatUniqueDansZone extends MethodeResolution {
 
 	protected abstract boolean checkPresenceCandidatZone(int candidat, int x, int y);
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
 }

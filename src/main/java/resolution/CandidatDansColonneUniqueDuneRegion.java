@@ -23,11 +23,6 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
         return trouve;
 	}
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
 	private boolean detectConfiguration() {
 		// Pour tous les candidats de la case en cours, je regarde si je ne suis que dans la colonne de ma région
 		for (int i=1; i <= 9 ;i++) {

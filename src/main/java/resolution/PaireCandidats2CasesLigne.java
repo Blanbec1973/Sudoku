@@ -11,12 +11,6 @@ public class PaireCandidats2CasesLigne extends PaireCandidats2Cases {
 		super(grille);
 	}
 
-	@Override
-	public String getSimpleName() {
-		return this.getClass().getSimpleName();
-	}
-
-
 	protected boolean traiteCouple(CandidatsCase paireCandidats) {
 		for (int i=0;i<9;i++) {
 			if (grille.isCaseATrouver(i, CaseEnCours.getY()) && CaseEnCours.getX()!=i) {
