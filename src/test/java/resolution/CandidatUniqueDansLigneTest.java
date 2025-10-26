@@ -22,10 +22,10 @@ class CandidatUniqueDansLigneTest {
 	@Test
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(2);
-		assertFalse(methode.traiteCaseEnCours(false));
+		assertFalse(methode.traiteCaseEnCours(false).isPresent());
 		
 		CaseEnCours.setCaseEnCours(39);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(6, methode.getSolution());
 	}
 	@Test

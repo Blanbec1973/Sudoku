@@ -7,6 +7,7 @@ import model.grille.Historisation;
 import resolution.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Model {
 	private final ModelListener modelListener;
@@ -43,50 +44,53 @@ public class Model {
 	}
 
 	public Grille getGrille() {return grille;}
-	
+
 	public boolean detecteSuivant(boolean goPourChangement) {
-		int i =0;
-		boolean trouve;
-		
-		do { 
-			trouve = listeMethodes.get(i).detecteSuivant(goPourChangement);
-			if (trouve) break;
-			i+=1;
-		} while (i<listeMethodes.size());
-        
-		if (trouve) {
-			if (goPourChangement)
-				this.traiteChangement(i);
-			else
+		Optional<ResolutionAction> action = findNextAction(goPourChangement);
+
+		if (action.isPresent()) {
+			ResolutionAction a = action.get();
+
+			if (goPourChangement) {
+				traiteChangement(a);
+			} else {
 				modelListener.onEventFromModel(grille,
 						new EventFromModel(EventFromModelType.HIGHLIGHT_CASE,
-								listeMethodes.get(i).getNumCaseAction(),
+								a.getNumCaseAction(),
 								""));
+			}
+			return true;
 		}
-		else {
-			javax.swing.JOptionPane.showMessageDialog(null,"Fin algorithme !");
-			return false;
+		javax.swing.JOptionPane.showMessageDialog(null, "Fin algorithme !");
+		return false;
+	}
+
+	private Optional<ResolutionAction> findNextAction(boolean goPourChangement) {
+		for (MethodeResolution methode : listeMethodes) {
+			Optional<ResolutionAction> action = methode.detecteSuivant(goPourChangement);
+			if (action.isPresent()) {
+				return action;
+			}
 		}
-		return true;
+		return Optional.empty();
 	}
 	
-	private void traiteChangement(int numMethodeResolution) {
+	private void traiteChangement(ResolutionAction action) {
 		// Box is founded :
-		if (this.listeMethodes.get(numMethodeResolution).isCaseTrouvee()) {
-			setValeurCaseEnCours(listeMethodes.get(numMethodeResolution).getSolution(),
-					messageManager.createMessageSolution(listeMethodes.get(numMethodeResolution)));
+		if (action.isCaseTrouvee()) {
+			setValeurCaseEnCours(action.getSolution(),
+					messageManager.createMessageSolution(action.getMethodeResolution()));
 			return;
 		}
 		
 		// A candidate must be eliminated :
-		elimineCandidatCase(listeMethodes.get(numMethodeResolution).getCandidatAEliminer(),
-				            listeMethodes.get(numMethodeResolution).getNumCaseAction(),
-				messageManager.createMessageElimination(listeMethodes.get(numMethodeResolution)));
+		elimineCandidatCase(action.getCandidatAEliminer(),
+				            action.getNumCaseAction(),
+				messageManager.createMessageElimination(action.getMethodeResolution()));
 	}
 
 	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
-		grille.elimineCandidatsCaseTrouvee(CaseEnCours.getX(), CaseEnCours.getY(), solution);
 
 		modelListener.onEventFromModel(grille,
 		      new EventFromModel(EventFromModelType.AJOUT_SOLUTION,CaseEnCours.getNumCase(),message));

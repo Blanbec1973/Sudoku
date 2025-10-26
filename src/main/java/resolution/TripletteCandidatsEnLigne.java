@@ -5,6 +5,8 @@ import model.grille.CaseEnCours;
 import model.grille.Grille;
 import utils.Utils;
 
+import java.util.Optional;
+
 public class TripletteCandidatsEnLigne extends MethodeResolution {
 	int xAction;
 	int yAction;
@@ -15,19 +17,19 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
 	}
 
 	@Override
-	public boolean traiteCaseEnCours(boolean goPourChangement) {
-		if (grille.calculNombreCaseATrouverDansLigne(CaseEnCours.getY())<=3) return false;
+	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
+		if (grille.calculNombreCaseATrouverDansLigne(CaseEnCours.getY())<=3) return Optional.empty();
 
 		boolean trouve = this.detecteConfiguration();   	
-        if (!trouve) return false;
+        if (!trouve) return Optional.empty();
         
         trouve = this.detecteCandidatAEliminer();
-        if (!trouve) return false;
+        if (!trouve) return Optional.empty();
         
         yAction = CaseEnCours.getY();
         
         numCaseAction= Grille.calculNumCase(xAction, yAction);
-        return true;
+        return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
 	}
 
 	private boolean detecteConfiguration() {

@@ -21,30 +21,30 @@ class PaireCandidats2CasesColonneTest {
     @Test
     void testTraiteCaseEnCours() {
         CaseEnCours.setCaseEnCours(1);
-        assertFalse(methode.traiteCaseEnCours(false));
+        assertFalse(methode.traiteCaseEnCours(false).isPresent());
         CaseEnCours.setCaseEnCours(8);
-        assertTrue(methode.traiteCaseEnCours(false));
+        assertTrue(methode.traiteCaseEnCours(false).isPresent());
         assertEquals(8, methode.numCaseAction);
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(8,3);
 
-        assertTrue(methode.traiteCaseEnCours(false));
+        assertTrue(methode.traiteCaseEnCours(false).isPresent());
         assertEquals(8, methode.numCaseAction);
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(8,8);
 
         CaseEnCours.setCaseEnCours(17);
-        assertTrue(methode.traiteCaseEnCours(false));
+        assertTrue(methode.traiteCaseEnCours(false).isPresent());
         assertEquals(17, methode.numCaseAction);
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(17,3);
 
-        assertTrue(methode.traiteCaseEnCours(false));
+        assertTrue(methode.traiteCaseEnCours(false).isPresent());
         assertEquals(17, methode.numCaseAction);
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(17,8);
 
-        assertFalse(methode.traiteCaseEnCours(false));
+        assertFalse(methode.traiteCaseEnCours(false).isPresent());
     }
 
     @Test

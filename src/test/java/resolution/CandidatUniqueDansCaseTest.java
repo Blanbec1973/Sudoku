@@ -21,10 +21,10 @@ class CandidatUniqueDansCaseTest {
 	@Test
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(1);
-		assertFalse(methode.traiteCaseEnCours(false));
+		assertFalse(methode.traiteCaseEnCours(false).isPresent());
 		
 		CaseEnCours.setCaseEnCours(69);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(7, methode.getSolution());
 		assertEquals(69,methode.getNumCaseAction());
 	}

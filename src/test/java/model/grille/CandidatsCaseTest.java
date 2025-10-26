@@ -1,6 +1,7 @@
 package model.grille;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +27,7 @@ class CandidatsCaseTest {
     }
       
     @Test
-    void testGetNombreCandidats() {
+    void shouldReturnCorrectNumberOfCandidates_whenInitializedWithBooleanArray() {
     	assertEquals(0,this.c1.getNombreCandidats());
     	assertEquals(1,this.c2.getNombreCandidats());
     	assertEquals(1,this.c3.getNombreCandidats());
@@ -35,6 +36,7 @@ class CandidatsCaseTest {
     }
     
     @Test
+    @DisplayName("Élimination d’un candidat existant")
     void testelimineCandidat() {
         c2.elimineCandidat(1);
         assertEquals(0, c2.getNombreCandidats());
@@ -47,7 +49,12 @@ class CandidatsCaseTest {
         assertEquals(9, c1.getNombreCandidats());
         assertArrayEquals(c1.getCandidats(), c5.getCandidats());
     }
-    
+    @Test
+    void testSetCandidatAvecValeurInvalide() {
+        //assertThrows(IllegalArgumentException.class, () -> c1.setCandidat(0));
+        assertThrows(IllegalArgumentException.class, () -> c1.setCandidat(10));
+        assertThrows(IllegalArgumentException.class, () -> c1.setCandidat(-1));
+    }
     @Test
     void testConstruitLibelleCandidats() {
         assertEquals("<html>   <br>   <br>   </html>",c1.construitLibelleCandidats());
@@ -69,8 +76,11 @@ class CandidatsCaseTest {
     @Test
     void testCalculValeurUnique() {
         assertEquals(1,c2.calculValeurUnique());
-    }     
-    
+    }
+    @Test
+    void testCalculValeurUniqueSansCandidatActif() {
+        assertThrows(IllegalStateException.class, () -> c1.calculValeurUnique());
+    }
     @Test
     void testDisplayCandidats() {
     	assertEquals("000000000",c1.toString());

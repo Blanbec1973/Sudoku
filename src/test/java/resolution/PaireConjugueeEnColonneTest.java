@@ -23,9 +23,9 @@ class PaireConjugueeEnColonneTest {
 	@Order(1)
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(18);
-		assertFalse(methode.traiteCaseEnCours(false));
+		assertFalse(methode.traiteCaseEnCours(false).isPresent());
 		CaseEnCours.setCaseEnCours(36);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(3,methode.c1);
 		assertEquals(7,methode.c2);
 	}

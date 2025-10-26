@@ -9,14 +9,19 @@ public class CandidatsCase {
     }
     protected void setAllCandidatsToTrue() {
         for (int i=0;i<10;i++) {this.candidats[i]=true;}
-        this.nombreCandidats=10;
         this.elimineCandidat(0);
+        this.calculNombreCandidats();
     }
     public CandidatsCase (boolean [] entree) {this.candidats = entree; this.calculNombreCandidats();}
     public boolean[] getCandidats() {return candidats;}
     public int getNombreCandidats() {return nombreCandidats;}
     public void setCandidats(boolean[] candidats) {this.candidats = candidats; this.calculNombreCandidats();}
-    public void setCandidat(int rang) {this.candidats[rang]=true;this.calculNombreCandidats();}
+    public void setCandidat(int rang) {
+        if (rang < 0 || rang > 9) {
+            throw new IllegalArgumentException("Le rang du candidat doit être compris entre 1 et 9.");
+        }
+        this.candidats[rang] = true;
+        this.calculNombreCandidats();}
     public boolean isCandidat(int rang) {return candidats[rang];}
     public String toString() {
     	StringBuilder bld = new StringBuilder();
@@ -34,12 +39,15 @@ public class CandidatsCase {
         this.candidats[valeur]=false; 
         this.calculNombreCandidats();
     }
-    private void calculNombreCandidats() {
-        int resultat = 0;
-        for (int i=1;i<10;i++) {
-            if (this.candidats[i]) resultat +=1;
+    private int compterCandidatsActifs() {
+        int count = 0;
+        for (int i = 1; i < 10; i++) {
+            if (candidats[i]) count++;
         }
-        this.nombreCandidats = resultat;
+        return count;
+    }
+    private void calculNombreCandidats() {
+        this.nombreCandidats = compterCandidatsActifs();
     }
     public String construitLibelleCandidats() {
         StringBuilder bld = new StringBuilder();
@@ -66,8 +74,12 @@ public class CandidatsCase {
         return this.nombreCandidats == 1;
     }
     public int calculValeurUnique() {
-        int i = 1;
-        while (!this.isCandidat(i)) {i+=1;}
-        return i;
+        if (this.nombreCandidats != 1) {
+            throw new IllegalStateException("La case ne contient pas un candidat unique.");
+        }
+        for (int i = 1; i < 10; i++) {
+            if (this.isCandidat(i)) return i;
+        }
+        throw new IllegalStateException("Aucun candidat actif trouvé malgré nombreCandidats == 1.");
     }
 }

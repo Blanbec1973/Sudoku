@@ -5,6 +5,7 @@ import model.grille.CaseEnCours;
 import model.grille.Grille;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 //Méthodes de résolution par ordre hiérarchique :
 //Méthodes qui permettent de trouver une case : 
@@ -53,23 +54,25 @@ public abstract class MethodeResolution {
 		c1=0;
 		c2=0;
 	}
-	
-	public boolean detecteSuivant(boolean goPourChangement) {
-		boolean trouve = false;
-		int i=0;
-		while (i < grille.getCasesAtrouver().size() && !trouve) {
-			CaseEnCours.setCaseEnCours(grille.getCasesAtrouver().get(i)); //Valorisation de la case en cours.
-			trouve = this.traiteCaseEnCours(goPourChangement);
-			i+=1;
+
+	public Optional<ResolutionAction> detecteSuivant(boolean goPourChangement) {
+		for (int i = 0; i < grille.getCasesAtrouver().size(); i++) {
+			int numCase = grille.getCasesAtrouver().get(i);
+			CaseEnCours.setCaseEnCours(numCase);
+
+			Optional<ResolutionAction> action = this.traiteCaseEnCours(goPourChangement);
+			if (action.isPresent()) {
+				return action;
+			}
 		}
-		return trouve ;
+		return Optional.empty();
 	}
 	
 	public boolean isCaseTrouvee() {return caseTrouvee;}
 	public int getNumCaseAction() {return numCaseAction;}
 	public int getSolution() {return solution;}
 	
-	public abstract boolean traiteCaseEnCours(boolean goPourChangement);
+	public abstract Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement);
 
 	public String getSimpleName() {
 		return this.getClass().getSimpleName();

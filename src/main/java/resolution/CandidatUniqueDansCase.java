@@ -3,6 +3,8 @@ package resolution;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 
+import java.util.Optional;
+
 public class CandidatUniqueDansCase extends MethodeResolution {
 
 	public CandidatUniqueDansCase(Grille grille) {
@@ -10,14 +12,14 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 	}
 
 	@Override
-	public boolean traiteCaseEnCours(boolean goPourChangement) {
+	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
 		caseTrouvee = this.detecteConfiguration();
 		
-		if (!caseTrouvee) return false;
+		if (!caseTrouvee) return Optional.empty();
 		
 		solution = grille.calculValeurUnique(CaseEnCours.getNumCase());
 		numCaseAction = CaseEnCours.getNumCase();
-		return true;
+		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this));
 	}
 
 	private boolean detecteConfiguration() {

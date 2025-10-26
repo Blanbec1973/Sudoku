@@ -16,7 +16,7 @@ class Case {
         this.xCase = x;
         this.yCase = y;
         this.valeur=0;
-        this.etatCase = EtatCase.NOT_FOUNDED;
+        this.etatCase = EtatCase.NOT_FOUND;
         this.region = Utils.calculNumeroRegion(numCase);
     }
     protected void setCaseInitiale(int valeur)
@@ -26,15 +26,15 @@ class Case {
         candidats.setAllCandidatsToFalse();
         candidats.setCandidat(valeur);
     }
-    protected void setCaseATrouver() {
+    protected void initialiserCaseVide() {
         this.valeur = 0;
-        this.etatCase =EtatCase.NOT_FOUNDED;
+        this.etatCase =EtatCase.NOT_FOUND;
         candidats.setAllCandidatsToTrue();
     }
     protected void setCaseTrouvee(int valeur)
     {
         this.valeur = valeur;
-        this.etatCase = EtatCase.FOUNDED;
+        this.etatCase = EtatCase.FOUND;
         candidats.setAllCandidatsToFalse();
         candidats.setCandidat(valeur);
     }
@@ -47,9 +47,9 @@ class Case {
 	protected void setEtatCase(EtatCase etatCase) {this.etatCase = etatCase;}
     protected boolean isCaseInitiale() {return this.etatCase == EtatCase.INITIAL;}
     protected boolean nEstPasCaseInitiale() {return (this.etatCase != EtatCase.INITIAL);}
-    protected boolean isCaseTrouvee() {return this.etatCase == EtatCase.FOUNDED;}
-    protected boolean isCaseATrouver() { return this.etatCase == EtatCase.NOT_FOUNDED;}
-    protected boolean nEstPasCaseTrouvee() {return (this.etatCase != EtatCase.FOUNDED);}
+    protected boolean isCaseTrouvee() {return this.etatCase == EtatCase.FOUND;}
+    protected boolean isCaseATrouver() { return this.etatCase == EtatCase.NOT_FOUND;}
+    protected boolean nEstPasCaseTrouvee() {return (this.etatCase != EtatCase.FOUND);}
     protected boolean isCandidat(int rang) {return candidats.isCandidat(rang);}
     protected int getNombreCandidats () {return candidats.getNombreCandidats();}
     protected boolean [] getCandidatsTabBoolean() {return candidats.getCandidats();}

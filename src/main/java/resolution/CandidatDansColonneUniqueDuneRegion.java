@@ -4,6 +4,8 @@ import model.grille.CaseEnCours;
 import model.grille.Grille;
 import utils.Utils;
 
+import java.util.Optional;
+
 public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	int xAction;
 	int yAction;
@@ -14,13 +16,15 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	}
 
 	@Override
-	public boolean traiteCaseEnCours(boolean goPourChangement) {
+	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
 		numColonne = CaseEnCours.getX();
 		boolean trouve = this.detectConfiguration();
-        if (!trouve) return false;
+        if (!trouve) return Optional.empty();
         
-        trouve = this.detecteCandidatAEliminer();
-        return trouve;
+        if (this.detecteCandidatAEliminer())
+        	return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
+		else
+			return Optional.empty();
 	}
 
 	private boolean detectConfiguration() {

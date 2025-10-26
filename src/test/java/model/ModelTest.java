@@ -52,12 +52,10 @@ class ModelTest {
 		assertFalse(model.getGrille().isCandidat(18, 7));
 		
 	}
-
 	@Test
 	void testRechargeDernierHistorique() {
 		model.detecteSuivant(true);
 		model.reloadLastHistoricization();
 		assertTrue(model.getGrille().isCaseATrouver(39));
 	}
-
 }

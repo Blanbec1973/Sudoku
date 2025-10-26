@@ -14,7 +14,7 @@ import java.util.List;
 public class Grille {
     private final Case[][] mesCases = new Case [9][9];
     private static final Logger logger = LogManager.getLogger(Grille.class.getPackage().getName());
-    private final List<Integer> casesAtrouver;
+    private final List<Integer> casesAtrouver= new ArrayList<>();
         
     public Grille() {
         int numcase = 0;
@@ -24,7 +24,6 @@ public class Grille {
                 mesCases[x][y] = new Case(numcase, x, y);
             }
         }
-        casesAtrouver = new ArrayList<>();
     }
 
     public void init(String pathFile) {
@@ -43,7 +42,7 @@ public class Grille {
                     }
                     else {
                         this.getCasesAtrouver().add(indexCase);
-                        this.getCase(x,y).setCaseATrouver();
+                        this.getCase(x,y).initialiserCaseVide();
                     }
                     indexCase+=1;
                 }
@@ -67,10 +66,13 @@ public class Grille {
     public void elimineCandidat (int numCase, int candidatAEliminer) {
         this.getCase(numCase).elimineCandidat(candidatAEliminer);
     }
-
     public boolean isCaseInitiale(int numCase) {return this.getCase(numCase).isCaseInitiale();}
     public boolean isCaseTrouvee(int numCase) {return this.getCase(numCase).isCaseTrouvee();}
-    public boolean isCaseATrouver(int numCase) {return this.getCase(numCase).isCaseATrouver();}
+    public boolean isCaseATrouver(int numCase) {
+        int x = Utils.calculXsearch(numCase);
+        int y = Utils.calculYsearch(numCase);
+        return isCaseATrouver(x, y);
+    }
     public boolean isCaseATrouver(int x, int y) {return this.getCase(x,y).isCaseATrouver();}
     public boolean nEstPasCaseInitiale(int numCase) {return this.getCase(numCase).nEstPasCaseInitiale();}
     public boolean nEstPasCaseTrouvee(int numCase) {return this.getCase(numCase).nEstPasCaseTrouvee();}

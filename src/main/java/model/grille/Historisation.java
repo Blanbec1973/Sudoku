@@ -36,13 +36,9 @@ public class Historisation {
 		}
 	}
 
-	private void copyCandidats(CandidatsCase candidats, CandidatsCase candidats2) {
-		for (int i=0;i<10;i++) {
-			if (candidats.isCandidat(i)) 
-				candidats2.setCandidat(i);
-			else
-				candidats2.elimineCandidat(i);
-		}
+	private void copyCandidats(CandidatsCase input, CandidatsCase output) {
+		boolean[] candidatsInput = input.getCandidats();
+		output.setCandidats(candidatsInput.clone());
 	}
 
     public void reloadGrille(Grille grille) {

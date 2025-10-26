@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
@@ -19,13 +20,13 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	}
 	
 	@Override
-	public boolean traiteCaseEnCours(boolean goPourChangement) {
+	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
 		caseTrouvee = false;
 		boolean trouve = false;
 		candidatAEliminer=0;
 
 		//On ne traite la case en cours que si elle n'a que 2 candidats :
-		if (grille.getNombreCandidats(CaseEnCours.getNumCase())<3) return false;
+		if (grille.getNombreCandidats(CaseEnCours.getNumCase())<3) return Optional.empty();
 		
 		// Recherche des paires de candidats dans la case en cours, mise en tableau :
 		this.inserePaireCandidatsDansTab();
@@ -39,8 +40,8 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 			}
 		}
 			
-		if (!trouve) return false;
-		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) == 2) return false;
+		if (!trouve) return Optional.empty();
+		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) == 2) return Optional.empty();
 		
 		//Recherche du premier candidat à éliminer : 
 		for (candidatAEliminer=1;candidatAEliminer<10;candidatAEliminer++) {
@@ -50,7 +51,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		}
 		
 		numCaseAction = CaseEnCours.getNumCase();
-		return true;
+		return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
 	}
 
 	private void razCompteursIntersections() {

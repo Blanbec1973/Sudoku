@@ -23,7 +23,7 @@ class PaireConjugueeEnLigneTest {
 	@Order(1)
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(3);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(2,methode.c1);
 		assertEquals(6,methode.c2);
 	}

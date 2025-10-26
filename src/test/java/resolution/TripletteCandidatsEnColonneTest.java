@@ -23,35 +23,35 @@ class TripletteCandidatsEnColonneTest {
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(18);
 		grille.elimineCandidat(27, 8);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(36,methode.numCaseAction);
 		assertEquals(3,methode.candidatAEliminer);
 
 		grille.elimineCandidat(36, 3);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(54,methode.numCaseAction);
 		assertEquals(6,methode.candidatAEliminer);
 
 		grille.elimineCandidat(54, 6);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(63,methode.numCaseAction);
 		assertEquals(1,methode.candidatAEliminer);
 
 		grille.elimineCandidat(63, 1);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(63,methode.numCaseAction);
 		assertEquals(3,methode.candidatAEliminer);
 
 		grille.elimineCandidat(63, 3);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(63,methode.numCaseAction);
 		assertEquals(6,methode.candidatAEliminer);
 
 		grille.elimineCandidat(63, 6);
-		assertFalse(methode.traiteCaseEnCours(false));
+		assertFalse(methode.traiteCaseEnCours(false).isPresent());
 
 		CaseEnCours.setCaseEnCours(10);
-		assertFalse(methode.traiteCaseEnCours(false));
+		assertFalse(methode.traiteCaseEnCours(false).isPresent());
 	}
 
 	@Test

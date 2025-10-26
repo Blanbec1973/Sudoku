@@ -25,7 +25,7 @@ class AbsenceCandidatEnLigneDansLesAutresRegionsTest {
 	@Test
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(76);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(67,methode.numCaseAction);
 	}
 	

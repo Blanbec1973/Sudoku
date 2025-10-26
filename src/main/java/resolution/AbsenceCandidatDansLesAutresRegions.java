@@ -3,6 +3,8 @@ package resolution;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 
+import java.util.Optional;
+
 public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolution {
 	int xAction;
 	int yAction;
@@ -11,14 +13,14 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		super(grille);
 	}
 
-	public boolean traiteCaseEnCours(boolean goPourChangement) {	
+	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {	
 		boolean changementAFaire = this.detecteConfiguration();
 		
 		if (changementAFaire) {
 			numCaseAction= Grille.calculNumCase(xAction, yAction);
-			return true;
+			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
 		}
-		else return false ;
+		else return Optional.empty();
 	}
 	
 	private boolean detecteConfiguration() {

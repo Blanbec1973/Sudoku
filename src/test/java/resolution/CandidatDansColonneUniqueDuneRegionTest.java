@@ -23,10 +23,10 @@ class CandidatDansColonneUniqueDuneRegionTest {
 	@Test
 	void testTraiteCaseEnCours() {
 		CaseEnCours.setCaseEnCours(3);
-		assertFalse(methode.traiteCaseEnCours(false));
+		assertFalse(methode.traiteCaseEnCours(false).isPresent());
 
 		CaseEnCours.setCaseEnCours(28);
-		assertTrue(methode.traiteCaseEnCours(false));
+		assertTrue(methode.traiteCaseEnCours(false).isPresent());
 		assertEquals(1,methode.numCaseAction);
 		assertEquals(6, methode.candidatAEliminer);
 		assertEquals(0, methode.xAction);
