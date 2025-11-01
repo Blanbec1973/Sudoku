@@ -5,10 +5,12 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import model.grille.Grille;
 import utils.Utils;
 
-public class MyView {
+public class MyView implements ViewUpdater {
 	private final JFrame fenetre = new JFrame();
     private final JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille  panGrille = new MonPaneauGrille();
@@ -88,7 +90,23 @@ public class MyView {
             this.getPanCommande().repaint();
         });
     }
-    
+    public void registerController(ActionListener controller) {
+
+        boutonAvance.setActionCommand("AVANCE");
+        boutonExplique.setActionCommand("EXPLIQUE");
+        boutonRecule.setActionCommand("RECULE");
+        menuSave.setActionCommand("SAVE");
+        menuOpen.setActionCommand("OPEN");
+        menuResolution.setActionCommand("RESOLUTION");
+
+        boutonAvance.addActionListener(controller);
+        boutonExplique.addActionListener(controller);
+        boutonRecule.addActionListener(controller);
+        menuSave.addActionListener(controller);
+        menuOpen.addActionListener(controller);
+        menuResolution.addActionListener(controller);
+    }
+
     public void setCase(int numCase, String value) {
         int x = Utils.calculXsearch(numCase);
         int y = Utils.calculYsearch(numCase);
@@ -121,6 +139,7 @@ public class MyView {
         }
     }
         
+    @Override
     public void refreshGrilleDisplay(Grille maGrille) {
         String valeurCase;
         for (int numCase=1;numCase<82;numCase++) {
@@ -137,7 +156,54 @@ public class MyView {
         }
         panGrille.repaint();
     }
-    
+
+    @Override
+    public void highlightCase(int numCase) {
+        this.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
+    }
+
+    @Override
+    public void insertDisplayMessage(String message) {
+        logTextArea.insert(message + '\n', 0);
+        logTextArea.setCaretPosition(0);
+        panCommande.revalidate();
+        panCommande.repaint();
+    }
+
+    @Override
+    public void updateResolutionRank(int delta) {
+        int current = Integer.parseInt(rangResolution.getText());
+        rangResolution.setText(String.valueOf(current + delta));
+    }
+    @Override
+    public void resetView(String startMessage) {
+        rangResolution.setText("0");
+        logTextArea.setText(startMessage);
+    }
+    @Override
+    public void updateSingleCase(Grille grille, int numCase) {
+        if (grille.isCaseInitiale(numCase)) {
+            setCaseInitiale(numCase, String.valueOf(grille.getValeurCase(numCase)));
+        } else if (grille.isCaseTrouvee(numCase)) {
+            setCase(numCase, String.valueOf(grille.getValeurCase(numCase)));
+        } else {
+            setCaseCandidats(numCase, grille.construitLibelleCandidats(numCase));
+        }
+    }
+    @Override
+    public Color getCaseBackground(int numCase) {
+        int x = Utils.calculXsearch(numCase);
+        int y = Utils.calculYsearch(numCase);
+        return maGrilleDisplay[x][y].getBackground();
+    }
+    @Override
+    public int getCaseValue(int numCase) {
+        int x = Utils.calculXsearch(numCase);
+        int y = Utils.calculYsearch(numCase);
+        return Integer.parseInt(maGrilleDisplay[x][y].getText());
+    }
+
+
     public void supprimeDernierLigneLog() {
     	int premierSautDeLigne = logTextArea.getText().indexOf("\n");
     	logTextArea.replaceRange("", 0,premierSautDeLigne+1);

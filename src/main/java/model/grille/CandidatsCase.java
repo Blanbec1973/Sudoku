@@ -18,7 +18,7 @@ public class CandidatsCase {
     public void setCandidats(boolean[] candidats) {this.candidats = candidats; this.calculNombreCandidats();}
     public void setCandidat(int rang) {
         if (rang < 0 || rang > 9) {
-            throw new IllegalArgumentException("Le rang du candidat doit être compris entre 1 et 9.");
+            throw new IllegalArgumentException("Le rang du candidat doit être compris entre 0 et 9.");
         }
         this.candidats[rang] = true;
         this.calculNombreCandidats();}

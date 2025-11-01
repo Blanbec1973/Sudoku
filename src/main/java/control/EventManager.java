@@ -6,8 +6,8 @@ import model.ModelListener;
 import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import utils.Utils;
 import view.MyView;
+import view.ViewUpdater;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,59 +16,55 @@ import java.util.TimerTask;
 
 class EventManager implements ActionListener, ModelListener, IEventManager {
     private Model model;
-    private final MyView myView;
+    private final ViewUpdater viewUpdater;
     private final MyProperties properties;
     private static final Logger logger = LogManager.getLogger(EventManager.class);
-    public EventManager(MyView view, MyProperties properties) {
-        this.myView = view;
+    public EventManager(ViewUpdater viewUpdater, MyProperties properties) {
+        this.viewUpdater = viewUpdater;
         this.properties=properties;
-        myView.getBoutonAvance().addActionListener(this);
-        myView.getBoutonExplique().addActionListener(this);
-        myView.getBoutonRecule().addActionListener(this);
-        myView.getMenuSave().addActionListener(this);
-        myView.getMenuOpen().addActionListener(this);
-        myView.getMenuResolution().addActionListener(this);
     }
 
     public void setModel(Model model) {this.model=model;}
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        if (source == myView.getBoutonAvance()) {
-            model.detecteSuivant(false);
-            return;
-        }
-        if (source == myView.getBoutonExplique()) {
-            model.detecteSuivant(true);
-            return;
-        }
-        if (source == myView.getBoutonRecule() && myView.getRangResolution().getText().equals("0")) {
-            javax.swing.JOptionPane.showMessageDialog(null,properties.getProperty("InitialMessage"));
-            return;
-        }
+        String command = e.getActionCommand();
 
-        if (source == myView.getBoutonRecule()) {
-            model.reloadLastHistoricization();
-            myView.refreshGrilleDisplay(model.getGrille());
-            this.decrementResolutionRank();
-            myView.supprimeDernierLigneLog();
-            return;
-        }
+        switch (command) {
+            case "AVANCE":
+                model.detecteSuivant(false);
+                break;
 
-        if (source == myView.getMenuSave()) {
-            String fileName = myView.afficheSaveFileDialog("SAVE");
-            if (!fileName.isEmpty()) GridSaver.saveGrid(model.getGrille(),fileName);
-        }
+            case "EXPLIQUE":
+                model.detecteSuivant(true);
+                break;
 
-        if (source == myView.getMenuOpen()) {
-            String fileName2 = myView.afficheSaveFileDialog("OPEN");
-            logger.info("Demande chargement fichier : {}",fileName2);
-            if (!fileName2.isEmpty()) this.reloadGrille(fileName2);
-        }
+            case "RECULE":
+                if (model.getGrille().getCasesAtrouver().isEmpty()) {
+                    javax.swing.JOptionPane.showMessageDialog(null, properties.getProperty("InitialMessage"));
+                } else {
+                    model.reloadLastHistoricization();
+                    viewUpdater.refreshGrilleDisplay(model.getGrille());
+                    viewUpdater.updateResolutionRank(-1);
+                }
+                break;
 
-        if (source == myView.getMenuResolution()) {
-            resolution();
+            case "SAVE":
+                String fileName = ((MyView) viewUpdater).afficheSaveFileDialog("SAVE");
+                if (!fileName.isEmpty()) GridSaver.saveGrid(model.getGrille(), fileName);
+                break;
+
+            case "OPEN":
+                String fileName2 = ((MyView) viewUpdater).afficheSaveFileDialog("OPEN");
+                if (!fileName2.isEmpty()) reloadGrille(fileName2);
+                break;
+
+            case "RESOLUTION":
+                resolution();
+                break;
+
+            default:
+                throw new IllegalArgumentException("Commande inconnue !");
         }
     }
 
@@ -85,60 +81,39 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
 
     }
 
-    public void decrementResolutionRank() {
-        int temp = Integer.parseInt(myView.getRangResolution().getText());
-        temp-=1;
-        myView.getRangResolution().setText(String.valueOf(temp));
-    }
-
-    public void incrementResolutionRank() {
-        int temp = Integer.parseInt(myView.getRangResolution().getText());
-        temp+=1;
-        myView.getRangResolution().setText(String.valueOf(temp));
-    }
+    // =========================
+    // Implémentation ViewUpdater
+    // =========================
+    @Override
     public void insertDisplayMessage(String text) {
-        myView.getLogTextArea().insert(text+'\n', 0);
-        myView.getLogTextArea().setCaretPosition(0);
-        myView.getPanCommande().revalidate();
-        myView.getPanCommande().repaint();
+        viewUpdater.insertDisplayMessage(text);
+    }
+    @Override
+    public void updateResolutionRank(int delta) {
+        viewUpdater.updateResolutionRank(delta);
     }
     @Override
     public void onEventFromModel(Grille grille, EventFromModel eventFromModel) {
         switch (eventFromModel.getEventFromModelType()) {
             case AJOUT_SOLUTION:
-                myView.refreshGrilleDisplay(grille);
-                insertDisplayMessage(eventFromModel.getMessage());
-                incrementResolutionRank();
+                viewUpdater.refreshGrilleDisplay(grille);
+                viewUpdater.insertDisplayMessage(eventFromModel.getMessage());
+                viewUpdater.updateResolutionRank(1);
                 break;
             case HIGHLIGHT_CASE:
-                myView.setCaseAvantExplication(Utils.calculXsearch(eventFromModel.getNumCase()),
-                                                Utils.calculYsearch(eventFromModel.getNumCase()));
+                viewUpdater.highlightCase(eventFromModel.getNumCase());
                 break;
             case ELIMINE_CANDIDAT:
-                refreshDisplayBox(grille, eventFromModel.getNumCase());
-                insertDisplayMessage(eventFromModel.getMessage());
-                incrementResolutionRank();
+                viewUpdater.refreshGrilleDisplay(grille);
+                viewUpdater.insertDisplayMessage(eventFromModel.getMessage());
+                updateResolutionRank(1);
                 break;
 
         }
     }
-    public void refreshDisplayBox(Grille grille, int numCase) {
-        if (grille.isCaseInitiale(numCase)) {
-            myView.setCaseInitiale(numCase, String.valueOf(grille.getValeurCase(numCase)));
-            return;
-        }
-        if (grille.isCaseTrouvee(numCase)) {
-            myView.setCase(numCase, String.valueOf(grille.getValeurCase(numCase)));
-        }
-        else {
-            myView.setCaseCandidats(numCase, grille.construitLibelleCandidats(numCase));
-        }
-    }
-
     public void reloadGrille(String fileName2) {
         model.reload(fileName2);
-        myView.refreshGrilleDisplay(model.getGrille());
-        myView.getRangResolution().setText("0");
-        myView.getLogTextArea().setText(properties.getProperty("StartMessage"));
+        viewUpdater.refreshGrilleDisplay(model.getGrille());
+        viewUpdater.resetView(properties.getProperty("StartMessage"));
     }
 }

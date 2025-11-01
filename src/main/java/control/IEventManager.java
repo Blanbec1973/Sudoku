@@ -1,12 +1,9 @@
 package control;
 
 
-import model.grille.Grille;
-
 public interface IEventManager {
 
-    void decrementResolutionRank();
-    void incrementResolutionRank();
+    void updateResolutionRank(int rank);
     void insertDisplayMessage(String text);
-    void refreshDisplayBox(Grille grille, int numCase);
+
 }

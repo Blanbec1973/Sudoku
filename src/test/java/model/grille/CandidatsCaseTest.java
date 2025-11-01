@@ -51,7 +51,6 @@ class CandidatsCaseTest {
     }
     @Test
     void testSetCandidatAvecValeurInvalide() {
-        //assertThrows(IllegalArgumentException.class, () -> c1.setCandidat(0));
         assertThrows(IllegalArgumentException.class, () -> c1.setCandidat(10));
         assertThrows(IllegalArgumentException.class, () -> c1.setCandidat(-1));
     }

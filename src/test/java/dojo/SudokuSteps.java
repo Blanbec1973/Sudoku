@@ -9,6 +9,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;  
 import cucumber.api.java.en.When;
 import utils.Utils;
+import view.MyView;
 
 public class SudokuSteps {
 	private Control control;
@@ -21,7 +22,7 @@ public class SudokuSteps {
 
 	@When("I click on nextButton")
 	public void i_click_on_nextButton() {
-		control.getVue().getBoutonAvance().doClick();
+		control.simulateClick("AVANCE");
 	}
 
 	@Then("the cell number {int} is selected")
@@ -31,26 +32,26 @@ public class SudokuSteps {
 
 	@Then("the cell number {int} is yellow")
 	public void the_cell_number_numCase_is_yellow(Integer numCase) {
-		Color c = control.getVue().getCase(Utils.calculXsearch(numCase),Utils.calculYsearch(numCase)).getBackground();
+		Color c = ((MyView) control.getViewUpdater()).getCaseBackground(numCase);
 		assertEquals(Color.YELLOW,c);
 	}
 
 	@When("I click {int} times on ExplainButton")
 	public void i_click_times_on_ExplainButton(Integer nombreClics) {
 	    for (int i = 0;i < nombreClics;i++) {
-			control.getVue().getBoutonExplique().doClick();
+			control.simulateClick("EXPLIQUE");
 	    }
 	}
 
 	@Then("the cell number {int} is resolved by {int}")
 	public void the_cell_number_is_resolved_by(Integer numCase, Integer valeur) {
-	    int valeurCase = Integer.parseInt(control.getVue().getCase(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase)).getText());
+	    int valeurCase = control.getViewUpdater().getCaseValue(numCase);
 		assertEquals(valeur, valeurCase);
 	}
 
 	@Then("the cell number {int} is green")
 	public void the_cell_number_is_green(Integer numCase) {
-		Color c = control.getVue().getCase(Utils.calculXsearch(numCase),Utils.calculYsearch(numCase)).getBackground();
+		Color c = ((MyView) control.getViewUpdater()).getCaseBackground(numCase);
 		assertEquals(Color.GREEN,c);
 	}
 }
