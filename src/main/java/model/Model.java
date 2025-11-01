@@ -4,6 +4,7 @@ import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.service.HistorisationService;
 import model.service.ModelEventService;
+import model.service.ResolutionMessageService;
 import resolution.*;
 
 import java.util.ArrayList;
@@ -11,14 +12,14 @@ import java.util.Optional;
 
 public class Model {
 	private final ModelEventService modelEventService;
-	private final MessageManager messageManager;
+	private final ResolutionMessageService messageService;
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final HistorisationService historisationService;
 
-	public Model(ModelEventService modelEventService, MessageManager messageManager, HistorisationService historisationService) {
+	public Model(ModelEventService modelEventService, ResolutionMessageService messageService, HistorisationService historisationService) {
 		this.modelEventService = modelEventService;
-		this.messageManager = messageManager;
+		this.messageService = messageService;
 		this.historisationService = historisationService;
 
 		grille =new Grille();
@@ -74,14 +75,14 @@ public class Model {
 		// Box is founded :
 		if (action.isCaseTrouvee()) {
 			setValeurCaseEnCours(action.getSolution(),
-					messageManager.createMessageSolution(action.getMethodeResolution()));
+					messageService.createSolutionMessage(action.getMethodeResolution()));
 			return;
 		}
 		
 		// A candidate must be eliminated :
 		elimineCandidatCase(action.getCandidatAEliminer(),
 				            action.getNumCaseAction(),
-				messageManager.createMessageElimination(action.getMethodeResolution()));
+				messageService.createEliminationMessage(action.getMethodeResolution()));
 	}
 
 	private void setValeurCaseEnCours(int solution, String message) {
