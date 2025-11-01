@@ -2,7 +2,7 @@ package model;
 
 import model.grille.CaseEnCours;
 import model.grille.Grille;
-import model.grille.Historisation;
+import model.service.HistorisationService;
 import resolution.*;
 
 import java.util.ArrayList;
@@ -13,13 +13,14 @@ public class Model {
 	private final MessageManager messageManager;
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
-	private final Historisation historizer = new Historisation();
+	private final HistorisationService historisationService;
 
-	public Model(ModelEventPublisher modelEventPublisher, MessageManager messageManager) {
+	public Model(ModelEventPublisher modelEventPublisher, MessageManager messageManager, HistorisationService historisationService) {
 		this.modelEventPublisher = modelEventPublisher;
 		this.messageManager = messageManager;
-		
-        grille =new Grille();
+		this.historisationService = historisationService;
+
+		grille =new Grille();
 
 	    listeMethodes = new ArrayList<>();
 	    listeMethodes.add(new CandidatUniqueDansCase(grille));
@@ -91,7 +92,7 @@ public class Model {
 		modelEventPublisher.publish(grille,
 		      new EventFromModel(EventFromModelType.AJOUT_SOLUTION,CaseEnCours.getNumCase(),message));
 
-		historizer.historiseGrille(grille);
+		historisationService.historiseGrille(grille);
 	}
 	
 	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
@@ -100,18 +101,18 @@ public class Model {
 		modelEventPublisher.publish(grille,
 				new EventFromModel(EventFromModelType.ELIMINE_CANDIDAT, numCaseAction, message));
 
-		historizer.historiseGrille(grille);
+		historisationService.historiseGrille(grille);
 	}
 
 	public void reloadLastHistoricization() {
-		historizer.supprimeDerniereGrille(grille);
+		historisationService.supprimeDerniereGrille(grille);
 	}
 
     public void reload(String fileName) {
 		grille.init(fileName);
-		historizer.reloadGrille(grille);
+		historisationService.reloadGrille(grille);
     }
 	public boolean canReloadLastHistoricization() {
-		return historizer.getHistoGrille().size() > 1;
+		return historisationService.canReloadLastHistoricization();
 	}
 }

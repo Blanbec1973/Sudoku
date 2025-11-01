@@ -1,7 +1,7 @@
 package model;
 
-import control.MyProperties;
 import model.grille.CaseEnCours;
+import model.service.HistorisationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,10 +14,11 @@ class ModelTest {
 	private static Model model;
 	private static final ModelEventPublisher publisher = Mockito.mock(ModelEventPublisher.class);
 	private static final MessageManager messageManager = Mockito.mock(MessageManager.class);
+	private static final HistorisationService historisationService = Mockito.mock(HistorisationService.class);
 
 	@BeforeEach
 	void setUp() {
-		model = new Model(publisher, messageManager);
+		model = new Model(publisher, messageManager, historisationService);
 		model.reload(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
 		doNothing().when(publisher).publish(any(),any());
 	}
@@ -52,10 +53,13 @@ class ModelTest {
 		assertFalse(model.getGrille().isCandidat(18, 7));
 		
 	}
+
 	@Test
-	void testRechargeDernierHistorique() {
-		model.detecteSuivant(true);
+	void testReloadLastHistoricizationCallsService() {
+		HistorisationService mockHistorisation = Mockito.mock(HistorisationService.class);
+		Model model = new Model(publisher, messageManager, mockHistorisation);
 		model.reloadLastHistoricization();
-		assertTrue(model.getGrille().isCaseATrouver(39));
+		Mockito.verify(mockHistorisation).supprimeDerniereGrille(Mockito.any());
 	}
+
 }
