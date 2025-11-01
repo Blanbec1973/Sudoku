@@ -3,20 +3,21 @@ package model;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.service.HistorisationService;
+import model.service.ModelEventService;
 import resolution.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class Model {
-	private final ModelEventPublisher modelEventPublisher;
+	private final ModelEventService modelEventService;
 	private final MessageManager messageManager;
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final HistorisationService historisationService;
 
-	public Model(ModelEventPublisher modelEventPublisher, MessageManager messageManager, HistorisationService historisationService) {
-		this.modelEventPublisher = modelEventPublisher;
+	public Model(ModelEventService modelEventService, MessageManager messageManager, HistorisationService historisationService) {
+		this.modelEventService = modelEventService;
 		this.messageManager = messageManager;
 		this.historisationService = historisationService;
 
@@ -51,10 +52,7 @@ public class Model {
 			if (goPourChangement) {
 				traiteChangement(a);
 			} else {
-				modelEventPublisher.publish(grille,
-						new EventFromModel(EventFromModelType.HIGHLIGHT_CASE,
-								a.getNumCaseAction(),
-								""));
+				modelEventService.publishHighlight(grille, a.getNumCaseAction());
 			}
 			return true;
 		}
@@ -88,19 +86,13 @@ public class Model {
 
 	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
-
-		modelEventPublisher.publish(grille,
-		      new EventFromModel(EventFromModelType.AJOUT_SOLUTION,CaseEnCours.getNumCase(),message));
-
+		modelEventService.publishSolution(grille, CaseEnCours.getNumCase(), message);
 		historisationService.historiseGrille(grille);
 	}
 	
 	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
 		grille.elimineCandidat(numCaseAction, candidatAEliminer);
-
-		modelEventPublisher.publish(grille,
-				new EventFromModel(EventFromModelType.ELIMINE_CANDIDAT, numCaseAction, message));
-
+		modelEventService.publishElimination(grille,numCaseAction, message);
 		historisationService.historiseGrille(grille);
 	}
 

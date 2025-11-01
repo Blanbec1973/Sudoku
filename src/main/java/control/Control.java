@@ -4,6 +4,7 @@ import model.MessageManager;
 import model.Model;
 import model.SimpleModelEventPublisher;
 import model.service.HistorisationService;
+import model.service.ModelEventService;
 import view.MyView;
 import view.ViewUpdater;
 
@@ -31,7 +32,7 @@ public class Control {
 
 		MessageManager messageManager = new MessageManager(myProperties);
 
-		model = new Model(publisher, messageManager, new HistorisationService());
+		model = new Model(new ModelEventService(publisher), messageManager, new HistorisationService());
 		String initialFile = System.getProperty("user.dir") + myProperties.getProperty("InitialFile");
 		model.reload(initialFile);
 		eventManager.setModel(model);

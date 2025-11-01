@@ -2,25 +2,35 @@ package model;
 
 import model.grille.CaseEnCours;
 import model.service.HistorisationService;
+import model.service.ModelEventService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 class ModelTest {
 	private static Model model;
-	private static final ModelEventPublisher publisher = Mockito.mock(ModelEventPublisher.class);
+	private static final ModelEventService eventService = Mockito.mock(ModelEventService.class);
 	private static final MessageManager messageManager = Mockito.mock(MessageManager.class);
 	private static final HistorisationService historisationService = Mockito.mock(HistorisationService.class);
 
 	@BeforeEach
 	void setUp() {
-		model = new Model(publisher, messageManager, historisationService);
+		model = new Model(eventService, messageManager, historisationService);
 		model.reload(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
-		doNothing().when(publisher).publish(any(),any());
+		doNothing().when(eventService).publishHighlight(any(), anyInt());
+		doNothing().when(eventService).publishSolution(any(), anyInt(), anyString());
+		doNothing().when(eventService).publishElimination(any(), anyInt(), anyString());
+
+	}
+
+	@Test
+	void testPublicationHighlight() {
+		model.detecteSuivant(false); // mode highlight
+		verify(eventService, atLeastOnce()).publishHighlight(any(), anyInt());
 	}
 
 	@Test
@@ -57,9 +67,9 @@ class ModelTest {
 	@Test
 	void testReloadLastHistoricizationCallsService() {
 		HistorisationService mockHistorisation = Mockito.mock(HistorisationService.class);
-		Model model = new Model(publisher, messageManager, mockHistorisation);
+		Model model = new Model(eventService, messageManager, mockHistorisation);
 		model.reloadLastHistoricization();
-		Mockito.verify(mockHistorisation).supprimeDerniereGrille(Mockito.any());
+		verify(mockHistorisation).supprimeDerniereGrille(Mockito.any());
 	}
 
 }
