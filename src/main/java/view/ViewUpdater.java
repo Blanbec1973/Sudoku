@@ -14,5 +14,6 @@ public interface ViewUpdater {
     Color getCaseBackground(int numCase);
     int getCaseValue(int numCase);
     void removeLastLogLine();
+    void showMessageDialog(Component component, Object object);
 }
 

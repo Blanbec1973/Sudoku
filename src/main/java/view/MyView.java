@@ -209,6 +209,9 @@ public class MyView implements ViewUpdater {
             logTextArea.replaceRange("", 0, premierSautDeLigne + 1);
         }
     }
+    public void showMessageDialog(Component component, Object object) {
+        javax.swing.JOptionPane.showMessageDialog(component, object);
+    }
     public String afficheSaveFileDialog(String typeDialog) {
 	    String fileName="";
         int returnVal = 0;

@@ -62,12 +62,10 @@ class EventManager implements ActionListener, ModelListener {
                 throw new IllegalArgumentException("Commande inconnue !");
         }
     }
-
-
     private void handleRecule() {
         // Vérifier si on peut revenir en arrière
         if (!model.canReloadLastHistoricization()) {
-            javax.swing.JOptionPane.showMessageDialog(null, properties.getProperty("InitialMessage"));
+            viewUpdater.showMessageDialog(null, properties.getProperty("InitialMessage"));
             return;
         }
 
