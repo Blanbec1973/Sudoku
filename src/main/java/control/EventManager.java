@@ -1,6 +1,7 @@
 package control;
 
 import model.EventFromModel;
+import model.EventFromModelType;
 import model.Model;
 import model.ModelListener;
 import model.grille.Grille;
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class EventManager implements ActionListener, ModelListener, IEventManager {
+class EventManager implements ActionListener, ModelListener {
     private Model model;
     private final ViewUpdater viewUpdater;
     private final MyProperties properties;
@@ -40,13 +41,7 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
                 break;
 
             case "RECULE":
-                if (model.getGrille().getCasesAtrouver().isEmpty()) {
-                    javax.swing.JOptionPane.showMessageDialog(null, properties.getProperty("InitialMessage"));
-                } else {
-                    model.reloadLastHistoricization();
-                    viewUpdater.refreshGrilleDisplay(model.getGrille());
-                    viewUpdater.updateResolutionRank(-1);
-                }
+                handleRecule();
                 break;
 
             case "SAVE":
@@ -68,6 +63,22 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
         }
     }
 
+
+    private void handleRecule() {
+        // Vérifier si on peut revenir en arrière
+        if (!model.canReloadLastHistoricization()) {
+            javax.swing.JOptionPane.showMessageDialog(null, properties.getProperty("InitialMessage"));
+            return;
+        }
+
+        // Revenir en arrière
+        model.reloadLastHistoricization();
+        viewUpdater.refreshGrilleDisplay(model.getGrille());
+        viewUpdater.updateResolutionRank(-1);
+        viewUpdater.removeLastLogLine(); // Ajout pour corriger le problème des messages
+    }
+
+
     private void resolution() {
         logger.info("Demande de résolution globale.");
         Timer timer = new Timer();
@@ -80,39 +91,18 @@ class EventManager implements ActionListener, ModelListener, IEventManager {
         }, 0, 200); // Démarre immédiatement, répète toutes les secondes
 
     }
-
-    // =========================
-    // Implémentation ViewUpdater
-    // =========================
-    @Override
-    public void insertDisplayMessage(String text) {
-        viewUpdater.insertDisplayMessage(text);
-    }
-    @Override
-    public void updateResolutionRank(int delta) {
-        viewUpdater.updateResolutionRank(delta);
-    }
     @Override
     public void onEventFromModel(Grille grille, EventFromModel eventFromModel) {
-        switch (eventFromModel.getEventFromModelType()) {
-            case AJOUT_SOLUTION:
+        if (eventFromModel.getEventFromModelType() == EventFromModelType.HIGHLIGHT_CASE) {
+            viewUpdater.highlightCase(eventFromModel.getNumCase());
+        } else {
                 viewUpdater.refreshGrilleDisplay(grille);
                 viewUpdater.insertDisplayMessage(eventFromModel.getMessage());
                 viewUpdater.updateResolutionRank(1);
-                break;
-            case HIGHLIGHT_CASE:
-                viewUpdater.highlightCase(eventFromModel.getNumCase());
-                break;
-            case ELIMINE_CANDIDAT:
-                viewUpdater.refreshGrilleDisplay(grille);
-                viewUpdater.insertDisplayMessage(eventFromModel.getMessage());
-                updateResolutionRank(1);
-                break;
-
         }
     }
-    public void reloadGrille(String fileName2) {
-        model.reload(fileName2);
+    public void reloadGrille(String fileName) {
+        model.reload(fileName);
         viewUpdater.refreshGrilleDisplay(model.getGrille());
         viewUpdater.resetView(properties.getProperty("StartMessage"));
     }

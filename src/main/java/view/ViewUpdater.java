@@ -13,5 +13,6 @@ public interface ViewUpdater {
     void updateSingleCase(Grille grille, int numCase);
     Color getCaseBackground(int numCase);
     int getCaseValue(int numCase);
+    void removeLastLogLine();
 }
 

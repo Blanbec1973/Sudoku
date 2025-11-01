@@ -115,4 +115,7 @@ public class Model {
 		grille.init(fileName);
 		historizer.reloadGrille(grille);
     }
+	public boolean canReloadLastHistoricization() {
+		return historizer.getHistoGrille().size() > 1;
+	}
 }

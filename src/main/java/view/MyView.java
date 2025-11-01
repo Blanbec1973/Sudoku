@@ -202,13 +202,13 @@ public class MyView implements ViewUpdater {
         int y = Utils.calculYsearch(numCase);
         return Integer.parseInt(maGrilleDisplay[x][y].getText());
     }
-
-
-    public void supprimeDernierLigneLog() {
-    	int premierSautDeLigne = logTextArea.getText().indexOf("\n");
-    	logTextArea.replaceRange("", 0,premierSautDeLigne+1);
+    @Override
+    public void removeLastLogLine() {
+        int premierSautDeLigne = logTextArea.getText().indexOf("\n");
+        if (premierSautDeLigne >= 0) {
+            logTextArea.replaceRange("", 0, premierSautDeLigne + 1);
+        }
     }
-
     public String afficheSaveFileDialog(String typeDialog) {
 	    String fileName="";
         int returnVal = 0;
