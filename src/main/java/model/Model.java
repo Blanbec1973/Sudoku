@@ -1,6 +1,5 @@
 package model;
 
-import control.MyProperties;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.grille.Historisation;
@@ -16,15 +15,12 @@ public class Model {
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final Historisation historizer = new Historisation();
 
-	public Model(ModelEventPublisher modelEventPublisher, MyProperties myProperties) {
+	public Model(ModelEventPublisher modelEventPublisher, MessageManager messageManager) {
 		this.modelEventPublisher = modelEventPublisher;
-		messageManager = new MessageManager(myProperties);
+		this.messageManager = messageManager;
 		
         grille =new Grille();
-        grille.init(System.getProperty("user.dir")+ myProperties.getProperty("InitialFile"));
-        
-        historizer.historiseGrille(grille);
-        
+
 	    listeMethodes = new ArrayList<>();
 	    listeMethodes.add(new CandidatUniqueDansCase(grille));
 	    listeMethodes.add(new CandidatUniqueDansLigne(grille));

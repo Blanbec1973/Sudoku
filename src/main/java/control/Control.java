@@ -1,5 +1,6 @@
 package control;
 
+import model.MessageManager;
 import model.Model;
 import model.SimpleModelEventPublisher;
 import view.MyView;
@@ -27,7 +28,11 @@ public class Control {
 		SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
 		publisher.addListener(eventManager);
 
-		model = new Model(publisher, myProperties);
+		MessageManager messageManager = new MessageManager(myProperties);
+
+		model = new Model(publisher, messageManager);
+		String initialFile = System.getProperty("user.dir") + myProperties.getProperty("InitialFile");
+		model.reload(initialFile);
 		eventManager.setModel(model);
 
 		myView.refreshGrilleDisplay(model.getGrille());

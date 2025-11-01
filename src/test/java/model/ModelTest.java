@@ -13,11 +13,11 @@ import static org.mockito.Mockito.doNothing;
 class ModelTest {
 	private static Model model;
 	private static final ModelEventPublisher publisher = Mockito.mock(ModelEventPublisher.class);
-	private static final MyProperties myProperties = new MyProperties("config.properties");
+	private static final MessageManager messageManager = Mockito.mock(MessageManager.class);
 
 	@BeforeEach
 	void setUp() {
-		model = new Model(publisher, myProperties);
+		model = new Model(publisher, messageManager);
 		model.reload(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
 		doNothing().when(publisher).publish(any(),any());
 	}
