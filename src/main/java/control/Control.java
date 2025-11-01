@@ -1,6 +1,7 @@
 package control;
 
 import model.Model;
+import model.SimpleModelEventPublisher;
 import view.MyView;
 import view.ViewUpdater;
 
@@ -23,7 +24,10 @@ public class Control {
 		eventManager = new EventManager(myView, myProperties);
 		myView.registerController(eventManager);
 
-		model = new Model(eventManager, myProperties);
+		SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
+		publisher.addListener(eventManager);
+
+		model = new Model(publisher, myProperties);
 		eventManager.setModel(model);
 
 		myView.refreshGrilleDisplay(model.getGrille());

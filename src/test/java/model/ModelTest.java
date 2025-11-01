@@ -12,14 +12,14 @@ import static org.mockito.Mockito.doNothing;
 
 class ModelTest {
 	private static Model model;
-	private static final ModelListener modelListener = Mockito.mock(ModelListener.class);
+	private static final ModelEventPublisher publisher = Mockito.mock(ModelEventPublisher.class);
 	private static final MyProperties myProperties = new MyProperties("config.properties");
 
 	@BeforeEach
 	void setUp() {
-		model = new Model(modelListener, myProperties);
+		model = new Model(publisher, myProperties);
 		model.reload(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
-		doNothing().when(modelListener).onEventFromModel(any(),any());
+		doNothing().when(publisher).publish(any(),any());
 	}
 
 	@Test

@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class Model {
-	private final ModelListener modelListener;
+	private final ModelEventPublisher modelEventPublisher;
 	private final MessageManager messageManager;
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final Historisation historizer = new Historisation();
 
-	public Model(ModelListener modelListener, MyProperties myProperties) {
-		this.modelListener = modelListener;
+	public Model(ModelEventPublisher modelEventPublisher, MyProperties myProperties) {
+		this.modelEventPublisher = modelEventPublisher;
 		messageManager = new MessageManager(myProperties);
 		
         grille =new Grille();
@@ -54,7 +54,7 @@ public class Model {
 			if (goPourChangement) {
 				traiteChangement(a);
 			} else {
-				modelListener.onEventFromModel(grille,
+				modelEventPublisher.publish(grille,
 						new EventFromModel(EventFromModelType.HIGHLIGHT_CASE,
 								a.getNumCaseAction(),
 								""));
@@ -92,7 +92,7 @@ public class Model {
 	private void setValeurCaseEnCours(int solution, String message) {
 		grille.setValeurCaseEnCours(solution);
 
-		modelListener.onEventFromModel(grille,
+		modelEventPublisher.publish(grille,
 		      new EventFromModel(EventFromModelType.AJOUT_SOLUTION,CaseEnCours.getNumCase(),message));
 
 		historizer.historiseGrille(grille);
@@ -101,7 +101,7 @@ public class Model {
 	private void elimineCandidatCase(int candidatAEliminer, int numCaseAction, String message) {
 		grille.elimineCandidat(numCaseAction, candidatAEliminer);
 
-		modelListener.onEventFromModel(grille,
+		modelEventPublisher.publish(grille,
 				new EventFromModel(EventFromModelType.ELIMINE_CANDIDAT, numCaseAction, message));
 
 		historizer.historiseGrille(grille);
