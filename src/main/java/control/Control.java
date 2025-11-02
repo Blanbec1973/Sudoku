@@ -10,6 +10,8 @@ import view.MyView;
 import view.ViewUpdater;
 
 import java.awt.event.ActionEvent;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class Control {
@@ -48,12 +50,12 @@ public class Control {
 	}
 
 	public void initialize(ViewUpdater view, MyProperties properties) {
-		String initialFile = System.getProperty("user.dir") + properties.getProperty("InitialFile");
-		model.reload(initialFile);
+		Path path = Paths.get(System.getProperty("user.dir") + properties.getProperty("InitialFile")).toAbsolutePath();
+		model.reload(path);
 		view.refreshGrilleDisplay(model.getGrille());
 	}
-	public void reloadGrille(String fileName) {
-		eventManager.reloadGrille(fileName);
+	public void reloadGrille(Path path) {
+		eventManager.reloadGrille(path);
 	}
 	public void simulateClick(String command) {
 		ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, command);

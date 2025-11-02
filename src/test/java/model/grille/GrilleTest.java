@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -12,7 +14,8 @@ class GrilleTest {
     @BeforeAll
     void beforeAll() {
         grille = new Grille();
-        grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/initFacile.sud");
+        String fileName = "src/test/resources/grillesTest/initFacile.sud";
+        grille.init(Paths.get(fileName).toAbsolutePath());
     }
 
     @Test

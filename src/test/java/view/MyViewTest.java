@@ -1,14 +1,13 @@
 package view;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.awt.*;
-
-import javax.swing.JButton;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import javax.swing.*;
+import java.awt.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(DisplayCondition.class)
 class MyViewTest {

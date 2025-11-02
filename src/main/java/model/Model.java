@@ -7,6 +7,7 @@ import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
 import resolution.*;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -101,8 +102,8 @@ public class Model {
 		historisationService.supprimeDerniereGrille(grille);
 	}
 
-    public void reload(String fileName) {
-		grille.init(fileName);
+    public void reload(Path path) {
+		grille.init(path);
 		historisationService.reloadGrille(grille);
     }
 	public boolean canReloadLastHistoricization() {

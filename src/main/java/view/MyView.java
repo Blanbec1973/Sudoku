@@ -1,14 +1,13 @@
 package view;
 
+import model.grille.Grille;
+import utils.Utils;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
-
-import model.grille.Grille;
-import utils.Utils;
 
 public class MyView implements ViewUpdater {
 	private final JFrame fenetre = new JFrame();

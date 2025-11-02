@@ -1,12 +1,12 @@
 package resolution;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import utils.Utils;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb2inter = 0;

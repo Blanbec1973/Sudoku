@@ -15,6 +15,7 @@ import model.service.ResolutionMessageService;
 import view.MyView;
 
 import java.awt.*;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -49,7 +50,7 @@ public class SudokuSteps {
 		control.initialize(myView, myProperties);
 
 		// Charger le fichier passé en paramètre
-		control.reloadGrille(System.getProperty("user.dir") + fileName);
+		control.reloadGrille(Paths.get(fileName).toAbsolutePath());
 		myView.refreshGrilleDisplay(model.getGrille());
 
 		myView.registerController(eventManager);

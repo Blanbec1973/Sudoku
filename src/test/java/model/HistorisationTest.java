@@ -1,12 +1,14 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.grille.Historisation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class HistorisationTest {
 	private static Grille grilleOrigine;
@@ -15,7 +17,8 @@ class HistorisationTest {
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grilleOrigine =new Grille();
-        grilleOrigine.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud");
+		String fileName = "src/test/resources/grillesTest/init67-40.sud";
+        grilleOrigine.init(Paths.get(fileName).toAbsolutePath());
         histo = new Historisation();
 	}
 
@@ -66,7 +69,8 @@ class HistorisationTest {
 	@Test
 	void testReloadGrille() {
 		Grille grille2 = new Grille();
-		grille2.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/initFacile.sud");
+		String fileName = "src/test/resources/grillesTest/initFacile.sud";
+		grille2.init(Paths.get(fileName).toAbsolutePath());
 		histo.reloadGrille(grille2);
 		assertEquals(1,histo.getHistoGrille().size());
 		assertTrue(histo.getHistoGrille(0).isCaseInitiale(1));

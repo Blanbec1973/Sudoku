@@ -5,6 +5,8 @@ import model.grille.Grille;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -15,7 +17,8 @@ class TripletteCandidatsEnColonneTest {
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grille = new Grille();
-		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/TripletteCandidatsEnColonne.sud");
+		String fileName = "src/test/resources/grillesTest/TripletteCandidatsEnColonne.sud";
+		grille.init(Paths.get(fileName).toAbsolutePath());
 		methode = new TripletteCandidatsEnColonne(grille);
 	}
 

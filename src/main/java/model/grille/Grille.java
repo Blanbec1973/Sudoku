@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 import utils.Utils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +26,13 @@ public class Grille {
         }
     }
 
-    public void init(String pathFile) {
+    public void init(Path path) {
         casesAtrouver.clear();
         String readLine;
         int valeur;
         int indexCase = 1;
-        File monFichier = new File(pathFile);
         int y=0;
-        try (BufferedReader b = new BufferedReader(new FileReader(monFichier))){
+        try (BufferedReader b = new BufferedReader(new FileReader(path.toFile()))){
             while ((readLine = b.readLine()) != null) {
                 for (int x=0;x<9;x++) {
                     valeur = Integer.parseInt(readLine.substring(x,x+1));
@@ -52,7 +51,7 @@ public class Grille {
             logger.fatal("Exception : {}",ex.getMessage());
             System.exit(-1);
         }
-        logger.info("Chargement OK fichier : {}",pathFile);
+        logger.info("Chargement OK fichier : {}",path.getFileName());
         calculTousLesCandidats();
     }
 

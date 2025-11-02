@@ -13,6 +13,8 @@ import view.ViewUpdater;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -52,7 +54,8 @@ public class EventManager implements ActionListener, ModelListener, ViewUpdater 
 
             case "OPEN":
                 String fileName2 = ((MyView) viewUpdater).afficheSaveFileDialog("OPEN");
-                if (!fileName2.isEmpty()) reloadGrille(fileName2);
+                Path path = Paths.get(fileName2).toAbsolutePath();
+                if (!fileName2.isEmpty()) reloadGrille(path);
                 break;
 
             case "RESOLUTION":
@@ -100,8 +103,8 @@ public class EventManager implements ActionListener, ModelListener, ViewUpdater 
                 viewUpdater.updateResolutionRank(1);
         }
     }
-    public void reloadGrille(String fileName) {
-        model.reload(fileName);
+    public void reloadGrille(Path path) {
+        model.reload(path);
         viewUpdater.refreshGrilleDisplay(model.getGrille());
         viewUpdater.resetView(properties.getProperty("StartMessage"));
     }

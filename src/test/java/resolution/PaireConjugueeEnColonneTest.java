@@ -1,11 +1,12 @@
 package resolution;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.*;
-
 import model.grille.CaseEnCours;
 import model.grille.Grille;
+import org.junit.jupiter.api.*;
+
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -15,7 +16,8 @@ class PaireConjugueeEnColonneTest {
 	
 	@BeforeAll
 	void setUpBeforeClass() {
-		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireConjugueeEnColonne.sud");
+		String fileName = "src/test/resources/grillesTest/PaireConjugueeEnColonne.sud";
+		grille.init(Paths.get(fileName).toAbsolutePath());
 		methode = new PaireConjugueeEnColonne(grille);
 	}
 

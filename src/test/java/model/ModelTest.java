@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -21,7 +23,8 @@ class ModelTest {
 	@BeforeEach
 	void setUp() {
 		model = new Model(eventService, messageService, historisationService);
-		model.reload(System.getProperty("user.dir") + "/src/test/resources/grillesTest/init67-40.sud");
+		String fileName = "src/test/resources/grillesTest/init67-40.sud";
+		model.reload(Paths.get(fileName).toAbsolutePath());
 		doNothing().when(eventService).publishHighlight(any(), anyInt());
 		doNothing().when(eventService).publishSolution(any(), anyInt(), anyString());
 		doNothing().when(eventService).publishElimination(any(), anyInt(), anyString());

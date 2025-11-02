@@ -1,11 +1,12 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import model.grille.CandidatsCase;
 import model.grille.Grille;
 import org.junit.jupiter.api.Test;
 import utils.Utils;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UtilsTest {
     

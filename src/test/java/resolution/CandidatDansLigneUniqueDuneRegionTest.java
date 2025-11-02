@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -15,7 +17,8 @@ class CandidatDansLigneUniqueDuneRegionTest {
 	
 	@BeforeAll
 	void setUpBeforeClass() {
-		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatDansLigneUniqueDuneRegion.sud");
+		String fileName = "src/test/resources/grillesTest/CandidatDansLigneUniqueDuneRegion.sud";
+		grille.init(Paths.get(fileName).toAbsolutePath());
 		methode = new CandidatDansLigneUniqueDuneRegion(grille);
 	}
 

@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import view.ViewUpdater;
 
 import java.awt.event.ActionEvent;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -74,10 +76,10 @@ class EventManagerTest {
     void testReloadGrille() {
         Grille grille = mock(Grille.class);
         when(model.getGrille()).thenReturn(grille);
+        Path path  = Paths.get("testFile.txt").toAbsolutePath();
+        eventManager.reloadGrille(path);
 
-        eventManager.reloadGrille("testFile.txt");
-
-        verify(model).reload("testFile.txt");
+        verify(model).reload(path);
         verify(viewUpdater).refreshGrilleDisplay(grille);
         verify(viewUpdater).resetView("Start message");
     }

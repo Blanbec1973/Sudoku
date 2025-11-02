@@ -3,10 +3,11 @@ package control;
 import model.Model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import view.MyView;
 import view.ViewUpdater;
 
 import java.awt.event.ActionEvent;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -26,12 +27,13 @@ class ControlTest {
     }
     @Test
     void testReloadGrilleDelegatesToEventManager() {
-        String fileName = System.getProperty("user.dir")+"/src/test/resources/grillesTest/initFacile.sud";
-        doNothing().when(mockEventManager).reloadGrille(fileName);
+        //String fileName = System.getProperty("user.dir")+"src/test/resources/grillesTest/initFacile.sud";
+        Path path = Paths.get("src/test/resources/grillesTest/initFacile.sud").toAbsolutePath();
+        doNothing().when(mockEventManager).reloadGrille(path);
 
-        control.reloadGrille(fileName);
+        control.reloadGrille(path);
 
-        verify(mockEventManager, times(1)).reloadGrille(fileName);
+        verify(mockEventManager, times(1)).reloadGrille(path);
     }
     @Test
     void testSimulateClickDelegatesToEventManager() {
@@ -44,13 +46,13 @@ class ControlTest {
     }
     @Test
     void testInitializeCallsModelReloadAndViewRefresh() {
-        String initialFile = "initFacile.sud";
-        doNothing().when(mockModel).reload(initialFile);
+        Path path = Paths.get("initFacile.sud").toAbsolutePath();
+        doNothing().when(mockModel).reload(path);
         doNothing().when(mockView).refreshGrilleDisplay(any());
 
         control.initialize(mockView, new MyProperties("config.properties"));
 
-        verify(mockModel, times(1)).reload(anyString());
+        verify(mockModel, times(1)).reload(any());
         verify(mockView, times(1)).refreshGrilleDisplay(any());
     }
     @Test

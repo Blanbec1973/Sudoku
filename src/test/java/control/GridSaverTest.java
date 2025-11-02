@@ -1,23 +1,23 @@
 package control;
 
-import java.io.File;
-import java.io.IOException;
-
+import model.grille.Grille;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import model.grille.Grille;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 class GridSaverTest {
 	private static Grille grille;
-	private static final String NOM_FICHIER_SOURCE =System.getProperty("user.dir")+"/src/test/resources/grillesTest/init67-40.sud";
+	private static final String NOM_FICHIER_SOURCE = "src/test/resources/grillesTest/init67-40.sud";
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
 		grille =new Grille();
-        grille.init(NOM_FICHIER_SOURCE);
+        grille.init(Paths.get(NOM_FICHIER_SOURCE).toAbsolutePath());
 	}
 
 	@Test

@@ -1,11 +1,12 @@
 package resolution;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
 import model.grille.CaseEnCours;
 import model.grille.Grille;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +17,8 @@ class CandidatDansColonneUniqueDuneRegionTest {
 	
 	@BeforeAll
 	void setUpBeforeClass() {
-		grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/CandidatDansColonneUniqueDuneRegion.sud");
+		String fileName = "src/test/resources/grillesTest/CandidatDansColonneUniqueDuneRegion.sud";
+		grille.init(Paths.get(fileName).toAbsolutePath());
 		methode = new CandidatDansColonneUniqueDuneRegion(grille);
 	}
 

@@ -5,6 +5,8 @@ import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PaireCandidats2CasesColonneTest {
@@ -14,7 +16,8 @@ class PaireCandidats2CasesColonneTest {
     @BeforeEach
     void setUp() {
         grille = new Grille();
-        grille.init(System.getProperty("user.dir")+"/src/test/resources/grillesTest/PaireCandidats2CasesColonne.sud");
+        String fileName = "src/test/resources/grillesTest/PaireCandidats2CasesColonne.sud";
+        grille.init(Paths.get(fileName).toAbsolutePath());
         methode = new PaireCandidats2CasesColonne(grille);
     }
 
