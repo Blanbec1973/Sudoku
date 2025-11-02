@@ -11,7 +11,7 @@ public class CandidatUniqueDansColonne extends CandidatUniqueDansZone {
 
 	@Override
 	protected boolean checkPresenceCandidatZone(int candidat, int x, int y) {
-		return grille.checkPresenceCandidatColonne(candidat, CaseEnCours.getX(),CaseEnCours.getY());
+		return grilleService.checkPresenceCandidatColonne(candidat, CaseEnCours.getX(),CaseEnCours.getY());
 	}
 
 

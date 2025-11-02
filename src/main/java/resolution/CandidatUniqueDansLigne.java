@@ -9,7 +9,7 @@ public class CandidatUniqueDansLigne extends CandidatUniqueDansZone {
 
 	@Override
 	protected boolean checkPresenceCandidatZone(int candidat, int x, int y) {
-		return grille.checkPresenceCandidatLigne(candidat, CaseEnCours.getX(),CaseEnCours.getY());
+		return grilleService.checkPresenceCandidatLigne(candidat, CaseEnCours.getX(),CaseEnCours.getY());
 	}
 
 }

@@ -3,6 +3,7 @@ package resolution;
 import model.grille.CandidatsCase;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
+import model.service.GrilleService;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -28,6 +29,7 @@ import java.util.Optional;
 
 public abstract class MethodeResolution {
 	protected final Grille grille;
+	protected final GrilleService grilleService;
 	protected final ArrayList<CandidatsCase> tabCandidats;
 
 	protected int c1;
@@ -50,6 +52,7 @@ public abstract class MethodeResolution {
 	
 	protected MethodeResolution(Grille grille) {
 		this.grille=grille;
+		this.grilleService = grille.getGrilleService();
 		this.tabCandidats = new ArrayList <>();
 		c1=0;
 		c2=0;

@@ -18,7 +18,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
 
 	@Override
 	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
-		if (grille.calculNombreCaseATrouverDansLigne(CaseEnCours.getY())<=3) return Optional.empty();
+		if (grilleService.calculNombreCaseATrouverDansLigne(CaseEnCours.getY())<=3) return Optional.empty();
 
 		boolean trouve = this.detecteConfiguration();   	
         if (!trouve) return Optional.empty();
