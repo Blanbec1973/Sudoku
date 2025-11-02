@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CaseEnCoursTest {
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		CaseEnCours.setCaseEnCours(41);
 	}
 

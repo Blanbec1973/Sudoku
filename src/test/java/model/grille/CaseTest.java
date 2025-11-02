@@ -9,7 +9,7 @@ class CaseTest {
     Case maCase;
     
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         maCase = new Case(1,0,0);
     }
 

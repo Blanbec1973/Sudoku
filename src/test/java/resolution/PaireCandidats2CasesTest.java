@@ -13,7 +13,7 @@ class PaireCandidats2CasesTest {
 	private PaireCandidats2Cases paireCandidats2Cases;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
     	grille = new Grille();
     	CaseEnCours.setCaseEnCours(1);
     	paireCandidats2Cases = new PaireCandidats2CasesColonne(grille);

@@ -27,7 +27,6 @@ class ControlTest {
     }
     @Test
     void testReloadGrilleDelegatesToEventManager() {
-        //String fileName = System.getProperty("user.dir")+"src/test/resources/grillesTest/initFacile.sud";
         Path path = Paths.get("src/test/resources/grillesTest/initFacile.sud").toAbsolutePath();
         doNothing().when(mockEventManager).reloadGrille(path);
 
