@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 
 public class Control {
 	private final MyProperties myProperties = new MyProperties("config.properties");
-	private final ViewUpdater viewUpdater; // Abstraction pour la vue
     private final Model model;
 	private final EventManager eventManager;
 	public Model getModel() {return model;}
@@ -24,7 +23,6 @@ public class Control {
     public Control() {
 
     	MyView myView = new MyView();
-		this.viewUpdater = myView;
 		eventManager = new EventManager(myView, myProperties);
 		myView.registerController(eventManager);
 
@@ -52,7 +50,7 @@ public class Control {
 		eventManager.actionPerformed(event);
 	}
 	public ViewUpdater getViewUpdater() {
-		return viewUpdater;
+		return eventManager;
 	}
 
 }

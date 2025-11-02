@@ -10,12 +10,13 @@ import org.apache.logging.log4j.Logger;
 import view.MyView;
 import view.ViewUpdater;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class EventManager implements ActionListener, ModelListener {
+class EventManager implements ActionListener, ModelListener, ViewUpdater {
     private Model model;
     private final ViewUpdater viewUpdater;
     private final MyProperties properties;
@@ -104,4 +105,58 @@ class EventManager implements ActionListener, ModelListener {
         viewUpdater.refreshGrilleDisplay(model.getGrille());
         viewUpdater.resetView(properties.getProperty("StartMessage"));
     }
+
+
+    // Implémentation des méthodes de ViewUpdater
+    @Override
+    public void refreshGrilleDisplay(Grille grille) {
+        viewUpdater.refreshGrilleDisplay(grille);
+    }
+
+    @Override
+    public void highlightCase(int numCase) {
+        viewUpdater.highlightCase(numCase);
+    }
+
+    @Override
+    public void insertDisplayMessage(String message) {
+        viewUpdater.insertDisplayMessage(message);
+    }
+
+    @Override
+    public void updateResolutionRank(int delta) {
+        viewUpdater.updateResolutionRank(delta);
+    }
+
+    @Override
+    public void resetView(String startMessage) {
+        viewUpdater.resetView(startMessage);
+    }
+
+    @Override
+    public void updateSingleCase(Grille grille, int numCase) {
+        viewUpdater.updateSingleCase(grille, numCase);
+    }
+
+    @Override
+    public Color getCaseBackground(int numCase) {
+        return viewUpdater.getCaseBackground(numCase);
+    }
+
+    @Override
+    public int getCaseValue(int numCase) {
+        return viewUpdater.getCaseValue(numCase);
+    }
+
+    @Override
+    public void removeLastLogLine() {
+        viewUpdater.removeLastLogLine();
+    }
+
+    @Override
+    public void showMessageDialog(Component component, Object object) {
+        viewUpdater.showMessageDialog(component,object);
+    }
+
+
 }

@@ -32,7 +32,7 @@ public class SudokuSteps {
 
 	@Then("the cell number {int} is yellow")
 	public void the_cell_number_numCase_is_yellow(Integer numCase) {
-		Color c = ((MyView) control.getViewUpdater()).getCaseBackground(numCase);
+		Color c = control.getViewUpdater().getCaseBackground(numCase);
 		assertEquals(Color.YELLOW,c);
 	}
 
@@ -51,7 +51,7 @@ public class SudokuSteps {
 
 	@Then("the cell number {int} is green")
 	public void the_cell_number_is_green(Integer numCase) {
-		Color c = ((MyView) control.getViewUpdater()).getCaseBackground(numCase);
+		Color c = control.getViewUpdater().getCaseBackground(numCase);
 		assertEquals(Color.GREEN,c);
 	}
 }
