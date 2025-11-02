@@ -1,23 +1,60 @@
 package dojo;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.awt.Color;
-
 import control.Control;
-import cucumber.api.java.en.Given;  
-import cucumber.api.java.en.Then;  
+import control.EventManager;
+import control.MyProperties;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import utils.Utils;
+import model.MessageManager;
+import model.Model;
+import model.SimpleModelEventPublisher;
+import model.service.HistorisationService;
+import model.service.ModelEventService;
+import model.service.ResolutionMessageService;
 import view.MyView;
+
+import java.awt.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SudokuSteps {
 	private Control control;
 
 	@Given("I start my Sudoku application with file {string}")
 	public void i_start_my_Sudoku_application_with_file_fileName(String fileName) {
-	    control = new Control();
-		control.reloadGrille(System.getProperty("user.dir")+fileName);
+
+		MyProperties myProperties = new MyProperties("config.properties");
+		MyView myView = new MyView();
+
+		//services :
+		MessageManager messageManager = new MessageManager(myProperties);
+		HistorisationService historisationService = new HistorisationService();
+		SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
+		ModelEventService eventService = new ModelEventService(publisher);
+		ResolutionMessageService messageService = new ResolutionMessageService(messageManager);
+
+		// Modèle
+		Model model = new Model(eventService, messageService, historisationService);
+
+		// EventManager
+		EventManager eventManager = new EventManager(myView, myProperties);
+		publisher.addListener(eventManager);
+		eventManager.setModel(model);
+		myView.registerController(eventManager);
+
+		// Control avec injection
+		control = new Control(eventManager, model);
+		control.initialize(myView, myProperties);
+
+		// Charger le fichier passé en paramètre
+		control.reloadGrille(System.getProperty("user.dir") + fileName);
+		myView.refreshGrilleDisplay(model.getGrille());
+
+		myView.registerController(eventManager);
+		myView.getFenetre().setVisible(true);
+
 	}
 
 	@When("I click on nextButton")

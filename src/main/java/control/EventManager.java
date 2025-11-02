@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-class EventManager implements ActionListener, ModelListener, ViewUpdater {
+public class EventManager implements ActionListener, ModelListener, ViewUpdater {
     private Model model;
     private final ViewUpdater viewUpdater;
     private final MyProperties properties;

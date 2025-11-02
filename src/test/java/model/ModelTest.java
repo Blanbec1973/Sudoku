@@ -69,7 +69,7 @@ class ModelTest {
 	@Test
 	void testReloadLastHistoricizationCallsService() {
 		HistorisationService mockHistorisation = Mockito.mock(HistorisationService.class);
-		Model model = new Model(eventService, messageService, mockHistorisation);
+		model = new Model(eventService, messageService, mockHistorisation);
 		model.reloadLastHistoricization();
 		verify(mockHistorisation).supprimeDerniereGrille(Mockito.any());
 	}

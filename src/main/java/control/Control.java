@@ -13,38 +13,48 @@ import java.awt.event.ActionEvent;
 
 
 public class Control {
-	private final MyProperties myProperties = new MyProperties("config.properties");
     private final Model model;
 	private final EventManager eventManager;
 	public Model getModel() {return model;}
-	public MyProperties getMyProperties() {return myProperties;}
-    public static void main(String[] args) {new Control();}
-        
-    public Control() {
+    public static void main(String[] args) {
+		MyProperties myProperties = new MyProperties("config.properties");
+		MyView myView = new MyView();
 
-    	MyView myView = new MyView();
-		eventManager = new EventManager(myView, myProperties);
+		//services :
+		MessageManager messageManager = new MessageManager(myProperties);
+		HistorisationService historisationService = new HistorisationService();
+		SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
+		ModelEventService eventService = new ModelEventService(publisher);
+		ResolutionMessageService messageService = new ResolutionMessageService(messageManager);
+
+		// Modèle
+		Model model = new Model(eventService, messageService, historisationService);
+
+		// EventManager
+		EventManager eventManager = new EventManager(myView, myProperties);
+		publisher.addListener(eventManager);
+		eventManager.setModel(model);
 		myView.registerController(eventManager);
 
-		SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
-		publisher.addListener(eventManager);
+		// Control avec injection
+		Control control = new Control(eventManager, model);
+		control.initialize(myView, myProperties); // méthode pour charger la grille initiale
 
-		MessageManager messageManager = new MessageManager(myProperties);
+		myView.getFenetre().setVisible(true);
+	}
+	public Control(EventManager eventManager, Model model) {
+		this.eventManager = eventManager;
+		this.model = model;
+	}
 
-		model = new Model(new ModelEventService(publisher),
-				          new ResolutionMessageService(messageManager), new HistorisationService());
-		String initialFile = System.getProperty("user.dir") + myProperties.getProperty("InitialFile");
+	public void initialize(ViewUpdater view, MyProperties properties) {
+		String initialFile = System.getProperty("user.dir") + properties.getProperty("InitialFile");
 		model.reload(initialFile);
-		eventManager.setModel(model);
-
-		myView.refreshGrilleDisplay(model.getGrille());
-        myView.getFenetre().setVisible(true);
-    }
-
+		view.refreshGrilleDisplay(model.getGrille());
+	}
 	public void reloadGrille(String fileName) {
 		eventManager.reloadGrille(fileName);
 	}
-
 	public void simulateClick(String command) {
 		ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, command);
 		eventManager.actionPerformed(event);
