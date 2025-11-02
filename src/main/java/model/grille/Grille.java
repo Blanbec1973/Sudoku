@@ -59,11 +59,14 @@ public class Grille {
     }
 
     public GrilleService getGrilleService() {return this.grilleService;}
-    public Case getCase(int x, int y) {return mesCases[x][y];}
-    public Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
-    public Case getCaseEnCours() {return mesCases[CaseEnCours.getX()][CaseEnCours.getY()];}
+    protected Case getCase(int x, int y) {return mesCases[x][y];}
+    protected Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
+    protected Case getCaseEnCours() {return mesCases[CaseEnCours.getX()][CaseEnCours.getY()];}
     public List<Integer> getCasesAtrouver() {return casesAtrouver;}
+    // Gestion candidats :
     public CandidatsCase getCandidats(int numCase) {return this.getCase(numCase).getCandidats();}
+    public boolean [] getCandidatsTabBoolean(int numCase) {return this.getCase(numCase).getCandidatsTabBoolean();}
+    public boolean [] getCandidatsTabBoolean(int x, int y) {return this.getCase(x,y).getCandidatsTabBoolean();}
     public void setAllCandidatsToFalse(int numCase) {this.getCase(numCase).getCandidats().setAllCandidatsToFalse();}
     public void setCandidat(int numCase, int candidat) {this.getCase(numCase).getCandidats().setCandidat(candidat);}
     public void elimineCandidat (int numCase, int candidatAEliminer) {
@@ -72,6 +75,7 @@ public class Grille {
     public void elimineCandidat (int x, int y, int candidatAEliminer) {
         this.getCase(x,y).elimineCandidat(candidatAEliminer);
     }
+    //Questions sur les cases :
     public boolean isCaseInitiale(int numCase) {return this.getCase(numCase).isCaseInitiale();}
     public boolean isCaseTrouvee(int numCase) {return this.getCase(numCase).isCaseTrouvee();}
     public boolean isCaseATrouver(int numCase) {
@@ -80,9 +84,9 @@ public class Grille {
         return isCaseATrouver(x, y);
     }
     public boolean isCaseATrouver(int x, int y) {return this.getCase(x,y).isCaseATrouver();}
-    public boolean nEstPasCaseInitiale(int numCase) {return this.getCase(numCase).nEstPasCaseInitiale();}
+
     public boolean nEstPasCaseInitiale(int x, int y) {return this.getCase(x, y).nEstPasCaseInitiale();}
-    public boolean nEstPasCaseTrouvee(int numCase) {return this.getCase(numCase).nEstPasCaseTrouvee();}
+
     public boolean nEstPasCaseTrouvee(int x, int y) {return this.getCase(x, y).nEstPasCaseTrouvee();}
     public boolean contientCandidatUnique(int numCase) {return this.getCase(numCase).contientCandidatUnique();}
     public boolean isCandidat(int numCase, int candidat) {return this.getCase(numCase).isCandidat(candidat);}
@@ -90,11 +94,7 @@ public class Grille {
     public int getValeurCase(int numCase) {return this.getCase(numCase).getValeur();}
     public int getValeurCase(int x, int y) {return this.getCase(x,y).getValeur();}
     public int getNombreCandidats(int numCase) {return this.getCase(numCase).getNombreCandidats();}
-    public int getxCase(int numCase) { return this.getCase(numCase).getxCase();}
-    public int getyCase(int numCase) { return this.getCase(numCase).getyCase();}
     public int getRegion(int numCase) {return this.getCase(numCase).getRegion();}
-    public boolean [] getCandidatsTabBoolean(int numCase) {return this.getCase(numCase).getCandidatsTabBoolean();}
-    public boolean [] getCandidatsTabBoolean(int x, int y) {return this.getCase(x,y).getCandidatsTabBoolean();}
     public int calculValeurUnique(int numCase) {return this.getCase(numCase).calculValeurUnique();}
     public String construitLibelleCandidats(int numCase) {return this.getCase(numCase).construitLibelleCandidats();}
 
@@ -127,6 +127,4 @@ public class Grille {
     public static int calculNumCase(int x, int y) {
         return (y*9+x+1);
     }
-
-
 }
