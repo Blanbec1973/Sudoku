@@ -1,61 +1,25 @@
 package model.service;
 
-import model.grille.CaseEnCours;
 import model.grille.Grille;
 
-import java.util.List;
-
 public class GrilleService {
-
-    private final Grille grille;
     private final GrilleAnalysisService grilleAnalysisService;
+    private final GrilleUpdateService grilleUpdateService;
 
     public GrilleService(Grille grille) {
-        this.grille = grille;
         grilleAnalysisService = new GrilleAnalysisService(grille);
+        grilleUpdateService = new GrilleUpdateService(grille, grilleAnalysisService);
     }
 
-
-
+    //Méthodes d'update :
     public void elimineCandidatsCaseTrouvee(int x, int y, int solution) {
-        // Ligne
-        for (int i = 0; i < 9; i++) {
-            grille.elimineCandidat(i, y, solution);
-        }
-        // Colonne
-        for (int i = 0; i < 9; i++) {
-            grille.elimineCandidat(x, i, solution);
-        }
-        // Région
-        int xStart = CaseEnCours.getxRegion();
-        int yStart = CaseEnCours.getyRegion();
-        for (int abs = xStart; abs < xStart + 3; abs++) {
-            for (int ord = yStart; ord < yStart + 3; ord++) {
-                grille.elimineCandidat(abs, ord, solution);
-            }
-        }
+        grilleUpdateService.elimineCandidatsCaseTrouvee(x, y, solution);
     }
-
     public void calculTousLesCandidats() {
-        List<Integer> casesATrouver = grille.getCasesAtrouver();
-        for (Integer numCase : casesATrouver) {
-            CaseEnCours.setCaseEnCours(numCase);
-            calculCandidatsInitiaux(CaseEnCours.getX(), CaseEnCours.getY());
-        }
+        grilleUpdateService.calculTousLesCandidats();
     }
-
-    private void calculCandidatsInitiaux(int x, int y) {
-        for (int valeur = 1; valeur <= 9; valeur++) {
-            if (checkPresenceValeurLigne(valeur, y)) {
-                grille.elimineCandidat(x, y, valeur);
-            }
-            if (checkPresenceValeurColonne(valeur, x)) {
-                grille.elimineCandidat(x, y, valeur);
-            }
-            if (checkPresenceValeurRegion(valeur)) {
-                grille.elimineCandidat(x, y, valeur);
-            }
-        }
+    public void calculCandidatsInitiaux(int x, int y) {
+        grilleUpdateService.calculCandidatsInitiaux(x, y);
     }
     // Methodes d'analyse
     public boolean checkPresenceValeurLigne(int valeur, int numLigne) {
