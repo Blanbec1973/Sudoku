@@ -1,5 +1,6 @@
 package model.service;
 
+import model.grille.CaseContext;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 
@@ -32,25 +33,22 @@ public class GrilleUpdateService {
             }
         }
     }
-
     void calculTousLesCandidats() {
         List<Integer> casesATrouver = grille.getCasesAtrouver();
         for (Integer numCase : casesATrouver) {
-            CaseEnCours.setCaseEnCours(numCase);
-            calculCandidatsInitiaux(CaseEnCours.getX(), CaseEnCours.getY());
+            calculCandidatsInitiaux(new CaseContext(numCase));
         }
     }
-
-    void calculCandidatsInitiaux(int x, int y) {
+    void calculCandidatsInitiaux(CaseContext context) {
         for (int valeur = 1; valeur <= 9; valeur++) {
-            if (grilleAnalysisService.checkPresenceValeurLigne(valeur, y)) {
-                grille.elimineCandidat(x, y, valeur);
+            if (grilleAnalysisService.checkPresenceValeurLigne(valeur, context.getY())) {
+                grille.elimineCandidat(context.getX(), context.getY(), valeur);
             }
-            if (grilleAnalysisService.checkPresenceValeurColonne(valeur, x)) {
-                grille.elimineCandidat(x, y, valeur);
+            if (grilleAnalysisService.checkPresenceValeurColonne(valeur, context.getX())) {
+                grille.elimineCandidat(context.getX(), context.getY(), valeur);
             }
-            if (grilleAnalysisService.checkPresenceValeurRegion(valeur)) {
-                grille.elimineCandidat(x, y, valeur);
+            if (grilleAnalysisService.checkPresenceValeurRegion(context, valeur)) {
+                grille.elimineCandidat(context.getX(), context.getY(), valeur);
             }
         }
     }

@@ -1,5 +1,6 @@
 package model.service;
 
+import model.grille.CaseContext;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,8 +53,8 @@ class GrilleUpdateServiceTest {
 
     @Test
     void testCalculCandidatsInitiaux() {
-        CaseEnCours.setCaseEnCours(3);
-        grilleUpdateService.calculCandidatsInitiaux(2,0);
+        //CaseEnCours.setCaseEnCours(3);
+        grilleUpdateService.calculCandidatsInitiaux(new CaseContext(2,0));
         assertFalse(grille.isCandidat(2,0,1));
         assertTrue(grille.isCandidat(2,0,2));
         assertTrue(grille.isCandidat(2,0,3));

@@ -81,16 +81,17 @@ class Grille2Test {
 
 	@Test
 	void testCheckPresenceValeurRegion() {
-		CaseEnCours.setCaseEnCours(1);
-		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(1));
-		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(2));
-		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(3));
-		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(4));
-		assertTrue(grille.getGrilleService().checkPresenceValeurRegion(5));
-		assertTrue(grille.getGrilleService().checkPresenceValeurRegion(6));
-		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(7));
-		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(8));
-		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(9));
+		//CaseEnCours.setCaseEnCours(1);
+		CaseContext context = new CaseContext(1);
+		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context, 1));
+		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context,2));
+		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context,3));
+		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context,4));
+		assertTrue(grille.getGrilleService().checkPresenceValeurRegion(context,5));
+		assertTrue(grille.getGrilleService().checkPresenceValeurRegion(context,6));
+		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context,7));
+		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context,8));
+		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context,9));
 	}
 
 }

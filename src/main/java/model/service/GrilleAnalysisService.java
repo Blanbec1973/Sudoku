@@ -1,5 +1,6 @@
 package model.service;
 
+import model.grille.CaseContext;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 
@@ -28,9 +29,9 @@ public class GrilleAnalysisService {
         return false;
     }
 
-    public boolean checkPresenceValeurRegion(int valeur) {
-        int xStart = CaseEnCours.getxRegion();
-        int yStart = CaseEnCours.getyRegion();
+    public boolean checkPresenceValeurRegion(CaseContext context, int valeur) {
+        int xStart = context.getxRegion();
+        int yStart = context.getyRegion();
         for (int x = xStart; x < xStart + 3; x++) {
             for (int y = yStart; y < yStart + 3; y++) {
                 if (grille.getValeurCase(x, y) == valeur) {

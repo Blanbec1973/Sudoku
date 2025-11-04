@@ -1,5 +1,6 @@
 package model.service;
 
+import model.grille.CaseContext;
 import model.grille.Grille;
 
 public class GrilleService {
@@ -19,7 +20,7 @@ public class GrilleService {
         grilleUpdateService.calculTousLesCandidats();
     }
     public void calculCandidatsInitiaux(int x, int y) {
-        grilleUpdateService.calculCandidatsInitiaux(x, y);
+        grilleUpdateService.calculCandidatsInitiaux(new CaseContext(x, y));
     }
     // Methodes d'analyse
     public boolean checkPresenceValeurLigne(int valeur, int numLigne) {
@@ -28,8 +29,8 @@ public class GrilleService {
     public boolean checkPresenceValeurColonne(int valeur, int numColonne) {
         return grilleAnalysisService.checkPresenceValeurColonne(valeur, numColonne);
     }
-    public boolean checkPresenceValeurRegion(int valeur) {
-        return grilleAnalysisService.checkPresenceValeurRegion(valeur);
+    public boolean checkPresenceValeurRegion(CaseContext context, int valeur) {
+        return grilleAnalysisService.checkPresenceValeurRegion(context, valeur);
     }
     public boolean checkPresenceCandidatLigne(int valeur, int x, int numLigne) {
         return grilleAnalysisService.checkPresenceCandidatLigne(valeur,x, numLigne);
