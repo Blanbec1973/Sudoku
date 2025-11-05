@@ -41,10 +41,10 @@ public class GrilleUpdateService {
     }
     void calculCandidatsInitiaux(CaseContext context) {
         for (int valeur = 1; valeur <= 9; valeur++) {
-            if (grilleAnalysisService.checkPresenceValeurLigne(valeur, context.getY())) {
+            if (grilleAnalysisService.checkPresenceValeurLigne(context, valeur)) {
                 grille.elimineCandidat(context.getX(), context.getY(), valeur);
             }
-            if (grilleAnalysisService.checkPresenceValeurColonne(valeur, context.getX())) {
+            if (grilleAnalysisService.checkPresenceValeurColonne(context, valeur)) {
                 grille.elimineCandidat(context.getX(), context.getY(), valeur);
             }
             if (grilleAnalysisService.checkPresenceValeurRegion(context, valeur)) {

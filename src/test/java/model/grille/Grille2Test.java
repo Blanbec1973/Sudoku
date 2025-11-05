@@ -55,28 +55,30 @@ class Grille2Test {
 
 	@Test
 	void testCheckPresenceValeurLigne() {
-		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(1, 0));
-		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(2, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(3, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(4, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(5, 0));
-		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(6, 0));
-		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(7, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(8, 0));
-		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(9, 0));
+		CaseContext context = new CaseContext(1);
+		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(context,1));
+		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(context,2));
+		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(context,3));
+		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(context,4));
+		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(context,5));
+		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(context,6));
+		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(context,7));
+		assertFalse(grille.getGrilleService().checkPresenceValeurLigne(context,8));
+		assertTrue(grille.getGrilleService().checkPresenceValeurLigne(context,9));
 	}
 
 	@Test
 	void testCheckPresenceValeurColonne() {
-		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(1, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(2, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(3, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(4, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(5, 0));
-		assertTrue(grille.getGrilleService().checkPresenceValeurColonne(6, 0));
-		assertTrue(grille.getGrilleService().checkPresenceValeurColonne(7, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(8, 0));
-		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(9, 0));
+		CaseContext context = new CaseContext(1);
+		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(context,1));
+		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(context,2));
+		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(context,3));
+		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(context,4));
+		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(context,5));
+		assertTrue(grille.getGrilleService().checkPresenceValeurColonne(context,6));
+		assertTrue(grille.getGrilleService().checkPresenceValeurColonne(context,7));
+		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(context,8));
+		assertFalse(grille.getGrilleService().checkPresenceValeurColonne(context, 9));
 	}
 
 	@Test

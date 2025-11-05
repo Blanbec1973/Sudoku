@@ -23,11 +23,11 @@ public class GrilleService {
         grilleUpdateService.calculCandidatsInitiaux(new CaseContext(x, y));
     }
     // Methodes d'analyse
-    public boolean checkPresenceValeurLigne(int valeur, int numLigne) {
-        return grilleAnalysisService.checkPresenceValeurLigne(valeur, numLigne);
+    public boolean checkPresenceValeurLigne(CaseContext context, int valeur) {
+        return grilleAnalysisService.checkPresenceValeurLigne(context, valeur);
     }
-    public boolean checkPresenceValeurColonne(int valeur, int numColonne) {
-        return grilleAnalysisService.checkPresenceValeurColonne(valeur, numColonne);
+    public boolean checkPresenceValeurColonne(CaseContext context, int valeur) {
+        return grilleAnalysisService.checkPresenceValeurColonne(context, valeur);
     }
     public boolean checkPresenceValeurRegion(CaseContext context, int valeur) {
         return grilleAnalysisService.checkPresenceValeurRegion(context, valeur);

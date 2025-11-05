@@ -11,7 +11,8 @@ public class GrilleAnalysisService {
         this.grille = grille;
     }
 
-    public boolean checkPresenceValeurLigne(int valeur, int numLigne) {
+    public boolean checkPresenceValeurLigne(CaseContext context, int valeur) {
+        int numLigne = context.getY();
         for (int i = 0; i < 9; i++) {
             if (grille.getValeurCase(i, numLigne) == valeur) {
                 return true;
@@ -20,7 +21,8 @@ public class GrilleAnalysisService {
         return false;
     }
 
-    public boolean checkPresenceValeurColonne(int valeur, int numColonne) {
+    public boolean checkPresenceValeurColonne(CaseContext context, int valeur) {
+        int numColonne = context.getX();
         for (int i = 0; i < 9; i++) {
             if (grille.getValeurCase(numColonne, i) == valeur) {
                 return true;
