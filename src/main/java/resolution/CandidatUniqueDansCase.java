@@ -13,7 +13,7 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 
 	@Override
 	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
-		caseTrouvee = this.detecteConfiguration(context);
+		boolean caseTrouvee = this.detecteConfiguration(context);
 		
 		if (!caseTrouvee) return Optional.empty();
 		

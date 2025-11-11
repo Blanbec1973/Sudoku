@@ -10,7 +10,6 @@ public abstract class PaireConjuguee extends MethodeResolution {
 
 	protected PaireConjuguee(Grille grille) {
 		super(grille);
-		caseTrouvee=false;
 	}
 
 	@Override

@@ -13,7 +13,6 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 
 	public TripletteCandidatsEnColonne(Grille grille) {
 		super(grille);
-		caseTrouvee=false;
 	}
 
 	@Override

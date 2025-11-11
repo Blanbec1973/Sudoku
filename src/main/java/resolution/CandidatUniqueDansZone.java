@@ -13,7 +13,7 @@ abstract class CandidatUniqueDansZone extends MethodeResolution {
 
 	@Override
 	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
-		caseTrouvee = false;
+		boolean caseTrouvee = false;
 		int candidat;
 		for (candidat=1;candidat<10;candidat++) {
 			if (grille.isCandidat(context.getNumCase(),candidat) &&

@@ -16,12 +16,10 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		super(grille);
 		c1=0;
 		c2=0;
-		caseTrouvee=false;
 	}
 	
 	@Override
 	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
-		caseTrouvee = false;
 		boolean trouve = false;
 		candidatAEliminer=0;
 

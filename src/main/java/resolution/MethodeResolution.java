@@ -40,7 +40,7 @@ public abstract class MethodeResolution {
 	protected int y2;
 
 	protected int y3;
-	protected boolean caseTrouvee;
+
 	protected int numCaseAction;
 	protected int candidatAEliminer;
 
@@ -69,8 +69,7 @@ public abstract class MethodeResolution {
 		}
 		return Optional.empty();
 	}
-	
-	public boolean isCaseTrouvee() {return caseTrouvee;}
+
 	public int getNumCaseAction() {return numCaseAction;}
 	
 	public abstract Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement);
