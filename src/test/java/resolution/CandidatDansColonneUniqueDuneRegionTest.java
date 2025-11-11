@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -24,11 +24,11 @@ class CandidatDansColonneUniqueDuneRegionTest {
 
 	@Test
 	void testTraiteCaseEnCours() {
-		CaseEnCours.setCaseEnCours(3);
-		assertFalse(methode.traiteCaseEnCours(false).isPresent());
+		CaseContext context = new CaseContext(3);
+		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
 
-		CaseEnCours.setCaseEnCours(28);
-		assertTrue(methode.traiteCaseEnCours(false).isPresent());
+		CaseContext context2 = new CaseContext(28);
+		assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
 		assertEquals(1,methode.numCaseAction);
 		assertEquals(6, methode.candidatAEliminer);
 		assertEquals(0, methode.xAction);
@@ -36,19 +36,19 @@ class CandidatDansColonneUniqueDuneRegionTest {
 
 		grille.elimineCandidat(1,6);
 		grille.elimineCandidat(73,6);
-		assertFalse(methode.detecteCandidatAEliminer());
+		assertFalse(methode.detecteCandidatAEliminer(context2));
 	}
 
 	@Test
 	void testCandidatDansColonneUnique() {
-		CaseEnCours.setCaseEnCours(28);
-		assertTrue(methode.candidatDansColonneUnique());
+		CaseContext context = new CaseContext(28);
+		assertTrue(methode.candidatDansColonneUnique(context));
 
-		CaseEnCours.setCaseEnCours(25);
+		CaseContext context2 = new CaseContext(25);
 		methode.candidatAEliminer = 3;
-		assertFalse(methode.candidatDansColonneUnique());
+		assertFalse(methode.candidatDansColonneUnique(context2));
 		methode.candidatAEliminer = 7;
-		assertFalse(methode.candidatDansColonneUnique());
+		assertFalse(methode.candidatDansColonneUnique(context2));
 	}
 
 	@Test

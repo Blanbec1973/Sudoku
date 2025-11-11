@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.*;
 
@@ -24,10 +24,10 @@ class PaireConjugueeEnColonneTest {
 	@Test
 	@Order(1)
 	void testTraiteCaseEnCours() {
-		CaseEnCours.setCaseEnCours(18);
-		assertFalse(methode.traiteCaseEnCours(false).isPresent());
-		CaseEnCours.setCaseEnCours(36);
-		assertTrue(methode.traiteCaseEnCours(false).isPresent());
+		CaseContext context = new CaseContext(18);
+		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
+		CaseContext context2 = new CaseContext(36);
+		assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
 		assertEquals(3,methode.c1);
 		assertEquals(7,methode.c2);
 	}
@@ -35,54 +35,54 @@ class PaireConjugueeEnColonneTest {
 	@Test
 	@Order(2)
 	void testDetecteConfiguration() {
-		CaseEnCours.setCaseEnCours(2);
-		assertFalse(methode.detecteConfiguration());
-		CaseEnCours.setCaseEnCours(36);
-		assertTrue(methode.detecteConfiguration());
+		CaseContext context = new CaseContext(2);
+		assertFalse(methode.detecteConfiguration(context));
+		CaseContext context2 = new CaseContext(36);
+		assertTrue(methode.detecteConfiguration(context2));
 	}
 	
 	@Test
 	@Order(3)
 	void testDetecteCandidatAEliminer() {
-		CaseEnCours.setCaseEnCours(36);
+		CaseContext context = new CaseContext(36);
 		methode.c1=3;
 		methode.c2=7;
 		methode.y2=4;
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(7, methode.candidatAEliminer);
 		assertEquals(18,methode.numCaseAction);
 		grille.elimineCandidat(18,7);
 
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(7, methode.candidatAEliminer);
 		assertEquals(27,methode.numCaseAction);
 		grille.elimineCandidat(27,7);
 
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(7, methode.candidatAEliminer);
 		assertEquals(54,methode.numCaseAction);
 		grille.elimineCandidat(54,7);
 
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(3, methode.candidatAEliminer);
 		assertEquals(63,methode.numCaseAction);
 		grille.elimineCandidat(63,3);
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(7, methode.candidatAEliminer);
 		assertEquals(63,methode.numCaseAction);
 		grille.elimineCandidat(63,7);
 
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(3, methode.candidatAEliminer);
 		assertEquals(72,methode.numCaseAction);
 		grille.elimineCandidat(72,3);
 
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(7, methode.candidatAEliminer);
 		assertEquals(72,methode.numCaseAction);
 		grille.elimineCandidat(72,7);
 
-		assertFalse(methode.detecteCandidatAEliminer());
+		assertFalse(methode.detecteCandidatAEliminer(context));
 	}
 
 	@Test

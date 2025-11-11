@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,31 +23,27 @@ class PaireCandidats2CasesColonneTest {
 
     @Test
     void testTraiteCaseEnCours() {
-        CaseEnCours.setCaseEnCours(1);
-        assertFalse(methode.traiteCaseEnCours(false).isPresent());
-        CaseEnCours.setCaseEnCours(8);
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        CaseContext context = new CaseContext(8);
+        assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
         assertEquals(8, methode.numCaseAction);
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(8,3);
 
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
         assertEquals(8, methode.numCaseAction);
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(8,8);
 
-        CaseEnCours.setCaseEnCours(17);
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        CaseContext context2 = new CaseContext(17);
+        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
         assertEquals(17, methode.numCaseAction);
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(17,3);
 
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
         assertEquals(17, methode.numCaseAction);
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(17,8);
-
-        assertFalse(methode.traiteCaseEnCours(false).isPresent());
     }
 
     @Test

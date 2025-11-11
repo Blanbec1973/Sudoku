@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import utils.Utils;
 
@@ -16,49 +16,49 @@ public class CandidatDansLigneUniqueDuneRegion extends MethodeResolution {
 	}
 
 	@Override
-	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
-		numLigne = CaseEnCours.getY();
-		boolean trouve = this.detectConfiguration();
+	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
+		numLigne = context.getY();
+		boolean trouve = this.detectConfiguration(context);
         if (!trouve) return Optional.empty();
         
-        if (this.detecteCandidatAEliminer()) {
-			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
+        if (this.detecteCandidatAEliminer(context)) {
+			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
 		}
 		else {
 			return Optional.empty();
 		}
 	}
 
-	private boolean detectConfiguration() {
+	private boolean detectConfiguration(CaseContext context) {
 		// Pour tous les candidats de la case en cours, je regarde si je ne suis que dans la ligne de ma région
 		for (int i=1; i <= 9 ;i++) {
 			candidatAEliminer = i;
-			if (grille.isCandidat(CaseEnCours.getNumCase(), i) && candidatDansLigneUnique()) return true;
+			if (grille.isCandidat(context.getNumCase(), i) && candidatDansLigneUnique(context)) return true;
 		}
 	
 		return false;
 	}
 	
-	boolean candidatDansLigneUnique() {
+	boolean candidatDansLigneUnique(CaseContext context) {
 		// les deux lignes de la région où on devra chercher le candidat :
-		int lig1 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getY(),1) ;
-		int lig2 = Utils.calculAutresLignesOuColonnesDuneRegion(CaseEnCours.getY(),2) ;
+		int lig1 = Utils.calculAutresLignesOuColonnesDuneRegion(context.getY(),1) ;
+		int lig2 = Utils.calculAutresLignesOuColonnesDuneRegion(context.getY(),2) ;
 
 		// vérification absence candidat lig1 :
-		for (int x=CaseEnCours.getxRegion(); x<CaseEnCours.getxRegion()+3;x++) {
+		for (int x=context.getxRegion(); x<context.getxRegion()+3;x++) {
 			if (grille.isCaseATrouver(x, lig1) && grille.isCandidat(x, lig1, candidatAEliminer)) return false;
 		}
 		
-		for (int x=CaseEnCours.getxRegion(); x<CaseEnCours.getxRegion()+3;x++) {
+		for (int x=context.getxRegion(); x<context.getxRegion()+3;x++) {
 			if (grille.isCaseATrouver(x,lig2) && grille.isCandidat(x, lig2, candidatAEliminer)) return false;
 		}
 		return true;
 	}
 
-	boolean detecteCandidatAEliminer() {
+	boolean detecteCandidatAEliminer(CaseContext context) {
 		// Recherche présence candidatAEliminer dans les autres régions de la ligne
 		for (int i=0;i<9;i++) {
-			if (CaseEnCours.getNumRegion() != Utils.calculNumeroRegion(Grille.calculNumCase(i, numLigne)) &&
+			if (context.getNumRegion() != Utils.calculNumeroRegion(Grille.calculNumCase(i, numLigne)) &&
 			    grille.isCaseATrouver(Grille.calculNumCase(i, numLigne)) &&
 					grille.isCandidat(Grille.calculNumCase(i, numLigne),candidatAEliminer)) {
 				xAction=i;

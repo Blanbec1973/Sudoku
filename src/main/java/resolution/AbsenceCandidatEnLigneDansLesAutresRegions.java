@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 
 public class AbsenceCandidatEnLigneDansLesAutresRegions extends AbsenceCandidatDansLesAutresRegions {
@@ -9,16 +9,16 @@ public class AbsenceCandidatEnLigneDansLesAutresRegions extends AbsenceCandidatD
 		super(grille);
 	}
 
-	protected boolean testCase(int rangCase, int candidat) {
-		return !(grille.getRegion(CaseEnCours.getNumCase()) != grille.getRegion(Grille.calculNumCase(rangCase, CaseEnCours.getY())) &&
-				grille.isCaseATrouver(rangCase, CaseEnCours.getY()) &&
-        	    grille.isCandidat(rangCase, CaseEnCours.getY(),candidat));
+	protected boolean testCase(CaseContext context, int rangCase, int candidat) {
+		return !(grille.getRegion(context.getNumCase()) != grille.getRegion(Grille.calculNumCase(rangCase, context.getY())) &&
+				grille.isCaseATrouver(rangCase, context.getY()) &&
+        	    grille.isCandidat(rangCase, context.getY(),candidat));
 	}
 	
-	protected boolean detecteCandidatAEliminer() {
-        for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
-            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if (ord!= CaseEnCours.getY() &&
+	protected boolean detecteCandidatAEliminer(CaseContext context) {
+        for (int abs=context.getxRegion();abs<context.getxRegion()+3;abs++) {
+            for (int ord=context.getyRegion();ord<context.getyRegion()+3;ord++) {
+                if (ord!= context.getY() &&
                 	grille.isCaseATrouver(abs, ord) &&
                     grille.isCandidat(abs, ord, candidatAEliminer)) {
                 	xAction = abs;

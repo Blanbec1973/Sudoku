@@ -1,5 +1,6 @@
 package view;
 
+import model.grille.CaseContext;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeAll;
@@ -124,8 +125,8 @@ class MyViewTest {
 	@Test
 	void testUpdateSingleCaseTrouvee() {
 		Grille grille = new Grille();
-		CaseEnCours.setCaseEnCours(1);
-		grille.setValeurCaseEnCours(4);
+		// TODO
+		//grille.setValeurCaseEnCours(new CaseContext(1),4);
 		myView.updateSingleCase(grille, 1);
 		assertEquals("4", myView.getCase(0, 0).getText());
 		assertEquals(Color.GREEN, myView.getCase(0, 0).getBackground());

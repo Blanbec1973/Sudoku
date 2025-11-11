@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 
 public class CandidatUniqueDansRegion extends CandidatUniqueDansZone {
@@ -10,8 +10,8 @@ public class CandidatUniqueDansRegion extends CandidatUniqueDansZone {
 	}
 
 	@Override
-	protected boolean checkPresenceCandidatZone(int candidat, int x, int y) {
-		return grilleService.checkPresenceCandidatRegion(candidat, CaseEnCours.getX(),CaseEnCours.getY());
+	protected boolean checkPresenceCandidatZone(CaseContext context, int candidat) {
+		return grilleService.checkPresenceCandidatRegion(context, candidat);
 	}
 
 }

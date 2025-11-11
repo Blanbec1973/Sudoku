@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,11 +22,11 @@ class CandidatUniqueDansCaseTest {
 
 	@Test
 	void testTraiteCaseEnCours() {
-		CaseEnCours.setCaseEnCours(1);
-		assertFalse(methode.traiteCaseEnCours(false).isPresent());
+		CaseContext context = new CaseContext(1);
+		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
 		
-		CaseEnCours.setCaseEnCours(69);
-		assertTrue(methode.traiteCaseEnCours(false).isPresent());
+		CaseContext context2 = new CaseContext(69);
+		assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
 		assertEquals(7, methode.getSolution());
 		assertEquals(69,methode.getNumCaseAction());
 	}

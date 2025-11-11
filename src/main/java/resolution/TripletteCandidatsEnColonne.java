@@ -1,7 +1,7 @@
 package resolution;
 
 import model.grille.CandidatsCase;
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import utils.Utils;
 
@@ -17,30 +17,30 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 	}
 
 	@Override
-	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
-		if (grilleService.calculNombreCaseATrouverDansColonne(CaseEnCours.getX())<=3) return Optional.empty();
+	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
+		if (grilleService.calculNombreCaseATrouverDansColonne(context.getX())<=3) return Optional.empty();
 
-		boolean trouve = this.detecteConfiguration();   	
+		boolean trouve = this.detecteConfiguration(context);
         if (!trouve) return Optional.empty();
         
-        trouve = this.detecteCandidatAEliminer();
+        trouve = this.detecteCandidatAEliminer(context);
         if (!trouve) return Optional.empty();
         
-        xAction = CaseEnCours.getX();
+        xAction = context.getX();
         
         numCaseAction= Grille.calculNumCase(xAction, yAction);
-		return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
+		return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
 	}
 
-	private boolean detecteConfiguration() {
+	private boolean detecteConfiguration(CaseContext context) {
         y2=0;
         y3=0;
 
         while (y2<9) {
-            if (y2!=CaseEnCours.getY() && grille.isCaseATrouver(CaseEnCours.getX(),y2)) {
+            if (y2!=context.getY() && grille.isCaseATrouver(context.getX(),y2)) {
                 y3=y2;
                 while (y3<9) {
-                    if (testTriplette()) {return true;}
+                    if (testTriplette(context)) {return true;}
                     y3+=1;
                 }
             }
@@ -49,14 +49,14 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
         return false;
 	}
 	
-	private boolean testTriplette() {
-		 return (y3!=y2 && y3!=CaseEnCours.getY() && grille.isCaseATrouver(CaseEnCours.getX(),y3) &&
-		     this.detecteTripletteEnLigne(CaseEnCours.getX(), y2, y3) && this.detecteCandidatAEliminer()) ;
+	private boolean testTriplette(CaseContext context) {
+		 return (y3!=y2 && y3!=context.getY() && grille.isCaseATrouver(context.getX(),y3) &&
+		     this.detecteTripletteEnLigne(context, context.getX(), y2, y3) && this.detecteCandidatAEliminer(context));
 	}
 	
-	private boolean detecteTripletteEnLigne(int xSearch, int y2, int y3) {
+	private boolean detecteTripletteEnLigne(CaseContext context, int xSearch, int y2, int y3) {
         CandidatsCase testCandidats = new CandidatsCase();
-        testCandidats.setCandidats(Utils.calculOuLogique2Candidats(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
+        testCandidats.setCandidats(Utils.calculOuLogique2Candidats(grille.getCandidatsTabBoolean(context.getNumCase()),
                                                        grille.getCandidatsTabBoolean(xSearch,y2)));
         testCandidats.setCandidats(Utils.calculOuLogique2Candidats(testCandidats.getCandidats(),
                                                        grille.getCandidatsTabBoolean(xSearch,y3)));
@@ -69,21 +69,21 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 		return true;
 	}
 
-	private boolean detecteCandidatAEliminer() {
+	private boolean detecteCandidatAEliminer(CaseContext context) {
 		for (int ord = 0 ; ord < 9 ; ord++) {
-			if (grille.isCaseATrouver(CaseEnCours.getX(), ord) &&
-				ord != CaseEnCours.getY() && ord != y2 && ord != y3) {
-				if (grille.isCandidat(CaseEnCours.getX(),ord, c1)) {
+			if (grille.isCaseATrouver(context.getX(), ord) &&
+				ord != context.getY() && ord != y2 && ord != y3) {
+				if (grille.isCandidat(context.getX(),ord, c1)) {
 					candidatAEliminer = c1;
 					yAction = ord;
 					return true;
 				}
-				if (grille.isCandidat(CaseEnCours.getX(), ord, c2)) {
+				if (grille.isCandidat(context.getX(), ord, c2)) {
 					candidatAEliminer = c2;
 					yAction = ord;
 					return true;
 				}
-				if (grille.isCandidat(CaseEnCours.getX(), ord, c3)) {
+				if (grille.isCandidat(context.getX(), ord, c3)) {
 					candidatAEliminer = c3;
 					yAction = ord;
 					return true;

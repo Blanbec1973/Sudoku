@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 
 import java.util.Arrays;
@@ -11,13 +11,13 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 		super(grille);
 	}
 
-	protected boolean detecteConfiguration() {
-		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) != 2) return false;
-		for (int abs=CaseEnCours.getxRegion();abs<CaseEnCours.getxRegion()+3;abs++) {
-            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
-                if ((CaseEnCours.getX() != abs || CaseEnCours.getY() != ord) &&
+	protected boolean detecteConfiguration(CaseContext context) {
+		if (grille.getNombreCandidats(context.getNumCase()) != 2) return false;
+		for (int abs=context.getxRegion();abs<context.getxRegion()+3;abs++) {
+            for (int ord=context.getyRegion();ord<context.getyRegion()+3;ord++) {
+                if ((context.getX() != abs || context.getY() != ord) &&
                     grille.isCaseATrouver(abs, ord) &&
-                    Arrays.equals(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
+                    Arrays.equals(grille.getCandidatsTabBoolean(context.getNumCase()),
                     		      grille.getCandidatsTabBoolean(abs, ord))) {
                 	return true;
                 }
@@ -26,11 +26,11 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 		return false;
 	}
 	
-	protected boolean detecteCandidatAEliminer() {
-        for (int xAction=CaseEnCours.getxRegion();xAction<CaseEnCours.getxRegion()+3;xAction++) {
-            for (int yAction=CaseEnCours.getyRegion();yAction<CaseEnCours.getyRegion()+3;yAction++) {
+	protected boolean detecteCandidatAEliminer(CaseContext context) {
+        for (int xAction=context.getxRegion();xAction<context.getxRegion()+3;xAction++) {
+            for (int yAction=context.getyRegion();yAction<context.getyRegion()+3;yAction++) {
                 if (grille.isCaseATrouver(Grille.calculNumCase(xAction, yAction)) &&
-                    !Arrays.equals(grille.getCandidatsTabBoolean(CaseEnCours.getNumCase()),
+                    !Arrays.equals(grille.getCandidatsTabBoolean(context.getNumCase()),
                     grille.getCandidatsTabBoolean(xAction, yAction))) {
                 	numCaseAction= Grille.calculNumCase(xAction, yAction);
                 	if (grille.isCandidat(Grille.calculNumCase(xAction, yAction), c1) ) {

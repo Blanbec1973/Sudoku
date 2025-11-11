@@ -1,8 +1,10 @@
 package model.service;
 
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import resolution.ResolutionAction;
 
 import java.nio.file.Paths;
 
@@ -28,7 +30,9 @@ class HistorisationServiceTest {
         historisationService.reloadGrille(grille); // on part d'une seule grille
         assertFalse(historisationService.canReloadLastHistoricization(), "Il ne devrait y avoir qu'une seule grille");
 
-        grille.setValeurCaseEnCours(5); // modification
+
+        grille.setValeurCaseEnCours(new ResolutionAction(6,6,null,
+                     null, new CaseContext(6))); // modification
         historisationService.historiseGrille(grille); // on ajoute une version
 
         assertTrue(historisationService.canReloadLastHistoricization(), "Il devrait y avoir au moins deux grilles historisées");
@@ -44,7 +48,8 @@ class HistorisationServiceTest {
     @Test
     void testSupprimeDerniereGrille() {
         historisationService.historiseGrille(grille);
-        grille.setValeurCaseEnCours(5); // modification
+        grille.setValeurCaseEnCours(new ResolutionAction(6,6,null,
+                     null, new CaseContext(6))); // modification
         historisationService.historiseGrille(grille);
         assertTrue(historisationService.canReloadLastHistoricization());
 
@@ -57,7 +62,8 @@ class HistorisationServiceTest {
         historisationService.historiseGrille(grille);
         assertFalse(historisationService.canReloadLastHistoricization());
 
-        grille.setValeurCaseEnCours(5);
+        grille.setValeurCaseEnCours(new ResolutionAction(6,6,null,
+                null, new CaseContext(6))); // modification
         historisationService.historiseGrille(grille);
         assertTrue(historisationService.canReloadLastHistoricization());
     }

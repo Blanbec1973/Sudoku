@@ -1,6 +1,5 @@
 package model;
 
-import model.grille.CaseEnCours;
 import model.grille.Grille;
 import model.service.HistorisationService;
 import model.service.ModelEventService;
@@ -75,20 +74,20 @@ public class Model {
 	private void traiteChangement(ResolutionAction action) {
 		// Box is founded :
 		if (action.isCaseTrouvee()) {
-			setValeurCaseEnCours(action.getSolution(),
-					messageService.createSolutionMessage(action.getMethodeResolution()));
+			setValeurCaseEnCours(action,
+					messageService.createSolutionMessage(action.getMethodeResolution(), action.getContext()));
 			return;
 		}
 		
 		// A candidate must be eliminated :
 		elimineCandidatCase(action.getCandidatAEliminer(),
 				            action.getNumCaseAction(),
-				messageService.createEliminationMessage(action.getMethodeResolution()));
+				messageService.createEliminationMessage(action.getMethodeResolution(), action.getContext()));
 	}
 
-	private void setValeurCaseEnCours(int solution, String message) {
-		grille.setValeurCaseEnCours(solution);
-		modelEventService.publishSolution(grille, CaseEnCours.getNumCase(), message);
+	private void setValeurCaseEnCours(ResolutionAction action, String message) {
+		grille.setValeurCaseEnCours(action);
+		modelEventService.publishSolution(grille, action.getContext().getNumCase(), message);
 		historisationService.historiseGrille(grille);
 	}
 	

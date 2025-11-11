@@ -1,9 +1,12 @@
 package model.service;
 
+import model.grille.CaseContext;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import resolution.ResolutionAction;
+import utils.Utils;
 
 import java.nio.file.Paths;
 
@@ -25,21 +28,23 @@ class GrilleServiceTest {
     @Test
     void testCheckPresenceCandidatLigne() {
         CaseEnCours.setCaseEnCours(39); // Ligne 4
-        boolean present = grilleService.checkPresenceCandidatLigne(7, 2, 4);
+        CaseContext context = new CaseContext(2,4);
+        boolean present = grilleService.checkPresenceCandidatLigne(context, 7);
         assertTrue(present);
     }
 
     @Test
     void testCheckPresenceCandidatColonne() {
         CaseEnCours.setCaseEnCours(39); // Colonne 2
-        boolean present = grilleService.checkPresenceCandidatColonne(8, 2, 4);
+        CaseContext context = new CaseContext(2,4);
+        boolean present = grilleService.checkPresenceCandidatColonne(context, 8);
         assertTrue(present);
     }
 
     @Test
     void testCheckPresenceCandidatRegion() {
-        CaseEnCours.setCaseEnCours(39); // Région 5
-        boolean present = grilleService.checkPresenceCandidatRegion(7, 2, 4);
+        CaseContext context = new CaseContext(39);
+        boolean present = grilleService.checkPresenceCandidatRegion(context,7);
         assertTrue(present);
     }
 
@@ -57,21 +62,24 @@ class GrilleServiceTest {
 
     @Test
     void testElimineCandidatsCaseTrouvee() {
-        CaseEnCours.setCaseEnCours(39);
-        grille.setValeurCaseEnCours(7);
-        int x = CaseEnCours.getX();
-        int y = CaseEnCours.getY();
-        grilleService.elimineCandidatsCaseTrouvee(x, y, 7);
+        CaseContext context = new CaseContext(6);
+        ResolutionAction action = new ResolutionAction(6,6, null,
+                                         null, context);
+        grille.setValeurCaseEnCours(action);
+        grilleService.elimineCandidatsCaseTrouvee(action);
+        int x = Utils.calculXsearch(6);
+        int y = Utils.calculYsearch(6);
 
-        // Vérifie que le candidat 7 est éliminé dans la ligne, colonne et région
+        // Vérifie que le candidat 6 est éliminé dans la ligne, colonne et région
         for (int i = 0; i < 9; i++) {
-            assertFalse(grille.isCandidat(i, y, 7));
-            assertFalse(grille.isCandidat(x, i, 7));
+            assertFalse(grille.isCandidat(i, y, 6));
+            assertFalse(grille.isCandidat(x, i, 6));
         }
 
-        for (int abs = CaseEnCours.getxRegion(); abs < CaseEnCours.getxRegion() + 3; abs++) {
-            for (int ord = CaseEnCours.getyRegion(); ord < CaseEnCours.getyRegion() + 3; ord++) {
-                assertFalse(grille.isCandidat(abs, ord, 7));
+
+        for (int abs = context.getxRegion(); abs < context.getxRegion() + 3; abs++) {
+            for (int ord = context.getyRegion(); ord < context.getyRegion() + 3; ord++) {
+                assertFalse(grille.isCandidat(abs, ord, 6));
             }
         }
     }

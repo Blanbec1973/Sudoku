@@ -8,6 +8,7 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MyView implements ViewUpdater {
 	private final JFrame fenetre = new JFrame();
@@ -219,6 +220,10 @@ public class MyView implements ViewUpdater {
     	FileNameExtensionFilter filter = new FileNameExtensionFilter(
 	        "*.sud", "sud");
 	    chooser.setFileFilter(filter);
+
+        File defaultDir = new File("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\src\\test\\resources\\grillesTest");
+        chooser.setCurrentDirectory(defaultDir);
+
 	    if (typeDialog.equals("SAVE")) {
             returnVal = chooser.showSaveDialog(this.fenetre);}
         if (typeDialog.equals("OPEN")) {

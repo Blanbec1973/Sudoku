@@ -3,6 +3,7 @@ package model.grille;
 import model.service.GrilleService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import resolution.ResolutionAction;
 import utils.Utils;
 
 import java.io.BufferedReader;
@@ -118,10 +119,10 @@ public class Grille {
     	return sb.toString();	
     }
     
-    public void setValeurCaseEnCours(int solution) {
-        this.getCaseEnCours().setCaseTrouvee(solution);
-        grilleService.elimineCandidatsCaseTrouvee(CaseEnCours.getX(), CaseEnCours.getY(), solution);
-        casesAtrouver.remove(casesAtrouver.indexOf(calculNumCase(CaseEnCours.getX(), CaseEnCours.getY())));
+    public void setValeurCaseEnCours(ResolutionAction action) {
+        this.getCase(action.getNumCaseAction()).setCaseTrouvee(action.getSolution());
+        grilleService.elimineCandidatsCaseTrouvee(action);
+        casesAtrouver.remove(casesAtrouver.indexOf(action.getNumCaseAction()));
     }
 
     public static int calculNumCase(int x, int y) {

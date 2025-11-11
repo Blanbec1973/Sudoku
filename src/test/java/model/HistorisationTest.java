@@ -1,10 +1,11 @@
 package model;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import model.grille.Historisation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import resolution.ResolutionAction;
 
 import java.nio.file.Paths;
 
@@ -42,13 +43,10 @@ class HistorisationTest {
 
 	@Test
 	void testSupprimeDerniereGrille() {
-		
-		CaseEnCours.setCaseEnCours(39);
-		grilleOrigine.setValeurCaseEnCours(6);
+		grilleOrigine.setValeurCaseEnCours(new ResolutionAction(39,6, null, null, new CaseContext(39)));
 		histo.historiseGrille(grilleOrigine);
-		
-		CaseEnCours.setCaseEnCours(50);
-		grilleOrigine.setValeurCaseEnCours(8);
+
+		grilleOrigine.setValeurCaseEnCours(new ResolutionAction(50,8, null, null, new CaseContext(50)));
 		histo.historiseGrille(grilleOrigine);
 		
 		histo.supprimeDerniereGrille(grilleOrigine);

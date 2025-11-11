@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -23,23 +23,23 @@ class AbsenceCandidatEnColonneDansLesAutresRegionsTest {
 
 	@Test
 	void testTraiteCaseEnCours() {
-		CaseEnCours.setCaseEnCours(62);
-		assertTrue(methode.traiteCaseEnCours(false).isPresent());
+		CaseContext context = new CaseContext(62);
+		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
 		assertEquals(70,methode.numCaseAction);
 	}
 	
 	@Test
 	void testTestCase() {
-		CaseEnCours.setCaseEnCours(62);
-		assertFalse(methode.testCase(0,5));
-		assertTrue(methode.testCase(0, 7));
+		CaseContext context = new CaseContext(62);
+		assertFalse(methode.testCase(context, 0,5));
+		assertTrue(methode.testCase(context, 0, 7));
 	}
 	
 	@Test
 	void testDetecteCandidatAEliminer() {
-		CaseEnCours.setCaseEnCours(62);
+		CaseContext context = new CaseContext(62);
 		methode.candidatAEliminer = 7;
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(6,methode.xAction);
 		assertEquals(7,methode.yAction);
 	}

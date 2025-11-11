@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import utils.Utils;
 
@@ -14,24 +14,24 @@ public abstract class PaireConjuguee extends MethodeResolution {
 	}
 
 	@Override
-	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
-		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) != 2) return Optional.empty();
+	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
+		if (grille.getNombreCandidats(context.getNumCase()) != 2) return Optional.empty();
 		
-		boolean trouve = this.detecteConfiguration();
+		boolean trouve = this.detecteConfiguration(context);
 		if (!trouve) {return Optional.empty();}
 
-		c1 = Utils.trouveCandidatNumero(grille.getCandidats(CaseEnCours.getNumCase()), 1);
-        c2 = Utils.trouveCandidatNumero(grille.getCandidats(CaseEnCours.getNumCase()), 2);
+		c1 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
+        c2 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
 		
-        if (this.detecteCandidatAEliminer()) {
-			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
+        if (this.detecteCandidatAEliminer(context)) {
+			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
 		}
 		else {
 			return Optional.empty();
 		}
 	}
 	
-	protected abstract boolean detecteConfiguration();
-	protected abstract boolean detecteCandidatAEliminer();
+	protected abstract boolean detecteConfiguration(CaseContext context);
+	protected abstract boolean detecteCandidatAEliminer(CaseContext context);
 	
 }

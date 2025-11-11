@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,31 +23,31 @@ class PaireCandidats2CasesLigneTest {
 
     @Test
     void testTraiteCaseEnCours() {
-        CaseEnCours.setCaseEnCours(1);
-        assertFalse(methode.traiteCaseEnCours(false).isPresent());
-        CaseEnCours.setCaseEnCours(64);
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        CaseContext context = new CaseContext(1);
+        assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
+        CaseContext context2 = new CaseContext(64);
+        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
         assertEquals(64, methode.numCaseAction);
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(64,3);
 
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
         assertEquals(64, methode.numCaseAction);
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(64,8);
 
-        CaseEnCours.setCaseEnCours(65);
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        CaseContext context3 = new CaseContext(65);
+        assertTrue(methode.traiteCaseEnCours(context3, false).isPresent());
         assertEquals(65, methode.numCaseAction);
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(65,3);
 
-        assertTrue(methode.traiteCaseEnCours(false).isPresent());
+        assertTrue(methode.traiteCaseEnCours(context3, false).isPresent());
         assertEquals(65, methode.numCaseAction);
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(65,8);
 
-        assertFalse(methode.traiteCaseEnCours(false).isPresent());
+        assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
     }
 
     @Test

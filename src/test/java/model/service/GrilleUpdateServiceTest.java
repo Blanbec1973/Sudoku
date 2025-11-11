@@ -1,10 +1,11 @@
 package model.service;
 
 import model.grille.CaseContext;
-import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import resolution.ResolutionAction;
+import utils.Utils;
 
 import java.nio.file.Paths;
 
@@ -25,11 +26,11 @@ class GrilleUpdateServiceTest {
 
     @Test
     void testElimineCandidatsCaseTrouvee() {
-        CaseEnCours.setCaseEnCours(39);
-        grille.setValeurCaseEnCours(7);
-        int x = CaseEnCours.getX();
-        int y = CaseEnCours.getY();
-        grilleUpdateService.elimineCandidatsCaseTrouvee(x, y, 7);
+        ResolutionAction action = new ResolutionAction(39,7, null,
+                                                        null, new CaseContext(39));
+        grille.setValeurCaseEnCours(action);
+        int x = Utils.calculXsearch(action.getNumCaseAction());
+        int y = Utils.calculYsearch(action.getNumCaseAction());
 
         // Vérifie que le candidat 7 est éliminé dans la ligne, colonne et région
         for (int i = 0; i < 9; i++) {
@@ -37,8 +38,10 @@ class GrilleUpdateServiceTest {
             assertFalse(grille.isCandidat(x, i, 7));
         }
 
-        for (int abs = CaseEnCours.getxRegion(); abs < CaseEnCours.getxRegion() + 3; abs++) {
-            for (int ord = CaseEnCours.getyRegion(); ord < CaseEnCours.getyRegion() + 3; ord++) {
+        CaseContext context = new CaseContext(action.getNumCaseAction());
+
+        for (int abs = context.getxRegion(); abs < context.getxRegion() + 3; abs++) {
+            for (int ord = context.getyRegion(); ord < context.getyRegion() + 3; ord++) {
                 assertFalse(grille.isCandidat(abs, ord, 7));
             }
         }

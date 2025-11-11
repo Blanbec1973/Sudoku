@@ -1,7 +1,7 @@
 package resolution;
 
 import model.grille.CandidatsCase;
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,9 +25,9 @@ class ResolutionActionTest {
     void testApplyTo_setValeurCase() {
         // Choisir une case à trouver
         int numCase = grille.getCasesAtrouver().get(0);
-        CaseEnCours.setCaseEnCours(numCase);
+        CaseContext context = new CaseContext(numCase);
 
-        ResolutionAction action = new ResolutionAction(numCase, 5, null, null);
+        ResolutionAction action = new ResolutionAction(numCase, 5, null, null, context);
         action.applyTo(grille);
 
         assertTrue(grille.isCaseTrouvee(numCase));
@@ -37,11 +37,11 @@ class ResolutionActionTest {
     @Test
     void testApplyTo_elimineCandidat() {
         int numCase = grille.getCasesAtrouver().get(0);
-        CaseEnCours.setCaseEnCours(numCase);
+        CaseContext context = new CaseContext(numCase);
 
         assertTrue(grille.isCandidat(numCase, 3)); // Vérifier que le candidat est présent
 
-        ResolutionAction action = new ResolutionAction(numCase, null, 3, null);
+        ResolutionAction action = new ResolutionAction(numCase, null, 3, null, context);
         action.applyTo(grille);
 
         assertFalse(grille.isCandidat(numCase, 3)); // Vérifier qu’il a été éliminé
@@ -50,10 +50,10 @@ class ResolutionActionTest {
     @Test
     void testApplyTo_rienAFaire() {
         int numCase = grille.getCasesAtrouver().get(0);
-        CaseEnCours.setCaseEnCours(numCase);
+        CaseContext context = new CaseContext(numCase);
 
         CandidatsCase avant = grille.getCandidats(numCase);
-        ResolutionAction action = new ResolutionAction(numCase, null, null, null);
+        ResolutionAction action = new ResolutionAction(numCase, null, null, null, context);
         action.applyTo(grille);
 
         CandidatsCase apres = grille.getCandidats(numCase);

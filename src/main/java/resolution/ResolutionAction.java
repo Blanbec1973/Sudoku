@@ -1,5 +1,6 @@
 package resolution;
 
+import model.grille.CaseContext;
 import model.grille.Grille;
 
 public class ResolutionAction {
@@ -8,16 +9,19 @@ public class ResolutionAction {
     private final Integer candidatAEliminer;
     private final MethodeResolution methodeResolution;
 
-    public ResolutionAction(int numCaseAction, Integer solution, Integer candidatAEliminer, MethodeResolution methodeResolution) {
+    private final CaseContext context;
+
+    public ResolutionAction(int numCaseAction, Integer solution, Integer candidatAEliminer, MethodeResolution methodeResolution, CaseContext context) {
         this.numCaseAction = numCaseAction;
         this.solution = solution;
         this.candidatAEliminer = candidatAEliminer;
         this.methodeResolution = methodeResolution;
+        this.context = context;
     }
 
     public void applyTo(Grille grille) {
         if (solution != null) {
-            grille.setValeurCaseEnCours(solution);
+            grille.setValeurCaseEnCours(this);
         } else if (candidatAEliminer != null) {
             grille.elimineCandidat(numCaseAction, candidatAEliminer);
         }
@@ -38,4 +42,7 @@ public class ResolutionAction {
     }
     public MethodeResolution getMethodeResolution() {return methodeResolution;}
 
+    public CaseContext getContext() {
+        return this.context;
+    }
 }

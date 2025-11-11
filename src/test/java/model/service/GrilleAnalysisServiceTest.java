@@ -1,5 +1,6 @@
 package model.service;
 
+import model.grille.CaseContext;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,22 +25,22 @@ class GrilleAnalysisServiceTest {
 
     @Test
     void testCheckPresenceCandidatLigne() {
-        CaseEnCours.setCaseEnCours(39); // Ligne 4
-        boolean present = grilleAnalysisService.checkPresenceCandidatLigne(7, 2, 4);
+        CaseContext context = new CaseContext(2,4);
+        boolean present = grilleAnalysisService.checkPresenceCandidatLigne(context, 7);
         assertTrue(present);
     }
 
     @Test
     void testCheckPresenceCandidatColonne() {
-        CaseEnCours.setCaseEnCours(39); // Colonne 2
-        boolean present = grilleAnalysisService.checkPresenceCandidatColonne(8, 2, 4);
+        CaseContext context = new CaseContext(2,4);
+        boolean present = grilleAnalysisService.checkPresenceCandidatColonne(context, 8);
         assertTrue(present);
     }
 
     @Test
     void testCheckPresenceCandidatRegion() {
-        CaseEnCours.setCaseEnCours(39); // Région 5
-        boolean present = grilleAnalysisService.checkPresenceCandidatRegion(7, 2, 4);
+        CaseContext context = new CaseContext(2,4);
+        boolean present = grilleAnalysisService.checkPresenceCandidatRegion(context, 7);
         assertTrue(present);
     }
 

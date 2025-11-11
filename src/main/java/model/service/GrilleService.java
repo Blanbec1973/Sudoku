@@ -2,6 +2,7 @@ package model.service;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
+import resolution.ResolutionAction;
 
 public class GrilleService {
     private final GrilleAnalysisService grilleAnalysisService;
@@ -13,8 +14,8 @@ public class GrilleService {
     }
 
     //Méthodes d'update :
-    public void elimineCandidatsCaseTrouvee(int x, int y, int solution) {
-        grilleUpdateService.elimineCandidatsCaseTrouvee(x, y, solution);
+    public void elimineCandidatsCaseTrouvee(ResolutionAction action) {
+        grilleUpdateService.elimineCandidatsCaseTrouvee(action);
     }
     public void calculTousLesCandidats() {
         grilleUpdateService.calculTousLesCandidats();
@@ -32,14 +33,14 @@ public class GrilleService {
     public boolean checkPresenceValeurRegion(CaseContext context, int valeur) {
         return grilleAnalysisService.checkPresenceValeurRegion(context, valeur);
     }
-    public boolean checkPresenceCandidatLigne(int valeur, int x, int numLigne) {
-        return grilleAnalysisService.checkPresenceCandidatLigne(valeur,x, numLigne);
+    public boolean checkPresenceCandidatLigne(CaseContext context, int valeur) {
+        return grilleAnalysisService.checkPresenceCandidatLigne(context, valeur);
     }
-    public boolean checkPresenceCandidatColonne(int valeur, int numcol, int y) {
-        return grilleAnalysisService.checkPresenceCandidatColonne(valeur, numcol, y);
+    public boolean checkPresenceCandidatColonne(CaseContext context, int valeur) {
+        return grilleAnalysisService.checkPresenceCandidatColonne(context, valeur);
     }
-    public boolean checkPresenceCandidatRegion(int indiceCandidat, int x, int y) {
-        return grilleAnalysisService.checkPresenceCandidatRegion(indiceCandidat, x, y);
+    public boolean checkPresenceCandidatRegion(CaseContext context, int indiceCandidat) {
+        return grilleAnalysisService.checkPresenceCandidatRegion(context, indiceCandidat);
     }
     public int calculNombreCaseATrouverDansLigne(int ySearch) {
         return grilleAnalysisService.calculNombreCaseATrouverDansLigne(ySearch);

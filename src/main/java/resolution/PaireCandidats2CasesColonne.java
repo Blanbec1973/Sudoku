@@ -1,7 +1,7 @@
 package resolution;
 
 import model.grille.CandidatsCase;
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import utils.Utils;
 
@@ -11,10 +11,10 @@ public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
 		super(grille);
 	}
 
-	protected boolean traiteCouple(CandidatsCase paireCandidats) {		
+	protected boolean traiteCouple(CaseContext context, CandidatsCase paireCandidats) {
 		for (int i=0;i<9;i++) {
-			if (grille.isCaseATrouver(CaseEnCours.getX(),i) && CaseEnCours.getY()!=i) {
-				this.calculIntersectionDeuxCases(paireCandidats, grille.getCandidats(Grille.calculNumCase(CaseEnCours.getX(), i)));
+			if (grille.isCaseATrouver(context.getX(),i) && context.getY()!=i) {
+				this.calculIntersectionDeuxCases(paireCandidats, grille.getCandidats(Grille.calculNumCase(context.getX(), i)));
 			}
 		}
 		

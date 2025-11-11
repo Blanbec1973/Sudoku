@@ -3,6 +3,7 @@ package model.grille;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import resolution.ResolutionAction;
 
 import java.nio.file.Paths;
 
@@ -21,8 +22,9 @@ class GrilleTest {
     void testIsCaseTrouvee() {
         assertFalse(grille.isCaseTrouvee(1));
         assertFalse(grille.isCaseTrouvee(3));
-        CaseEnCours.setCaseEnCours(69);
-        grille.setValeurCaseEnCours(7);
+        CaseContext context = new CaseContext(69);
+        grille.setValeurCaseEnCours(new ResolutionAction(69,7,null,
+                null, context));
         assertTrue(grille.isCaseTrouvee(69));
     }
     @Test

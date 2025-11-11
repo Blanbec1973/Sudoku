@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 
 import java.util.Optional;
@@ -12,19 +12,19 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 	}
 
 	@Override
-	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
-		caseTrouvee = this.detecteConfiguration();
+	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
+		caseTrouvee = this.detecteConfiguration(context);
 		
 		if (!caseTrouvee) return Optional.empty();
 		
-		solution = grille.calculValeurUnique(CaseEnCours.getNumCase());
-		numCaseAction = CaseEnCours.getNumCase();
-		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this));
+		solution = grille.calculValeurUnique(context.getNumCase());
+		numCaseAction = context.getNumCase();
+		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context));
 	}
 
-	private boolean detecteConfiguration() {
+	private boolean detecteConfiguration(CaseContext context) {
 
-		return (grille.contientCandidatUnique(CaseEnCours.getNumCase()));
+		return (grille.contientCandidatUnique(context.getNumCase()));
 	}
 
 }

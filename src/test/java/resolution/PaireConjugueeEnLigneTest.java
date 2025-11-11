@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.*;
 
@@ -24,8 +24,8 @@ class PaireConjugueeEnLigneTest {
 	@Test
 	@Order(1)
 	void testTraiteCaseEnCours() {
-		CaseEnCours.setCaseEnCours(3);
-		assertTrue(methode.traiteCaseEnCours(false).isPresent());
+		CaseContext context = new CaseContext(3);
+		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
 		assertEquals(2,methode.c1);
 		assertEquals(6,methode.c2);
 	}
@@ -33,24 +33,24 @@ class PaireConjugueeEnLigneTest {
 	@Test
 	@Order(2)
 	void testDetecteConfiguration() {
-		CaseEnCours.setCaseEnCours(3);
-		assertTrue(methode.detecteConfiguration());
+		CaseContext context = new CaseContext(3);
+		assertTrue(methode.detecteConfiguration(context));
 	}
 	
 	@Test
 	@Order(3)
 	void testDetecteCandidatAEliminer() {
-		CaseEnCours.setCaseEnCours(3);
+		CaseContext context = new CaseContext(3);
 		methode.c1=2;
 		methode.c2=6;
-		assertTrue(methode.detecteCandidatAEliminer());
+		assertTrue(methode.detecteCandidatAEliminer(context));
 		assertEquals(2, methode.candidatAEliminer);
 		assertEquals(1,methode.numCaseAction);
 		grille.elimineCandidat(1,2);
 		grille.elimineCandidat(1,6);
 		grille.elimineCandidat(2,2);
 		grille.elimineCandidat(2,6);
-		assertFalse(methode.detecteCandidatAEliminer());
+		assertFalse(methode.detecteCandidatAEliminer(context));
 	}
 
 	@Test

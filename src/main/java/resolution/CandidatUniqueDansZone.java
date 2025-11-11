@@ -1,6 +1,6 @@
 package resolution;
 
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 
 import java.util.Optional;
@@ -12,12 +12,12 @@ abstract class CandidatUniqueDansZone extends MethodeResolution {
 	}
 
 	@Override
-	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
+	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
 		caseTrouvee = false;
 		int candidat;
 		for (candidat=1;candidat<10;candidat++) {
-			if (grille.isCandidat(CaseEnCours.getNumCase(),candidat) &&
-				!checkPresenceCandidatZone(candidat, CaseEnCours.getX(),CaseEnCours.getY())) {
+			if (grille.isCandidat(context.getNumCase(),candidat) &&
+				!checkPresenceCandidatZone(context, candidat)) {
 				caseTrouvee = true;
   	            break;
   	        }
@@ -26,10 +26,10 @@ abstract class CandidatUniqueDansZone extends MethodeResolution {
 		if (!caseTrouvee) return Optional.empty();
 		
 		solution = candidat;
-		numCaseAction = CaseEnCours.getNumCase();
-		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this));
+		numCaseAction = context.getNumCase();
+		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context));
 	}
 
-	protected abstract boolean checkPresenceCandidatZone(int candidat, int x, int y);
+	protected abstract boolean checkPresenceCandidatZone(CaseContext context, int candidat);
 
 }

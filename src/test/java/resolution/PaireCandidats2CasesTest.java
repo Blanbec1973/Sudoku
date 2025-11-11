@@ -1,6 +1,7 @@
 package resolution;
 
 import model.grille.CandidatsCase;
+import model.grille.CaseContext;
 import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,19 +16,19 @@ class PaireCandidats2CasesTest {
     @BeforeEach
     void setUp() {
     	grille = new Grille();
-    	CaseEnCours.setCaseEnCours(1);
     	paireCandidats2Cases = new PaireCandidats2CasesColonne(grille);
     }
 
     @Test
 	void testInserePaireCandidatsDansTab() {
-		grille.setAllCandidatsToFalse(CaseEnCours.getNumCase());
-		grille.setCandidat(CaseEnCours.getNumCase(),1);
-		grille.setCandidat(CaseEnCours.getNumCase(), 5);
-		grille.setCandidat(CaseEnCours.getNumCase(), 6);
-		grille.setCandidat(CaseEnCours.getNumCase(), 7);
-		grille.setCandidat(CaseEnCours.getNumCase(), 8);
-		paireCandidats2Cases.inserePaireCandidatsDansTab();
+        CaseContext context = new CaseContext(1);
+		grille.setAllCandidatsToFalse(context.getNumCase());
+		grille.setCandidat(context.getNumCase(),1);
+		grille.setCandidat(context.getNumCase(), 5);
+		grille.setCandidat(context.getNumCase(), 6);
+		grille.setCandidat(context.getNumCase(), 7);
+		grille.setCandidat(context.getNumCase(), 8);
+		paireCandidats2Cases.inserePaireCandidatsDansTab(context);
     	assertEquals("100010000",paireCandidats2Cases.tabCandidats.get(0).toString());
     	assertEquals("100001000",paireCandidats2Cases.tabCandidats.get(1).toString());
     	assertEquals("100000100",paireCandidats2Cases.tabCandidats.get(2).toString());

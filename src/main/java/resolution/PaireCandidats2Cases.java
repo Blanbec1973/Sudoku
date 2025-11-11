@@ -1,7 +1,7 @@
 package resolution;
 
 import model.grille.CandidatsCase;
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import utils.Utils;
 
@@ -20,38 +20,39 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	}
 	
 	@Override
-	public Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement) {
+	public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
 		caseTrouvee = false;
 		boolean trouve = false;
 		candidatAEliminer=0;
 
-		//On ne traite la case en cours que si elle n'a que 2 candidats :
-		if (grille.getNombreCandidats(CaseEnCours.getNumCase())<3) return Optional.empty();
+
+		//On ne traite la case en cours que si elle a plus de 2 candidats :
+		if (grille.getNombreCandidats(context.getNumCase())<3) return Optional.empty();
 		
 		// Recherche des paires de candidats dans la case en cours, mise en tableau :
-		this.inserePaireCandidatsDansTab();
-		
+		this.inserePaireCandidatsDansTab(context);
+
 		//Boucle sur chaque couple possible de la case en cours : 
 		for (CandidatsCase couple : tabCandidats) {
 			razCompteursIntersections();
-			if (this.traiteCouple(couple)) {
+			if (this.traiteCouple(context, couple)) {
 				trouve = true;
 				break;
 			}
 		}
-			
+
 		if (!trouve) return Optional.empty();
-		if (grille.getNombreCandidats(CaseEnCours.getNumCase()) == 2) return Optional.empty();
+		if (grille.getNombreCandidats(context.getNumCase()) == 2) return Optional.empty();
 		
 		//Recherche du premier candidat à éliminer : 
 		for (candidatAEliminer=1;candidatAEliminer<10;candidatAEliminer++) {
-			if (grille.isCandidat(CaseEnCours.getNumCase(), candidatAEliminer) && candidatAEliminer !=c1 && candidatAEliminer != c2) {
+			if (grille.isCandidat(context.getNumCase(), candidatAEliminer) && candidatAEliminer !=c1 && candidatAEliminer != c2) {
 				break;
 			}
 		}
-		
-		numCaseAction = CaseEnCours.getNumCase();
-		return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this));
+
+		numCaseAction = context.getNumCase();
+		return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
 	}
 
 	private void razCompteursIntersections() {
@@ -59,10 +60,10 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		nb2inter=0;
 	}
 	
-	public void inserePaireCandidatsDansTab() {
+	public void inserePaireCandidatsDansTab(CaseContext context) {
 		ArrayList<Integer> tabTemp = new ArrayList<>();
 		for (int i=1;i<10;i++) {
-			if (grille.isCandidat(CaseEnCours.getNumCase(), i)) tabTemp.add(i);
+			if (grille.isCandidat(context.getNumCase(), i)) tabTemp.add(i);
 		}
 		
 		int i = 0;
@@ -81,7 +82,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		}
 	}
 	
-	protected abstract boolean traiteCouple(CandidatsCase paireCandidats);
+	protected abstract boolean traiteCouple(CaseContext context, CandidatsCase paireCandidats);
 
 	public void calculIntersectionDeuxCases(CandidatsCase c1, CandidatsCase c2) {
 		boolean[] cInter = Utils.calculEtLogique2Candidats(c1.getCandidats(), c2.getCandidats());

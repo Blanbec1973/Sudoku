@@ -1,7 +1,7 @@
 package resolution;
 
 import model.grille.CandidatsCase;
-import model.grille.CaseEnCours;
+import model.grille.CaseContext;
 import model.grille.Grille;
 import model.service.GrilleService;
 
@@ -61,9 +61,8 @@ public abstract class MethodeResolution {
 	public Optional<ResolutionAction> detecteSuivant(boolean goPourChangement) {
 		for (int i = 0; i < grille.getCasesAtrouver().size(); i++) {
 			int numCase = grille.getCasesAtrouver().get(i);
-			CaseEnCours.setCaseEnCours(numCase);
-
-			Optional<ResolutionAction> action = this.traiteCaseEnCours(goPourChangement);
+			CaseContext context = new CaseContext(numCase);
+			Optional<ResolutionAction> action = this.traiteCaseEnCours(context, goPourChangement);
 			if (action.isPresent()) {
 				return action;
 			}
@@ -75,7 +74,7 @@ public abstract class MethodeResolution {
 	public int getNumCaseAction() {return numCaseAction;}
 	public int getSolution() {return solution;}
 	
-	public abstract Optional<ResolutionAction> traiteCaseEnCours(boolean goPourChangement);
+	public abstract Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement);
 
 	public String getSimpleName() {
 		return this.getClass().getSimpleName();

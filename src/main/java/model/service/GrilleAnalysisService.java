@@ -1,7 +1,6 @@
 package model.service;
 
 import model.grille.CaseContext;
-import model.grille.CaseEnCours;
 import model.grille.Grille;
 
 public class GrilleAnalysisService {
@@ -43,7 +42,9 @@ public class GrilleAnalysisService {
         }
         return false;
     }
-    public boolean checkPresenceCandidatLigne(int valeur, int x, int numLigne) {
+    public boolean checkPresenceCandidatLigne(CaseContext context, int valeur) {
+        int numLigne = context.getY();
+        int x = context.getX();
         for (int i=0;i<9;i++) {
             if (grille.nEstPasCaseInitiale(i, numLigne) &&
                     grille.nEstPasCaseTrouvee(i, numLigne) &&
@@ -51,17 +52,21 @@ public class GrilleAnalysisService {
         }
         return false;
     }
-    public boolean checkPresenceCandidatColonne(int valeur, int numcol, int y) {
+    public boolean checkPresenceCandidatColonne(CaseContext context, int valeur) {
+        int numCol = context.getX();
+        int y = context.getY();
         for (int i=0;i<9;i++) {
-            if (grille.nEstPasCaseInitiale(numcol, i) &&
-                    grille.nEstPasCaseTrouvee(numcol, i) &&
-                    i!=y && grille.isCandidat(numcol, i, valeur)) {return true;}
+            if (grille.nEstPasCaseInitiale(numCol, i) &&
+                    grille.nEstPasCaseTrouvee(numCol, i) &&
+                    i!=y && grille.isCandidat(numCol, i, valeur)) {return true;}
         }
         return false;
     }
-    public boolean checkPresenceCandidatRegion(int indiceCandidat, int x, int y) {
-        for (int abs = CaseEnCours.getxRegion(); abs<CaseEnCours.getxRegion()+3; abs++) {
-            for (int ord=CaseEnCours.getyRegion();ord<CaseEnCours.getyRegion()+3;ord++) {
+    public boolean checkPresenceCandidatRegion(CaseContext context, int indiceCandidat) {
+        int x = context.getX();
+        int y = context.getY();
+        for (int abs = context.getxRegion(); abs<context.getxRegion()+3; abs++) {
+            for (int ord=context.getyRegion();ord<context.getyRegion()+3;ord++) {
                 if (grille.nEstPasCaseInitiale(abs, ord) &&
                         grille.nEstPasCaseTrouvee(abs, ord) &&
                         (x!=abs || y!=ord) &&
