@@ -62,7 +62,6 @@ public class Grille {
     public GrilleService getGrilleService() {return this.grilleService;}
     protected Case getCase(int x, int y) {return mesCases[x][y];}
     protected Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
-    protected Case getCaseEnCours() {return mesCases[CaseEnCours.getX()][CaseEnCours.getY()];}
     public List<Integer> getCasesAtrouver() {return casesAtrouver;}
     // Gestion candidats :
     public CandidatsCase getCandidats(int numCase) {return this.getCase(numCase).getCandidats();}

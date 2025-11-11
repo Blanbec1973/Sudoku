@@ -2,7 +2,6 @@ package model;
 
 import control.MyProperties;
 import model.grille.CaseContext;
-import model.grille.CaseEnCours;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

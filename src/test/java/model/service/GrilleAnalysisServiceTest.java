@@ -1,7 +1,6 @@
 package model.service;
 
 import model.grille.CaseContext;
-import model.grille.CaseEnCours;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
