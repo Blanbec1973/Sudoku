@@ -25,7 +25,7 @@ abstract class CandidatUniqueDansZone extends MethodeResolution {
 		
 		if (!caseTrouvee) return Optional.empty();
 		
-		solution = candidat;
+		int solution = candidat;
 		numCaseAction = context.getNumCase();
 		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context));
 	}

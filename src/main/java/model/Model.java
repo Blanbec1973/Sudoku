@@ -75,14 +75,14 @@ public class Model {
 		// Box is founded :
 		if (action.isCaseTrouvee()) {
 			setValeurCaseEnCours(action,
-					messageService.createSolutionMessage(action.getMethodeResolution(), action.getContext()));
+					messageService.createSolutionMessage(action));
 			return;
 		}
 		
 		// A candidate must be eliminated :
 		elimineCandidatCase(action.getCandidatAEliminer(),
 				            action.getNumCaseAction(),
-				messageService.createEliminationMessage(action.getMethodeResolution(), action.getContext()));
+				messageService.createEliminationMessage(action));
 	}
 
 	private void setValeurCaseEnCours(ResolutionAction action, String message) {

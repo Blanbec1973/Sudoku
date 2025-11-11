@@ -28,7 +28,7 @@ class ModelTest {
 		doNothing().when(eventService).publishHighlight(any(), anyInt());
 		doNothing().when(eventService).publishSolution(any(), anyInt(), anyString());
 		doNothing().when(eventService).publishElimination(any(), anyInt(), anyString());
-		when(messageService.createSolutionMessage(Mockito.any(), Mockito.any())).thenReturn("Solution");
+		when(messageService.createSolutionMessage(Mockito.any())).thenReturn("Solution");
 	}
 
 	@Test
@@ -53,7 +53,7 @@ class ModelTest {
 		assertTrue(model.getGrille().isCaseATrouver(39));
 		model.detecteSuivant(true);
 		assertEquals(6, model.getGrille().getValeurCase(39));
-		verify(messageService, times(1)).createSolutionMessage(Mockito.any(), Mockito.any(CaseContext.class));
+		verify(messageService, times(1)).createSolutionMessage(Mockito.any());
 	}
 
 	@Test

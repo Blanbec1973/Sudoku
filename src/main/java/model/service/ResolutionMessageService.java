@@ -1,8 +1,7 @@
 package model.service;
 
 import model.MessageManager;
-import model.grille.CaseContext;
-import resolution.MethodeResolution;
+import resolution.ResolutionAction;
 
 public class ResolutionMessageService {
     private final MessageManager messageManager;
@@ -11,11 +10,11 @@ public class ResolutionMessageService {
         this.messageManager = messageManager;
     }
 
-    public String createSolutionMessage(MethodeResolution methodeResolution, CaseContext context) {
-        return messageManager.createMessageSolution(methodeResolution, context);
+    public String createSolutionMessage(ResolutionAction action) {
+        return messageManager.createMessageSolution(action);
     }
 
-    public String createEliminationMessage(MethodeResolution methodeResolution, CaseContext context) {
-        return messageManager.createMessageElimination(methodeResolution, context);
+    public String createEliminationMessage(ResolutionAction action) {
+        return messageManager.createMessageElimination(action);
     }
 }

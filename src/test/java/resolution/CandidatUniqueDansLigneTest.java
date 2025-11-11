@@ -27,8 +27,9 @@ class CandidatUniqueDansLigneTest {
 		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
 		
 		CaseContext context2 = new CaseContext(39);
-		assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
-		assertEquals(6, methode.getSolution());
+		ResolutionAction action = methode.traiteCaseEnCours(context2, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(6, action.getSolution());
 	}
 	@Test
 	void testGetSimpleName() {

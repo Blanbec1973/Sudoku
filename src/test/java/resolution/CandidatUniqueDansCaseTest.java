@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,9 +27,10 @@ class CandidatUniqueDansCaseTest {
 		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
 		
 		CaseContext context2 = new CaseContext(69);
-		assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
-		assertEquals(7, methode.getSolution());
-		assertEquals(69,methode.getNumCaseAction());
+		ResolutionAction action = methode.traiteCaseEnCours(context2, false)
+				                         .orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(7, action.getSolution());
+		assertEquals(69,action.getNumCaseAction());
 	}
 
 	@Test

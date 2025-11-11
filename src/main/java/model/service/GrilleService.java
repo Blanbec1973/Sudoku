@@ -20,9 +20,7 @@ public class GrilleService {
     public void calculTousLesCandidats() {
         grilleUpdateService.calculTousLesCandidats();
     }
-    public void calculCandidatsInitiaux(int x, int y) {
-        grilleUpdateService.calculCandidatsInitiaux(new CaseContext(x, y));
-    }
+
     // Methodes d'analyse
     public boolean checkPresenceValeurLigne(CaseContext context, int valeur) {
         return grilleAnalysisService.checkPresenceValeurLigne(context, valeur);

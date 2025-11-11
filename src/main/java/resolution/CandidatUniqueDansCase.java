@@ -17,7 +17,7 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		
 		if (!caseTrouvee) return Optional.empty();
 		
-		solution = grille.calculValeurUnique(context.getNumCase());
+		int solution = grille.calculValeurUnique(context.getNumCase());
 		numCaseAction = context.getNumCase();
 		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context));
 	}
