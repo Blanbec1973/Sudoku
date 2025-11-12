@@ -10,6 +10,7 @@ import java.util.Optional;
 public class TripletteCandidatsEnLigne extends MethodeResolution {
 	int xAction;
 	int yAction;
+	int candidatAEliminer;
 	
 	public TripletteCandidatsEnLigne(Grille grille) {
 		super(grille);

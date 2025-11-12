@@ -10,8 +10,8 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	int xAction;
 	int yAction;
 	int numColonne;
-
 	int numCaseAction;
+	int candidatAEliminer;
 	
 	public CandidatDansColonneUniqueDuneRegion(Grille grille) {
 		super(grille);

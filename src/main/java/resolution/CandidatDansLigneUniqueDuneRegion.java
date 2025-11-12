@@ -11,6 +11,7 @@ public class CandidatDansLigneUniqueDuneRegion extends MethodeResolution {
 	int yAction;
 	int numLigne;
 	int numCaseAction;
+	int candidatAEliminer;
 
 	public CandidatDansLigneUniqueDuneRegion(Grille grille) {
 		super(grille);

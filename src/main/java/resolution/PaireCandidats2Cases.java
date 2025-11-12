@@ -11,6 +11,8 @@ import java.util.Optional;
 public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb2inter = 0;
 	protected int nb1inter = 0;
+
+	protected int candidatAEliminer;
 	
 	protected PaireCandidats2Cases(Grille grille) {
 		super(grille);

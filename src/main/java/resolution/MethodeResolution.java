@@ -41,13 +41,9 @@ public abstract class MethodeResolution {
 
 	protected int y3;
 
-	protected int candidatAEliminer;
-
-
 	public int getC1() {return c1;}
 	public int getC2() {return c2;}
 	public int getC3() {return c3;}
-	public int getCandidatAEliminer() {return candidatAEliminer;}
 	
 	protected MethodeResolution(Grille grille) {
 		this.grille=grille;

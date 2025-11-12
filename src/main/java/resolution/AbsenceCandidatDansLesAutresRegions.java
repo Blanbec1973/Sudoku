@@ -8,6 +8,7 @@ import java.util.Optional;
 public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolution {
 	int xAction;
 	int yAction;
+	int candidatAEliminer;
 	
 	protected AbsenceCandidatDansLesAutresRegions(Grille grille) {
 		super(grille);

@@ -11,6 +11,8 @@ public class TripletteCandidatsEnColonne extends MethodeResolution {
 	int xAction;
 	int yAction;
 
+	int candidatAEliminer;
+
 	public TripletteCandidatsEnColonne(Grille grille) {
 		super(grille);
 	}
