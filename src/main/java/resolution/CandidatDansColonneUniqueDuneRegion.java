@@ -24,7 +24,7 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
         if (!trouve) return Optional.empty();
         
         if (this.detecteCandidatAEliminer(context))
-        	return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
+        	return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context, null));
 		else
 			return Optional.empty();
 	}

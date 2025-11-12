@@ -23,9 +23,9 @@ public class MessageManager {
     public String createMessageElimination(ResolutionAction action) {
         String message = initializeMessage(action.getContext());
         String tempString = prop.getProperty(action.getMethodeResolution().getSimpleName());
-        String tempString2 = tempString.replace("%c1", String.valueOf(action.getMethodeResolution().getC1()));
-        String tempString3 = tempString2.replace("%c2", String.valueOf(action.getMethodeResolution().getC2()));
-        String tempString4 = tempString3.replace("%c3", String.valueOf(action.getMethodeResolution().getC3()));
+        String tempString2 = tempString.replace("%c1", String.valueOf(action.getCandidatUtilise(0)));
+        String tempString3 = tempString2.replace("%c2", String.valueOf(action.getCandidatUtilise(1)));
+        String tempString4 = tempString3.replace("%c3", String.valueOf(action.getCandidatUtilise(2)));
         String tempString5 = tempString4.replace("%candelim", String.valueOf(action.getCandidatAEliminer()));
         String tempString6 = tempString5.replace("%ligne", action.getContext().getYEdition());
         String tempString7 = tempString6.replace("%colonne", action.getContext().getXEdition());

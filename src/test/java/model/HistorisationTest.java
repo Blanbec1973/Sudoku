@@ -43,10 +43,10 @@ class HistorisationTest {
 
 	@Test
 	void testSupprimeDerniereGrille() {
-		grilleOrigine.setValeurCaseEnCours(new ResolutionAction(39,6, null, null, new CaseContext(39)));
+		grilleOrigine.setValeurCaseEnCours(new ResolutionAction(39,6, null, null, new CaseContext(39), null));
 		histo.historiseGrille(grilleOrigine);
 
-		grilleOrigine.setValeurCaseEnCours(new ResolutionAction(50,8, null, null, new CaseContext(50)));
+		grilleOrigine.setValeurCaseEnCours(new ResolutionAction(50,8, null, null, new CaseContext(50), null));
 		histo.historiseGrille(grilleOrigine);
 		
 		histo.supprimeDerniereGrille(grilleOrigine);

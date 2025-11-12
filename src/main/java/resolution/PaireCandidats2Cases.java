@@ -13,6 +13,8 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected int nb1inter = 0;
 
 	protected int candidatAEliminer;
+	protected int c1;
+	protected  int c2;
 	
 	protected PaireCandidats2Cases(Grille grille) {
 		super(grille);
@@ -52,7 +54,12 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		}
 
 		int numCaseAction = context.getNumCase();
-		return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
+		int[] candidatsUtilises = {
+				c1,
+				c2
+		};
+		return Optional.of(new ResolutionAction(numCaseAction, null,
+				candidatAEliminer, this, context, candidatsUtilises));
 	}
 
 	private void razCompteursIntersections() {

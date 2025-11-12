@@ -8,15 +8,17 @@ public class ResolutionAction {
     private final Integer solution;
     private final Integer candidatAEliminer;
     private final MethodeResolution methodeResolution;
-
     private final CaseContext context;
 
-    public ResolutionAction(int numCaseAction, Integer solution, Integer candidatAEliminer, MethodeResolution methodeResolution, CaseContext context) {
+    private final int [] candidatsUtilises;
+
+    public ResolutionAction(int numCaseAction, Integer solution, Integer candidatAEliminer, MethodeResolution methodeResolution, CaseContext context, int[] candidatsUtilises) {
         this.numCaseAction = numCaseAction;
         this.solution = solution;
         this.candidatAEliminer = candidatAEliminer;
         this.methodeResolution = methodeResolution;
         this.context = context;
+        this.candidatsUtilises = candidatsUtilises;
     }
 
     public void applyTo(Grille grille) {
@@ -44,5 +46,9 @@ public class ResolutionAction {
 
     public CaseContext getContext() {
         return this.context;
+    }
+
+    public int getCandidatUtilise(int i) {
+        return candidatsUtilises[i];
     }
 }

@@ -25,9 +25,9 @@ class MessageManagerTest {
         when(prop.getProperty("msgGeneral")).thenReturn("Case x=%s  y=%s -");
         when(mockAction.getSolution()).thenReturn(9);
         when(mockAction.getContext()).thenReturn(new CaseContext(5,7));
-        when(methodeResolution.getC1()).thenReturn(1);
-        when(methodeResolution.getC2()).thenReturn(2);
-        when(methodeResolution.getC3()).thenReturn(3);
+        when(mockAction.getCandidatUtilise(0)).thenReturn(1);
+        when(mockAction.getCandidatUtilise(1)).thenReturn(2);
+        when(mockAction.getCandidatUtilise(2)).thenReturn(3);
         when(mockAction.getCandidatAEliminer()).thenReturn(9);
         when(mockAction.getMethodeResolution()).thenReturn(methodeResolution);
     }

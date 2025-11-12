@@ -31,26 +31,16 @@ public abstract class MethodeResolution {
 	protected final Grille grille;
 	protected final GrilleService grilleService;
 	protected final ArrayList<CandidatsCase> tabCandidats;
-
-	protected int c1;
-	protected int c2;
-	protected int c3;
 	protected int x2;
 	protected int x3;
 	protected int y2;
 
 	protected int y3;
 
-	public int getC1() {return c1;}
-	public int getC2() {return c2;}
-	public int getC3() {return c3;}
-	
 	protected MethodeResolution(Grille grille) {
 		this.grille=grille;
 		this.grilleService = grille.getGrilleService();
 		this.tabCandidats = new ArrayList <>();
-		c1=0;
-		c2=0;
 	}
 
 	public Optional<ResolutionAction> detecteSuivant(boolean goPourChangement) {

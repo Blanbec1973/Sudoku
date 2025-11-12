@@ -11,6 +11,9 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
 	int xAction;
 	int yAction;
 	int candidatAEliminer;
+	protected int c1;
+	protected int c2;
+	protected int c3;
 	
 	public TripletteCandidatsEnLigne(Grille grille) {
 		super(grille);
@@ -29,7 +32,12 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         yAction = context.getY();
         
         int numCaseAction= Grille.calculNumCase(xAction, yAction);
-        return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
+		int[] candidatsUtilises = {
+				c1,
+				c2,
+				c3
+		};
+        return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context, candidatsUtilises));
 	}
 
 	private boolean detecteConfiguration(CaseContext context) {

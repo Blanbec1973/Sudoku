@@ -27,7 +27,7 @@ class ResolutionActionTest {
         int numCase = grille.getCasesAtrouver().get(0);
         CaseContext context = new CaseContext(numCase);
 
-        ResolutionAction action = new ResolutionAction(numCase, 5, null, null, context);
+        ResolutionAction action = new ResolutionAction(numCase, 5, null, null, context, null);
         action.applyTo(grille);
 
         assertTrue(grille.isCaseTrouvee(numCase));
@@ -41,7 +41,7 @@ class ResolutionActionTest {
 
         assertTrue(grille.isCandidat(numCase, 3)); // Vérifier que le candidat est présent
 
-        ResolutionAction action = new ResolutionAction(numCase, null, 3, null, context);
+        ResolutionAction action = new ResolutionAction(numCase, null, 3, null, context, null);
         action.applyTo(grille);
 
         assertFalse(grille.isCandidat(numCase, 3)); // Vérifier qu’il a été éliminé
@@ -53,7 +53,7 @@ class ResolutionActionTest {
         CaseContext context = new CaseContext(numCase);
 
         CandidatsCase avant = grille.getCandidats(numCase);
-        ResolutionAction action = new ResolutionAction(numCase, null, null, null, context);
+        ResolutionAction action = new ResolutionAction(numCase, null, null, null, context, null);
         action.applyTo(grille);
 
         CandidatsCase apres = grille.getCandidats(numCase);

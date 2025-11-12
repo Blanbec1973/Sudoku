@@ -27,7 +27,7 @@ class GrilleUpdateServiceTest {
     @Test
     void testElimineCandidatsCaseTrouvee() {
         ResolutionAction action = new ResolutionAction(39,7, null,
-                                                        null, new CaseContext(39));
+                                                        null, new CaseContext(39), null);
         grille.setValeurCaseEnCours(action);
         int x = Utils.calculXsearch(action.getNumCaseAction());
         int y = Utils.calculYsearch(action.getNumCaseAction());

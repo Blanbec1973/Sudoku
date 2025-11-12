@@ -61,7 +61,7 @@ class GrilleServiceTest {
     void testElimineCandidatsCaseTrouvee() {
         CaseContext context = new CaseContext(6);
         ResolutionAction action = new ResolutionAction(6,6, null,
-                                         null, context);
+                                         null, context, null);
         grille.setValeurCaseEnCours(action);
         grilleService.elimineCandidatsCaseTrouvee(action);
         int x = Utils.calculXsearch(6);

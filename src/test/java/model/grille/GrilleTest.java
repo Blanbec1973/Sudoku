@@ -24,7 +24,7 @@ class GrilleTest {
         assertFalse(grille.isCaseTrouvee(3));
         CaseContext context = new CaseContext(69);
         grille.setValeurCaseEnCours(new ResolutionAction(69,7,null,
-                null, context));
+                null, context, null));
         assertTrue(grille.isCaseTrouvee(69));
     }
     @Test

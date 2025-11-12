@@ -7,6 +7,8 @@ import utils.Utils;
 import java.util.Optional;
 
 public abstract class PaireConjuguee extends MethodeResolution {
+	protected int c1;
+	protected  int c2;
 
 	protected PaireConjuguee(Grille grille) {
 		super(grille);
@@ -30,8 +32,14 @@ public abstract class PaireConjuguee extends MethodeResolution {
 
 	protected ResolutionAction creerResolutionAction(int x, int y, int candidat, CaseContext context) {
 		int numCaseAction = Grille.calculNumCase(x, y);
+
+		int[] candidatsUtilises = {
+				c1,
+				c2
+		};
+
 		return new ResolutionAction(numCaseAction, null,
-				candidat, this, context);
+				candidat, this, context, candidatsUtilises);
 	}
 	
 }

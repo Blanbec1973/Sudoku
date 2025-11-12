@@ -19,7 +19,7 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		
 		int solution = grille.calculValeurUnique(context.getNumCase());
 		int numCaseAction = context.getNumCase();
-		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context));
+		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context, null));
 	}
 
 	private boolean detecteConfiguration(CaseContext context) {

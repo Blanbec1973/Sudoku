@@ -27,7 +27,7 @@ abstract class CandidatUniqueDansZone extends MethodeResolution {
 		
 		int solution = candidat;
 		int numCaseAction = context.getNumCase();
-		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context));
+		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context, null));
 	}
 
 	protected abstract boolean checkPresenceCandidatZone(CaseContext context, int candidat);

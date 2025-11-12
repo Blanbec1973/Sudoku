@@ -32,7 +32,7 @@ class HistorisationServiceTest {
 
 
         grille.setValeurCaseEnCours(new ResolutionAction(6,6,null,
-                     null, new CaseContext(6))); // modification
+                     null, new CaseContext(6), null)); // modification
         historisationService.historiseGrille(grille); // on ajoute une version
 
         assertTrue(historisationService.canReloadLastHistoricization(), "Il devrait y avoir au moins deux grilles historisées");
@@ -49,7 +49,7 @@ class HistorisationServiceTest {
     void testSupprimeDerniereGrille() {
         historisationService.historiseGrille(grille);
         grille.setValeurCaseEnCours(new ResolutionAction(6,6,null,
-                     null, new CaseContext(6))); // modification
+                     null, new CaseContext(6), null)); // modification
         historisationService.historiseGrille(grille);
         assertTrue(historisationService.canReloadLastHistoricization());
 
@@ -63,7 +63,7 @@ class HistorisationServiceTest {
         assertFalse(historisationService.canReloadLastHistoricization());
 
         grille.setValeurCaseEnCours(new ResolutionAction(6,6,null,
-                null, new CaseContext(6))); // modification
+                null, new CaseContext(6), null)); // modification
         historisationService.historiseGrille(grille);
         assertTrue(historisationService.canReloadLastHistoricization());
     }
