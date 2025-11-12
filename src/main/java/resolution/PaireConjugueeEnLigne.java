@@ -4,6 +4,7 @@ import model.grille.CaseContext;
 import model.grille.Grille;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class PaireConjugueeEnLigne extends PaireConjuguee {
 
@@ -23,21 +24,24 @@ public class PaireConjugueeEnLigne extends PaireConjuguee {
 		return false;
 	}
 	
-	protected boolean detecteCandidatAEliminer(CaseContext context) {
+	protected Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context) {
         for (int xAction=0;xAction<9;xAction++) {
         	if (grille.isCaseATrouver(Grille.calculNumCase(xAction, context.getY())) &&
         			xAction!=context.getX() && xAction !=x2) {
-        		numCaseAction= Grille.calculNumCase(xAction, context.getY());
         		if (grille.isCandidat(Grille.calculNumCase(xAction, context.getY()), c1) ) {
-        			candidatAEliminer = c1;
-        			return true;
+					return Optional.of(creerResolutionAction(xAction,
+							                                 context.getY(),
+							                                 c1,
+							                                 context));
         		}
         		if (grille.isCandidat(Grille.calculNumCase(xAction, context.getY()), c2) ) {
-        			candidatAEliminer = c2;
-        			return true;
+					return Optional.of(creerResolutionAction(xAction,
+							                                 context.getY(),
+							                                 c2,
+							                                 context));
         		}
             }
         }
-		return false;
+		return Optional.empty();
 	}
 }

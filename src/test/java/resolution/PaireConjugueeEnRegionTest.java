@@ -52,15 +52,16 @@ class PaireConjugueeEnRegionTest {
 		CaseContext context = new CaseContext(36);
 		methode.c1=3;
 		methode.c2=7;
-		assertTrue(methode.detecteCandidatAEliminer(context));
-		assertEquals(43,methode.numCaseAction);
+		ResolutionAction action = methode.detecteCandidatAEliminer(context)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(43,action.getNumCaseAction());
 
 		grille.elimineCandidat(43,3);
 		grille.elimineCandidat(43,7);
 		grille.elimineCandidat(52,7);
 		grille.elimineCandidat(54,7);
 
-		assertFalse(methode.detecteCandidatAEliminer(context));
+		assertFalse(methode.detecteCandidatAEliminer(context).isPresent());
 	}
 
 

@@ -25,8 +25,10 @@ class AbsenceCandidatEnLigneDansLesAutresRegionsTest {
 	@Test
 	void testTraiteCaseEnCours() {
 		CaseContext context = new CaseContext(76);
+		ResolutionAction action = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
 		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(67,methode.numCaseAction);
+		assertEquals(67,action.getNumCaseAction());
 	}
 	
 	@Test

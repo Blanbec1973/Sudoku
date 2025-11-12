@@ -26,28 +26,33 @@ class TripletteCandidatsEnColonneTest {
 	void testTraiteCaseEnCours() {
 		CaseContext context = new CaseContext(18);
 		grille.elimineCandidat(27, 8);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(36,methode.numCaseAction);
+		ResolutionAction action = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(36,action.getNumCaseAction());
 		assertEquals(3,methode.candidatAEliminer);
 
 		grille.elimineCandidat(36, 3);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(54,methode.numCaseAction);
+		ResolutionAction action2 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(54,action2.getNumCaseAction());
 		assertEquals(6,methode.candidatAEliminer);
 
 		grille.elimineCandidat(54, 6);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(63,methode.numCaseAction);
+		ResolutionAction action3 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(63,action3.getNumCaseAction());
 		assertEquals(1,methode.candidatAEliminer);
 
 		grille.elimineCandidat(63, 1);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(63,methode.numCaseAction);
+		ResolutionAction action4 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(63,action4.getNumCaseAction());
 		assertEquals(3,methode.candidatAEliminer);
 
 		grille.elimineCandidat(63, 3);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(63,methode.numCaseAction);
+		ResolutionAction action5 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(63,action5.getNumCaseAction());
 		assertEquals(6,methode.candidatAEliminer);
 
 		grille.elimineCandidat(63, 6);

@@ -21,16 +21,17 @@ public abstract class PaireConjuguee extends MethodeResolution {
 
 		c1 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
         c2 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
-		
-        if (this.detecteCandidatAEliminer(context)) {
-			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
-		}
-		else {
-			return Optional.empty();
-		}
+
+		return this.detecteCandidatAEliminer(context);
 	}
 	
 	protected abstract boolean detecteConfiguration(CaseContext context);
-	protected abstract boolean detecteCandidatAEliminer(CaseContext context);
+	protected abstract Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context);
+
+	protected ResolutionAction creerResolutionAction(int x, int y, int candidat, CaseContext context) {
+		int numCaseAction = Grille.calculNumCase(x, y);
+		return new ResolutionAction(numCaseAction, null,
+				candidat, this, context);
+	}
 	
 }

@@ -41,7 +41,6 @@ public abstract class MethodeResolution {
 
 	protected int y3;
 
-	protected int numCaseAction;
 	protected int candidatAEliminer;
 
 
@@ -69,9 +68,6 @@ public abstract class MethodeResolution {
 		}
 		return Optional.empty();
 	}
-
-	public int getNumCaseAction() {return numCaseAction;}
-	
 	public abstract Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement);
 
 	public String getSimpleName() {

@@ -26,24 +26,28 @@ class PaireCandidats2CasesLigneTest {
         CaseContext context = new CaseContext(1);
         assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
         CaseContext context2 = new CaseContext(64);
-        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
-        assertEquals(64, methode.numCaseAction);
+        ResolutionAction action = methode.traiteCaseEnCours(context2, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(64, action.getNumCaseAction());
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(64,3);
 
-        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
-        assertEquals(64, methode.numCaseAction);
+        ResolutionAction action2 = methode.traiteCaseEnCours(context2, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(64, action2.getNumCaseAction());
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(64,8);
 
         CaseContext context3 = new CaseContext(65);
-        assertTrue(methode.traiteCaseEnCours(context3, false).isPresent());
-        assertEquals(65, methode.numCaseAction);
+        ResolutionAction action3 = methode.traiteCaseEnCours(context3, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(65, action3.getNumCaseAction());
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(65,3);
 
-        assertTrue(methode.traiteCaseEnCours(context3, false).isPresent());
-        assertEquals(65, methode.numCaseAction);
+        ResolutionAction action4 = methode.traiteCaseEnCours(context3, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(65, action4.getNumCaseAction());
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(65,8);
 

@@ -49,7 +49,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 			}
 		}
 
-		numCaseAction = context.getNumCase();
+		int numCaseAction = context.getNumCase();
 		return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
 	}
 

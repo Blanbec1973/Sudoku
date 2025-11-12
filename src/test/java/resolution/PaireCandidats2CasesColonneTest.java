@@ -24,24 +24,28 @@ class PaireCandidats2CasesColonneTest {
     @Test
     void testTraiteCaseEnCours() {
         CaseContext context = new CaseContext(8);
-        assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-        assertEquals(8, methode.numCaseAction);
+        ResolutionAction action = methode.traiteCaseEnCours(context, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(8, action.getNumCaseAction());
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(8,3);
 
-        assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-        assertEquals(8, methode.numCaseAction);
+        ResolutionAction action2 = methode.traiteCaseEnCours(context, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(8, action2.getNumCaseAction());
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(8,8);
 
         CaseContext context2 = new CaseContext(17);
-        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
-        assertEquals(17, methode.numCaseAction);
+        ResolutionAction action3 = methode.traiteCaseEnCours(context2, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(17, action3.getNumCaseAction());
         assertEquals(3, methode.candidatAEliminer);
         grille.elimineCandidat(17,3);
 
-        assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
-        assertEquals(17, methode.numCaseAction);
+        ResolutionAction action4 = methode.traiteCaseEnCours(context2, false)
+                .orElseThrow(()-> new AssertionError("Should be present"));
+        assertEquals(17, action4.getNumCaseAction());
         assertEquals(8, methode.candidatAEliminer);
         grille.elimineCandidat(17,8);
     }

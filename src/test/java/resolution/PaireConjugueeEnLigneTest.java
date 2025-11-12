@@ -43,14 +43,16 @@ class PaireConjugueeEnLigneTest {
 		CaseContext context = new CaseContext(3);
 		methode.c1=2;
 		methode.c2=6;
-		assertTrue(methode.detecteCandidatAEliminer(context));
-		assertEquals(2, methode.candidatAEliminer);
-		assertEquals(1,methode.numCaseAction);
+		ResolutionAction action = methode.detecteCandidatAEliminer(context)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(1,action.getNumCaseAction());
+		assertEquals(2, action.getCandidatAEliminer());
+
 		grille.elimineCandidat(1,2);
 		grille.elimineCandidat(1,6);
 		grille.elimineCandidat(2,2);
 		grille.elimineCandidat(2,6);
-		assertFalse(methode.detecteCandidatAEliminer(context));
+		assertFalse(methode.detecteCandidatAEliminer(context).isPresent());
 	}
 
 	@Test

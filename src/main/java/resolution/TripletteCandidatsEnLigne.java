@@ -27,7 +27,7 @@ public class TripletteCandidatsEnLigne extends MethodeResolution {
         
         yAction = context.getY();
         
-        numCaseAction= Grille.calculNumCase(xAction, yAction);
+        int numCaseAction= Grille.calculNumCase(xAction, yAction);
         return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
 	}
 

@@ -17,7 +17,7 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		boolean changementAFaire = this.detecteConfiguration(context);
 		
 		if (changementAFaire) {
-			numCaseAction= Grille.calculNumCase(xAction, yAction);
+			int numCaseAction= Grille.calculNumCase(xAction, yAction);
 			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context));
 		}
 		else return Optional.empty();

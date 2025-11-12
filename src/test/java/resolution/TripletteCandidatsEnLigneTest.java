@@ -26,28 +26,33 @@ class TripletteCandidatsEnLigneTest {
 	void testTraiteCaseEnCours() {
 		CaseContext context = new CaseContext(74);
 		grille.elimineCandidat(75, 8);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(76,methode.numCaseAction);
+		ResolutionAction action = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(76,action.getNumCaseAction());
 		assertEquals(3,methode.candidatAEliminer);
 
 		grille.elimineCandidat(76, 3);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(78,methode.numCaseAction);
+		ResolutionAction action2 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(78,action2.getNumCaseAction());
 		assertEquals(6,methode.candidatAEliminer);
 
 		grille.elimineCandidat(78, 6);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(79,methode.numCaseAction);
+		ResolutionAction action3 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(79,action3.getNumCaseAction());
 		assertEquals(1,methode.candidatAEliminer);
 
 		grille.elimineCandidat(79, 1);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(79,methode.numCaseAction);
+		ResolutionAction action4 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(79,action4.getNumCaseAction());
 		assertEquals(3,methode.candidatAEliminer);
 
 		grille.elimineCandidat(79, 3);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(79,methode.numCaseAction);
+		ResolutionAction action5 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()-> new AssertionError("Should be present"));
+		assertEquals(79,action5.getNumCaseAction());
 		assertEquals(6,methode.candidatAEliminer);
 
 		grille.elimineCandidat(79, 6);
