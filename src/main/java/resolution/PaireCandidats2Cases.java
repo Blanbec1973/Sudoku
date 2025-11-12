@@ -6,6 +6,7 @@ import model.grille.Grille;
 import utils.Utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class PaireCandidats2Cases extends MethodeResolution {
@@ -27,21 +28,21 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		boolean trouve = false;
 		candidatAEliminer=0;
 
-
 		//On ne traite la case en cours que si elle a plus de 2 candidats :
 		if (grille.getNombreCandidats(context.getNumCase())<3) return Optional.empty();
 		
 		// Recherche des paires de candidats dans la case en cours, mise en tableau :
-		this.inserePaireCandidatsDansTab(context);
+		List<CandidatsCase> tabCandidatsLocal = inserePaireCandidatsDansTab(context);
 
-		//Boucle sur chaque couple possible de la case en cours : 
-		for (CandidatsCase couple : tabCandidats) {
+		//Boucle sur chaque couple possible de la case en cours :
+		for (CandidatsCase couple : tabCandidatsLocal) {
 			razCompteursIntersections();
 			if (this.traiteCouple(context, couple)) {
 				trouve = true;
 				break;
 			}
 		}
+
 
 		if (!trouve) return Optional.empty();
 		if (grille.getNombreCandidats(context.getNumCase()) == 2) return Optional.empty();
@@ -67,27 +68,27 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		nb2inter=0;
 	}
 	
-	public void inserePaireCandidatsDansTab(CaseContext context) {
-		ArrayList<Integer> tabTemp = new ArrayList<>();
-		for (int i=1;i<10;i++) {
-			if (grille.isCandidat(context.getNumCase(), i)) tabTemp.add(i);
-		}
-		
-		int i = 0;
-		int j;
 
-		while (i<tabTemp.size()) {
-			j = i+1;
-			while (j<tabTemp.size()) {
-				tabCandidats.add(new CandidatsCase());
-				tabCandidats.get(tabCandidats.size()-1).setAllCandidatsToFalse();
-				tabCandidats.get(tabCandidats.size()-1).setCandidat(tabTemp.get(i));
-				tabCandidats.get(tabCandidats.size()-1).setCandidat(tabTemp.get(j));				
-				j+=1;
+		//sert à générer toutes les combinaisons possibles de paires de candidats présents dans une case,
+		// puis à les stocker dans tabCandidats sous forme d’objets CandidatsCase.
+		List<CandidatsCase> inserePaireCandidatsDansTab(CaseContext context) {
+			List<CandidatsCase> tabCandidatsLocal = new ArrayList<>();
+			List<Integer> tabTemp = new ArrayList<>();
+			for (int i = 1; i < 10; i++) {
+				if (grille.isCandidat(context.getNumCase(), i)) tabTemp.add(i);
 			}
-			i+=1;	
+
+			for (int i = 0; i < tabTemp.size(); i++) {
+				for (int j = i + 1; j < tabTemp.size(); j++) {
+					CandidatsCase paire = new CandidatsCase();
+					paire.setAllCandidatsToFalse();
+					paire.setCandidat(tabTemp.get(i));
+					paire.setCandidat(tabTemp.get(j));
+					tabCandidatsLocal.add(paire);
+				}
+			}
+			return tabCandidatsLocal;
 		}
-	}
 	
 	protected abstract boolean traiteCouple(CaseContext context, CandidatsCase paireCandidats);
 

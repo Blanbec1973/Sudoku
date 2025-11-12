@@ -1,11 +1,9 @@
 package resolution;
 
-import model.grille.CandidatsCase;
 import model.grille.CaseContext;
 import model.grille.Grille;
 import model.service.GrilleService;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 //Méthodes de résolution par ordre hiérarchique :
@@ -30,17 +28,14 @@ import java.util.Optional;
 public abstract class MethodeResolution {
 	protected final Grille grille;
 	protected final GrilleService grilleService;
-	protected final ArrayList<CandidatsCase> tabCandidats;
 	protected int x2;
 	protected int x3;
 	protected int y2;
-
 	protected int y3;
 
 	protected MethodeResolution(Grille grille) {
 		this.grille=grille;
 		this.grilleService = grille.getGrilleService();
-		this.tabCandidats = new ArrayList <>();
 	}
 
 	public Optional<ResolutionAction> detecteSuivant(boolean goPourChangement) {
