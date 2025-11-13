@@ -7,8 +7,6 @@ import utils.Utils;
 import java.util.Optional;
 
 public abstract class PaireConjuguee extends MethodeResolution {
-	protected int c1;
-	protected  int c2;
 
 	protected PaireConjuguee(Grille grille) {
 		super(grille);
@@ -21,23 +19,18 @@ public abstract class PaireConjuguee extends MethodeResolution {
 		boolean trouve = this.detecteConfiguration(context);
 		if (!trouve) {return Optional.empty();}
 
-		c1 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
-        c2 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
+		int c1 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
+        int c2 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
+		int [] candidatsUtilises = {c1, c2};
 
-		return this.detecteCandidatAEliminer(context);
+		return this.detecteCandidatAEliminer(context, candidatsUtilises);
 	}
 	
 	protected abstract boolean detecteConfiguration(CaseContext context);
-	protected abstract Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context);
+	protected abstract Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context,int[]candidatsUtilises);
 
-	protected ResolutionAction creerResolutionAction(int x, int y, int candidat, CaseContext context) {
+	protected ResolutionAction creerResolutionAction(int x, int y, int candidat, CaseContext context, int[] candidatsUtilises) {
 		int numCaseAction = Grille.calculNumCase(x, y);
-
-		int[] candidatsUtilises = {
-				c1,
-				c2
-		};
-
 		return new ResolutionAction(numCaseAction, null,
 				candidat, this, context, candidatsUtilises);
 	}

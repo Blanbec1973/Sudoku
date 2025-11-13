@@ -27,7 +27,9 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 		return false;
 	}
 	
-	protected Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context) {
+	protected Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context, int[]candidatsUtilises) {
+		int c1=candidatsUtilises[0];
+		int c2 = candidatsUtilises[1];
         for (int xAction=context.getxRegion();xAction<context.getxRegion()+3;xAction++) {
             for (int yAction=context.getyRegion();yAction<context.getyRegion()+3;yAction++) {
                 if (grille.isCaseATrouver(Grille.calculNumCase(xAction, yAction)) &&
@@ -37,13 +39,13 @@ public class PaireConjugueeEnRegion extends PaireConjuguee {
 						return Optional.of(creerResolutionAction(xAction,
 								yAction,
 								c1,
-								context));
+								context, candidatsUtilises));
             		}
             		if (grille.isCandidat(Grille.calculNumCase(xAction, yAction), c2) ) {
 						return Optional.of(creerResolutionAction(xAction,
 								yAction,
 								c2,
-								context));
+								context, candidatsUtilises));
             		}
                 }
             }

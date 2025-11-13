@@ -26,8 +26,10 @@ class PaireConjugueeEnLigneTest {
 	void testTraiteCaseEnCours() {
 		CaseContext context = new CaseContext(3);
 		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(2,methode.c1);
-		assertEquals(6,methode.c2);
+		ResolutionAction action = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(2,action.getCandidatUtilise(0));
+		assertEquals(6,action.getCandidatUtilise(1));
 	}
 
 	@Test
@@ -41,9 +43,8 @@ class PaireConjugueeEnLigneTest {
 	@Order(3)
 	void testDetecteCandidatAEliminer() {
 		CaseContext context = new CaseContext(3);
-		methode.c1=2;
-		methode.c2=6;
-		ResolutionAction action = methode.detecteCandidatAEliminer(context)
+		int[] candidatsUtilises = {2,6};
+		ResolutionAction action = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(1,action.getNumCaseAction());
 		assertEquals(2, action.getCandidatAEliminer());
@@ -52,7 +53,7 @@ class PaireConjugueeEnLigneTest {
 		grille.elimineCandidat(1,6);
 		grille.elimineCandidat(2,2);
 		grille.elimineCandidat(2,6);
-		assertFalse(methode.detecteCandidatAEliminer(context).isPresent());
+		assertFalse(methode.detecteCandidatAEliminer(context, candidatsUtilises).isPresent());
 	}
 
 	@Test

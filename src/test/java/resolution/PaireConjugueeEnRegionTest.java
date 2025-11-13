@@ -28,8 +28,10 @@ class PaireConjugueeEnRegionTest {
 	void testTraiteCaseEnCours() {
 		CaseContext context = new CaseContext(36);
 		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
-		assertEquals(3,methode.c1);
-		assertEquals(7,methode.c2);
+		ResolutionAction action = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(3,action.getCandidatUtilise(0));
+		assertEquals(7,action.getCandidatUtilise(1));
 		CaseContext context2 = new CaseContext(18);
 		assertFalse(methode.traiteCaseEnCours(context2, false).isPresent());
 
@@ -50,9 +52,8 @@ class PaireConjugueeEnRegionTest {
 	@Order(3)
 	void testDetecteCandidatAEliminer() {
 		CaseContext context = new CaseContext(36);
-		methode.c1=3;
-		methode.c2=7;
-		ResolutionAction action = methode.detecteCandidatAEliminer(context)
+		int[] candidatsUtilises = {3,7};
+		ResolutionAction action = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(43,action.getNumCaseAction());
 
@@ -61,7 +62,7 @@ class PaireConjugueeEnRegionTest {
 		grille.elimineCandidat(52,7);
 		grille.elimineCandidat(54,7);
 
-		assertFalse(methode.detecteCandidatAEliminer(context).isPresent());
+		assertFalse(methode.detecteCandidatAEliminer(context, candidatsUtilises).isPresent());
 	}
 
 

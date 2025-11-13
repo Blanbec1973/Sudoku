@@ -24,21 +24,23 @@ public class PaireConjugueeEnLigne extends PaireConjuguee {
 		return false;
 	}
 	
-	protected Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context) {
-        for (int xAction=0;xAction<9;xAction++) {
+	protected Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context, int[] candidatsUtilises) {
+        int c1 = candidatsUtilises[0];
+		int c2 = candidatsUtilises[1];
+		for (int xAction=0;xAction<9;xAction++) {
         	if (grille.isCaseATrouver(Grille.calculNumCase(xAction, context.getY())) &&
         			xAction!=context.getX() && xAction !=x2) {
         		if (grille.isCandidat(Grille.calculNumCase(xAction, context.getY()), c1) ) {
 					return Optional.of(creerResolutionAction(xAction,
 							                                 context.getY(),
 							                                 c1,
-							                                 context));
+							                                 context,candidatsUtilises));
         		}
         		if (grille.isCandidat(Grille.calculNumCase(xAction, context.getY()), c2) ) {
 					return Optional.of(creerResolutionAction(xAction,
 							                                 context.getY(),
 							                                 c2,
-							                                 context));
+							                                 context,candidatsUtilises));
         		}
             }
         }

@@ -27,9 +27,11 @@ class PaireConjugueeEnColonneTest {
 		CaseContext context = new CaseContext(18);
 		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
 		CaseContext context2 = new CaseContext(36);
-		assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
-		assertEquals(3,methode.c1);
-		assertEquals(7,methode.c2);
+		//assertTrue(methode.traiteCaseEnCours(context2, false).isPresent());
+		ResolutionAction action = methode.traiteCaseEnCours(context2, false)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(3,action.getCandidatUtilise(0));
+		assertEquals(7,action.getCandidatUtilise(1));
 	}
 
 	@Test
@@ -45,53 +47,52 @@ class PaireConjugueeEnColonneTest {
 	@Order(3)
 	void testDetecteCandidatAEliminer() {
 		CaseContext context = new CaseContext(36);
-		methode.c1=3;
-		methode.c2=7;
+		int[] candidatsUtilises = {3, 7};
 		methode.y2=4;
 
-		ResolutionAction action = methode.detecteCandidatAEliminer(context)
+		ResolutionAction action = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(7, action.getCandidatAEliminer());
 		assertEquals(18,action.getNumCaseAction());
 		grille.elimineCandidat(18,7);
 
-		ResolutionAction action2 = methode.detecteCandidatAEliminer(context)
+		ResolutionAction action2 = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(7, action2.getCandidatAEliminer());
 		assertEquals(27,action2.getNumCaseAction());
 		grille.elimineCandidat(27,7);
 
-		ResolutionAction action3 = methode.detecteCandidatAEliminer(context)
+		ResolutionAction action3 = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(7, action3.getCandidatAEliminer());
 		assertEquals(54,action3.getNumCaseAction());
 		grille.elimineCandidat(54,7);
 
-		ResolutionAction action4 = methode.detecteCandidatAEliminer(context)
+		ResolutionAction action4 = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(3, action4.getCandidatAEliminer());
 		assertEquals(63,action4.getNumCaseAction());
 		grille.elimineCandidat(63,3);
 
-		ResolutionAction action5 = methode.detecteCandidatAEliminer(context)
+		ResolutionAction action5 = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(7, action5.getCandidatAEliminer());
 		assertEquals(63,action5.getNumCaseAction());
 		grille.elimineCandidat(63,7);
 
-		ResolutionAction action6 = methode.detecteCandidatAEliminer(context)
+		ResolutionAction action6 = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(3, action6.getCandidatAEliminer());
 		assertEquals(72,action6.getNumCaseAction());
 		grille.elimineCandidat(72,3);
 
-		ResolutionAction action7 = methode.detecteCandidatAEliminer(context)
+		ResolutionAction action7 = methode.detecteCandidatAEliminer(context, candidatsUtilises)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(7, action7.getCandidatAEliminer());
 		assertEquals(72,action7.getNumCaseAction());
 		grille.elimineCandidat(72,7);
 
-		assertFalse(methode.detecteCandidatAEliminer(context).isPresent());
+		assertFalse(methode.detecteCandidatAEliminer(context, candidatsUtilises).isPresent());
 	}
 
 	@Test

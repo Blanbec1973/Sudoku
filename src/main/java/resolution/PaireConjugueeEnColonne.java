@@ -24,7 +24,9 @@ public class PaireConjugueeEnColonne extends PaireConjuguee {
 		return false;
 	}
 	
-	protected Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context) {
+	protected Optional<ResolutionAction> detecteCandidatAEliminer(CaseContext context, int[] candidatsUtilises) {
+		int c1=candidatsUtilises[0];
+		int c2 = candidatsUtilises[1];
 		for (int yAction=0;yAction<9;yAction++) {
         	if (grille.isCaseATrouver(context.getX(),yAction) &&
         			yAction!=context.getY() && yAction !=y2) {
@@ -32,13 +34,13 @@ public class PaireConjugueeEnColonne extends PaireConjuguee {
         			return Optional.of(creerResolutionAction(context.getX(),
 							                                 yAction,
 							                                 c1,
-							                                 context));
+							                                 context, candidatsUtilises));
         		}
         		if (grille.isCandidat(context.getX(),yAction, c2) ) {
 					return Optional.of(creerResolutionAction(context.getX(),
 							yAction,
 							c2,
-							context));
+							context, candidatsUtilises));
         		}
             }
         }
