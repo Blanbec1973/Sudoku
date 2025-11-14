@@ -46,5 +46,4 @@ public class GrilleService {
     public int calculNombreCaseATrouverDansColonne(int xSearch) {
         return grilleAnalysisService.calculNombreCaseATrouverDansColonne(xSearch);
     }
-
 }

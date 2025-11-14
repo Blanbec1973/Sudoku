@@ -5,6 +5,7 @@ import model.service.HistorisationService;
 import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
 import resolution.*;
+import resolution.candidatunique.CandidatUniqueDansZone;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -26,9 +27,21 @@ public class Model {
 
 	    listeMethodes = new ArrayList<>();
 	    listeMethodes.add(new CandidatUniqueDansCase(grille));
-	    listeMethodes.add(new CandidatUniqueDansLigne(grille));
-	    listeMethodes.add(new CandidatUniqueDansColonne(grille));
-	    listeMethodes.add(new CandidatUniqueDansRegion(grille));
+	    listeMethodes.add(new CandidatUniqueDansZone(
+				grille,
+				grille.getGrilleService()::checkPresenceCandidatLigne,
+				ZoneType.LIGNE)
+		);
+	    listeMethodes.add(new CandidatUniqueDansZone(
+				grille,
+				grille.getGrilleService()::checkPresenceCandidatColonne,
+				ZoneType.COLONNE)
+		);
+	    listeMethodes.add(new CandidatUniqueDansZone(
+				grille,
+				grille.getGrilleService()::checkPresenceCandidatRegion,
+				ZoneType.BLOC)
+		);
 	    listeMethodes.add(new PaireCandidats2CasesColonne(grille));
 	    listeMethodes.add(new PaireConjugueeEnLigne(grille));
 	    listeMethodes.add(new PaireConjugueeEnColonne(grille));

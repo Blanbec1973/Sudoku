@@ -1,9 +1,11 @@
-package resolution;
+package resolution.candidatunique;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import resolution.ResolutionAction;
+import resolution.ZoneType;
 
 import java.nio.file.Paths;
 
@@ -11,14 +13,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class CandidatUniqueDansColonneTest {
-	private static CandidatUniqueDansColonne methode;
+	private static CandidatUniqueDansZone methode;
 	
 	@BeforeAll
 	static void setUpBeforeClass() {
 		Grille grille = new Grille();
 		String fileName = "src/test/resources/grillesTest/CandidatUniqueDansColonne.sud";
 		grille.init(Paths.get(fileName).toAbsolutePath());
-		methode = new CandidatUniqueDansColonne(grille);
+		methode = new CandidatUniqueDansZone(
+				grille,
+				grille.getGrilleService()::checkPresenceCandidatColonne,
+				ZoneType.COLONNE
+		);
 	}
 
 	@Test
@@ -34,6 +40,7 @@ class CandidatUniqueDansColonneTest {
 
 	@Test
 	void testGetSimpleName() {
-		assertEquals("CandidatUniqueDansColonne",methode.getSimpleName());
+		assertEquals("CandidatUniqueDansZone",methode.getSimpleName());
+		assertEquals(ZoneType.COLONNE, methode.getZone());
 	}
 }

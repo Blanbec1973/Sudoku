@@ -3,6 +3,7 @@ package model;
 import control.MyProperties;
 import model.grille.CaseContext;
 import resolution.ResolutionAction;
+import resolution.candidatunique.CandidatUniqueDansZone;
 
 public class MessageManager {
     private final MyProperties prop;
@@ -18,6 +19,11 @@ public class MessageManager {
         String tempString3=tempString2.replace("%ligne", action.getContext().getYEdition());
         String tempString4=tempString3.replace("%colonne", action.getContext().getXEdition());
         String tempString5=tempString4.replace("%region",String.valueOf(action.getContext().getNumRegion()));
+        if (action.getMethodeResolution() instanceof CandidatUniqueDansZone) {
+            CandidatUniqueDansZone zoneMethod = (CandidatUniqueDansZone) action.getMethodeResolution();
+            String tempString6=tempString5.replace("%zone", String.valueOf(zoneMethod.getZone()));
+            return message+" "+tempString6;
+        }
         return message+" "+tempString5;
     }
     public String createMessageElimination(ResolutionAction action) {
