@@ -29,31 +29,31 @@ class TripletteCandidatsEnColonneTest {
 		ResolutionAction action = methode.traiteCaseEnCours(context, false)
 				.orElseThrow(()-> new AssertionError("Should be present"));
 		assertEquals(36,action.getNumCaseAction());
-		assertEquals(3,methode.candidatAEliminer);
+		assertEquals(3,action.getCandidatAEliminer());
 
 		grille.elimineCandidat(36, 3);
 		ResolutionAction action2 = methode.traiteCaseEnCours(context, false)
 				.orElseThrow(()-> new AssertionError("Should be present"));
 		assertEquals(54,action2.getNumCaseAction());
-		assertEquals(6,methode.candidatAEliminer);
+		assertEquals(6,action2.getCandidatAEliminer());
 
 		grille.elimineCandidat(54, 6);
 		ResolutionAction action3 = methode.traiteCaseEnCours(context, false)
 				.orElseThrow(()-> new AssertionError("Should be present"));
 		assertEquals(63,action3.getNumCaseAction());
-		assertEquals(1,methode.candidatAEliminer);
+		assertEquals(1,action3.getCandidatAEliminer());
 
 		grille.elimineCandidat(63, 1);
 		ResolutionAction action4 = methode.traiteCaseEnCours(context, false)
 				.orElseThrow(()-> new AssertionError("Should be present"));
 		assertEquals(63,action4.getNumCaseAction());
-		assertEquals(3,methode.candidatAEliminer);
+		assertEquals(3,action4.getCandidatAEliminer());
 
 		grille.elimineCandidat(63, 3);
 		ResolutionAction action5 = methode.traiteCaseEnCours(context, false)
 				.orElseThrow(()-> new AssertionError("Should be present"));
 		assertEquals(63,action5.getNumCaseAction());
-		assertEquals(6,methode.candidatAEliminer);
+		assertEquals(6,action5.getCandidatAEliminer());
 
 		grille.elimineCandidat(63, 6);
 		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
