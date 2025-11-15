@@ -3,6 +3,8 @@ package resolution;
 import model.grille.CaseContext;
 import model.grille.Grille;
 
+import java.util.Arrays;
+
 public class ResolutionAction {
     private final int numCaseAction;
     private final Integer solution;
@@ -11,6 +13,18 @@ public class ResolutionAction {
     private final CaseContext context;
 
     private final int [] candidatsUtilises;
+
+    @Override
+    public String toString() {
+        return "ResolutionAction{" +
+                "numCaseAction=" + numCaseAction +
+                ", solution=" + solution +
+                ", candidatAEliminer=" + candidatAEliminer +
+                ", methodeResolution=" + methodeResolution +
+                ", context=" + context +
+                ", candidatsUtilises=" + Arrays.toString(candidatsUtilises) +
+                '}';
+    }
 
     public ResolutionAction(int numCaseAction, Integer solution, Integer candidatAEliminer, MethodeResolution methodeResolution, CaseContext context, int[] candidatsUtilises) {
         this.numCaseAction = numCaseAction;
@@ -50,5 +64,9 @@ public class ResolutionAction {
 
     public int getCandidatUtilise(int i) {
         return candidatsUtilises[i];
+    }
+
+    public int getNombreCandidatsUtilises() {
+        return candidatsUtilises.length;
     }
 }

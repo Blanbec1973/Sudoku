@@ -4,6 +4,7 @@ import control.MyProperties;
 import model.grille.CaseContext;
 import resolution.ResolutionAction;
 import resolution.candidatunique.CandidatUniqueDansZone;
+import resolution.paireconjuguee.PaireConjugueeDansZone;
 
 public class MessageManager {
     private final MyProperties prop;
@@ -19,9 +20,8 @@ public class MessageManager {
         String tempString3=tempString2.replace("%ligne", action.getContext().getYEdition());
         String tempString4=tempString3.replace("%colonne", action.getContext().getXEdition());
         String tempString5=tempString4.replace("%region",String.valueOf(action.getContext().getNumRegion()));
-        if (action.getMethodeResolution() instanceof CandidatUniqueDansZone) {
-            CandidatUniqueDansZone zoneMethod = (CandidatUniqueDansZone) action.getMethodeResolution();
-            String tempString6=tempString5.replace("%zone", String.valueOf(zoneMethod.getZone()));
+        if (action.getMethodeResolution() instanceof CandidatUniqueDansZone zoneMethod) {
+            String tempString6=tempString5.replace("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
             return message+" "+tempString6;
         }
         return message+" "+tempString5;
@@ -31,11 +31,20 @@ public class MessageManager {
         String tempString = prop.getProperty(action.getMethodeResolution().getSimpleName());
         String tempString2 = tempString.replace("%c1", String.valueOf(action.getCandidatUtilise(0)));
         String tempString3 = tempString2.replace("%c2", String.valueOf(action.getCandidatUtilise(1)));
-        String tempString4 = tempString3.replace("%c3", String.valueOf(action.getCandidatUtilise(2)));
+        String tempString4;
+        if (action.getNombreCandidatsUtilises()>2) {
+            tempString4 = tempString3.replace("%c3", String.valueOf(action.getCandidatUtilise(2)));
+        } else {
+            tempString4 = tempString3;
+        }
         String tempString5 = tempString4.replace("%candelim", String.valueOf(action.getCandidatAEliminer()));
         String tempString6 = tempString5.replace("%ligne", action.getContext().getYEdition());
         String tempString7 = tempString6.replace("%colonne", action.getContext().getXEdition());
         String tempString8 = tempString7.replace("%region",String.valueOf(action.getContext().getNumRegion()));
+        if (action.getMethodeResolution() instanceof PaireConjugueeDansZone zoneMethod) {
+            String tempString9=tempString8.replace("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
+            return message+" "+tempString9;
+        }
         return message+" "+tempString8;
     }
     private String initializeMessage(CaseContext context) {
