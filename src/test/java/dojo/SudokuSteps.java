@@ -27,7 +27,7 @@ public class SudokuSteps {
 	public void i_start_my_Sudoku_application_with_file_fileName(String fileName) {
 
 		MyProperties myProperties = new MyProperties("config.properties");
-		MyView myView = new MyView();
+		MyView myView = new MyView("C:/");
 
 		//services :
 		MessageManager messageManager = new MessageManager(myProperties);

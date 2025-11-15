@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PaireCandidats2CasesColonneTest {
     private PaireCandidats2CasesColonne methode;

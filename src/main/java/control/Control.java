@@ -20,7 +20,7 @@ public class Control {
 	public Model getModel() {return model;}
     public static void main(String[] args) {
 		MyProperties myProperties = new MyProperties("config.properties");
-		MyView myView = new MyView();
+		MyView myView = new MyView(myProperties.getProperty("InitialDirectory"));
 
 		//services :
 		MessageManager messageManager = new MessageManager(myProperties);

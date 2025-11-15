@@ -14,16 +14,12 @@ class ResolutionMessageServiceTest {
 
     private MessageManager mockMessageManager;
     private ResolutionMessageService messageService;
-    private MethodeResolution mockResolution;
-    private CaseContext mockContext;
     private ResolutionAction mockAction;
 
     @BeforeEach
     void setUp() {
         mockMessageManager = mock(MessageManager.class);
         messageService = new ResolutionMessageService(mockMessageManager);
-        mockResolution = mock(MethodeResolution.class);
-        mockContext= mock(CaseContext.class);
         mockAction = mock(ResolutionAction.class);
     }
 

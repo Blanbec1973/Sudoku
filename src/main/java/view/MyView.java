@@ -38,8 +38,10 @@ public class MyView implements ViewUpdater {
         return this.menuOpen;
     }
     public JMenuItem getMenuResolution() {return this.menuResolution;}
+    private final String pathName;
         
-    public MyView(){
+    public MyView(String pathName){
+        this.pathName = pathName;
         this.getFenetre().setTitle("Sudoku");
         this.getFenetre().setSize(1200,660);
         this.getFenetre().setResizable(false);
@@ -221,7 +223,7 @@ public class MyView implements ViewUpdater {
 	        "*.sud", "sud");
 	    chooser.setFileFilter(filter);
 
-        File defaultDir = new File("C:\\Users\\heynerr\\Documents\\W-Workspace\\Sudoku\\src\\test\\resources\\grillesTest");
+        File defaultDir = new File(pathName);
         chooser.setCurrentDirectory(defaultDir);
 
 	    if (typeDialog.equals("SAVE")) {

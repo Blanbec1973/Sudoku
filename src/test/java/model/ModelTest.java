@@ -1,6 +1,5 @@
 package model;
 
-import model.grille.CaseContext;
 import model.service.HistorisationService;
 import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
