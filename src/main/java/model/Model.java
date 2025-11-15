@@ -4,9 +4,9 @@ import model.grille.Grille;
 import model.service.HistorisationService;
 import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
-import resolution.*;
-import resolution.candidatunique.CandidatUniqueDansZone;
-import resolution.paireconjuguee.PaireConjugueeDansZone;
+import resolution.MethodeResolution;
+import resolution.MethodeResolutionFactory;
+import resolution.ResolutionAction;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -26,34 +26,7 @@ public class Model {
 
 		grille =new Grille();
 
-	    listeMethodes = new ArrayList<>();
-	    listeMethodes.add(new CandidatUniqueDansCase(grille));
-	    listeMethodes.add(new CandidatUniqueDansZone(
-				grille,
-				grille.getGrilleService()::checkPresenceCandidatLigne,
-				ZoneType.LIGNE)
-		);
-	    listeMethodes.add(new CandidatUniqueDansZone(
-				grille,
-				grille.getGrilleService()::checkPresenceCandidatColonne,
-				ZoneType.COLONNE)
-		);
-	    listeMethodes.add(new CandidatUniqueDansZone(
-				grille,
-				grille.getGrilleService()::checkPresenceCandidatRegion,
-				ZoneType.BLOC)
-		);
-	    listeMethodes.add(new PaireCandidats2CasesColonne(grille));
-	    listeMethodes.add(new PaireConjugueeDansZone(grille,ZoneType.LIGNE));
-	    listeMethodes.add(new PaireConjugueeDansZone(grille, ZoneType.COLONNE));
-	    listeMethodes.add(new PaireConjugueeDansZone(grille, ZoneType.BLOC));
-	    listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(grille));
-	    listeMethodes.add(new AbsenceCandidatEnLigneDansLesAutresRegions(grille));
-	    listeMethodes.add(new PaireCandidats2CasesLigne(grille));
-	    listeMethodes.add(new TripletteCandidatsEnLigne(grille));
-		listeMethodes.add(new CandidatDansColonneUniqueDuneRegion(grille));
-		listeMethodes.add(new CandidatDansLigneUniqueDuneRegion(grille));
-		listeMethodes.add(new TripletteCandidatsEnColonne(grille));
+	    listeMethodes = (ArrayList<MethodeResolution>) MethodeResolutionFactory.createAll(grille);
 	}
 
 	public Grille getGrille() {return grille;}

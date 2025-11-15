@@ -1,0 +1,28 @@
+package resolution;
+
+import model.grille.Grille;
+import org.junit.jupiter.api.Test;
+import resolution.paireconjuguee.PaireConjugueeDansZone;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class MethodeResolutionFactoryTest {
+
+    @Test
+    void testCreateAllReturnsExpectedMethods() {
+        Grille grille = new Grille();
+        List<MethodeResolution> methodes = MethodeResolutionFactory.createAll(grille);
+
+        assertNotNull(methodes);
+        assertFalse(methodes.isEmpty());
+        assertTrue(methodes.stream().anyMatch(m -> m instanceof CandidatUniqueDansCase));
+        assertTrue(methodes.stream().anyMatch(m -> m instanceof PaireConjugueeDansZone));
+        assertTrue(methodes.stream().anyMatch(m -> m instanceof TripletteCandidatsEnLigne));
+        assertTrue(methodes.stream().anyMatch(m -> m instanceof TripletteCandidatsEnColonne));
+
+        // Vérifie le nombre attendu (actuellement 15)
+        assertEquals(15, methodes.size());
+    }
+}
