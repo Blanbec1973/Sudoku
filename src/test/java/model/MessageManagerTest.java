@@ -99,6 +99,7 @@ class MessageManagerTest {
     void tripletteCandidatsEnLigneMessageTest() {
         when(prop.getProperty("TripletteCandidatsEnLigne")).thenReturn("Triplette %c1%c2%c3 dans trois cases de la ligne, élimination candidat %candelim.");
         when(methodeResolution.getSimpleName()).thenReturn("TripletteCandidatsEnLigne");
+        when(mockAction.getNombreCandidatsUtilises()).thenReturn(3);
         assertEquals("Case x=6  y=8 - Triplette 123 dans trois cases de la ligne, élimination candidat 9.",
                 messageManager.createMessageElimination(mockAction));
     }
