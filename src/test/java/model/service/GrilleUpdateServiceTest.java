@@ -57,7 +57,6 @@ class GrilleUpdateServiceTest {
 
     @Test
     void testCalculCandidatsInitiaux() {
-        //CaseEnCours.setCaseEnCours(3);
         grilleUpdateService.calculCandidatsInitiaux(new CaseContext(2,0));
         assertFalse(grille.isCandidat(2,0,1));
         assertTrue(grille.isCandidat(2,0,2));

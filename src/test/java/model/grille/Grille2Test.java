@@ -83,7 +83,6 @@ class Grille2Test {
 
 	@Test
 	void testCheckPresenceValeurRegion() {
-		//CaseEnCours.setCaseEnCours(1);
 		CaseContext context = new CaseContext(1);
 		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context, 1));
 		assertFalse(grille.getGrilleService().checkPresenceValeurRegion(context,2));

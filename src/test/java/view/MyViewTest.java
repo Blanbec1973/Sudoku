@@ -123,8 +123,6 @@ class MyViewTest {
 	@Test
 	void testUpdateSingleCaseTrouvee() {
 		Grille grille = new Grille();
-		// TODO
-		//grille.setValeurCaseEnCours(new CaseContext(1),4);
 		myView.updateSingleCase(grille, 1);
 		assertEquals("4", myView.getCase(0, 0).getText());
 		assertEquals(Color.GREEN, myView.getCase(0, 0).getBackground());

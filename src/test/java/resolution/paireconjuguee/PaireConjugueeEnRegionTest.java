@@ -64,35 +64,6 @@ class PaireConjugueeEnRegionTest {
 		assertFalse(methode.traiteCaseEnCours(context2, false).isPresent());
 
 	}
-/*
-	@Test
-	@Order(2)
-	void testDetecteConfiguration() {
-		CaseContext context = new CaseContext(36);
-		assertTrue(methode.detecteConfiguration(context));
-		CaseContext context2 = new CaseContext(18);
-		assertFalse(methode.detecteConfiguration(context2));
-		CaseContext context3 = new CaseContext(2);
-		assertFalse(methode.detecteConfiguration(context3));
-	}
-	
-	@Test
-	@Order(3)
-	void testDetecteCandidatAEliminer() {
-		CaseContext context = new CaseContext(36);
-		int[] candidatsUtilises = {3,7};
-		ResolutionAction action = methode.detecteCandidatAEliminer(context, candidatsUtilises)
-				.orElseThrow(()->new AssertionError("Should be present"));
-		assertEquals(43,action.getNumCaseAction());
-
-		grille.elimineCandidat(43,3);
-		grille.elimineCandidat(43,7);
-		grille.elimineCandidat(52,7);
-		grille.elimineCandidat(54,7);
-
-		assertFalse(methode.detecteCandidatAEliminer(context, candidatsUtilises).isPresent());
-	}
-*/
 	@Test
 	@Order(4)
 	void testGetSimpleName() {
