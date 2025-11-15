@@ -1,17 +1,18 @@
-package resolution;
+package resolution.paireconjuguee;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.*;
+import resolution.ResolutionAction;
+import resolution.ZoneType;
 
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PaireConjugueeEnRegionTest {
-	private PaireConjugueeEnRegion methode;
+	private PaireConjugueeDansZone methode;
 	private final Grille grille = new Grille();
 
 
@@ -20,23 +21,46 @@ class PaireConjugueeEnRegionTest {
 	void setUpBeforeClass() {
 		String fileName = "src/test/resources/grillesTest/PaireConjugueeEnRegion.sud";
 		grille.init(Paths.get(fileName).toAbsolutePath());
-		methode = new PaireConjugueeEnRegion(grille);
+		methode = new PaireConjugueeDansZone(grille, ZoneType.BLOC);
 	}
 
 	@Test
-	@Order(1)
 	void testTraiteCaseEnCours() {
 		CaseContext context = new CaseContext(36);
-		assertTrue(methode.traiteCaseEnCours(context, false).isPresent());
 		ResolutionAction action = methode.traiteCaseEnCours(context, false)
 				.orElseThrow(()->new AssertionError("Should be present"));
 		assertEquals(3,action.getCandidatUtilise(0));
 		assertEquals(7,action.getCandidatUtilise(1));
+
+		assertEquals(43, action.getNumCaseAction());
+		assertEquals(3, action.getCandidatAEliminer());
+		grille.elimineCandidat(43,3);
+
+		ResolutionAction action2 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(43, action2.getNumCaseAction());
+		assertEquals(7, action2.getCandidatAEliminer());
+		grille.elimineCandidat(43,7);
+
+		ResolutionAction action3 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(52, action3.getNumCaseAction());
+		assertEquals(7, action3.getCandidatAEliminer());
+		grille.elimineCandidat(52,7);
+
+		ResolutionAction action4 = methode.traiteCaseEnCours(context, false)
+				.orElseThrow(()->new AssertionError("Should be present"));
+		assertEquals(54, action4.getNumCaseAction());
+		assertEquals(7, action4.getCandidatAEliminer());
+		grille.elimineCandidat(54,7);
+
+		assertFalse(methode.traiteCaseEnCours(context, false).isPresent());
+
 		CaseContext context2 = new CaseContext(18);
 		assertFalse(methode.traiteCaseEnCours(context2, false).isPresent());
 
 	}
-
+/*
 	@Test
 	@Order(2)
 	void testDetecteConfiguration() {
@@ -64,11 +88,11 @@ class PaireConjugueeEnRegionTest {
 
 		assertFalse(methode.detecteCandidatAEliminer(context, candidatsUtilises).isPresent());
 	}
-
-
+*/
 	@Test
 	@Order(4)
 	void testGetSimpleName() {
-		assertEquals("PaireConjugueeEnRegion",methode.getSimpleName());
+		assertEquals("PaireConjugueeDansZone",methode.getSimpleName());
+		assertEquals(ZoneType.BLOC,methode.getZone());
 	}
 }

@@ -6,6 +6,7 @@ import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
 import resolution.*;
 import resolution.candidatunique.CandidatUniqueDansZone;
+import resolution.paireconjuguee.PaireConjugueeDansZone;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -43,9 +44,9 @@ public class Model {
 				ZoneType.BLOC)
 		);
 	    listeMethodes.add(new PaireCandidats2CasesColonne(grille));
-	    listeMethodes.add(new PaireConjugueeEnLigne(grille));
-	    listeMethodes.add(new PaireConjugueeEnColonne(grille));
-	    listeMethodes.add(new PaireConjugueeEnRegion(grille));
+	    listeMethodes.add(new PaireConjugueeDansZone(grille,ZoneType.LIGNE));
+	    listeMethodes.add(new PaireConjugueeDansZone(grille, ZoneType.COLONNE));
+	    listeMethodes.add(new PaireConjugueeDansZone(grille, ZoneType.BLOC));
 	    listeMethodes.add(new AbsenceCandidatEnColonneDansLesAutresRegions(grille));
 	    listeMethodes.add(new AbsenceCandidatEnLigneDansLesAutresRegions(grille));
 	    listeMethodes.add(new PaireCandidats2CasesLigne(grille));

@@ -28,7 +28,6 @@ import java.util.Optional;
 public abstract class MethodeResolution {
 	protected final Grille grille;
 	protected final GrilleService grilleService;
-	protected int y2;
 
 	protected MethodeResolution(Grille grille) {
 		this.grille=grille;

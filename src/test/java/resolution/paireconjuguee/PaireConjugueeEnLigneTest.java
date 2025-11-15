@@ -1,8 +1,10 @@
-package resolution;
+package resolution.paireconjuguee;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.*;
+import resolution.ResolutionAction;
+import resolution.ZoneType;
 
 import java.nio.file.Paths;
 
@@ -10,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PaireConjugueeEnLigneTest {
-	private PaireConjugueeEnLigne methode;
+	private PaireConjugueeDansZone methode;
 	private final Grille grille = new Grille();
 	
 	@BeforeAll
 	void setUpBeforeClass() {
 		String fileName = "src/test/resources/grillesTest/PaireConjugueeEnLigne.sud";
 		grille.init(Paths.get(fileName).toAbsolutePath());
-		methode = new PaireConjugueeEnLigne(grille);
+		methode = new PaireConjugueeDansZone(grille, ZoneType.LIGNE);
 	}
 	
 	@Test
@@ -40,7 +42,8 @@ class PaireConjugueeEnLigneTest {
 
 	@Test
 	void testGetSimpleName() {
-		assertEquals("PaireConjugueeEnLigne",methode.getSimpleName());
+		assertEquals("PaireConjugueeDansZone",methode.getSimpleName());
+		assertEquals(ZoneType.LIGNE,methode.getZone());
 	}
 
 }

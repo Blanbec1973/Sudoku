@@ -1,8 +1,10 @@
-package resolution;
+package resolution.paireconjuguee;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.*;
+import resolution.ResolutionAction;
+import resolution.ZoneType;
 
 import java.nio.file.Paths;
 
@@ -10,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PaireConjugueeEnColonneTest {
-	private static PaireConjugueeEnColonne methode;
+	private static PaireConjugueeDansZone methode;
 	private final Grille grille = new Grille();
 	
 	@BeforeAll
 	void setUpBeforeClass() {
 		String fileName = "src/test/resources/grillesTest/PaireConjugueeEnColonne.sud";
 		grille.init(Paths.get(fileName).toAbsolutePath());
-		methode = new PaireConjugueeEnColonne(grille);
+		methode = new PaireConjugueeDansZone(grille, ZoneType.COLONNE);
 	}
 
 	@Test
@@ -42,8 +44,8 @@ class PaireConjugueeEnColonneTest {
 
 		ResolutionAction action3 = methode.traiteCaseEnCours(context2, false)
 				.orElseThrow(()->new AssertionError("Should be present"));
-		assertEquals(7, action3.getCandidatAEliminer());
 		assertEquals(54,action3.getNumCaseAction());
+		assertEquals(7, action3.getCandidatAEliminer());
 		grille.elimineCandidat(54,7);
 
 		ResolutionAction action4 = methode.traiteCaseEnCours(context2, false)
@@ -75,6 +77,7 @@ class PaireConjugueeEnColonneTest {
 
 	@Test
 	void testGetSimpleName() {
-		assertEquals("PaireConjugueeEnColonne",methode.getSimpleName());
+		assertEquals("PaireConjugueeDansZone",methode.getSimpleName());
+		assertEquals(ZoneType.COLONNE,methode.getZone());
 	}
 }
