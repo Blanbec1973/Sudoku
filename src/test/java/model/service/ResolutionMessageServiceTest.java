@@ -1,10 +1,8 @@
 package model.service;
 
 import model.MessageManager;
-import model.grille.CaseContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import resolution.MethodeResolution;
 import resolution.ResolutionAction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -30,16 +30,16 @@ class PaireCandidats2CasesTest {
 		grille.setCandidat(context.getNumCase(), 7);
 		grille.setCandidat(context.getNumCase(), 8);
         List<CandidatsCase> tabCandidatsLocal = paireCandidats2Cases.inserePaireCandidatsDansTab(context);
-    	assertEquals("100010000", tabCandidatsLocal.get(0).toString());
-    	assertEquals("100001000",tabCandidatsLocal.get(1).toString());
-    	assertEquals("100000100",tabCandidatsLocal.get(2).toString());
-    	assertEquals("100000010",tabCandidatsLocal.get(3).toString());
-    	assertEquals("000011000",tabCandidatsLocal.get(4).toString());
-    	assertEquals("000010100",tabCandidatsLocal.get(5).toString());
-    	assertEquals("000010010",tabCandidatsLocal.get(6).toString());
-    	assertEquals("000001100",tabCandidatsLocal.get(7).toString());
-    	assertEquals("000001010",tabCandidatsLocal.get(8).toString());
-    	assertEquals("000000110",tabCandidatsLocal.get(9).toString());
+    	assertEquals("100010000 / 15", tabCandidatsLocal.get(0).toString());
+    	assertEquals("100001000 / 16",tabCandidatsLocal.get(1).toString());
+    	assertEquals("100000100 / 17",tabCandidatsLocal.get(2).toString());
+    	assertEquals("100000010 / 18",tabCandidatsLocal.get(3).toString());
+    	assertEquals("000011000 / 56",tabCandidatsLocal.get(4).toString());
+    	assertEquals("000010100 / 57",tabCandidatsLocal.get(5).toString());
+    	assertEquals("000010010 / 58",tabCandidatsLocal.get(6).toString());
+    	assertEquals("000001100 / 67",tabCandidatsLocal.get(7).toString());
+    	assertEquals("000001010 / 68",tabCandidatsLocal.get(8).toString());
+    	assertEquals("000000110 / 78",tabCandidatsLocal.get(9).toString());
 	}
 
     @Test

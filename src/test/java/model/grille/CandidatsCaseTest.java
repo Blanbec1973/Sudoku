@@ -82,11 +82,11 @@ class CandidatsCaseTest {
     }
     @Test
     void testDisplayCandidats() {
-    	assertEquals("000000000",c1.toString());
-    	assertEquals("100000000",c2.toString());
-    	assertEquals("100000000",c3.toString());
-    	assertEquals("111111111",c4.toString());
-    	assertEquals("111111111",c5.toString());
+    	assertEquals("000000000 / ",c1.toString());
+    	assertEquals("100000000 / 1",c2.toString());
+    	assertEquals("100000000 / 1",c3.toString());
+    	assertEquals("111111111 / 123456789",c4.toString());
+    	assertEquals("111111111 / 123456789",c5.toString());
     }
     
 }

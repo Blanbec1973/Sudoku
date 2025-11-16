@@ -25,9 +25,14 @@ public class CandidatsCase {
     public boolean isCandidat(int rang) {return candidats[rang];}
     public String toString() {
     	StringBuilder bld = new StringBuilder();
+        StringBuilder bld2 = new StringBuilder(" / ");
     	for (int i=1;i<10;i++ ) {
-    		if (this.isCandidat(i)) bld.append("1"); else bld.append("0");
+    		if (this.isCandidat(i)) {
+                bld.append("1");
+                bld2.append(i);
+            } else bld.append("0");
     	}
+        bld.append(bld2);
     	return bld.toString();
     }
     public void setAllCandidatsToFalse() {

@@ -18,7 +18,6 @@ public class Grille {
     private static final Logger logger = LogManager.getLogger(Grille.class.getPackage().getName());
     private final List<Integer> casesAtrouver= new ArrayList<>();
     private final GrilleService grilleService;
-        
     public Grille() {
         int numcase = 0;
         for (int y=0;y<9;y++) {
@@ -29,7 +28,6 @@ public class Grille {
         }
         this.grilleService = new GrilleService(this);
     }
-
     public void init(Path path) {
         casesAtrouver.clear();
         String readLine;
@@ -58,7 +56,6 @@ public class Grille {
         logger.info("Chargement OK fichier : {}",path.getFileName());
         grilleService.calculTousLesCandidats();
     }
-
     public GrilleService getGrilleService() {return this.grilleService;}
     protected Case getCase(int x, int y) {return mesCases[x][y];}
     protected Case getCase(int numCase) {return mesCases[Utils.calculXsearch(numCase)][Utils.calculYsearch(numCase)];}
@@ -69,10 +66,10 @@ public class Grille {
     public boolean [] getCandidatsTabBoolean(int x, int y) {return this.getCase(x,y).getCandidatsTabBoolean();}
     public void setAllCandidatsToFalse(int numCase) {this.getCase(numCase).getCandidats().setAllCandidatsToFalse();}
     public void setCandidat(int numCase, int candidat) {this.getCase(numCase).getCandidats().setCandidat(candidat);}
-    public void elimineCandidat (int numCase, int candidatAEliminer) {
+    public void elimineCandidat(int numCase, int candidatAEliminer) {
         this.getCase(numCase).elimineCandidat(candidatAEliminer);
     }
-    public void elimineCandidat (int x, int y, int candidatAEliminer) {
+    public void elimineCandidat(int x, int y, int candidatAEliminer) {
         this.getCase(x,y).elimineCandidat(candidatAEliminer);
     }
     //Questions sur les cases :
@@ -84,9 +81,7 @@ public class Grille {
         return isCaseATrouver(x, y);
     }
     public boolean isCaseATrouver(int x, int y) {return this.getCase(x,y).isCaseATrouver();}
-
     public boolean nEstPasCaseInitiale(int x, int y) {return this.getCase(x, y).nEstPasCaseInitiale();}
-
     public boolean nEstPasCaseTrouvee(int x, int y) {return this.getCase(x, y).nEstPasCaseTrouvee();}
     public boolean contientCandidatUnique(int numCase) {return this.getCase(numCase).contientCandidatUnique();}
     public boolean isCandidat(int numCase, int candidat) {return this.getCase(numCase).isCandidat(candidat);}
@@ -121,7 +116,7 @@ public class Grille {
     public void setValeurCaseEnCours(ResolutionAction action) {
         this.getCase(action.getNumCaseAction()).setCaseTrouvee(action.getSolution());
         grilleService.elimineCandidatsCaseTrouvee(action);
-        casesAtrouver.remove(casesAtrouver.indexOf(action.getNumCaseAction()));
+        casesAtrouver.remove((Integer) action.getNumCaseAction());
     }
 
     public static int calculNumCase(int x, int y) {
