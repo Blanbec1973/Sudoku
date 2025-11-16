@@ -53,4 +53,15 @@ public class CaseContext {
         if (y > 2 && y < 6) yRegion = 3;
         if (y > 5) yRegion = 6;
     }
+    @Override
+    public String toString() {
+        return "CaseContext{" +
+                "numCase=" + numCase +
+                ", x=" + x +
+                ", y=" + y +
+                ", numRegion=" + numRegion +
+                ", xRegion=" + xRegion +
+                ", yRegion=" + yRegion +
+                '}';
+    }
 }

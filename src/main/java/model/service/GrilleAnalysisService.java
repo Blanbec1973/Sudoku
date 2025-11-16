@@ -95,4 +95,16 @@ public class GrilleAnalysisService {
         return resultat;
     }
 
+    public Integer calculNombreCaseATrouverDansBloc(CaseContext context) {
+        int resultat = 0;
+        int xRegion = context.getxRegion();
+        int yRegion = context.getyRegion();
+        for (int abs = xRegion; abs < xRegion + 3; abs++) {
+            for (int ord = yRegion; ord < yRegion + 3; ord++) {
+                if (grille.nEstPasCaseInitiale(abs,ord) && grille.nEstPasCaseTrouvee(abs,ord))
+                    resultat+=1;
+            }
+        }
+        return resultat;
+    }
 }

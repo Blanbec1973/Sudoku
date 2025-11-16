@@ -22,7 +22,7 @@ class MethodeResolutionFactoryTest {
         assertTrue(methodes.stream().anyMatch(AbsenceCandidatEnLigneDansLesAutresRegions.class::isInstance));
         assertTrue(methodes.stream().anyMatch(TripletteCandidatsEnZone.class::isInstance));
 
-        // Vérifie le nombre attendu (actuellement 15)
-        assertEquals(15, methodes.size());
+        // Vérifie le nombre attendu (actuellement 16)
+        assertEquals(16, methodes.size());
     }
 }
