@@ -19,10 +19,13 @@ class UtilsTest {
     }
     @Test
     void testCalculEtLogique2Candidats() {
-        boolean[] tab1 = {true, true, false, false, false, false, false, false, false, false};
-        boolean[] tab2 = {true, false, true, false, false, false, false, false, false, false};
-        boolean[] res = {true, false, false, false, false, false, false, false, false, false};
-        assertArrayEquals(res, Utils.calculEtLogique2Candidats(tab1, tab2));
+        boolean[] tab1 = {false, true, false, true, false, false, false, false, false, false};
+        CandidatsCase c1 = new CandidatsCase(tab1);
+        boolean[] tab2 = {false, false, true, true, false, false, false, false, false, false};
+        CandidatsCase c2 = new CandidatsCase(tab2);
+        boolean[] res = {false, false, false, true, false, false, false, false, false, false};
+        CandidatsCase resC = new CandidatsCase(res);
+        assertArrayEquals(resC.getCandidats(), Utils.calculEtLogique2Candidats(c1, c2).getCandidats());
     }
             
     @Test

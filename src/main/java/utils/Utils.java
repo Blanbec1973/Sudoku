@@ -58,13 +58,20 @@ public class Utils {
         return resultat;
     }
     
-    public static boolean [] calculEtLogique2Candidats(boolean[] candidats1, boolean[] candidats2) {
-        boolean[] resultat = new boolean [10];
-        for (int i=0;i<resultat.length;i++) {
-            resultat [i] = (candidats1[i] && candidats2[i]);
+    public static CandidatsCase calculEtLogique2Candidats(CandidatsCase candidats1, CandidatsCase candidats2) {
+        CandidatsCase resultat = new CandidatsCase();
+        for (int i=1;i<10;i++) {
+            if (!(candidats1.isCandidat(i) && candidats2.isCandidat(i)))
+                resultat.elimineCandidat(i);
         }
         return resultat;
     }
+
+    public static boolean isIntersectionVide(CandidatsCase candidats1, CandidatsCase candidats2) {
+        CandidatsCase resultat = calculEtLogique2Candidats(candidats1, candidats2);
+        return (resultat.toString().equals("1000000000"));
+    }
+
     
     public static int calculNombreCandidats(boolean[] candidats) {
     	int resultat =0;

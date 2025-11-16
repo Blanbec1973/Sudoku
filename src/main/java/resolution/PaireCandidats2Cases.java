@@ -93,8 +93,8 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected abstract boolean traiteCouple(CaseContext context, CandidatsCase paireCandidats);
 
 	public void calculIntersectionDeuxCases(CandidatsCase c1, CandidatsCase c2) {
-		boolean[] cInter = Utils.calculEtLogique2Candidats(c1.getCandidats(), c2.getCandidats());
-		int nbInter = Utils.calculNombreCandidats(cInter);
+		CandidatsCase cInter = Utils.calculEtLogique2Candidats(c1, c2);
+		int nbInter = cInter.getNombreCandidats();
 		if (nbInter ==1) {nb1inter+=1;}
 		if (nbInter ==2) {nb2inter+=1;}
 	}

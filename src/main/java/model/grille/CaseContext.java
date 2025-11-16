@@ -44,7 +44,6 @@ public class CaseContext {
     }
     public String getXEdition() {return String.valueOf(x +1);}
     public String getYEdition() {return String.valueOf(y +1);}
-
     private void calculeXYRegion() {
         if (x < 3) xRegion = 0;
         if (x > 2 && x < 6) xRegion = 3;
