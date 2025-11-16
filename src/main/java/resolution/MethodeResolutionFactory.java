@@ -34,7 +34,7 @@ public class MethodeResolutionFactory {
         methodes.add(new AbsenceCandidatEnLigneDansLesAutresRegions(grille));
 
         // Triplettes
-        methodes.add(new TripletteCandidatsEnLigne(grille));
+        methodes.add(new TripletteCandidatsEnZone(grille, ZoneType.LIGNE));
         methodes.add(new TripletteCandidatsEnZone(grille, ZoneType.COLONNE));
 
         // Candidat dans zone unique

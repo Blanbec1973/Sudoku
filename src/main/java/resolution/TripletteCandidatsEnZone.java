@@ -3,6 +3,7 @@ package resolution;
 import model.grille.CandidatsCase;
 import model.grille.CaseContext;
 import model.grille.Grille;
+import org.apache.logging.log4j.Level;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -57,17 +58,18 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
 
         //E2 : Liste tous les candidats présents dans la zone :
         CandidatsCase candidats = listeCandidatsChecker.apply(context);
-        logger.debug("Context : " + context.getNumCase() + " "+grille.getCandidats(context.getNumCase()).toString());
-        logger.debug(("Candidats " + zone + " : "+candidats));
+        logger.log(Level.DEBUG, "Context : {0} {1}", context.getNumCase(),
+                grille.getCandidats(context.getNumCase()));
+        logger.log(Level.DEBUG, "Candidats {0} : {1}", zone, candidats);
 
         //E3-1 : Construit tableau de CandidatsCase avec toutes les triplettes possibles (tous candidats de la zone)
         List<CandidatsCase> tabTriplettesInit = calculTriplettes(candidats);
-        logger.debug((tabTriplettesInit.size() + " " + tabTriplettesInit));
+        logger.log(Level.DEBUG, "{0} {1}",tabTriplettesInit.size(), tabTriplettesInit);
 
         //E3-2 : Filtre tableau de CandidatsCase en ne conservant que les triplette avec au moins un candidat
         // en commun avec context
         List<CandidatsCase> tabTriplettes = filterTriplettesWithContext(context, tabTriplettesInit);
-        logger.debug((tabTriplettes.size() + " " + tabTriplettes));
+        logger.log(Level.DEBUG, "{0} {1}",tabTriplettes.size(), tabTriplettes);
 
         //E4 : Détection d'une triplette et détermination d'un candidat à éliminer :
         return detectionChecker.apply(context, tabTriplettes);
@@ -86,19 +88,30 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
     }
     //Méthodes E2 :
     private CandidatsCase listeCandidatsEnLigne(CaseContext context) {
-        //TODO
-        return null;
+        CandidatsCase candidats = new CandidatsCase();
+        logger.log(Level.DEBUG, "Candidats initial : {}", candidats);
+        for (int x=0; x<9; x++) {
+            if (grille.isCaseTrouvee(Grille.calculNumCase(x, context.getY())) ||
+                    grille.isCaseInitiale(Grille.calculNumCase(x, context.getY()))) {
+                logger.log(Level.DEBUG, "Colonne {0} candidat à éliminer : {1}", x,
+                        grille.getValeurCase(x, context.getY()));
+                candidats.elimineCandidat(grille.getValeurCase(x, context.getY()));
+            }
+            logger.log(Level.DEBUG, "Candidats : {}",candidats);
+        }
+        return candidats;
     }
     private CandidatsCase listeCandidatsEnColonne(CaseContext context) {
         CandidatsCase candidats = new CandidatsCase();
-        logger.debug("Candidats initial : {}", candidats);
+        logger.log(Level.DEBUG, "Candidats initial : {}", candidats);
         for (int y=0; y<9; y++) {
             if (grille.isCaseTrouvee(Grille.calculNumCase(context.getX(),y)) ||
                 grille.isCaseInitiale(Grille.calculNumCase(context.getX(),y))) {
-                logger.debug(("Ligne "+ y + " candidat à éliminer : "+grille.getValeurCase(context.getX(), y)));
+                logger.log(Level.DEBUG, "Ligne {0} candidat à éliminer : {1}", y,
+                        grille.getValeurCase(context.getX(), y));
                 candidats.elimineCandidat(grille.getValeurCase(context.getX(), y));
             }
-            logger.debug(("Candidats : "+candidats));
+            logger.log(Level.DEBUG, "Candidats : {}",candidats);
         }
         return candidats;
     }
@@ -136,24 +149,39 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
     }
     private List<CandidatsCase> filterTriplettesWithContext(CaseContext context, List<CandidatsCase> tabSource) {
         List<CandidatsCase> triplettes = new ArrayList<>();
-        CandidatsCase CandidatsContext = grille.getCandidats(context.getNumCase());
+        CandidatsCase candidatsContext = grille.getCandidats(context.getNumCase());
 
         for (CandidatsCase c: tabSource) {
-            if (!Utils.isIntersectionVide(CandidatsContext, c)) {
+            if (!Utils.isIntersectionVide(candidatsContext, c)) {
                 triplettes.add(c);
             }
         }
-
         return triplettes;
     }
     // E4 :
     private Optional<ResolutionAction> detectionEnLigne(CaseContext context, List<CandidatsCase> tabSource) {
+        for (CandidatsCase c : tabSource) {
+            List <Integer> rangs = new ArrayList<>();
+            for (int x = 0; x < 9; x++) {
+                CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Grille.calculNumCase(x, context.getY())));
+                if (res.getNombreCandidats()>0 ) {
+                    rangs.add(x);
+                }
+            }
+            logger.log(Level.DEBUG, "Triplette : {} - NbCases : {}",c, rangs.size());
+            if (rangs.size() == 3) {
+                logger.log(Level.DEBUG, "Triplette trouvée ! {}", c);
+                Optional<ResolutionAction> resolutionAction = detectionCandidatAEliminerEnLigne(context, c, rangs);
+                if (resolutionAction.isPresent()) return resolutionAction;
+            }
+        }
         return Optional.empty();
     }
+
+
+
     private Optional<ResolutionAction> detectionEnColonne(CaseContext context, List<CandidatsCase> tabSource) {
-        logger.debug(("icila2"));
         for (CandidatsCase c : tabSource) {
-            logger.debug(("icila3"));
             List <Integer> rangs = new ArrayList<>();
             for (int y = 0; y < 9; y++) {
                 CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Grille.calculNumCase(context.getX(),y)));
@@ -161,9 +189,9 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
                     rangs.add(y);
                 }
             }
-            logger.debug(("Triplette : "+c.toString()+" - NbCases : "+rangs.size()));
+            logger.log(Level.DEBUG, "Triplette : {} - NbCases : {}",c, rangs.size());
             if (rangs.size() == 3) {
-                logger.debug("Triplette trouvée ! " + c);
+                logger.log(Level.DEBUG, "Triplette trouvée ! {}", c);
                 Optional<ResolutionAction> resolutionAction = detectionCandidatAEliminerEnColonne(context, c, rangs);
                 if (resolutionAction.isPresent()) return resolutionAction;
             }
@@ -175,11 +203,25 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
     }
     private Optional <ResolutionAction> detectionCandidatAEliminerEnColonne(CaseContext context, CandidatsCase c, List<Integer> rangs) {
         for (int i=0; i < 3; i++) {
-            logger.debug("Boucle : " + i + " - rang : " + rangs.get(i));
+            logger.log(Level.DEBUG, "Boucle : {} - rang : {}", i, rangs.get(i));
             CandidatsCase c1 = Utils.elimineCandidatsCase(c, grille.getCandidats(Grille.calculNumCase(context.getX(), rangs.get(i))));
             if (c1.getNombreCandidats() > 0) {
                 int candidatAEliminer = Utils.trouvePremierCandidat(c1);
                 return Optional.of(new ResolutionAction(Grille.calculNumCase(context.getX(), rangs.get(i)), null,
+                        candidatAEliminer, this, context, Utils.getCandidatsActifs(c)));
+
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Optional<ResolutionAction> detectionCandidatAEliminerEnLigne(CaseContext context, CandidatsCase c, List<Integer> rangs) {
+        for (int i=0; i < 3; i++) {
+            logger.log(Level.DEBUG, "Boucle : {} - rang : {}", i, rangs.get(i));
+            CandidatsCase c1 = Utils.elimineCandidatsCase(c, grille.getCandidats(Grille.calculNumCase(rangs.get(i), context.getY())));
+            if (c1.getNombreCandidats() > 0) {
+                int candidatAEliminer = Utils.trouvePremierCandidat(c1);
+                return Optional.of(new ResolutionAction(Grille.calculNumCase(rangs.get(i), context.getY()), null,
                         candidatAEliminer, this, context, Utils.getCandidatsActifs(c)));
 
             }
