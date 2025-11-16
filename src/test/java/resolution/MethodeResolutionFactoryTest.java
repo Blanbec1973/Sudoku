@@ -20,7 +20,7 @@ class MethodeResolutionFactoryTest {
         assertTrue(methodes.stream().anyMatch(CandidatUniqueDansCase.class::isInstance));
         assertTrue(methodes.stream().anyMatch(PaireConjugueeDansZone.class::isInstance));
         assertTrue(methodes.stream().anyMatch(TripletteCandidatsEnLigne.class::isInstance));
-        assertTrue(methodes.stream().anyMatch(TripletteCandidatsEnColonne.class::isInstance));
+        assertTrue(methodes.stream().anyMatch(TripletteCandidatsEnZone.class::isInstance));
 
         // Vérifie le nombre attendu (actuellement 15)
         assertEquals(15, methodes.size());

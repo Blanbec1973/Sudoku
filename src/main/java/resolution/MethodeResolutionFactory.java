@@ -35,7 +35,7 @@ public class MethodeResolutionFactory {
 
         // Triplettes
         methodes.add(new TripletteCandidatsEnLigne(grille));
-        methodes.add(new TripletteCandidatsEnColonne(grille));
+        methodes.add(new TripletteCandidatsEnZone(grille, ZoneType.COLONNE));
 
         // Candidat dans zone unique
         methodes.add(new CandidatDansColonneUniqueDuneRegion(grille));

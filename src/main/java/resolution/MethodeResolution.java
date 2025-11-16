@@ -3,6 +3,8 @@ package resolution;
 import model.grille.CaseContext;
 import model.grille.Grille;
 import model.service.GrilleService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
@@ -29,12 +31,15 @@ public abstract class MethodeResolution {
 	protected final Grille grille;
 	protected final GrilleService grilleService;
 
+	static final Logger logger = LogManager.getLogger(MethodeResolution.class);
+
 	protected MethodeResolution(Grille grille) {
 		this.grille=grille;
 		this.grilleService = grille.getGrilleService();
 	}
 
 	public Optional<ResolutionAction> detecteSuivant(boolean goPourChangement) {
+		logger.debug("DetecteSuivant :");
 		for (int i = 0; i < grille.getCasesAtrouver().size(); i++) {
 			int numCase = grille.getCasesAtrouver().get(i);
 			CaseContext context = new CaseContext(numCase);
