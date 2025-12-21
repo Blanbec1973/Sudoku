@@ -1,6 +1,9 @@
 package model.grille;
 
 public class CandidatUtils {
+    private CandidatUtils() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static int getNombreCandidats(Grille grille, int numCase) {
         return grille.getCase(numCase).getNombreCandidats();

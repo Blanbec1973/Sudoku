@@ -1,6 +1,9 @@
 package model.grille;
 
 public class GrilleUtils {
+    private GrilleUtils() {
+        throw new IllegalStateException("Utility class");
+    }
     //Questions sur les cases :
     public static int getValeurCase(Grille grille, int numCase) {
         return grille.getCase(numCase).getValeur();
