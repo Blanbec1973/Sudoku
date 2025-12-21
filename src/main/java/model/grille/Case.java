@@ -2,7 +2,7 @@ package model.grille;
 
 import utils.Utils;
 
-class Case {
+public class Case {
     private final int numCase;
     private final int xCase;
     private final int yCase;

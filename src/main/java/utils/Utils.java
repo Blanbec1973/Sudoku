@@ -38,8 +38,10 @@ public class Utils {
         if (reste < 7) return region+1;
         return region+2;
     }
-    
 
+    public static int calculNumCase(int x, int y) {
+        return (y*9+x+1);
+    }
 
     public static int calculNombreTriplettes(int nombreCasesATrouver) {
         int resultat;

@@ -96,10 +96,10 @@ public class PaireConjugueeDansZone extends MethodeResolution {
         for (int abs = 0; abs < 9; abs++) {
             if (grille.isCaseATrouver(abs, y) && abs != context.getX() && abs != context2.getX()) {
                 if (grille.isCandidat(abs, y, c1))
-                    return Optional.of(new ResolutionAction(Grille.calculNumCase(abs, context.getY()),
+                    return Optional.of(new ResolutionAction(Utils.calculNumCase(abs, context.getY()),
                             null, c1, this, context, candidats));
                 if (grille.isCandidat(abs, y, c2))
-                    return Optional.of(new ResolutionAction(Grille.calculNumCase(abs, context.getY()),
+                    return Optional.of(new ResolutionAction(Utils.calculNumCase(abs, context.getY()),
                             null, c2, this, context, candidats));
             }
         }
@@ -115,10 +115,10 @@ public class PaireConjugueeDansZone extends MethodeResolution {
         for (int ord = 0; ord < 9; ord++) {
             if (grille.isCaseATrouver(x, ord) && ord != context.getY() && ord != context2.getY()) {
                 if (grille.isCandidat(x, ord, c1))
-                    return Optional.of(new ResolutionAction(Grille.calculNumCase(x, ord),
+                    return Optional.of(new ResolutionAction(Utils.calculNumCase(x, ord),
                             null, c1, this, context, candidats));
                 if (grille.isCandidat(x, ord, c2))
-                    return Optional.of(new ResolutionAction(Grille.calculNumCase(x, ord),
+                    return Optional.of(new ResolutionAction(Utils.calculNumCase(x, ord),
                             null, c2, this, context, candidats));
             }
         }
@@ -131,15 +131,15 @@ public class PaireConjugueeDansZone extends MethodeResolution {
 
         for (int xAction=context.getxRegion();xAction<context.getxRegion()+3;xAction++) {
             for (int yAction=context.getyRegion();yAction<context.getyRegion()+3;yAction++) {
-                if (grille.isCaseATrouver(Grille.calculNumCase(xAction, yAction)) &&
+                if (grille.isCaseATrouver(Utils.calculNumCase(xAction, yAction)) &&
                         !Arrays.equals(grille.getCandidatsTabBoolean(context.getNumCase()),
                                 grille.getCandidatsTabBoolean(xAction, yAction))) {
-                    if (grille.isCandidat(Grille.calculNumCase(xAction, yAction), c1) ) {
-                        return Optional.of(new ResolutionAction(Grille.calculNumCase(xAction, yAction), null,
+                    if (grille.isCandidat(Utils.calculNumCase(xAction, yAction), c1) ) {
+                        return Optional.of(new ResolutionAction(Utils.calculNumCase(xAction, yAction), null,
                                 c1, this, context, candidats));
                     }
-                    if (grille.isCandidat(Grille.calculNumCase(xAction, yAction), c2) ) {
-                        return Optional.of(new ResolutionAction(Grille.calculNumCase(xAction, yAction), null,
+                    if (grille.isCandidat(Utils.calculNumCase(xAction, yAction), c2) ) {
+                        return Optional.of(new ResolutionAction(Utils.calculNumCase(xAction, yAction), null,
                                 c2, this, context, candidats));
                     }
                 }

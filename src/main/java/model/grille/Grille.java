@@ -119,7 +119,5 @@ public class Grille {
         casesAtrouver.remove((Integer) action.getNumCaseAction());
     }
 
-    public static int calculNumCase(int x, int y) {
-        return (y*9+x+1);
-    }
+
 }

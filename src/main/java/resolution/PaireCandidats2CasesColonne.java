@@ -14,7 +14,7 @@ public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
 	protected boolean traiteCouple(CaseContext context, CandidatsCase paireCandidats) {
 		for (int i=0;i<9;i++) {
 			if (grille.isCaseATrouver(context.getX(),i) && context.getY()!=i) {
-				this.calculIntersectionDeuxCases(paireCandidats, grille.getCandidats(Grille.calculNumCase(context.getX(), i)));
+				this.calculIntersectionDeuxCases(paireCandidats, grille.getCandidats(Utils.calculNumCase(context.getX(), i)));
 			}
 		}
 		

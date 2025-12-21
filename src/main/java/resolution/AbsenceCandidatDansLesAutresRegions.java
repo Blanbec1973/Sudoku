@@ -2,6 +2,7 @@ package resolution;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
+import utils.Utils;
 
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ public abstract class AbsenceCandidatDansLesAutresRegions extends MethodeResolut
 		boolean changementAFaire = this.detecteConfiguration(context);
 		
 		if (changementAFaire) {
-			int numCaseAction= Grille.calculNumCase(xAction, yAction);
+			int numCaseAction = Utils.calculNumCase(xAction, yAction);
 			return Optional.of(new ResolutionAction(numCaseAction, null, candidatAEliminer, this, context, null));
 		}
 		else return Optional.empty();

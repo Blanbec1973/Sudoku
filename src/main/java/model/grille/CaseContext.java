@@ -18,7 +18,7 @@ public class CaseContext {
         calculeXYRegion();
     }
     public CaseContext(int x, int y) {
-        this.numCase = Grille.calculNumCase(x,y);
+        this.numCase = Utils.calculNumCase(x,y);
         this.x = x;
         this.y = y;
         this.numRegion = Utils.calculNumeroRegion(numCase);

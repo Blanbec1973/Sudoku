@@ -93,8 +93,8 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
     private CandidatsCase listeCandidatsEnLigne(CaseContext context) {
         CandidatsCase candidats = new CandidatsCase();
         for (int x=0; x<9; x++) {
-            if (grille.isCaseTrouvee(Grille.calculNumCase(x, context.getY())) ||
-                    grille.isCaseInitiale(Grille.calculNumCase(x, context.getY()))) {
+            if (grille.isCaseTrouvee(Utils.calculNumCase(x, context.getY())) ||
+                    grille.isCaseInitiale(Utils.calculNumCase(x, context.getY()))) {
                 logger.log(Level.DEBUG, "Colonne {} candidat à éliminer : {}", x,
                         grille.getValeurCase(x, context.getY()));
                 candidats.elimineCandidat(grille.getValeurCase(x, context.getY()));
@@ -106,8 +106,8 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
     private CandidatsCase listeCandidatsEnColonne(CaseContext context) {
         CandidatsCase candidats = new CandidatsCase();
         for (int y=0; y<9; y++) {
-            if (grille.isCaseTrouvee(Grille.calculNumCase(context.getX(),y)) ||
-                grille.isCaseInitiale(Grille.calculNumCase(context.getX(),y))) {
+            if (grille.isCaseTrouvee(Utils.calculNumCase(context.getX(),y)) ||
+                grille.isCaseInitiale(Utils.calculNumCase(context.getX(),y))) {
                 logger.log(Level.DEBUG, "Ligne {} candidat à éliminer : {}", y,
                         grille.getValeurCase(context.getX(), y));
                 candidats.elimineCandidat(grille.getValeurCase(context.getX(), y));
@@ -124,8 +124,8 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
         logger.log(Level.DEBUG, "    Context : {}",context);
         for (int abs = xRegion; abs < xRegion + 3; abs++) {
             for (int ord = yRegion; ord < yRegion + 3; ord++) {
-                if (grille.isCaseInitiale(Grille.calculNumCase(abs, ord)) ||
-                        grille.isCaseTrouvee(Grille.calculNumCase(abs, ord)))
+                if (grille.isCaseInitiale(Utils.calculNumCase(abs, ord)) ||
+                        grille.isCaseTrouvee(Utils.calculNumCase(abs, ord)))
                     candidats.elimineCandidat(grille.getValeurCase(abs, ord));
             }
         }
@@ -176,7 +176,7 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
         for (CandidatsCase c : tabSource) {
             List <Integer> rangs = new ArrayList<>();
             for (int x = 0; x < 9; x++) {
-                CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Grille.calculNumCase(x, context.getY())));
+                CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Utils.calculNumCase(x, context.getY())));
                 if (res.getNombreCandidats()>0 ) {
                     rangs.add(x);
                 }
@@ -197,7 +197,7 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
         for (CandidatsCase c : tabSource) {
             List <Integer> rangs = new ArrayList<>();
             for (int y = 0; y < 9; y++) {
-                CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Grille.calculNumCase(context.getX(),y)));
+                CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Utils.calculNumCase(context.getX(),y)));
                 if (res.getNombreCandidats()>0 ) {
                     rangs.add(y);
                 }
@@ -218,9 +218,9 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
             List <Integer> rangs = new ArrayList<>();
             for (int abs = xRegion; abs < xRegion + 3; abs++) {
                 for (int ord = yRegion; ord < yRegion + 3; ord++) {
-                    CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Grille.calculNumCase(abs, ord)));
+                    CandidatsCase res = Utils.calculEtLogique2Candidats(c, grille.getCandidats(Utils.calculNumCase(abs, ord)));
                     if (res.getNombreCandidats()>0 ) {
-                        rangs.add(Grille.calculNumCase(abs, ord));
+                        rangs.add(Utils.calculNumCase(abs, ord));
                     }
                 }
             }
@@ -237,10 +237,10 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
     private Optional <ResolutionAction> detectionCandidatAEliminerEnColonne(CaseContext context, CandidatsCase c, List<Integer> rangs) {
         for (int i=0; i < 3; i++) {
             logger.log(Level.DEBUG, BOUCLE_RANG, i, rangs.get(i));
-            CandidatsCase c1 = Utils.elimineCandidatsCase(c, grille.getCandidats(Grille.calculNumCase(context.getX(), rangs.get(i))));
+            CandidatsCase c1 = Utils.elimineCandidatsCase(c, grille.getCandidats(Utils.calculNumCase(context.getX(), rangs.get(i))));
             if (c1.getNombreCandidats() > 0) {
                 int candidatAEliminer = Utils.trouvePremierCandidat(c1);
-                return Optional.of(new ResolutionAction(Grille.calculNumCase(context.getX(), rangs.get(i)), null,
+                return Optional.of(new ResolutionAction(Utils.calculNumCase(context.getX(), rangs.get(i)), null,
                         candidatAEliminer, this, context, Utils.getCandidatsActifs(c)));
 
             }
@@ -251,10 +251,10 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
     private Optional<ResolutionAction> detectionCandidatAEliminerEnLigne(CaseContext context, CandidatsCase c, List<Integer> rangs) {
         for (int i=0; i < 3; i++) {
             logger.log(Level.DEBUG, BOUCLE_RANG, i, rangs.get(i));
-            CandidatsCase c1 = Utils.elimineCandidatsCase(c, grille.getCandidats(Grille.calculNumCase(rangs.get(i), context.getY())));
+            CandidatsCase c1 = Utils.elimineCandidatsCase(c, grille.getCandidats(Utils.calculNumCase(rangs.get(i), context.getY())));
             if (c1.getNombreCandidats() > 0) {
                 int candidatAEliminer = Utils.trouvePremierCandidat(c1);
-                return Optional.of(new ResolutionAction(Grille.calculNumCase(rangs.get(i), context.getY()), null,
+                return Optional.of(new ResolutionAction(Utils.calculNumCase(rangs.get(i), context.getY()), null,
                         candidatAEliminer, this, context, Utils.getCandidatsActifs(c)));
 
             }

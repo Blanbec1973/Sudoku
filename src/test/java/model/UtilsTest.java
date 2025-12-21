@@ -1,7 +1,6 @@
 package model;
 
 import model.grille.CandidatsCase;
-import model.grille.Grille;
 import org.junit.jupiter.api.Test;
 import utils.Utils;
 
@@ -331,99 +330,99 @@ class UtilsTest {
     
     @Test
     void testCalculNumCase1a25() {
-    	  assertEquals(1, Grille.calculNumCase(0,0));
-    	  assertEquals(2, Grille.calculNumCase(1,0));
-    	  assertEquals(3, Grille.calculNumCase(2,0));
-    	  assertEquals(4, Grille.calculNumCase(3,0));
-    	  assertEquals(5, Grille.calculNumCase(4,0));
-    	  assertEquals(6, Grille.calculNumCase(5,0));
-    	  assertEquals(7, Grille.calculNumCase(6,0));
-    	  assertEquals(8, Grille.calculNumCase(7,0));
-    	  assertEquals(9, Grille.calculNumCase(8,0));
-    	  assertEquals(10, Grille.calculNumCase(0,1));
-    	  assertEquals(11, Grille.calculNumCase(1,1));
-    	  assertEquals(12, Grille.calculNumCase(2,1));
-    	  assertEquals(13, Grille.calculNumCase(3,1));
-    	  assertEquals(14, Grille.calculNumCase(4,1));
-    	  assertEquals(15, Grille.calculNumCase(5,1));
-    	  assertEquals(16, Grille.calculNumCase(6,1));
-    	  assertEquals(17, Grille.calculNumCase(7,1));
-    	  assertEquals(18, Grille.calculNumCase(8,1));
-    	  assertEquals(19, Grille.calculNumCase(0,2));
-    	  assertEquals(20, Grille.calculNumCase(1,2));
-    	  assertEquals(21, Grille.calculNumCase(2,2));
-    	  assertEquals(22, Grille.calculNumCase(3,2));
-    	  assertEquals(23, Grille.calculNumCase(4,2));
-    	  assertEquals(24, Grille.calculNumCase(5,2));
-    	  assertEquals(25, Grille.calculNumCase(6,2));
+    	  assertEquals(1, Utils.calculNumCase(0,0));
+    	  assertEquals(2, Utils.calculNumCase(1,0));
+    	  assertEquals(3, Utils.calculNumCase(2,0));
+    	  assertEquals(4, Utils.calculNumCase(3,0));
+    	  assertEquals(5, Utils.calculNumCase(4,0));
+    	  assertEquals(6, Utils.calculNumCase(5,0));
+    	  assertEquals(7, Utils.calculNumCase(6,0));
+    	  assertEquals(8, Utils.calculNumCase(7,0));
+    	  assertEquals(9, Utils.calculNumCase(8,0));
+    	  assertEquals(10, Utils.calculNumCase(0,1));
+    	  assertEquals(11, Utils.calculNumCase(1,1));
+    	  assertEquals(12, Utils.calculNumCase(2,1));
+    	  assertEquals(13, Utils.calculNumCase(3,1));
+    	  assertEquals(14, Utils.calculNumCase(4,1));
+    	  assertEquals(15, Utils.calculNumCase(5,1));
+    	  assertEquals(16, Utils.calculNumCase(6,1));
+    	  assertEquals(17, Utils.calculNumCase(7,1));
+    	  assertEquals(18, Utils.calculNumCase(8,1));
+    	  assertEquals(19, Utils.calculNumCase(0,2));
+    	  assertEquals(20, Utils.calculNumCase(1,2));
+    	  assertEquals(21, Utils.calculNumCase(2,2));
+    	  assertEquals(22, Utils.calculNumCase(3,2));
+    	  assertEquals(23, Utils.calculNumCase(4,2));
+    	  assertEquals(24, Utils.calculNumCase(5,2));
+    	  assertEquals(25, Utils.calculNumCase(6,2));
     }
     
     @Test
     void testCalculNumCase26a50() {
-    	  assertEquals(26, Grille.calculNumCase(7,2));
-    	  assertEquals(27, Grille.calculNumCase(8,2));
-    	  assertEquals(28, Grille.calculNumCase(0,3));
-    	  assertEquals(29, Grille.calculNumCase(1,3));
-    	  assertEquals(30, Grille.calculNumCase(2,3));
-    	  assertEquals(31, Grille.calculNumCase(3,3));
-    	  assertEquals(32, Grille.calculNumCase(4,3));
-    	  assertEquals(33, Grille.calculNumCase(5,3));
-    	  assertEquals(34, Grille.calculNumCase(6,3));
-    	  assertEquals(35, Grille.calculNumCase(7,3));
-    	  assertEquals(36, Grille.calculNumCase(8,3));
-    	  assertEquals(37, Grille.calculNumCase(0,4));
-    	  assertEquals(38, Grille.calculNumCase(1,4));
-    	  assertEquals(39, Grille.calculNumCase(2,4));
-    	  assertEquals(40, Grille.calculNumCase(3,4));
-    	  assertEquals(41, Grille.calculNumCase(4,4));
-    	  assertEquals(42, Grille.calculNumCase(5,4));
-    	  assertEquals(43, Grille.calculNumCase(6,4));
-    	  assertEquals(44, Grille.calculNumCase(7,4));
-    	  assertEquals(45, Grille.calculNumCase(8,4));
-    	  assertEquals(46, Grille.calculNumCase(0,5));
-    	  assertEquals(47, Grille.calculNumCase(1,5));
-    	  assertEquals(48, Grille.calculNumCase(2,5));
-    	  assertEquals(49, Grille.calculNumCase(3,5));
-    	  assertEquals(50, Grille.calculNumCase(4,5));
+    	  assertEquals(26, Utils.calculNumCase(7,2));
+    	  assertEquals(27, Utils.calculNumCase(8,2));
+    	  assertEquals(28, Utils.calculNumCase(0,3));
+    	  assertEquals(29, Utils.calculNumCase(1,3));
+    	  assertEquals(30, Utils.calculNumCase(2,3));
+    	  assertEquals(31, Utils.calculNumCase(3,3));
+    	  assertEquals(32, Utils.calculNumCase(4,3));
+    	  assertEquals(33, Utils.calculNumCase(5,3));
+    	  assertEquals(34, Utils.calculNumCase(6,3));
+    	  assertEquals(35, Utils.calculNumCase(7,3));
+    	  assertEquals(36, Utils.calculNumCase(8,3));
+    	  assertEquals(37, Utils.calculNumCase(0,4));
+    	  assertEquals(38, Utils.calculNumCase(1,4));
+    	  assertEquals(39, Utils.calculNumCase(2,4));
+    	  assertEquals(40, Utils.calculNumCase(3,4));
+    	  assertEquals(41, Utils.calculNumCase(4,4));
+    	  assertEquals(42, Utils.calculNumCase(5,4));
+    	  assertEquals(43, Utils.calculNumCase(6,4));
+    	  assertEquals(44, Utils.calculNumCase(7,4));
+    	  assertEquals(45, Utils.calculNumCase(8,4));
+    	  assertEquals(46, Utils.calculNumCase(0,5));
+    	  assertEquals(47, Utils.calculNumCase(1,5));
+    	  assertEquals(48, Utils.calculNumCase(2,5));
+    	  assertEquals(49, Utils.calculNumCase(3,5));
+    	  assertEquals(50, Utils.calculNumCase(4,5));
     }
     
     @Test
     void testCalculNumCase51a75() {
-    	  assertEquals(51, Grille.calculNumCase(5,5));
-    	  assertEquals(52, Grille.calculNumCase(6,5));
-    	  assertEquals(53, Grille.calculNumCase(7,5));
-    	  assertEquals(54, Grille.calculNumCase(8,5));
-    	  assertEquals(55, Grille.calculNumCase(0,6));
-    	  assertEquals(56, Grille.calculNumCase(1,6));
-    	  assertEquals(57, Grille.calculNumCase(2,6));
-    	  assertEquals(58, Grille.calculNumCase(3,6));
-    	  assertEquals(59, Grille.calculNumCase(4,6));
-    	  assertEquals(60, Grille.calculNumCase(5,6));
-    	  assertEquals(61, Grille.calculNumCase(6,6));
-    	  assertEquals(62, Grille.calculNumCase(7,6));
-    	  assertEquals(63, Grille.calculNumCase(8,6));
-    	  assertEquals(64, Grille.calculNumCase(0,7));
-    	  assertEquals(65, Grille.calculNumCase(1,7));
-    	  assertEquals(66, Grille.calculNumCase(2,7));
-    	  assertEquals(67, Grille.calculNumCase(3,7));
-    	  assertEquals(68, Grille.calculNumCase(4,7));
-    	  assertEquals(69, Grille.calculNumCase(5,7));
-    	  assertEquals(70, Grille.calculNumCase(6,7));
-    	  assertEquals(71, Grille.calculNumCase(7,7));
-    	  assertEquals(72, Grille.calculNumCase(8,7));
-    	  assertEquals(73, Grille.calculNumCase(0,8));
-    	  assertEquals(74, Grille.calculNumCase(1,8));
-    	  assertEquals(75, Grille.calculNumCase(2,8));
+    	  assertEquals(51, Utils.calculNumCase(5,5));
+    	  assertEquals(52, Utils.calculNumCase(6,5));
+    	  assertEquals(53, Utils.calculNumCase(7,5));
+    	  assertEquals(54, Utils.calculNumCase(8,5));
+    	  assertEquals(55, Utils.calculNumCase(0,6));
+    	  assertEquals(56, Utils.calculNumCase(1,6));
+    	  assertEquals(57, Utils.calculNumCase(2,6));
+    	  assertEquals(58, Utils.calculNumCase(3,6));
+    	  assertEquals(59, Utils.calculNumCase(4,6));
+    	  assertEquals(60, Utils.calculNumCase(5,6));
+    	  assertEquals(61, Utils.calculNumCase(6,6));
+    	  assertEquals(62, Utils.calculNumCase(7,6));
+    	  assertEquals(63, Utils.calculNumCase(8,6));
+    	  assertEquals(64, Utils.calculNumCase(0,7));
+    	  assertEquals(65, Utils.calculNumCase(1,7));
+    	  assertEquals(66, Utils.calculNumCase(2,7));
+    	  assertEquals(67, Utils.calculNumCase(3,7));
+    	  assertEquals(68, Utils.calculNumCase(4,7));
+    	  assertEquals(69, Utils.calculNumCase(5,7));
+    	  assertEquals(70, Utils.calculNumCase(6,7));
+    	  assertEquals(71, Utils.calculNumCase(7,7));
+    	  assertEquals(72, Utils.calculNumCase(8,7));
+    	  assertEquals(73, Utils.calculNumCase(0,8));
+    	  assertEquals(74, Utils.calculNumCase(1,8));
+    	  assertEquals(75, Utils.calculNumCase(2,8));
     }
     
     @Test
     void testCalculNumCase76a81() {
-    	  assertEquals(76, Grille.calculNumCase(3,8));
-    	  assertEquals(77, Grille.calculNumCase(4,8));
-    	  assertEquals(78, Grille.calculNumCase(5,8));
-    	  assertEquals(79, Grille.calculNumCase(6,8));
-    	  assertEquals(80, Grille.calculNumCase(7,8));
-    	  assertEquals(81, Grille.calculNumCase(8,8));
+    	  assertEquals(76, Utils.calculNumCase(3,8));
+    	  assertEquals(77, Utils.calculNumCase(4,8));
+    	  assertEquals(78, Utils.calculNumCase(5,8));
+    	  assertEquals(79, Utils.calculNumCase(6,8));
+    	  assertEquals(80, Utils.calculNumCase(7,8));
+    	  assertEquals(81, Utils.calculNumCase(8,8));
 
 
     }

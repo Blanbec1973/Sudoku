@@ -5,6 +5,7 @@ import model.grille.Grille;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import resolution.ResolutionAction;
+import utils.Utils;
 
 import java.nio.file.Paths;
 
@@ -54,7 +55,7 @@ class HistorisationServiceTest {
         assertTrue(historisationService.canReloadLastHistoricization());
 
         historisationService.supprimeDerniereGrille(grille);
-        assertTrue(grille.isCaseATrouver(Grille.calculNumCase(0, 5))); // vérifie que la case est revenue à l'état précédent
+        assertTrue(grille.isCaseATrouver(Utils.calculNumCase(0, 5))); // vérifie que la case est revenue à l'état précédent
     }
 
     @Test
