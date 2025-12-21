@@ -3,7 +3,7 @@ package resolution;
 import model.grille.CandidatsCase;
 import model.grille.CaseContext;
 import model.grille.Grille;
-import utils.Utils;
+import model.grille.CandidatUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +93,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 	protected abstract boolean traiteCouple(CaseContext context, CandidatsCase paireCandidats);
 
 	public void calculIntersectionDeuxCases(CandidatsCase c1, CandidatsCase c2) {
-		CandidatsCase cInter = Utils.calculEtLogique2Candidats(c1, c2);
+		CandidatsCase cInter = CandidatUtils.calculEtLogique2Candidats(c1, c2);
 		int nbInter = cInter.getNombreCandidats();
 		if (nbInter ==1) {nb1inter+=1;}
 		if (nbInter ==2) {nb2inter+=1;}

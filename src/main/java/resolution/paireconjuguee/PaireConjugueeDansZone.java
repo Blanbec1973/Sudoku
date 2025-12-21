@@ -5,6 +5,7 @@ import model.grille.Grille;
 import resolution.MethodeResolution;
 import resolution.ResolutionAction;
 import resolution.ZoneType;
+import model.grille.CandidatUtils;
 import utils.Utils;
 
 import java.util.Arrays;
@@ -89,8 +90,8 @@ public class PaireConjugueeDansZone extends MethodeResolution {
 
     Optional<ResolutionAction> searchCandidateInLigne(CaseContext context, CaseContext context2) {
         int y = context.getY();
-        int c1 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
-        int c2 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
+        int c1 = CandidatUtils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
+        int c2 = CandidatUtils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
         int[] candidats = {c1, c2};
 
         for (int abs = 0; abs < 9; abs++) {
@@ -108,8 +109,8 @@ public class PaireConjugueeDansZone extends MethodeResolution {
 
     Optional<ResolutionAction> searchCandidateInColumn(CaseContext context, CaseContext context2) {
         int x = context.getX();
-        int c1 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
-        int c2 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
+        int c1 = CandidatUtils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
+        int c2 = CandidatUtils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
         int[] candidats = {c1, c2};
 
         for (int ord = 0; ord < 9; ord++) {
@@ -125,8 +126,8 @@ public class PaireConjugueeDansZone extends MethodeResolution {
         return Optional.empty();
     }
     Optional<ResolutionAction> searchCandidateInBloc(CaseContext context, CaseContext context2) {
-        int c1 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
-        int c2 = Utils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
+        int c1 = CandidatUtils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 1);
+        int c2 = CandidatUtils.trouveCandidatNumero(grille.getCandidats(context.getNumCase()), 2);
         int[] candidats = {c1, c2};
 
         for (int xAction=context.getxRegion();xAction<context.getxRegion()+3;xAction++) {

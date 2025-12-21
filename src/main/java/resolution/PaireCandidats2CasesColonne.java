@@ -3,6 +3,7 @@ package resolution;
 import model.grille.CandidatsCase;
 import model.grille.CaseContext;
 import model.grille.Grille;
+import model.grille.CandidatUtils;
 import utils.Utils;
 
 public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
@@ -19,8 +20,8 @@ public class PaireCandidats2CasesColonne extends PaireCandidats2Cases {
 		}
 		
 		if (nb2inter == 1 && nb1inter == 0) {
-			c1 = Utils.trouveCandidatNumero(paireCandidats, 1);
-			c2 = Utils.trouveCandidatNumero(paireCandidats, 2);
+			c1 = CandidatUtils.trouveCandidatNumero(paireCandidats, 1);
+			c2 = CandidatUtils.trouveCandidatNumero(paireCandidats, 2);
 			return true;
 		}
 		
