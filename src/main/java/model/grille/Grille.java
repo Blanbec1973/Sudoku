@@ -72,8 +72,7 @@ public class Grille {
     public void elimineCandidat(int x, int y, int candidatAEliminer) {
         this.getCase(x,y).elimineCandidat(candidatAEliminer);
     }
-    //Questions sur les cases :
-    public boolean isCaseInitiale(int numCase) {return this.getCase(numCase).isCaseInitiale();}
+
     public boolean isCaseTrouvee(int numCase) {return this.getCase(numCase).isCaseTrouvee();}
     public boolean isCaseATrouver(int numCase) {
         int x = Utils.calculXsearch(numCase);
@@ -83,14 +82,11 @@ public class Grille {
     public boolean isCaseATrouver(int x, int y) {return this.getCase(x,y).isCaseATrouver();}
     public boolean nEstPasCaseInitiale(int x, int y) {return this.getCase(x, y).nEstPasCaseInitiale();}
     public boolean nEstPasCaseTrouvee(int x, int y) {return this.getCase(x, y).nEstPasCaseTrouvee();}
-    public boolean contientCandidatUnique(int numCase) {return this.getCase(numCase).contientCandidatUnique();}
     public boolean isCandidat(int numCase, int candidat) {return this.getCase(numCase).isCandidat(candidat);}
     public boolean isCandidat(int x, int y, int candidat) {return this.getCase(x,y).isCandidat(candidat);}
-    public int getValeurCase(int numCase) {return this.getCase(numCase).getValeur();}
-    public int getValeurCase(int x, int y) {return this.getCase(x,y).getValeur();}
-    public int getNombreCandidats(int numCase) {return this.getCase(numCase).getNombreCandidats();}
-    public int getRegion(int numCase) {return this.getCase(numCase).getRegion();}
-    public int calculValeurUnique(int numCase) {return this.getCase(numCase).calculValeurUnique();}
+
+
+
     public String construitLibelleCandidats(int numCase) {return this.getCase(numCase).construitLibelleCandidats();}
 
     @Override

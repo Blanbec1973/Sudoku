@@ -1,6 +1,7 @@
 package view;
 
 import model.grille.Grille;
+import model.grille.GrilleUtils;
 import utils.Utils;
 
 import javax.swing.*;
@@ -25,7 +26,7 @@ public class MyView implements ViewUpdater {
     private final JMenuItem menuResolution = new JMenuItem("Résolution");
     public JButton[][] getMaGrilleDisplay() {return maGrilleDisplay;}
     public JScrollPane getPanCommande() {return panCommande;}
-    public MonPaneauGrille getPanGrille() {return panGrille;}
+    private MonPaneauGrille getPanGrille() {return panGrille;}
     public JFrame getFenetre() {return fenetre;}
     public JTextArea getLogTextArea() {return logTextArea;}
     public JButton getBoutonAvance() {return this.boutonAvance;}
@@ -145,8 +146,8 @@ public class MyView implements ViewUpdater {
     public void refreshGrilleDisplay(Grille maGrille) {
         String valeurCase;
         for (int numCase=1;numCase<82;numCase++) {
-            valeurCase = String.valueOf(maGrille.getValeurCase(numCase));
-            if (maGrille.isCaseInitiale(numCase)) {
+            valeurCase = String.valueOf(GrilleUtils.getValeurCase(maGrille, numCase));
+            if (GrilleUtils.isCaseInitiale(maGrille, numCase)) {
                 this.setCaseInitiale(numCase, valeurCase);
                 }
             if (maGrille.isCaseATrouver(numCase)) {
@@ -184,10 +185,10 @@ public class MyView implements ViewUpdater {
     }
     @Override
     public void updateSingleCase(Grille grille, int numCase) {
-        if (grille.isCaseInitiale(numCase)) {
-            setCaseInitiale(numCase, String.valueOf(grille.getValeurCase(numCase)));
+        if (GrilleUtils.isCaseInitiale(grille, numCase)) {
+            setCaseInitiale(numCase, String.valueOf(GrilleUtils.getValeurCase(grille, numCase)));
         } else if (grille.isCaseTrouvee(numCase)) {
-            setCase(numCase, String.valueOf(grille.getValeurCase(numCase)));
+            setCase(numCase, String.valueOf(GrilleUtils.getValeurCase(grille, numCase)));
         } else {
             setCaseCandidats(numCase, grille.construitLibelleCandidats(numCase));
         }

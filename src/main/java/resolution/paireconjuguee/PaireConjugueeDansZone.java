@@ -43,7 +43,7 @@ public class PaireConjugueeDansZone extends MethodeResolution {
 
     @Override
     public Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement) {
-        if (grille.getNombreCandidats(context.getNumCase()) != 2) return Optional.empty();
+        if (CandidatUtils.getNombreCandidats(grille, context.getNumCase()) != 2) return Optional.empty();
 
         Optional<CaseContext> optContext2 = configurationChecker.apply(context);
         if (optContext2.isEmpty()) return Optional.empty();

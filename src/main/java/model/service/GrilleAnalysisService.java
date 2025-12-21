@@ -2,6 +2,7 @@ package model.service;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
+import model.grille.GrilleUtils;
 
 public class GrilleAnalysisService {
     private final Grille grille;
@@ -13,7 +14,7 @@ public class GrilleAnalysisService {
     public boolean checkPresenceValeurLigne(CaseContext context, int valeur) {
         int numLigne = context.getY();
         for (int i = 0; i < 9; i++) {
-            if (grille.getValeurCase(i, numLigne) == valeur) {
+            if (GrilleUtils.getValeurCase(grille, i, numLigne) == valeur) {
                 return true;
             }
         }
@@ -23,7 +24,7 @@ public class GrilleAnalysisService {
     public boolean checkPresenceValeurColonne(CaseContext context, int valeur) {
         int numColonne = context.getX();
         for (int i = 0; i < 9; i++) {
-            if (grille.getValeurCase(numColonne, i) == valeur) {
+            if (GrilleUtils.getValeurCase(grille, numColonne, i) == valeur) {
                 return true;
             }
         }
@@ -35,7 +36,7 @@ public class GrilleAnalysisService {
         int yStart = context.getyRegion();
         for (int x = xStart; x < xStart + 3; x++) {
             for (int y = yStart; y < yStart + 3; y++) {
-                if (grille.getValeurCase(x, y) == valeur) {
+                if (GrilleUtils.getValeurCase(grille, x, y) == valeur) {
                     return true;
                 }
             }

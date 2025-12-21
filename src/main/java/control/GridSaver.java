@@ -1,6 +1,7 @@
 package control;
 
 import model.grille.Grille;
+import model.grille.GrilleUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +22,7 @@ class GridSaver {
 		
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(fileName))) {
 			for (int numCase = 1; numCase < 82; numCase++) {
-				writeLine.append(grille.getValeurCase(numCase));
+				writeLine.append(GrilleUtils.getValeurCase(grille, numCase));
 				if (numCase % 9 == 0) {
 					b.write(writeLine.toString());
 					if (numCase != 81) b.newLine();

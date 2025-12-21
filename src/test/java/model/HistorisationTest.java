@@ -2,6 +2,7 @@ package model;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
+import model.grille.GrilleUtils;
 import model.grille.Historisation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,8 +27,8 @@ class HistorisationTest {
 	@Test
 	void testHistoriseGrille() {
 		histo.historiseGrille(grilleOrigine);
-		assertEquals(6,histo.getHistoGrille(0).getValeurCase(1));
-		assertTrue(histo.getHistoGrille(0).isCaseInitiale(1));
+		assertEquals(6, GrilleUtils.getValeurCase(histo.getHistoGrille(0),1));
+        assertTrue(GrilleUtils.isCaseInitiale(histo.getHistoGrille(0), 1));
 		assertTrue(histo.getHistoGrille(0).isCaseATrouver(2));
 		assertTrue(histo.getHistoGrille(0).isCandidat(2, 1));
 		assertFalse(histo.getHistoGrille(0).isCandidat(2, 2));
@@ -71,8 +72,8 @@ class HistorisationTest {
 		grille2.init(Paths.get(fileName).toAbsolutePath());
 		histo.reloadGrille(grille2);
 		assertEquals(1,histo.getHistoGrille().size());
-		assertTrue(histo.getHistoGrille(0).isCaseInitiale(1));
-		assertTrue(histo.getHistoGrille(0).isCaseInitiale(2));
+        assertTrue(GrilleUtils.isCaseInitiale(histo.getHistoGrille(0), 1));
+        assertTrue(GrilleUtils.isCaseInitiale(histo.getHistoGrille(0), 2));
 		assertTrue(histo.getHistoGrille(0).isCaseATrouver(3));
 	}
 

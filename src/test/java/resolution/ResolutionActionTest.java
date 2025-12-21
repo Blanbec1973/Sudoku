@@ -3,6 +3,7 @@ package resolution;
 import model.grille.CandidatsCase;
 import model.grille.CaseContext;
 import model.grille.Grille;
+import model.grille.GrilleUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ class ResolutionActionTest {
         action.applyTo(grille);
 
         assertTrue(grille.isCaseTrouvee(numCase));
-        assertEquals(5, grille.getValeurCase(numCase));
+        assertEquals(5, GrilleUtils.getValeurCase(grille, numCase));
     }
 
     @Test

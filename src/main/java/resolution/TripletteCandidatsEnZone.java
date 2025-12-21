@@ -1,10 +1,7 @@
 package resolution;
 
-import model.grille.CandidatsCase;
-import model.grille.CaseContext;
-import model.grille.Grille;
+import model.grille.*;
 import org.apache.logging.log4j.Level;
-import model.grille.CandidatUtils;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -95,10 +92,10 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
         CandidatsCase candidats = new CandidatsCase();
         for (int x=0; x<9; x++) {
             if (grille.isCaseTrouvee(Utils.calculNumCase(x, context.getY())) ||
-                    grille.isCaseInitiale(Utils.calculNumCase(x, context.getY()))) {
+                    GrilleUtils.isCaseInitiale(grille, Utils.calculNumCase(x, context.getY()))) {
                 logger.log(Level.DEBUG, "Colonne {} candidat à éliminer : {}", x,
-                        grille.getValeurCase(x, context.getY()));
-                candidats.elimineCandidat(grille.getValeurCase(x, context.getY()));
+                        GrilleUtils.getValeurCase(grille, x, context.getY()));
+                candidats.elimineCandidat(GrilleUtils.getValeurCase(grille, x, context.getY()));
             }
             logger.log(Level.DEBUG, "Candidats : {}",candidats);
         }
@@ -108,10 +105,10 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
         CandidatsCase candidats = new CandidatsCase();
         for (int y=0; y<9; y++) {
             if (grille.isCaseTrouvee(Utils.calculNumCase(context.getX(),y)) ||
-                grille.isCaseInitiale(Utils.calculNumCase(context.getX(),y))) {
+                GrilleUtils.isCaseInitiale(grille, Utils.calculNumCase(context.getX(),y))) {
                 logger.log(Level.DEBUG, "Ligne {} candidat à éliminer : {}", y,
-                        grille.getValeurCase(context.getX(), y));
-                candidats.elimineCandidat(grille.getValeurCase(context.getX(), y));
+                        GrilleUtils.getValeurCase(grille, context.getX(), y));
+                candidats.elimineCandidat(GrilleUtils.getValeurCase(grille, context.getX(), y));
             }
             logger.log(Level.DEBUG, "Candidats : {}",candidats);
         }
@@ -125,9 +122,9 @@ public class TripletteCandidatsEnZone extends MethodeResolution {
         logger.log(Level.DEBUG, "    Context : {}",context);
         for (int abs = xRegion; abs < xRegion + 3; abs++) {
             for (int ord = yRegion; ord < yRegion + 3; ord++) {
-                if (grille.isCaseInitiale(Utils.calculNumCase(abs, ord)) ||
+                if (GrilleUtils.isCaseInitiale(grille, Utils.calculNumCase(abs, ord)) ||
                         grille.isCaseTrouvee(Utils.calculNumCase(abs, ord)))
-                    candidats.elimineCandidat(grille.getValeurCase(abs, ord));
+                    candidats.elimineCandidat(GrilleUtils.getValeurCase(grille, abs, ord));
             }
         }
         logger.log(Level.DEBUG, "Fin listeCandidatsEnBloc, candidats : {}",candidats);

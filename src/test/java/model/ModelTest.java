@@ -1,5 +1,6 @@
 package model;
 
+import model.grille.GrilleUtils;
 import model.service.HistorisationService;
 import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
@@ -50,7 +51,7 @@ class ModelTest {
 		model.detecteSuivant(false);
 		assertTrue(model.getGrille().isCaseATrouver(39));
 		model.detecteSuivant(true);
-		assertEquals(6, model.getGrille().getValeurCase(39));
+		assertEquals(6, GrilleUtils.getValeurCase(model.getGrille(),39));
 		verify(messageService, times(1)).createSolutionMessage(Mockito.any());
 	}
 

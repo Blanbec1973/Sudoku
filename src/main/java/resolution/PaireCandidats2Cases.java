@@ -29,7 +29,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 		candidatAEliminer=0;
 
 		//On ne traite la case en cours que si elle a plus de 2 candidats :
-		if (grille.getNombreCandidats(context.getNumCase())<3) return Optional.empty();
+		if (CandidatUtils.getNombreCandidats(grille, context.getNumCase())<3) return Optional.empty();
 		
 		// Recherche des paires de candidats dans la case en cours, mise en tableau :
 		List<CandidatsCase> tabCandidatsLocal = inserePaireCandidatsDansTab(context);
@@ -45,7 +45,7 @@ public abstract class PaireCandidats2Cases extends MethodeResolution {
 
 
 		if (!trouve) return Optional.empty();
-		if (grille.getNombreCandidats(context.getNumCase()) == 2) return Optional.empty();
+		if (CandidatUtils.getNombreCandidats(grille, context.getNumCase()) == 2) return Optional.empty();
 		
 		//Recherche du premier candidat à éliminer : 
 		for (candidatAEliminer=1;candidatAEliminer<10;candidatAEliminer++) {

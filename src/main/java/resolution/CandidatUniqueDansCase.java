@@ -2,6 +2,7 @@ package resolution;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
+import model.grille.GrilleUtils;
 
 import java.util.Optional;
 
@@ -17,14 +18,14 @@ public class CandidatUniqueDansCase extends MethodeResolution {
 		
 		if (!caseTrouvee) return Optional.empty();
 		
-		int solution = grille.calculValeurUnique(context.getNumCase());
+		int solution = GrilleUtils.calculValeurUnique(grille, context.getNumCase());
 		int numCaseAction = context.getNumCase();
 		return Optional.of(new ResolutionAction(numCaseAction, solution, null, this, context, null));
 	}
 
 	private boolean detecteConfiguration(CaseContext context) {
 
-		return (grille.contientCandidatUnique(context.getNumCase()));
+		return (GrilleUtils.contientCandidatUnique(grille, context.getNumCase()));
 	}
 
 }

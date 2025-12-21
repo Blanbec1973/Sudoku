@@ -1,6 +1,11 @@
 package model.grille;
 
 public class CandidatUtils {
+
+    public static int getNombreCandidats(Grille grille, int numCase) {
+        return grille.getCase(numCase).getNombreCandidats();
+    }
+
     public static boolean [] calculOuLogique2Candidats(boolean[] candidats1 , boolean[] candidats2) {
         boolean[] resultat = new boolean [10];
         for (int i=0;i<resultat.length;i++) {
