@@ -2,7 +2,9 @@ package model.service;
 
 import model.grille.Grille;
 import model.grille.Historisation;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HistorisationService {
 
     private final Historisation historisation = new Historisation();

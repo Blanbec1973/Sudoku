@@ -2,6 +2,7 @@ package view;
 
 import model.grille.Grille;
 import model.grille.GrilleUtils;
+import org.springframework.beans.factory.annotation.Value;
 import utils.Utils;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+@org.springframework.stereotype.Component
 public class MyView implements ViewUpdater {
 	private final JFrame fenetre = new JFrame();
     private final JButton [][] maGrilleDisplay = new JButton [9][9];
@@ -41,7 +43,7 @@ public class MyView implements ViewUpdater {
     public JMenuItem getMenuResolution() {return this.menuResolution;}
     private final String pathName;
         
-    public MyView(String pathName){
+    public MyView(@Value("$(initialDirectory)") String pathName){
         this.pathName = pathName;
         this.getFenetre().setTitle("Sudoku");
         this.getFenetre().setSize(1200,660);

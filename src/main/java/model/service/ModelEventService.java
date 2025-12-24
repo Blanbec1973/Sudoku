@@ -3,7 +3,9 @@ package model.service;
 import model.EventFromModel;
 import model.ModelEventPublisher;
 import model.grille.Grille;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ModelEventService {
 
     private final ModelEventPublisher publisher;

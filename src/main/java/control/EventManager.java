@@ -7,6 +7,8 @@ import model.ModelListener;
 import model.grille.Grille;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import view.MyView;
 import view.ViewUpdater;
 
@@ -18,11 +20,13 @@ import java.nio.file.Paths;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@Service
 public class EventManager implements ActionListener, ModelListener, ViewUpdater {
     private Model model;
     private final ViewUpdater viewUpdater;
     private final MyProperties properties;
     private static final Logger logger = LogManager.getLogger(EventManager.class);
+    @Autowired
     public EventManager(ViewUpdater viewUpdater, MyProperties properties) {
         this.viewUpdater = viewUpdater;
         this.properties=properties;

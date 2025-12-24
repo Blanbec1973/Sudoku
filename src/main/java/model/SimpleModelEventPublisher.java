@@ -1,10 +1,12 @@
 package model;
 
 import model.grille.Grille;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SimpleModelEventPublisher implements ModelEventPublisher {
     private final List<ModelListener> listeners = new ArrayList<>();
 
