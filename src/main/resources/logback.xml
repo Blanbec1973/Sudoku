@@ -1,0 +1,29 @@
+
+<configuration>
+    <!-- Appender console -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender fichier -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        logs/sudoku.log
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Niveau racine : INFO (change à DEBUG si besoin) -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- Exemple : activer DEBUG pour ton package -->
+    <!-- <logger name="model" level="DEBUG"/>
+    <logger name="control" level="DEBUG"/>
+    <logger name="resolution" level="DEBUG"/> -->
+</configuration>

@@ -2,15 +2,15 @@ package control;
 
 import model.grille.Grille;
 import model.grille.GrilleUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 class GridSaver {
-	private static final Logger logger = LogManager.getLogger(GridSaver.class);
+	private static final Logger logger = LoggerFactory.getLogger(GridSaver.class);
 
 	private GridSaver() {
 		throw new IllegalStateException("Utility class");
@@ -30,7 +30,7 @@ class GridSaver {
 				} 
 			}
 		} catch (IOException ex) {
-			logger.fatal("Exception : {}",ex.getMessage());
+			logger.error("Exception : {}",ex.getMessage());
 		}
 		
 	}	

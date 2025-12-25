@@ -1,7 +1,7 @@
 package control;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.util.Properties;
 @Component
 public class MyProperties {
     final Properties prop = new Properties();
-    private static final Logger logger = LogManager.getLogger(MyProperties.class);
+    private static final Logger logger = LoggerFactory.getLogger(MyProperties.class);
 
     public MyProperties(@Value("$(config.file)") String nomFichier) {
         logger.info("File to open : {}", nomFichier);
@@ -22,7 +22,7 @@ public class MyProperties {
             prop.load(input);
 
         } catch (IOException ex) {
-            logger.fatal("Exception : {}",ex.getMessage());
+            logger.error("Exception : {}",ex.getMessage());
         }
     }
 

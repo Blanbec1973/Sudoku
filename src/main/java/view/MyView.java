@@ -2,8 +2,8 @@ package view;
 
 import model.grille.Grille;
 import model.grille.GrilleUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import utils.Utils;
 
@@ -44,7 +44,7 @@ public class MyView implements ViewUpdater {
     }
     public JMenuItem getMenuResolution() {return this.menuResolution;}
     private final String pathName;
-    private static final Logger logger = LogManager.getLogger(MyView.class);
+    private static final Logger logger = LoggerFactory.getLogger(MyView.class);
 
     public MyView(@Value("$(initialDirectory)") String pathName){
         this.pathName = pathName;

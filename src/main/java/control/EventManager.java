@@ -5,8 +5,8 @@ import model.EventFromModelType;
 import model.Model;
 import model.ModelListener;
 import model.grille.Grille;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import view.MyView;
@@ -25,7 +25,7 @@ public class EventManager implements ActionListener, ModelListener, ViewUpdater 
     private Model model;
     private final ViewUpdater viewUpdater;
     private final MyProperties properties;
-    private static final Logger logger = LogManager.getLogger(EventManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(EventManager.class);
     @Autowired
     public EventManager(ViewUpdater viewUpdater, MyProperties properties) {
         this.viewUpdater = viewUpdater;

@@ -1,8 +1,8 @@
 package model.grille;
 
 import model.service.GrilleService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import resolution.ResolutionAction;
 import utils.Utils;
@@ -17,7 +17,7 @@ import java.util.List;
 @Component
 public class Grille {
     private final Case[][] mesCases = new Case [9][9];
-    private static final Logger logger = LogManager.getLogger(Grille.class.getPackage().getName());
+    private static final Logger logger = LoggerFactory.getLogger(Grille.class.getPackage().getName());
     private final List<Integer> casesAtrouver= new ArrayList<>();
     private final GrilleService grilleService;
     public Grille() {
@@ -52,7 +52,7 @@ public class Grille {
                 y++;
             }
         } catch (IOException | NullPointerException ex) {
-            logger.fatal("Exception : {}",ex.getMessage());
+            logger.error("Exception : {}",ex.getMessage());
             System.exit(-1);
         }
         logger.info("Chargement OK fichier : {}",path.getFileName());

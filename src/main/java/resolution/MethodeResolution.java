@@ -3,8 +3,9 @@ package resolution;
 import model.grille.CaseContext;
 import model.grille.Grille;
 import model.service.GrilleService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public abstract class MethodeResolution {
 	protected final Grille grille;
 	protected final GrilleService grilleService;
 
-	static final Logger logger = LogManager.getLogger(MethodeResolution.class);
+	static final Logger logger = LoggerFactory.getLogger(MethodeResolution.class);
 
 	protected MethodeResolution(Grille grille) {
 		this.grille=grille;
