@@ -2,6 +2,8 @@ package view;
 
 import model.grille.Grille;
 import model.grille.GrilleUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import utils.Utils;
 
@@ -42,7 +44,8 @@ public class MyView implements ViewUpdater {
     }
     public JMenuItem getMenuResolution() {return this.menuResolution;}
     private final String pathName;
-        
+    private static final Logger logger = LogManager.getLogger(MyView.class);
+
     public MyView(@Value("$(initialDirectory)") String pathName){
         this.pathName = pathName;
         this.getFenetre().setTitle("Sudoku");
@@ -122,7 +125,9 @@ public class MyView implements ViewUpdater {
     }
     
     public void setCaseAvantExplication(int x, int y) {
+        logger.debug("Dans setCaseAvantExplication : {} {}", x, y);
         maGrilleDisplay[x][y].setBackground(Color.YELLOW);
+        panGrille.repaint();
     }
     
      public void setCaseCandidats(int numCase, String value) {
@@ -164,6 +169,7 @@ public class MyView implements ViewUpdater {
 
     @Override
     public void highlightCase(int numCase) {
+        logger.info("Highlight in MyView.");
         this.setCaseAvantExplication(Utils.calculXsearch(numCase), Utils.calculYsearch(numCase));
     }
 
@@ -248,6 +254,7 @@ public class MyView implements ViewUpdater {
         button.setMaximumSize(expectedDimension);
         button.setMinimumSize(expectedDimension);
         button.setSize(50, 50);
+        button.setOpaque(true);
         button.setBackground(Color.WHITE);
         Border lineBorder = BorderFactory.createLineBorder(Color.black, 1);
         button.setBorder(lineBorder);

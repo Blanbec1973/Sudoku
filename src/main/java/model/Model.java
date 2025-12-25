@@ -4,6 +4,8 @@ import model.grille.Grille;
 import model.service.HistorisationService;
 import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import resolution.MethodeResolution;
@@ -21,6 +23,7 @@ public class Model {
 	private final Grille grille;
 	private final ArrayList<MethodeResolution> listeMethodes;
 	private final HistorisationService historisationService;
+    private static final Logger logger = LogManager.getLogger(Model.class);
 
     @Autowired
 	public Model(ModelEventService modelEventService, ResolutionMessageService messageService, HistorisationService historisationService) {
@@ -44,6 +47,7 @@ public class Model {
 			if (goPourChangement) {
 				traiteChangement(a);
 			} else {
+                logger.debug("Highlight : {}", a.getNumCaseAction());
 				modelEventService.publishHighlight(grille, a.getNumCaseAction());
 			}
 			return true;

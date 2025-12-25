@@ -100,6 +100,7 @@ public class EventManager implements ActionListener, ModelListener, ViewUpdater 
     @Override
     public void onEventFromModel(Grille grille, EventFromModel eventFromModel) {
         if (eventFromModel.getEventFromModelType() == EventFromModelType.HIGHLIGHT_CASE) {
+            logger.debug("Highlight in EventManager.");
             viewUpdater.highlightCase(eventFromModel.getNumCase());
         } else {
                 viewUpdater.refreshGrilleDisplay(grille);
