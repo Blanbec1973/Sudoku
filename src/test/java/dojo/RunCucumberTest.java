@@ -1,9 +1,13 @@
 package dojo;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import org.junit.runner.RunWith;  
+import io.cucumber.junit.CucumberOptions;
+import io.cucumber.junit.Cucumber;
+import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", strict = true, monochrome = true, plugin = { "pretty" })
+@CucumberOptions(
+        features = "src/test/resources",
+        plugin = { "pretty" },
+        monochrome = true
+)
 public class RunCucumberTest { }
