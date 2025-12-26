@@ -1,6 +1,5 @@
 package control;
 
-import model.MessageManager;
 import model.Model;
 import model.SimpleModelEventPublisher;
 import org.springframework.beans.factory.annotation.Autowired;

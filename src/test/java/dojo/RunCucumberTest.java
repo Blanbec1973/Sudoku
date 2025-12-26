@@ -14,6 +14,7 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "dojo")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
+@SuppressWarnings("java:S2187") // Sonar rule : "Test classes should include tests"
 public class RunCucumberTest {
 }
 
