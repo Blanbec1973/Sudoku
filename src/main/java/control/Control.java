@@ -23,26 +23,16 @@ public class Control {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MyProperties myProperties = context.getBean(MyProperties.class);
-        //MyProperties myProperties = new MyProperties("config.properties");
 		MyView myView= context.getBean(MyView.class);
-        //MyView myView = new MyView(myProperties.getProperty("InitialDirectory"));
 
 		//services :
-		MessageManager messageManager = context.getBean(MessageManager.class);
-        //MessageManager messageManager = new MessageManager(myProperties);
-		//HistorisationService historisationService = new HistorisationService();
-		SimpleModelEventPublisher publisher = context.getBean(SimpleModelEventPublisher.class);
-        //SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
-		//ModelEventService eventService = new ModelEventService(publisher);
-		//ResolutionMessageService messageService = new ResolutionMessageService(messageManager);
+        SimpleModelEventPublisher publisher = context.getBean(SimpleModelEventPublisher.class);
 
 		// Model
 		Model model = context.getBean(Model.class);
-        //Model model = new Model(eventService, messageService, historisationService);
 
 		// EventManager
 		EventManager eventManager = context.getBean(EventManager.class);
-        //EventManager eventManager = new EventManager(myView, myProperties);
 		publisher.addListener(eventManager);
 		eventManager.setModel(model);
 		myView.registerController(eventManager);
