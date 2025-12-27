@@ -23,7 +23,6 @@ class CandidatUniqueDansColonneTest {
 		grille.init(Paths.get(fileName).toAbsolutePath());
 		methode = new CandidatUniqueDansZone(
 				grille,
-				grille.getGrilleService()::checkPresenceCandidatColonne,
 				ZoneType.COLONNE
 		);
 	}

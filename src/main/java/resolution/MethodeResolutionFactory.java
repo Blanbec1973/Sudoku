@@ -18,9 +18,9 @@ public class MethodeResolutionFactory {
 
         // Méthodes de base
         methodes.add(new CandidatUniqueDansCase(grille));
-        methodes.add(new CandidatUniqueDansZone(grille, grille.getGrilleService()::checkPresenceCandidatLigne, ZoneType.LIGNE));
-        methodes.add(new CandidatUniqueDansZone(grille, grille.getGrilleService()::checkPresenceCandidatColonne, ZoneType.COLONNE));
-        methodes.add(new CandidatUniqueDansZone(grille, grille.getGrilleService()::checkPresenceCandidatRegion, ZoneType.BLOC));
+        methodes.add(new CandidatUniqueDansZone(grille, ZoneType.LIGNE));
+        methodes.add(new CandidatUniqueDansZone(grille, ZoneType.COLONNE));
+        methodes.add(new CandidatUniqueDansZone(grille, ZoneType.BLOC));
 
         // Paires
         methodes.add(new PaireCandidats2CasesColonne(grille));

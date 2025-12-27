@@ -22,7 +22,6 @@ class CandidatUniqueDansRegionTest {
 		grille.init(Paths.get(fileName).toAbsolutePath());
 		methode = new CandidatUniqueDansZone(
 				grille,
-				grille.getGrilleService()::checkPresenceCandidatRegion,
 				ZoneType.BLOC
 		);
 	}
