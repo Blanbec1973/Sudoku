@@ -41,20 +41,20 @@ class ResolutionMethodRegistryTest {
     void testAffichageConfigConsole() {
         // On vérifie que chaque entrée a bien ses champs renseignés
         config.getResolutionMethods().forEach(conf -> {
-            assertNotNull(conf.getClassName(), "Le nom de la classe ne doit pas être nul");
-            assertTrue(conf.getOrder() > 0, "L'ordre doit être strictement positif");
+            assertNotNull(conf.className(), "Le nom de la classe ne doit pas être nul");
+            assertTrue(conf.order() > 0, "L'ordre doit être strictement positif");
             // Zone peut être null (facultative)
         });
 
         // Affichage console (pour debug manuel, pas d'assertion ici)
         System.out.println("Table de configuration des méthodes de résolution :");
         config.getResolutionMethods().stream()
-                .sorted(java.util.Comparator.comparingInt(ResolutionMethodConfig::getOrder))
+                .sorted(java.util.Comparator.comparingInt(ResolutionMethodConfig::order))
                 .forEach(conf -> System.out.printf(
                         "Classe: %-40s | Zone: %-8s | Ordre: %d%n",
-                        conf.getClassName(),
-                        conf.getZone() != null ? conf.getZone() : "",
-                        conf.getOrder()
+                        conf.className(),
+                        conf.zone() != null ? conf.zone() : "",
+                        conf.order()
                 ));
     }
 
@@ -62,11 +62,11 @@ class ResolutionMethodRegistryTest {
     void testTriParOrdre() {
         List<ResolutionMethodConfig> methods = config.getResolutionMethods();
         List<ResolutionMethodConfig> sorted = methods.stream()
-                .sorted(java.util.Comparator.comparingInt(ResolutionMethodConfig::getOrder))
+                .sorted(java.util.Comparator.comparingInt(ResolutionMethodConfig::order))
                 .toList();
 
         for (int i = 1; i < sorted.size(); i++) {
-            assertTrue(sorted.get(i).getOrder() >= sorted.get(i - 1).getOrder(),
+            assertTrue(sorted.get(i).order() >= sorted.get(i - 1).order(),
                     "La configuration doit être triée par ordre croissant");
         }
     }
@@ -78,12 +78,10 @@ class ResolutionMethodRegistryTest {
 
     @Test    void testPresenceDesClassesAttendues() {
         List<MethodeResolution> methods = registry.getOrderedMethods();
-        // Exemples de classes attendues (à adapter selon ta config YAML)
         Set<String> expectedClasses = Set.of("CandidatUniqueDansCase",
                                              "CandidatUniqueDansZone",
                                              "PaireCandidats2CasesColonne",
                                              "TripletteCandidatsEnZone");
-                // Ajoute ici toutes les classes attendues        );
         Set<String> actualClasses = methods.stream()
                 .map(m -> m.getClass().getSimpleName())
                 .collect(Collectors.toSet());

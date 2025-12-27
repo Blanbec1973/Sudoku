@@ -35,7 +35,6 @@ public class Model {
 
         ResolutionMethodRegistry registry = new ResolutionMethodRegistry(grille);
         listeMethodes = (ArrayList<MethodeResolution>) registry.getOrderedMethods();
-        //listeMethodes = (ArrayList<MethodeResolution>) MethodeResolutionFactory.createAll(grille);
 	}
 
 	public Grille getGrille() {return grille;}

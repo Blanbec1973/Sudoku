@@ -33,12 +33,12 @@ public class ResolutionMethodRegistry {
         ResolutionMethodsConfig config = ConfigLoader.loadConfig(is);
 
         config.getResolutionMethods().stream()
-                .sorted(Comparator.comparingInt(ResolutionMethodConfig::getOrder))
+                .sorted(Comparator.comparingInt(ResolutionMethodConfig::order))
                 .forEach(conf -> logger.info(
                         String.format("Class: %-60s | Zone: %-8s | Order: %-2d |",
-                        conf.getClassName(),
-                        conf.getZone() != null ? conf.getZone() : "",
-                        conf.getOrder()
+                        conf.className(),
+                        conf.zone() != null ? conf.zone() : "",
+                        conf.order()
                 )));
 
         orderedMethods = config.getResolutionMethods().stream()
@@ -47,8 +47,8 @@ public class ResolutionMethodRegistry {
     }
 
     private MethodeResolution instantiateResolutionMethod(ResolutionMethodConfig conf) {
-        String className = conf.getClassName();
-        ZoneType zone = conf.getZone();
+        String className = conf.className();
+        ZoneType zone = conf.zone();
         Class<?> clazz;
         logger.info("Instantiation {} with zone {}", className, zone);
         try {
