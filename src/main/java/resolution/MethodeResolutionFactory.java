@@ -1,8 +1,6 @@
 package resolution;
 
 import model.grille.Grille;
-import resolution.candidatunique.CandidatUniqueDansZone;
-import resolution.paireconjuguee.PaireConjugueeDansZone;
 
 import java.util.ArrayList;
 import java.util.List;

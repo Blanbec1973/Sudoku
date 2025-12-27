@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import resolution.MethodeResolution;
-import resolution.MethodeResolutionFactory;
 import resolution.ResolutionAction;
+import resolution.ResolutionMethodRegistry;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -33,7 +33,9 @@ public class Model {
 
 		grille =new Grille();
 
-	    listeMethodes = (ArrayList<MethodeResolution>) MethodeResolutionFactory.createAll(grille);
+        ResolutionMethodRegistry registry = new ResolutionMethodRegistry(grille);
+        listeMethodes = (ArrayList<MethodeResolution>) registry.getOrderedMethods();
+        //listeMethodes = (ArrayList<MethodeResolution>) MethodeResolutionFactory.createAll(grille);
 	}
 
 	public Grille getGrille() {return grille;}

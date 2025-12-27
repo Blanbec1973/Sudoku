@@ -2,7 +2,6 @@ package resolution;
 
 import model.grille.Grille;
 import org.junit.jupiter.api.Test;
-import resolution.paireconjuguee.PaireConjugueeDansZone;
 
 import java.util.List;
 

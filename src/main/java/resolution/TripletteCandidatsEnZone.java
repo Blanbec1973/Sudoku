@@ -14,7 +14,6 @@ import java.util.function.Function;
 // candidats de ces cases.
 // Méthode inutile s'il y a moins de 4 cases à trouver dans la zone.
 
-
 public class TripletteCandidatsEnZone extends MethodeResolution {
     public static final String TRIPLETTE_NB_CASES = "Triplette : {} - NbCases : {}";
     public static final String BOUCLE_RANG = "Boucle : {} - rang : {}";

@@ -1,11 +1,8 @@
-package resolution.paireconjuguee;
+package resolution;
 
+import model.grille.CandidatUtils;
 import model.grille.CaseContext;
 import model.grille.Grille;
-import resolution.MethodeResolution;
-import resolution.ResolutionAction;
-import resolution.ZoneType;
-import model.grille.CandidatUtils;
 import utils.Utils;
 
 import java.util.Arrays;

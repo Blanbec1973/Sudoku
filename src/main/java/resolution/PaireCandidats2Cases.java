@@ -1,9 +1,9 @@
 package resolution;
 
+import model.grille.CandidatUtils;
 import model.grille.CandidatsCase;
 import model.grille.CaseContext;
 import model.grille.Grille;
-import model.grille.CandidatUtils;
 
 import java.util.ArrayList;
 import java.util.List;

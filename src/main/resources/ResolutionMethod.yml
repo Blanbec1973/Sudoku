@@ -1,0 +1,49 @@
+
+resolutionMethods:
+  - class: resolution.CandidatUniqueDansCase
+    order: 1
+
+  - class: resolution.CandidatUniqueDansZone
+    zone: LIGNE
+    order: 2
+  - class: resolution.CandidatUniqueDansZone
+    zone: COLONNE
+    order: 3
+  - class: resolution.CandidatUniqueDansZone
+    zone: BLOC
+    order: 4
+
+  - class: resolution.PaireCandidats2CasesColonne
+    order: 5
+  - class: resolution.PaireCandidats2CasesLigne
+    order: 6
+
+  - class: resolution.PaireConjugueeDansZone
+    zone: LIGNE
+    order: 7
+  - class: resolution.PaireConjugueeDansZone
+    zone: COLONNE
+    order: 8
+  - class: resolution.PaireConjugueeDansZone
+    zone: BLOC
+    order: 9
+
+  - class: resolution.AbsenceCandidatEnColonneDansLesAutresRegions
+    order: 10
+  - class: resolution.AbsenceCandidatEnLigneDansLesAutresRegions
+    order: 11
+
+  - class: resolution.TripletteCandidatsEnZone
+    zone: LIGNE
+    order: 12
+  - class: resolution.TripletteCandidatsEnZone
+    zone: COLONNE
+    order: 13
+  - class: resolution.TripletteCandidatsEnZone
+    zone: BLOC
+    order: 14
+
+  - class: resolution.CandidatDansColonneUniqueDuneRegion
+    order: 15
+  - class: resolution.CandidatDansLigneUniqueDuneRegion
+    order: 16

@@ -3,12 +3,10 @@ package resolution;
 import model.grille.CaseContext;
 import model.grille.Grille;
 import model.grille.GrilleUtils;
-import org.springframework.core.annotation.Order;
 
 import java.util.Optional;
 
-@ResolutionMethod
-@Order(1)
+
 public class CandidatUniqueDansCase extends MethodeResolution {
 
 	public CandidatUniqueDansCase(Grille grille) {

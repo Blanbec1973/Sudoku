@@ -1,17 +1,11 @@
-package resolution.candidatunique;
+package resolution;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
-import org.springframework.core.annotation.Order;
-import resolution.MethodeResolution;
-import resolution.ResolutionAction;
-import resolution.ResolutionMethod;
-import resolution.ZoneType;
 
 import java.util.Optional;
 import java.util.function.BiPredicate;
-@ResolutionMethod(zones = {ZoneType.LIGNE, ZoneType.COLONNE, ZoneType.BLOC})
-@Order(2)
+
 public class CandidatUniqueDansZone extends MethodeResolution {
     private final BiPredicate<CaseContext, Integer> presenceChecker;
 

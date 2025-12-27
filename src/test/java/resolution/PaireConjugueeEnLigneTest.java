@@ -1,12 +1,10 @@
-package resolution.paireconjuguee;
+package resolution;
 
 import model.grille.CaseContext;
 import model.grille.Grille;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import resolution.ResolutionAction;
-import resolution.ZoneType;
 
 import java.nio.file.Paths;
 

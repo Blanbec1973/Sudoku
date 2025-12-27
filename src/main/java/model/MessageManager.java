@@ -4,9 +4,9 @@ import control.MyProperties;
 import model.grille.CaseContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import resolution.CandidatUniqueDansZone;
+import resolution.PaireConjugueeDansZone;
 import resolution.ResolutionAction;
-import resolution.candidatunique.CandidatUniqueDansZone;
-import resolution.paireconjuguee.PaireConjugueeDansZone;
 
 @Service
 public class MessageManager {

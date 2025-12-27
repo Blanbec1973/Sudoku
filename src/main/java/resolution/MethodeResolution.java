@@ -6,7 +6,6 @@ import model.service.GrilleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.util.Optional;
 
 //Méthodes de résolution par ordre hiérarchique :
