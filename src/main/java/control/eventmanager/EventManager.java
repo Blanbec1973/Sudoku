@@ -14,8 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Timer;
-import java.util.TimerTask;
 
 @Service
 public class EventManager implements ActionListener {
@@ -23,12 +21,14 @@ public class EventManager implements ActionListener {
     private final ViewUpdater viewUpdater;
     private final MyProperties properties;
     private final ModelToViewSynchonizer synchonizer;
+    private final ResolutionService resolutionService;
     private static final Logger logger = LoggerFactory.getLogger(EventManager.class);
     @Autowired
-    public EventManager(ViewUpdater viewUpdater, MyProperties properties, ModelToViewSynchonizer synchonizer) {
+    public EventManager(ViewUpdater viewUpdater, MyProperties properties, ModelToViewSynchonizer synchonizer, ResolutionService resolutionService) {
         this.viewUpdater = viewUpdater;
         this.properties=properties;
         this.synchonizer = synchonizer;
+        this.resolutionService = resolutionService;
     }
 
     public void setModel(Model model) {this.model=model;}
@@ -62,13 +62,14 @@ public class EventManager implements ActionListener {
                 break;
 
             case "RESOLUTION":
-                resolution();
+                resolutionService.resolution();
                 break;
 
             default:
                 throw new IllegalArgumentException("Commande inconnue !");
         }
     }
+
     private void handleRecule() {
         // Vérifier si on peut revenir en arrière
         if (!model.canReloadLastHistoricization()) {
@@ -83,77 +84,10 @@ public class EventManager implements ActionListener {
         viewUpdater.removeLastLogLine(); // Ajout pour corriger le problème des messages
     }
 
-
-    private void resolution() {
-        logger.info("Demande de résolution globale.");
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (!model.detecteSuivant(true))
-                    timer.cancel();
-            }
-        }, 0, 200); // Démarre immédiatement, répète toutes les secondes
-
-    }
-
     public void reloadGrille(Path path) {
         model.reload(path);
         viewUpdater.refreshGrilleDisplay(model.getGrille());
         viewUpdater.resetView(properties.getProperty("StartMessage"));
     }
-
-
-//    // Implémentation des méthodes de ViewUpdater
-//    @Override
-//    public void refreshGrilleDisplay(Grille grille) {
-//        viewUpdater.refreshGrilleDisplay(grille);
-//    }
-//
-//    @Override
-//    public void highlightCase(int numCase) {
-//        viewUpdater.highlightCase(numCase);
-//    }
-//
-//    @Override
-//    public void insertDisplayMessage(String message) {
-//        viewUpdater.insertDisplayMessage(message);
-//    }
-//
-//    @Override
-//    public void updateResolutionRank(int delta) {
-//        viewUpdater.updateResolutionRank(delta);
-//    }
-//
-//    @Override
-//    public void resetView(String startMessage) {
-//        viewUpdater.resetView(startMessage);
-//    }
-//
-//    @Override
-//    public void updateSingleCase(Grille grille, int numCase) {
-//        viewUpdater.updateSingleCase(grille, numCase);
-//    }
-//
-//    @Override
-//    public Color getCaseBackground(int numCase) {
-//        return viewUpdater.getCaseBackground(numCase);
-//    }
-//
-//    @Override
-//    public int getCaseValue(int numCase) {
-//        return viewUpdater.getCaseValue(numCase);
-//    }
-//
-//    @Override
-//    public void removeLastLogLine() {
-//        viewUpdater.removeLastLogLine();
-//    }
-//
-//    @Override
-//    public void showMessageDialog(Component component, Object object) {
-//        viewUpdater.showMessageDialog(component,object);
-//    }
-
 
 }

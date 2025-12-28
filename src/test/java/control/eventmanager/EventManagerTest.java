@@ -27,11 +27,12 @@ class EventManagerTest {
         model = mock(Model.class);
         viewUpdater = mock(ViewUpdater.class);
         MyProperties properties = mock(MyProperties.class);
+        ResolutionService resolutionService = Mockito.mock(ResolutionService.class);
         ModelToViewSynchonizer synchonizer = Mockito.mock(ModelToViewSynchonizer.class);
         when(properties.getProperty("InitialMessage")).thenReturn("Initial message");
         when(properties.getProperty("StartMessage")).thenReturn("Start message");
 
-        eventManager = new EventManager(viewUpdater, properties, synchonizer);
+        eventManager = new EventManager(viewUpdater, properties, synchonizer, resolutionService);
         eventManager.setModel(model);
     }
 

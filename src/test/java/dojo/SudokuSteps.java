@@ -45,7 +45,7 @@ public class SudokuSteps {
 
 		// EventManager
         ModelToViewSynchonizer synchonizer = new ModelToViewSynchonizer(myView);
-		EventManager eventManager = new EventManager(myView, myProperties, synchonizer);
+		EventManager eventManager = new EventManager(myView, myProperties, synchonizer, null);
 		publisher.addListener(synchonizer);
 		eventManager.setModel(model);
 		myView.registerController(eventManager);
