@@ -1,5 +1,7 @@
 package control;
 
+import control.eventmanager.EventManager;
+import control.eventmanager.ModelToViewSynchonizer;
 import model.Model;
 import model.SimpleModelEventPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,8 @@ public class Control {
 
 		// EventManager
 		EventManager eventManager = context.getBean(EventManager.class);
-		publisher.addListener(eventManager);
+        ModelToViewSynchonizer synchonizer = context.getBean(ModelToViewSynchonizer.class);
+		publisher.addListener(synchonizer);
 		eventManager.setModel(model);
 		myView.registerController(eventManager);
 
@@ -61,9 +64,9 @@ public class Control {
 		ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, command);
 		eventManager.actionPerformed(event);
 	}
-	public ViewUpdater getViewUpdater() {
-		return eventManager;
-	}
+//	public ViewUpdater getViewUpdater() {
+//		return eventManager;
+//	}
 
 }
 

@@ -1,4 +1,4 @@
-package control;
+package control.eventmanager;
 
 import model.grille.Grille;
 import model.grille.GrilleUtils;

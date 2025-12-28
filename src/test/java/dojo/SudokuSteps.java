@@ -1,8 +1,9 @@
 package dojo;
 
 import control.Control;
-import control.EventManager;
+import control.eventmanager.EventManager;
 import control.MyProperties;
+import control.eventmanager.ModelToViewSynchonizer;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -23,12 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SudokuSteps {
 	private Control control;
+    private MyView myView;
 
 	@Given("I start my Sudoku application with file {string}")
 	public void i_start_my_Sudoku_application_with_file_fileName(String fileName) {
 
 		MyProperties myProperties = new MyProperties("config.properties");
-		MyView myView = new MyView("C:/");
+        myView = new MyView("C:/");
 
 		//services :
         TemplateProvider provider = new TemplateProvider(myProperties);
@@ -42,8 +44,9 @@ public class SudokuSteps {
 		Model model = new Model(eventService, messageService, historisationService);
 
 		// EventManager
-		EventManager eventManager = new EventManager(myView, myProperties);
-		publisher.addListener(eventManager);
+        ModelToViewSynchonizer synchonizer = new ModelToViewSynchonizer(myView);
+		EventManager eventManager = new EventManager(myView, myProperties, synchonizer);
+		publisher.addListener(synchonizer);
 		eventManager.setModel(model);
 		myView.registerController(eventManager);
 
@@ -72,7 +75,7 @@ public class SudokuSteps {
 
 	@Then("the cell number {int} is yellow")
 	public void the_cell_number_numCase_is_yellow(Integer numCase) {
-		Color c = control.getViewUpdater().getCaseBackground(numCase);
+		Color c = myView.getCaseBackground(numCase);
 		assertEquals(Color.YELLOW,c);
 	}
 
@@ -85,13 +88,13 @@ public class SudokuSteps {
 
 	@Then("the cell number {int} is resolved by {int}")
 	public void the_cell_number_is_resolved_by(Integer numCase, Integer valeur) {
-	    int valeurCase = control.getViewUpdater().getCaseValue(numCase);
+	    int valeurCase = myView.getCaseValue(numCase);
 		assertEquals(valeur, valeurCase);
 	}
 
 	@Then("the cell number {int} is green")
 	public void the_cell_number_is_green(Integer numCase) {
-		Color c = control.getViewUpdater().getCaseBackground(numCase);
+		Color c = myView.getCaseBackground(numCase);
 		assertEquals(Color.GREEN,c);
 	}
 }
