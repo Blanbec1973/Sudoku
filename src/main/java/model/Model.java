@@ -13,7 +13,7 @@ import resolution.ResolutionAction;
 import resolution.ResolutionMethodRegistry;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,7 +21,7 @@ public class Model {
 	private final ModelEventService modelEventService;
 	private final ResolutionMessageService messageService;
 	private final Grille grille;
-	private final ArrayList<MethodeResolution> listeMethodes;
+	private final List<MethodeResolution> listeMethodes;
 	private final HistorisationService historisationService;
     private static final Logger logger = LoggerFactory.getLogger(Model.class);
 
@@ -34,7 +34,7 @@ public class Model {
 		grille =new Grille();
 
         ResolutionMethodRegistry registry = new ResolutionMethodRegistry(grille);
-        listeMethodes = (ArrayList<MethodeResolution>) registry.getOrderedMethods();
+        listeMethodes = registry.getOrderedMethods();
 	}
 
 	public Grille getGrille() {return grille;}

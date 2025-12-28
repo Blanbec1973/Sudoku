@@ -12,7 +12,8 @@ public class CandidatDansColonneUniqueDuneRegion extends MethodeResolution {
 	int numColonne;
 	int numCaseAction;
 	int candidatAEliminer;
-	
+
+    //TODO : Factoriser dans une classe CandidatDansZoneUniqueDuneRegion
 	public CandidatDansColonneUniqueDuneRegion(Grille grille) {
 		super(grille);
 	}

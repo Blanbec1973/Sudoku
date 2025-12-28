@@ -11,7 +11,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class ResolutionMethodRegistry {
@@ -28,6 +27,7 @@ public class ResolutionMethodRegistry {
         this.grille=grille;
         InputStream is = getClass().getClassLoader().getResourceAsStream("ResolutionMethod.yml");
         if (is == null) {
+            //TODO : créer exception personnalisée
             throw new RuntimeException("File ResolutionMethod.yaml not found in classpath !");
         }
         ResolutionMethodsConfig config = ConfigLoader.loadConfig(is);
@@ -43,7 +43,7 @@ public class ResolutionMethodRegistry {
 
         orderedMethods = config.getResolutionMethods().stream()
              .map(this::instantiateResolutionMethod)
-             .collect(Collectors.toList());
+             .toList();
     }
 
     private MethodeResolution instantiateResolutionMethod(ResolutionMethodConfig conf) {
@@ -54,6 +54,7 @@ public class ResolutionMethodRegistry {
         try {
             clazz = Class.forName(className);
         } catch (ClassNotFoundException e) {
+            //TODO : créer exception personnalisée
             throw new RuntimeException(e);
         }
 
@@ -66,6 +67,7 @@ public class ResolutionMethodRegistry {
                 return (MethodeResolution) ctor.newInstance(grille, zone);
             }
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            //TODO : créer exception personnalisée
             throw new RuntimeException(e);
         }
     }
