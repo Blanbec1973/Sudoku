@@ -13,18 +13,16 @@ public class CandidatUtils {
 
     public static boolean [] calculOuLogique2Candidats(boolean[] candidats1 , boolean[] candidats2) {
         boolean[] resultat = new boolean [10];
-        for (int i=0;i<resultat.length;i++) {
-            resultat [i] = (candidats1[i] || candidats2[i]);
-        }
+        IntStream.range(0, resultat.length)
+                .forEach(i -> resultat[i] = candidats1[i] || candidats2[i]);
         return resultat;
     }
 
     public static CandidatsCase calculEtLogique2Candidats(CandidatsCase candidats1, CandidatsCase candidats2) {
         CandidatsCase resultat = new CandidatsCase();
-        for (int i=1;i<10;i++) {
-            if (!(candidats1.isCandidat(i) && candidats2.isCandidat(i)))
-                resultat.elimineCandidat(i);
-        }
+        IntStream.rangeClosed(1,9)
+                .filter(i->!(candidats1.isCandidat(i) && candidats2.isCandidat(i)))
+                .forEach(resultat::elimineCandidat);
         return resultat;
     }
 
