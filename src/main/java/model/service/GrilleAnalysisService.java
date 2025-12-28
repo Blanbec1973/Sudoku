@@ -4,6 +4,7 @@ import model.grille.CaseContext;
 import model.grille.Grille;
 import model.grille.GrilleUtils;
 
+import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
 
 public class GrilleAnalysisService {
@@ -13,24 +14,18 @@ public class GrilleAnalysisService {
         this.grille = grille;
     }
 
+    private boolean checkPresence(IntPredicate condition) {
+        return IntStream.range(0, 9).anyMatch(condition);
+    }
+
     public boolean checkPresenceValeurLigne(CaseContext context, int valeur) {
         int numLigne = context.getY();
-        for (int i = 0; i < 9; i++) {
-            if (GrilleUtils.getValeurCase(grille, i, numLigne) == valeur) {
-                return true;
-            }
-        }
-        return false;
+        return checkPresence(i-> GrilleUtils.getValeurCase(grille, i, numLigne) == valeur);
     }
 
     public boolean checkPresenceValeurColonne(CaseContext context, int valeur) {
         int numColonne = context.getX();
-        for (int i = 0; i < 9; i++) {
-            if (GrilleUtils.getValeurCase(grille, numColonne, i) == valeur) {
-                return true;
-            }
-        }
-        return false;
+        return checkPresence(i-> GrilleUtils.getValeurCase(grille, numColonne, i) == valeur);
     }
 
     public boolean checkPresenceValeurRegion(CaseContext context, int valeur) {
@@ -45,6 +40,7 @@ public class GrilleAnalysisService {
         }
         return false;
     }
+
     public boolean checkPresenceCandidatLigne(CaseContext context, int valeur) {
         int numLigne = context.getY();
         int x = context.getX();
@@ -77,18 +73,21 @@ public class GrilleAnalysisService {
         }
         return false;
     }
-    public int calculNombreCaseATrouverDansLigne(int ySearch) {
+
+    private int calculNombreCaseATrouver(IntPredicate condition) {
         return (int) IntStream.range(0, 9)
-                .filter(i -> grille.nEstPasCaseInitiale(i, ySearch)
-                        && grille.nEstPasCaseTrouvee(i, ySearch))
+                .filter(condition)
                 .count();
     }
 
+    public int calculNombreCaseATrouverDansLigne(int ySearch) {
+        return calculNombreCaseATrouver(i->grille.nEstPasCaseInitiale(i, ySearch)
+                        && grille.nEstPasCaseTrouvee(i, ySearch));
+    }
+
     public int calculNombreCaseATrouverDansColonne(int xSearch) {
-        return (int) IntStream.range(0, 9)
-                .filter(i-> grille.nEstPasCaseInitiale(xSearch,i)
-                        && grille.nEstPasCaseTrouvee(xSearch,i))
-                .count();
+        return calculNombreCaseATrouver(i-> grille.nEstPasCaseInitiale(xSearch,i)
+                        && grille.nEstPasCaseTrouvee(xSearch,i));
     }
 
     public Integer calculNombreCaseATrouverDansBloc(CaseContext context) {
