@@ -1,15 +1,10 @@
 package model.grille;
 
 import model.service.GrilleService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import resolution.ResolutionAction;
 import utils.Utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +12,6 @@ import java.util.List;
 @Component
 public class Grille {
     private final Case[][] mesCases = new Case [9][9];
-    private static final Logger logger = LoggerFactory.getLogger(Grille.class.getPackage().getName());
     private final List<Integer> casesAtrouver= new ArrayList<>();
     private final GrilleService grilleService;
     public Grille() {
@@ -31,31 +25,7 @@ public class Grille {
         this.grilleService = new GrilleService(this);
     }
     public void init(Path path) {
-        casesAtrouver.clear();
-        String readLine;
-        int valeur;
-        int indexCase = 1;
-        int y=0;
-        try (BufferedReader b = new BufferedReader(new FileReader(path.toFile()))){
-            while ((readLine = b.readLine()) != null) {
-                for (int x=0;x<9;x++) {
-                    valeur = Integer.parseInt(readLine.substring(x,x+1));
-                    if (valeur != 0) {
-                        this.getCase(x,y).setCaseInitiale(valeur);
-                    }
-                    else {
-                        this.getCasesAtrouver().add(indexCase);
-                        this.getCase(x,y).initialiserCaseVide();
-                    }
-                    indexCase+=1;
-                }
-                y++;
-            }
-        } catch (IOException | NullPointerException ex) {
-            logger.error("Exception : {}",ex.getMessage());
-            System.exit(-1);
-        }
-        logger.info("Chargement OK fichier : {}",path.getFileName());
+        InitGrilleService.init(this, path);
         grilleService.calculTousLesCandidats();
     }
     public GrilleService getGrilleService() {return this.grilleService;}
