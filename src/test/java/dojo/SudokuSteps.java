@@ -6,9 +6,10 @@ import control.MyProperties;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import model.MessageManager;
+import model.messagemanager.MessageManager;
 import model.Model;
 import model.SimpleModelEventPublisher;
+import model.messagemanager.TemplateProvider;
 import model.service.HistorisationService;
 import model.service.ModelEventService;
 import model.service.ResolutionMessageService;
@@ -30,7 +31,8 @@ public class SudokuSteps {
 		MyView myView = new MyView("C:/");
 
 		//services :
-		MessageManager messageManager = new MessageManager(myProperties);
+        TemplateProvider provider = new TemplateProvider(myProperties);
+		MessageManager messageManager = new MessageManager(provider);
 		HistorisationService historisationService = new HistorisationService();
 		SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
 		ModelEventService eventService = new ModelEventService(publisher);

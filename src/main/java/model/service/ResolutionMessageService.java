@@ -1,6 +1,6 @@
 package model.service;
 
-import model.MessageManager;
+import model.messagemanager.MessageManager;
 import org.springframework.stereotype.Service;
 import resolution.ResolutionAction;
 

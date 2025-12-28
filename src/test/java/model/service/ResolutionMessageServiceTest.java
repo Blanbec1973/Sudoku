@@ -1,6 +1,6 @@
 package model.service;
 
-import model.MessageManager;
+import model.messagemanager.MessageManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import resolution.ResolutionAction;

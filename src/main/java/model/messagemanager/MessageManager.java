@@ -1,6 +1,5 @@
-package model;
+package model.messagemanager;
 
-import control.MyProperties;
 import model.grille.CaseContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,16 +9,16 @@ import resolution.ResolutionAction;
 
 @Service
 public class MessageManager {
-    private final MyProperties prop;
+    private final TemplateProvider provider;
 
     @Autowired
-    public MessageManager(MyProperties prop)  {
-        this.prop = prop;
+    public MessageManager(TemplateProvider provider)  {
+        this.provider = provider;
     }
 
     public String createMessageSolution(ResolutionAction action) {
         String message = initializeMessage(action.getContext());
-        String tempString = prop.getProperty(action.getMethodeResolution().getSimpleName());
+        String tempString = provider.getTemplate(action.getMethodeResolution().getSimpleName());
         String tempString2=tempString.replace("%solution", String.valueOf(action.getSolution()));
         String tempString3=tempString2.replace("%ligne", action.getContext().getYEdition());
         String tempString4=tempString3.replace("%colonne", action.getContext().getXEdition());
@@ -32,7 +31,7 @@ public class MessageManager {
     }
     public String createMessageElimination(ResolutionAction action) {
         String message = initializeMessage(action.getContext());
-        String tempString = prop.getProperty(action.getMethodeResolution().getSimpleName());
+        String tempString = provider.getTemplate(action.getMethodeResolution().getSimpleName());
         String tempString2 = tempString.replace("%c1", String.valueOf(action.getCandidatUtilise(0)));
         String tempString3 = tempString2.replace("%c2", String.valueOf(action.getCandidatUtilise(1)));
         String tempString4;
@@ -53,7 +52,7 @@ public class MessageManager {
     }
     private String initializeMessage(CaseContext context) {
         String message ="";
-        message+=String.format(prop.getProperty("msgGeneral"), context.getXEdition(),
+        message+=String.format(provider.getTemplate("msgGeneral"), context.getXEdition(),
                 context.getYEdition());
         return message;
     }
