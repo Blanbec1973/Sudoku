@@ -58,13 +58,11 @@ public class Model {
 	}
 
 	private Optional<ResolutionAction> findNextAction(boolean goPourChangement) {
-		for (MethodeResolution methode : listeMethodes) {
-			Optional<ResolutionAction> action = methode.detecteSuivant(goPourChangement);
-			if (action.isPresent()) {
-				return action;
-			}
-		}
-		return Optional.empty();
+		return listeMethodes.stream()
+                .map(methode -> methode.detecteSuivant(goPourChangement))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .findFirst();
 	}
 	
 	private void traiteChangement(ResolutionAction action) {
