@@ -78,21 +78,17 @@ public class GrilleAnalysisService {
         return false;
     }
     public int calculNombreCaseATrouverDansLigne(int ySearch) {
-        int resultat = 0;
-        for (int i=0;i<9;i++) {
-            if (grille.nEstPasCaseInitiale(i,ySearch) && grille.nEstPasCaseTrouvee(i,ySearch))
-                resultat+=1;
-        }
-        return resultat;
+        return (int) IntStream.range(0, 9)
+                .filter(i -> grille.nEstPasCaseInitiale(i, ySearch)
+                        && grille.nEstPasCaseTrouvee(i, ySearch))
+                .count();
     }
 
     public int calculNombreCaseATrouverDansColonne(int xSearch) {
-        int resultat = 0;
-        for (int i=0;i<9;i++) {
-            if (grille.nEstPasCaseInitiale(xSearch,i) && grille.nEstPasCaseTrouvee(xSearch,i))
-                resultat+=1;
-        }
-        return resultat;
+        return (int) IntStream.range(0, 9)
+                .filter(i-> grille.nEstPasCaseInitiale(xSearch,i)
+                        && grille.nEstPasCaseTrouvee(xSearch,i))
+                .count();
     }
 
     public Integer calculNombreCaseATrouverDansBloc(CaseContext context) {
