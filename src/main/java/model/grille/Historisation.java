@@ -2,6 +2,7 @@ package model.grille;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Historisation {
 	private final List<Grille> histoGrille = new ArrayList<>();
@@ -25,15 +26,16 @@ public class Historisation {
 		//			Candidats : candidats, nombreCandidats
 		
 		cible.getCasesAtrouver().clear();
-		for (int numCaseATrouver : source.getCasesAtrouver()) {
-			cible.getCasesAtrouver().add(numCaseATrouver);
-		}
-		
-		for (int i=1;i<82;i++) {		
-			cible.getCase(i).setCaseTrouvee(GrilleUtils.getValeurCase(source, i));
-			cible.getCase(i).setEtatCase(source.getCase(i).getEtatCase());
-			this.copyCandidats(source.getCase(i).getCandidats(), cible.getCase(i).getCandidats());				                                                          
-		}
+        source.getCasesAtrouver().forEach(numCase -> cible.getCasesAtrouver().add(numCase));
+
+        IntStream.rangeClosed(1, 81).forEach(i-> {
+            cible.getCase(i).setCaseTrouvee(GrilleUtils.getValeurCase(source, i));
+            cible.getCase(i).setEtatCase(source.getCase(i).getEtatCase());
+            this.copyCandidats(source.getCase(i).getCandidats(), cible.getCase(i).getCandidats());
+        });
+
+
+
 	}
 
 	private void copyCandidats(CandidatsCase input, CandidatsCase output) {
