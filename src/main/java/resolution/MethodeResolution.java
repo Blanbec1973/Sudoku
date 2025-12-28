@@ -40,15 +40,11 @@ public abstract class MethodeResolution {
 
 	public Optional<ResolutionAction> detecteSuivant(boolean goPourChangement) {
 		logger.debug("DetecteSuivant :");
-		for (int i = 0; i < grille.getCasesAtrouver().size(); i++) {
-			int numCase = grille.getCasesAtrouver().get(i);
-			CaseContext context = new CaseContext(numCase);
-			Optional<ResolutionAction> action = this.traiteCaseEnCours(context, goPourChangement);
-			if (action.isPresent()) {
-				return action;
-			}
-		}
-		return Optional.empty();
+        return grille.getCasesAtrouver().stream()
+                .map(CaseContext::new)
+                .map(context -> traiteCaseEnCours(context, goPourChangement))
+                .flatMap(Optional::stream)
+                .findFirst();
 	}
 	public abstract Optional<ResolutionAction> traiteCaseEnCours(CaseContext context, boolean goPourChangement);
 

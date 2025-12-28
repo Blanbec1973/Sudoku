@@ -60,8 +60,7 @@ public class Model {
 	private Optional<ResolutionAction> findNextAction(boolean goPourChangement) {
 		return listeMethodes.stream()
                 .map(methode -> methode.detecteSuivant(goPourChangement))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
+                .flatMap(Optional::stream)
                 .findFirst();
 	}
 	
