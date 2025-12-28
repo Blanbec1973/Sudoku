@@ -9,10 +9,8 @@ import utils.Utils;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 @org.springframework.stereotype.Component
 public class MyView implements ViewUpdater {
@@ -43,7 +41,7 @@ public class MyView implements ViewUpdater {
         return this.menuOpen;
     }
     public JMenuItem getMenuResolution() {return this.menuResolution;}
-    private final String pathName;
+    final String pathName;
     private static final Logger logger = LoggerFactory.getLogger(MyView.class);
 
     public MyView(@Value("$(initialDirectory)") String pathName){
@@ -224,30 +222,9 @@ public class MyView implements ViewUpdater {
         javax.swing.JOptionPane.showMessageDialog(component, object);
     }
     public String afficheSaveFileDialog(String typeDialog) {
-	    String fileName="";
-        int returnVal = 0;
-    	JFileChooser chooser = new JFileChooser();
-	    
-    	FileNameExtensionFilter filter = new FileNameExtensionFilter(
-	        "*.sud", "sud");
-	    chooser.setFileFilter(filter);
-
-        File defaultDir = new File(pathName);
-        chooser.setCurrentDirectory(defaultDir);
-
-	    if (typeDialog.equals("SAVE")) {
-            returnVal = chooser.showSaveDialog(this.fenetre);}
-        if (typeDialog.equals("OPEN")) {
-            returnVal = chooser.showOpenDialog(this.fenetre);}
-
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-		    if (chooser.getSelectedFile().getName().contains("."))
-		    	fileName = chooser.getSelectedFile().getAbsolutePath();
-		    else
-		    	fileName = chooser.getSelectedFile().getAbsolutePath()+".sud";
-		}
-	    return fileName;
+        return FileDialogUtils.afficheSaveFileDialog(this, typeDialog);
     }
+
     private void formatMaCase(JButton button) {
         Dimension expectedDimension = new Dimension(54, 54);
         button.setPreferredSize(expectedDimension);
