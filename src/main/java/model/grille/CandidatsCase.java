@@ -1,5 +1,7 @@
 package model.grille;
 
+import java.util.Arrays;
+
 public class CandidatsCase {
     private boolean[] candidats  = new boolean [10];
     private int nombreCandidats;
@@ -8,7 +10,7 @@ public class CandidatsCase {
         setAllCandidatsToTrue();
     }
     protected void setAllCandidatsToTrue() {
-        for (int i=0;i<10;i++) {this.candidats[i]=true;}
+        Arrays.fill(this.candidats, true);
         this.elimineCandidat(0);
         this.calculNombreCandidats();
     }
@@ -55,21 +57,11 @@ public class CandidatsCase {
         this.nombreCandidats = compterCandidatsActifs();
     }
     public String construitLibelleCandidats() {
-        StringBuilder bld = new StringBuilder();
-        bld.append("<html>");
-        bld.append(this.editeCandidat(1));
-        bld.append(this.editeCandidat(2));
-        bld.append(this.editeCandidat(3));
-        bld.append("<br>");
-        bld.append(this.editeCandidat(4));
-        bld.append(this.editeCandidat(5));
-        bld.append(this.editeCandidat(6));
-        bld.append("<br>");
-        bld.append(this.editeCandidat(7));
-        bld.append(this.editeCandidat(8));
-        bld.append(this.editeCandidat(9));
-        bld.append("</html>");
-        return bld.toString();
+        return "<html>" +
+                editeCandidat(1) + editeCandidat(2) + editeCandidat(3) + "<br>" +
+                editeCandidat(4) + editeCandidat(5) + editeCandidat(6) + "<br>" +
+                editeCandidat(7) + editeCandidat(8) + editeCandidat(9) +
+                "</html>";
     }
     private String editeCandidat(int candidat) {
     	if (this.isCandidat(candidat)) return String.valueOf(candidat);
