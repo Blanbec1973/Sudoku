@@ -4,6 +4,8 @@ import model.grille.CaseContext;
 import model.grille.Grille;
 import model.grille.GrilleUtils;
 
+import java.util.stream.IntStream;
+
 public class GrilleAnalysisService {
     private final Grille grille;
 
@@ -46,22 +48,19 @@ public class GrilleAnalysisService {
     public boolean checkPresenceCandidatLigne(CaseContext context, int valeur) {
         int numLigne = context.getY();
         int x = context.getX();
-        for (int i=0;i<9;i++) {
-            if (grille.nEstPasCaseInitiale(i, numLigne) &&
-                    grille.nEstPasCaseTrouvee(i, numLigne) &&
-                    i!=x && grille.isCandidat(i, numLigne, valeur)) {return true;}
-        }
-        return false;
+
+        return IntStream.range(0,9).filter(i->grille.nEstPasCaseInitiale(i, numLigne))
+                .filter(i->grille.nEstPasCaseTrouvee(i, numLigne))
+                .filter(i-> i!=x)
+                .anyMatch(i-> grille.isCandidat(i, numLigne, valeur));
     }
     public boolean checkPresenceCandidatColonne(CaseContext context, int valeur) {
         int numCol = context.getX();
         int y = context.getY();
-        for (int i=0;i<9;i++) {
-            if (grille.nEstPasCaseInitiale(numCol, i) &&
-                    grille.nEstPasCaseTrouvee(numCol, i) &&
-                    i!=y && grille.isCandidat(numCol, i, valeur)) {return true;}
-        }
-        return false;
+        return IntStream.range(0,9).filter(i->grille.nEstPasCaseInitiale(numCol, i))
+                .filter(i->grille.nEstPasCaseTrouvee(numCol, i))
+                .filter(i-> i!=y)
+                .anyMatch(i-> grille.isCandidat(numCol,i, valeur));
     }
     public boolean checkPresenceCandidatRegion(CaseContext context, int indiceCandidat) {
         int x = context.getX();
