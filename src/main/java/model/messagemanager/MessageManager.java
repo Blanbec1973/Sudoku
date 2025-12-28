@@ -7,6 +7,8 @@ import resolution.CandidatUniqueDansZone;
 import resolution.PaireConjugueeDansZone;
 import resolution.ResolutionAction;
 
+import java.util.HashMap;
+
 @Service
 public class MessageManager {
     private final TemplateProvider provider;
@@ -18,37 +20,37 @@ public class MessageManager {
 
     public String createMessageSolution(ResolutionAction action) {
         String message = initializeMessage(action.getContext());
-        String tempString = provider.getTemplate(action.getMethodeResolution().getSimpleName());
-        String tempString2=tempString.replace("%solution", String.valueOf(action.getSolution()));
-        String tempString3=tempString2.replace("%ligne", action.getContext().getYEdition());
-        String tempString4=tempString3.replace("%colonne", action.getContext().getXEdition());
-        String tempString5=tempString4.replace("%region",String.valueOf(action.getContext().getNumRegion()));
+        String template = provider.getTemplate(action.getMethodeResolution().getSimpleName());
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("%solution", String.valueOf(action.getSolution()));
+        map.put("%ligne", action.getContext().getYEdition());
+        map.put("%colonne", action.getContext().getXEdition());
+        map.put("%region",String.valueOf(action.getContext().getNumRegion()));
+
         if (action.getMethodeResolution() instanceof CandidatUniqueDansZone zoneMethod) {
-            String tempString6=tempString5.replace("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
-            return message+" "+tempString6;
+            map.put("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
         }
-        return message+" "+tempString5;
+        return message+" "+TemplateEngine.fillTemplate(template, map);
     }
     public String createMessageElimination(ResolutionAction action) {
         String message = initializeMessage(action.getContext());
-        String tempString = provider.getTemplate(action.getMethodeResolution().getSimpleName());
-        String tempString2 = tempString.replace("%c1", String.valueOf(action.getCandidatUtilise(0)));
-        String tempString3 = tempString2.replace("%c2", String.valueOf(action.getCandidatUtilise(1)));
-        String tempString4;
+        String template = provider.getTemplate(action.getMethodeResolution().getSimpleName());
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("%c1", String.valueOf(action.getCandidatUtilise(0)));
+        map.put("%c2", String.valueOf(action.getCandidatUtilise(1)));
         if (action.getNombreCandidatsUtilises()>2) {
-            tempString4 = tempString3.replace("%c3", String.valueOf(action.getCandidatUtilise(2)));
-        } else {
-            tempString4 = tempString3;
+            map.put("%c3", String.valueOf(action.getCandidatUtilise(2)));
         }
-        String tempString5 = tempString4.replace("%candelim", String.valueOf(action.getCandidatAEliminer()));
-        String tempString6 = tempString5.replace("%ligne", action.getContext().getYEdition());
-        String tempString7 = tempString6.replace("%colonne", action.getContext().getXEdition());
-        String tempString8 = tempString7.replace("%region",String.valueOf(action.getContext().getNumRegion()));
+        map.put("%candelim", String.valueOf(action.getCandidatAEliminer()));
+        map.put("%ligne", action.getContext().getYEdition());
+        map.put("%colonne", action.getContext().getXEdition());
+        map.put("%region",String.valueOf(action.getContext().getNumRegion()));
         if (action.getMethodeResolution() instanceof PaireConjugueeDansZone zoneMethod) {
-            String tempString9=tempString8.replace("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
-            return message+" "+tempString9;
+            map.put("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
         }
-        return message+" "+tempString8;
+        return message+" "+TemplateEngine.fillTemplate(template, map);
     }
     private String initializeMessage(CaseContext context) {
         String message ="";
