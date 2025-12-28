@@ -34,12 +34,11 @@ public class CandidatUtils {
     public static CandidatsCase elimineCandidatsCase(CandidatsCase aEliminer, CandidatsCase cible) {
         // Crée une copie des candidats de la cible
         boolean[] candidatsResultat = cible.getCandidats().clone();
-        // Parcourt les candidats à éliminer
-        for (int i = 1; i <= 9; i++) {
-            if (aEliminer.isCandidat(i)) {
-                candidatsResultat[i] = false; // Élimine le candidat
-            }
-        }
+
+        IntStream.rangeClosed(1,9)
+                .filter(aEliminer::isCandidat)
+                .forEach(i->candidatsResultat[i] = false);
+
         // Retourne un nouvel objet CandidatsCase avec les candidats mis à jour
         return new CandidatsCase(candidatsResultat);
     }
