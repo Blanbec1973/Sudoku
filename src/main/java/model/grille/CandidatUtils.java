@@ -1,5 +1,7 @@
 package model.grille;
 
+import java.util.stream.IntStream;
+
 public class CandidatUtils {
     private CandidatUtils() {
         throw new IllegalStateException("Utility class");
@@ -45,11 +47,9 @@ public class CandidatUtils {
     }
 
     public static int calculNombreCandidats(boolean[] candidats) {
-        int resultat =0;
-        for (boolean candidat : candidats) {
-            if (candidat) resultat += 1;
-        }
-        return resultat;
+        return (int) IntStream.range(0, candidats.length)
+                .filter(i -> candidats[i])
+                .count();
     }
 
     public static int trouveCandidatNumero(CandidatsCase candidat, int rang) {
@@ -62,13 +62,10 @@ public class CandidatUtils {
     }
 
     public static int trouvePremierCandidat(CandidatsCase candidatsCase) {
-        for (int i = 1; i <= 9; i++) { // On ignore l'index 0
-            if (candidatsCase.isCandidat(i)) {
-                return i; // Retourne le premier candidat trouvé
-            }
-        }
-        return 0; // Aucun candidat actif trouvé
-
+        return IntStream.rangeClosed(1, 9)
+                .filter(candidatsCase::isCandidat)
+                .findFirst()
+                .orElse(0);
     }
 
     public static int[] getCandidatsActifs(CandidatsCase candidatsCase) {
