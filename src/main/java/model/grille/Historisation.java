@@ -2,7 +2,6 @@ package model.grille;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Historisation {
 	private final List<Grille> histoGrille = new ArrayList<>();
@@ -12,35 +11,12 @@ public class Historisation {
 	
 	public void historiseGrille(Grille grille) {
 		histoGrille.add(new Grille());
-		this.copyGrille(grille, histoGrille.get(histoGrille.size()-1));
+		CopyGrilleService.copyGrille(grille, histoGrille.get(histoGrille.size()-1));
 	}
 	
 	public void supprimeDerniereGrille(Grille grille) {
 		histoGrille.remove(histoGrille.size()-1);
-		this.copyGrille(histoGrille.get(histoGrille.size()-1), grille);
-	}
-	
-	private void copyGrille(Grille source, Grille cible) {
-		// grille : tableau de Cases + liste casesATrouver
-		//     Case : numCase, xCase, yCase, valeur, region, etatCase, candidats
-		//			Candidats : candidats, nombreCandidats
-		
-		cible.getCasesAtrouver().clear();
-        source.getCasesAtrouver().forEach(numCase -> cible.getCasesAtrouver().add(numCase));
-
-        IntStream.rangeClosed(1, 81).forEach(i-> {
-            cible.getCase(i).setCaseTrouvee(GrilleUtils.getValeurCase(source, i));
-            cible.getCase(i).setEtatCase(source.getCase(i).getEtatCase());
-            this.copyCandidats(source.getCase(i).getCandidats(), cible.getCase(i).getCandidats());
-        });
-
-
-
-	}
-
-	private void copyCandidats(CandidatsCase input, CandidatsCase output) {
-		boolean[] candidatsInput = input.getCandidats();
-		output.setCandidats(candidatsInput.clone());
+        CopyGrilleService.copyGrille(histoGrille.get(histoGrille.size()-1), grille);
 	}
 
     public void reloadGrille(Grille grille) {
