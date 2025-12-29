@@ -45,7 +45,6 @@ public class SudokuSteps {
         this.eventManager = context.getBean(EventManager.class);
         ModelToViewSynchonizer synchonizer = context.getBean(ModelToViewSynchonizer.class);
         publisher.addListener(synchonizer);
-        eventManager.setModel(model);
         myView.registerController(eventManager);
         this.navigationService = context.getBean(NavigationService.class);
 

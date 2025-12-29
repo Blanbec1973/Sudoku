@@ -21,7 +21,7 @@ public class NavigationService {
         this.model = model;
     }
 
-    void handleRecule() {
+    public void handleRecule() {
         // Vérifier si on peut revenir en arrière
         if (!model.canReloadLastHistoricization()) {
             viewUpdater.showMessageDialog(null, properties.getProperty("InitialMessage"));

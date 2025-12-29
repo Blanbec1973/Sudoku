@@ -4,19 +4,17 @@ import model.grille.Grille;
 import model.grille.GrilleUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-class GridSaver {
-	private static final Logger logger = LoggerFactory.getLogger(GridSaver.class);
-
-	private GridSaver() {
-		throw new IllegalStateException("Utility class");
-	}
+@Service
+public class GridSaverService {
+	private static final Logger logger = LoggerFactory.getLogger(GridSaverService.class);
 	  
-	public static void saveGrid(Grille grille, String fileName) {
+	public void saveGrid(Grille grille, String fileName) {
 
 		StringBuilder writeLine = new StringBuilder();
 		

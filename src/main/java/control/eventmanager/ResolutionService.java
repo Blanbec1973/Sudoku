@@ -19,7 +19,7 @@ public class ResolutionService {
         this.model = model;
     }
 
-    void resolution() {
+    public void resolution() {
         logger.info("Demande de résolution globale.");
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {

@@ -33,7 +33,6 @@ public class ApplicationInitializer {
         EventManager eventManager = context.getBean(EventManager.class);
         ModelToViewSynchonizer synchonizer = context.getBean(ModelToViewSynchonizer.class);
         publisher.addListener(synchonizer);
-        eventManager.setModel(model);
         myView.registerController(eventManager);
 
         // Control with injection
