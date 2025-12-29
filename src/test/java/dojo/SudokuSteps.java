@@ -1,71 +1,70 @@
 package dojo;
 
-import control.Control;
+import control.AppConfig;
 import control.eventmanager.EventManager;
 import control.MyProperties;
 import control.eventmanager.ModelToViewSynchonizer;
+import control.eventmanager.NavigationService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import model.messagemanager.MessageManager;
 import model.Model;
 import model.SimpleModelEventPublisher;
-import model.messagemanager.TemplateProvider;
-import model.service.HistorisationService;
-import model.service.ModelEventService;
-import model.service.ResolutionMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import view.MyView;
 
 import java.awt.*;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SudokuSteps {
-	private Control control;
-    private MyView myView;
+    private final MyView myView;
+    private final EventManager eventManager;
+    private final NavigationService navigationService;
 
-	@Given("I start my Sudoku application with file {string}")
+    @Autowired
+    public SudokuSteps() {
+
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MyProperties myProperties = context.getBean(MyProperties.class);
+        this.myView= context.getBean(MyView.class);
+
+        //services :
+        SimpleModelEventPublisher publisher = context.getBean(SimpleModelEventPublisher.class);
+
+        // Model
+        Model model = context.getBean(Model.class);
+
+        // EventManager
+        this.eventManager = context.getBean(EventManager.class);
+        ModelToViewSynchonizer synchonizer = context.getBean(ModelToViewSynchonizer.class);
+        publisher.addListener(synchonizer);
+        eventManager.setModel(model);
+        myView.registerController(eventManager);
+        this.navigationService = context.getBean(NavigationService.class);
+
+        // Control with injection
+
+        Path path = Paths.get(System.getProperty("user.dir") + myProperties.getProperty("InitialFile")).toAbsolutePath();
+        model.reload(path);
+        myView.refreshGrilleDisplay(model.getGrille());
+        myView.getFenetre().setVisible(true);
+    }
+
+    @Given("I start my Sudoku application with file {string}")
 	public void i_start_my_Sudoku_application_with_file_fileName(String fileName) {
-
-		MyProperties myProperties = new MyProperties("config.properties");
-        myView = new MyView("C:/");
-
-		//services :
-        TemplateProvider provider = new TemplateProvider(myProperties);
-		MessageManager messageManager = new MessageManager(provider);
-		HistorisationService historisationService = new HistorisationService();
-		SimpleModelEventPublisher publisher = new SimpleModelEventPublisher();
-		ModelEventService eventService = new ModelEventService(publisher);
-		ResolutionMessageService messageService = new ResolutionMessageService(messageManager);
-
-		// Modèle
-		Model model = new Model(eventService, messageService, historisationService);
-
-		// EventManager
-        ModelToViewSynchonizer synchonizer = new ModelToViewSynchonizer(myView);
-		EventManager eventManager = new EventManager(myView, myProperties, synchonizer, null);
-		publisher.addListener(synchonizer);
-		eventManager.setModel(model);
-		myView.registerController(eventManager);
-
-		// Control avec injection
-		control = new Control(eventManager, model);
-		control.initialize(myView, myProperties);
-
-		// Charger le fichier passé en paramètre
-		control.reloadGrille(Paths.get(fileName).toAbsolutePath());
-		myView.refreshGrilleDisplay(model.getGrille());
-
-		myView.registerController(eventManager);
-		myView.getFenetre().setVisible(true);
-
+        navigationService.reloadGrille(Paths.get(fileName));
 	}
 
 	@When("I click on nextButton")
 	public void i_click_on_nextButton() {
-		control.simulateClick("AVANCE");
+        eventManager.simulateClick("AVANCE");
 	}
 
 	@Then("the cell number {int} is selected")
@@ -82,7 +81,7 @@ public class SudokuSteps {
 	@When("I click {int} times on ExplainButton")
 	public void i_click_times_on_ExplainButton(Integer nombreClics) {
 	    for (int i = 0;i < nombreClics;i++) {
-			control.simulateClick("EXPLIQUE");
+            eventManager.simulateClick("EXPLIQUE");
 	    }
 	}
 

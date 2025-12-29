@@ -1,9 +1,6 @@
 package control.eventmanager;
 
-import control.MyProperties;
 import model.Model;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import view.MyView;
@@ -19,16 +16,13 @@ import java.nio.file.Paths;
 public class EventManager implements ActionListener {
     private Model model;
     private final ViewUpdater viewUpdater;
-    private final MyProperties properties;
-    private final ModelToViewSynchonizer synchonizer;
     private final ResolutionService resolutionService;
-    private static final Logger logger = LoggerFactory.getLogger(EventManager.class);
+    private final NavigationService navigationService;
     @Autowired
-    public EventManager(ViewUpdater viewUpdater, MyProperties properties, ModelToViewSynchonizer synchonizer, ResolutionService resolutionService) {
+    public EventManager(ViewUpdater viewUpdater, ResolutionService resolutionService, NavigationService navigationService) {
         this.viewUpdater = viewUpdater;
-        this.properties=properties;
-        this.synchonizer = synchonizer;
         this.resolutionService = resolutionService;
+        this.navigationService = navigationService;
     }
 
     public void setModel(Model model) {this.model=model;}
@@ -47,7 +41,7 @@ public class EventManager implements ActionListener {
                 break;
 
             case "RECULE":
-                handleRecule();
+                navigationService.handleRecule();
                 break;
 
             case "SAVE":
@@ -58,7 +52,7 @@ public class EventManager implements ActionListener {
             case "OPEN":
                 String fileName2 = ((MyView) viewUpdater).afficheSaveFileDialog("OPEN");
                 Path path = Paths.get(fileName2).toAbsolutePath();
-                if (!fileName2.isEmpty()) reloadGrille(path);
+                if (!fileName2.isEmpty()) navigationService.reloadGrille(path);
                 break;
 
             case "RESOLUTION":
@@ -69,25 +63,11 @@ public class EventManager implements ActionListener {
                 throw new IllegalArgumentException("Commande inconnue !");
         }
     }
-
-    private void handleRecule() {
-        // Vérifier si on peut revenir en arrière
-        if (!model.canReloadLastHistoricization()) {
-            viewUpdater.showMessageDialog(null, properties.getProperty("InitialMessage"));
-            return;
-        }
-
-        // Revenir en arrière
-        model.reloadLastHistoricization();
-        viewUpdater.refreshGrilleDisplay(model.getGrille());
-        viewUpdater.updateResolutionRank(-1);
-        viewUpdater.removeLastLogLine(); // Ajout pour corriger le problème des messages
+    public void simulateClick(String command) {
+        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, command);
+        this.actionPerformed(event);
     }
 
-    public void reloadGrille(Path path) {
-        model.reload(path);
-        viewUpdater.refreshGrilleDisplay(model.getGrille());
-        viewUpdater.resetView(properties.getProperty("StartMessage"));
-    }
+
 
 }
