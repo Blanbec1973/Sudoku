@@ -4,7 +4,7 @@ import model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("Explique")
+@Component("explique")
 public class ExpliqueCommand implements UiCommand {
     private final Model model;
 

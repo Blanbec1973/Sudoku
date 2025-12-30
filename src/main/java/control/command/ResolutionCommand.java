@@ -3,7 +3,7 @@ package control.command;
 import control.eventmanager.ResolutionService;
 import org.springframework.stereotype.Component;
 
-@Component("Resolution")
+@Component("resolution")
 public class ResolutionCommand implements UiCommand {
     private final ResolutionService resolutionService;
 

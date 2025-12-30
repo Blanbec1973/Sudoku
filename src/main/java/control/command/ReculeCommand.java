@@ -4,7 +4,7 @@ import control.eventmanager.NavigationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("Recule")
+@Component("recule")
 public class ReculeCommand implements UiCommand {
     private final NavigationService navigationService;
 

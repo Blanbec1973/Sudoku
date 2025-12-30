@@ -1,5 +1,6 @@
 package model.messagemanager;
 
+import exceptions.MessageManagerException;
 import model.grille.CaseContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,7 +77,7 @@ public class MessageManager {
             return null;
         } catch (Exception e) {
             logger.error("Error while checking getZone() method : {}", e.getMessage());
-            throw  new RuntimeException("Error while checking getZone() method.", e);
+            throw  new MessageManagerException(e, -1);
         }
         return null;
     }

@@ -21,14 +21,14 @@ class EventManagerTest {
         mockCommand = mock(UiCommand.class);
 
         Map<String, UiCommand> commandMap = new HashMap<>();
-        commandMap.put("Avance", mockCommand);
+        commandMap.put("avance", mockCommand);
 
         eventManager = new EventManager(commandMap);
     }
 
     @Test
     void testActionPerformed_executesCommand() {
-        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Avance");
+        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "avance");
         eventManager.actionPerformed(event);
         verify(mockCommand, times(1)).execute();
     }
@@ -44,7 +44,7 @@ class EventManagerTest {
 
     @Test
     void testSimulateClick_executesCommand() {
-        eventManager.simulateClick("Avance");
+        eventManager.simulateClick("avance");
         verify(mockCommand, times(1)).execute();
     }
 }

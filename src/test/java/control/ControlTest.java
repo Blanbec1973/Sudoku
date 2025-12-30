@@ -29,7 +29,7 @@ class ControlTest {
     @Test
     void testSimulateClickDelegatesToEventManager() {
         //TODO à déplacer
-//        String command = "Avance";
+//        String command = "avance";
 //        doNothing().when(mockEventManager).actionPerformed(any(ActionEvent.class));
 //
 //        control.simulateClick(command);

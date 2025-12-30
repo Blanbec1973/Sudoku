@@ -4,7 +4,7 @@ import model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("Avance")
+@Component("avance")
 public class AvanceCommand implements UiCommand {
     private final Model model;
 

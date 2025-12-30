@@ -98,12 +98,12 @@ public class MyView implements ViewUpdater, ViewCaseUpdater {
     }
     public void registerController(ActionListener controller) {
 
-        boutonAvance.setActionCommand("Avance");
-        boutonExplique.setActionCommand("Explique");
-        boutonRecule.setActionCommand("Recule");
-        menuSave.setActionCommand("Save");
-        menuOpen.setActionCommand("Open");
-        menuResolution.setActionCommand("Resolution");
+        boutonAvance.setActionCommand("avance");
+        boutonExplique.setActionCommand("explique");
+        boutonRecule.setActionCommand("recule");
+        menuSave.setActionCommand("save");
+        menuOpen.setActionCommand("open");
+        menuResolution.setActionCommand("resolution");
 
         boutonAvance.addActionListener(controller);
         boutonExplique.addActionListener(controller);

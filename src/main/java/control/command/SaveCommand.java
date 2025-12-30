@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import view.MyView;
 import view.ViewUpdater;
 
-@Component("Save")
+@Component("save")
 public class SaveCommand implements UiCommand {
     private final ViewUpdater viewUpdater;
     private final Model model;
@@ -22,7 +22,7 @@ public class SaveCommand implements UiCommand {
 
     @Override
     public void execute() {
-        String fileName = ((MyView) viewUpdater).afficheSaveFileDialog("Save");
+        String fileName = ((MyView) viewUpdater).afficheSaveFileDialog("save");
         if (!fileName.isEmpty()) saverService.saveGrid(model.getGrille(), fileName);
     }
 }

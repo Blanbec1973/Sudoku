@@ -22,9 +22,9 @@ public class FileDialogUtils {
         File defaultDir = new File(view.pathName);
         chooser.setCurrentDirectory(defaultDir);
 
-        if (typeDialog.equals("Save")) {
+        if (typeDialog.equals("save")) {
             returnVal = chooser.showSaveDialog(view.getFenetre());}
-        if (typeDialog.equals("Open")) {
+        if (typeDialog.equals("open")) {
             returnVal = chooser.showOpenDialog(view.getFenetre());}
 
         if(returnVal == JFileChooser.APPROVE_OPTION) {
