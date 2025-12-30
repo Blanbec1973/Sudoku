@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 @org.springframework.stereotype.Component
-public class MyView implements ViewUpdater {
+public class MyView implements ViewUpdater, ViewCaseUpdater {
 	private final JFrame fenetre = new JFrame();
     private final JButton [][] maGrilleDisplay = new JButton [9][9];
     private final MonPaneauGrille  panGrille = new MonPaneauGrille();
