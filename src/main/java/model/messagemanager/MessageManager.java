@@ -40,7 +40,7 @@ public class MessageManager {
     public String createMessageElimination(ResolutionAction action) {
         String message = initializeMessage(action.getContext());
         String template = provider.getTemplate(action.getMethodeResolution().getSimpleName());
-        logger.debug(action.toString());
+        if (logger.isDebugEnabled()) logger.debug(action.toString());
 
         HashMap<String, String> map = new HashMap<>();
         map.put("%c1", String.valueOf(action.getCandidatUtilise(0)));

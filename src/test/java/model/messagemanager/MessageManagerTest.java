@@ -13,7 +13,6 @@ import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MessageManagerTest {
-    //private final MyProperties prop = Mockito.mock(MyProperties.class);
     private final TemplateProvider templateProvider = Mockito.mock(TemplateProvider.class);
     private final MethodeResolution methodeResolution = Mockito.mock(MethodeResolution.class);
     private MessageManager messageManager;
