@@ -63,10 +63,12 @@ public class ResolutionAction {
     }
 
     public int getCandidatUtilise(int i) {
+        if (candidatsUtilises == null) return 0;
         return candidatsUtilises[i];
     }
 
     public int getNombreCandidatsUtilises() {
+        if (candidatsUtilises == null) return 0;
         return candidatsUtilises.length;
     }
 }
