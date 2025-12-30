@@ -1,17 +1,20 @@
 package model.messagemanager;
 
 import model.grille.CaseContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import resolution.CandidatUniqueDansZone;
-import resolution.PaireConjugueeDansZone;
+import resolution.MethodeResolution;
 import resolution.ResolutionAction;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 
 @Service
 public class MessageManager {
     private final TemplateProvider provider;
+    private static final Logger logger = LoggerFactory.getLogger(MessageManager.class);
 
     @Autowired
     public MessageManager(TemplateProvider provider)  {
@@ -28,8 +31,9 @@ public class MessageManager {
         map.put("%colonne", action.getContext().getXEdition());
         map.put("%region",String.valueOf(action.getContext().getNumRegion()));
 
-        if (action.getMethodeResolution() instanceof CandidatUniqueDansZone zoneMethod) {
-            map.put("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
+        String zone = hasGetZoneMethod(action.getMethodeResolution());
+        if (zone != null) {
+            map.put("%zone", zone);
         }
         return message+" "+TemplateEngine.fillTemplate(template, map);
     }
@@ -47,8 +51,9 @@ public class MessageManager {
         map.put("%ligne", action.getContext().getYEdition());
         map.put("%colonne", action.getContext().getXEdition());
         map.put("%region",String.valueOf(action.getContext().getNumRegion()));
-        if (action.getMethodeResolution() instanceof PaireConjugueeDansZone zoneMethod) {
-            map.put("%zone", String.valueOf(zoneMethod.getZone()).toLowerCase());
+        String zone = hasGetZoneMethod(action.getMethodeResolution());
+        if (zone != null) {
+            map.put("%zone", zone);
         }
         return message+" "+TemplateEngine.fillTemplate(template, map);
     }
@@ -57,5 +62,21 @@ public class MessageManager {
         message+=String.format(provider.getTemplate("msgGeneral"), context.getXEdition(),
                 context.getYEdition());
         return message;
+    }
+
+    private String hasGetZoneMethod(MethodeResolution method) {
+        try {
+            Method getZoneMethod = method.getClass().getMethod("getZone");
+            Object zoneValue = getZoneMethod.invoke(method);
+            if (zoneValue != null) {
+                return zoneValue.toString().toLowerCase();
+            }
+        } catch (NoSuchMethodException e) {
+            return null;
+        } catch (Exception e) {
+            logger.error("Error while checking getZone() method : {}", e.getMessage());
+            throw  new RuntimeException("Error while checking getZone() method.", e);
+        }
+        return null;
     }
 }
