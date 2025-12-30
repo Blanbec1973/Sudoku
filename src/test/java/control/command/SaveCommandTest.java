@@ -26,9 +26,9 @@ class SaveCommandTest {
 
     @Test    void saveCommandTest() {
         Grille mockGrille = mock(Grille.class);
-        when(((MyView) mockView).afficheSaveFileDialog("SAVE")).thenReturn("target/result.sud");
+        when(((MyView) mockView).afficheSaveFileDialog("Save")).thenReturn("target/result.sud");
         when(mockModel.getGrille()).thenReturn(mockGrille);
         command.execute();
-        verify((MyView) mockView, times(1)).afficheSaveFileDialog("SAVE");
+        verify((MyView) mockView, times(1)).afficheSaveFileDialog("Save");
         verify(mockService, times(1)).saveGrid(mockGrille, "target/result.sud");    }
 }

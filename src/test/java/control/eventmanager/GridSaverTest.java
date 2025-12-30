@@ -14,17 +14,17 @@ class GridSaverTest {
     @Test
 	void testSaveGrille() throws IOException {
         Grille grille =new Grille();
-        String NOM_FICHIER_SOURCE = "src/test/resources/grillesTest/init67-40.sud";
-        grille.init(Paths.get(NOM_FICHIER_SOURCE).toAbsolutePath());
-        String nomFichierCible = System.getProperty("user.dir")+"/testSaveSudoku.sud";
+        String inputFileName = "src/test/resources/grillesTest/init67-40.sud";
+        grille.init(Paths.get(inputFileName).toAbsolutePath());
+        String outputFileName = System.getProperty("user.dir")+"/testSaveSudoku.sud";
 
         GridSaverService saverService = new GridSaverService();
-        saverService.saveGrid(grille, nomFichierCible);
-		File fichierSource = new File(NOM_FICHIER_SOURCE);
-		File fichierCible = new File(nomFichierCible);
-		Assertions.assertTrue(FileUtils.contentEquals(fichierSource, fichierCible), "The files differ!");
-		if (fichierCible.exists()&& !fichierCible.delete()) {
-			System.err.println("Failed to delete the file: " + fichierCible.getAbsolutePath());
+        saverService.saveGrid(grille, outputFileName);
+		File inputFile = new File(inputFileName);
+		File outputFile = new File(outputFileName);
+		Assertions.assertTrue(FileUtils.contentEquals(inputFile, outputFile), "The files differ!");
+		if (outputFile.exists() && !outputFile.delete()) {
+			System.err.println("Failed to delete the file: " + outputFile.getAbsolutePath());
 		}
 	}
 

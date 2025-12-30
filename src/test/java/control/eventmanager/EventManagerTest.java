@@ -23,7 +23,7 @@ class EventManagerTest {
 
         // On crée une map et on y met la commande mockée
         Map<String, UiCommand> commandMap = new HashMap<>();
-        commandMap.put("AVANCE", mockCommand);
+        commandMap.put("Avance", mockCommand);
 
         // On instancie EventManager avec la map mockée
         eventManager = new EventManager(commandMap);
@@ -31,7 +31,7 @@ class EventManagerTest {
 
     @Test
     void testActionPerformed_executesCommand() {
-        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "AVANCE");
+        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Avance");
         eventManager.actionPerformed(event);
 
         // On vérifie que la méthode execute() a bien été appelée
@@ -49,7 +49,7 @@ class EventManagerTest {
 
     @Test
     void testSimulateClick_executesCommand() {
-        eventManager.simulateClick("AVANCE");
+        eventManager.simulateClick("Avance");
         verify(mockCommand, times(1)).execute();
     }
 }
@@ -98,7 +98,7 @@ class EventManagerTest {
 //
 //    @Test
 //    void testActionPerformedExplique() {
-//        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "EXPLIQUE");
+//        ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Explique");
 //        eventManager.actionPerformed(event);
 //        verify(model).detecteSuivant(true);
 //    }
@@ -110,7 +110,7 @@ class EventManagerTest {
 ////        Grille grille = mock(Grille.class);
 ////        when(model.getGrille()).thenReturn(grille);
 ////
-////        eventManager.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "RECULE"));
+////        eventManager.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Recule"));
 ////
 ////        verify(model).reloadLastHistoricization();
 ////        verify(viewUpdater).refreshGrilleDisplay(grille);
@@ -123,7 +123,7 @@ class EventManagerTest {
 //        //TODO à déplacer
 ////        when(model.canReloadLastHistoricization()).thenReturn(false);
 ////
-////        eventManager.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "RECULE"));
+////        eventManager.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Recule"));
 ////
 ////        verify(viewUpdater).showMessageDialog(null, "Initial message");
 ////        verify(model, never()).reloadLastHistoricization();

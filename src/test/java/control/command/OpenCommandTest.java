@@ -23,12 +23,12 @@ class OpenCommandTest {
     @Test
     void testExecute_callOpen() {
 
-        when(((MyView) viewUpdater).afficheSaveFileDialog("OPEN"))
+        when(((MyView) viewUpdater).afficheSaveFileDialog("Open"))
                 .thenReturn("src/test/resources/grillesTest/init7.sud");
 
         openCommand.execute();
 
-        verify((MyView) viewUpdater, times(1)).afficheSaveFileDialog("OPEN");
+        verify((MyView) viewUpdater, times(1)).afficheSaveFileDialog("Open");
         verify(navigationService, times(1)).reloadGrille(any());
 
     }

@@ -9,7 +9,7 @@ import view.ViewUpdater;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@Component("OPEN")
+@Component("Open")
 public class OpenCommand implements UiCommand {
     private final ViewUpdater viewUpdater;
     private final NavigationService navigationService;
@@ -22,7 +22,7 @@ public class OpenCommand implements UiCommand {
 
     @Override
     public void execute() {
-        String fileName2 = ((MyView) viewUpdater).afficheSaveFileDialog("OPEN");
+        String fileName2 = ((MyView) viewUpdater).afficheSaveFileDialog("Open");
         Path path = Paths.get(fileName2).toAbsolutePath();
         if (!fileName2.isEmpty()) navigationService.reloadGrille(path);
     }

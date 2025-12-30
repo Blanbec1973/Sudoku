@@ -63,7 +63,7 @@ public class SudokuSteps {
 
 	@When("I click on nextButton")
 	public void i_click_on_nextButton() {
-        eventManager.simulateClick("AVANCE");
+        eventManager.simulateClick("Avance");
 	}
 
 	@Then("the cell number {int} is selected")
@@ -80,7 +80,7 @@ public class SudokuSteps {
 	@When("I click {int} times on ExplainButton")
 	public void i_click_times_on_ExplainButton(Integer nombreClics) {
 	    for (int i = 0;i < nombreClics;i++) {
-            eventManager.simulateClick("EXPLIQUE");
+            eventManager.simulateClick("Explique");
 	    }
 	}
 
